@@ -1,3 +1,7 @@
+---
+title: "Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P"
+---
+
 # Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P
 
 > **"From Raw Satellite Data to Actionable Air Quality Insights"**
@@ -63,7 +67,8 @@ Sesuai dengan kurikulum mata kuliah, proyek ini mengikuti standar industri **CRI
 
 Gunakan menu di sebelah kiri untuk menelusuri setiap bagian:
 
-1. **Data Understanding** -- Pengunduhan data satelit Sentinel-5P, pemrosesan, dan visualisasi tren keenam polutan (NO₂, CO, HCHO, SO₂, O₃, CH₄).
+1. **Business Understanding** -- Definisi masalah, tujuan analisis, dan data yang tersedia untuk diunduh.
+2. **Analisis dan Interpretasi** -- Pengunduhan data satelit Sentinel-5P, pemrosesan, dan visualisasi tren keenam polutan (NO₂, CO, HCHO, SO₂, O₃, CH₄).
 
 ---
 

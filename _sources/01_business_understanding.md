@@ -1,10 +1,16 @@
-# Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P
+# Business Understanding
 
-## Business Understanding
+## Latar Belakang
 
-Kualitas udara adalah salah satu penentu kesehatan masyarakat. Notebook ini bertujuan memahami bagaimana konsentrasi beberapa polutan udara berubah sepanjang satu tahun terakhir di Kabupaten Sidoarjo, Jawa Timur — sebuah wilayah yang padat aktivitas industri dan lalu lintas.
+Kualitas udara adalah salah satu penentu kesehatan masyarakat. Kabupaten Sidoarjo, Jawa Timur, merupakan wilayah padat aktivitas industri dan lalu lintas yang memerlukan pemantauan kualitas udara secara berkelanjutan. Namun, stasiun pemantauan di darat memiliki keterbatasan jumlah dan cakupan spasial.
+
+**Bagaimana cara memantau dan menganalisis konsentrasi polutan udara di seluruh wilayah Sidoarjo secara komprehensif?**
+
+## Tujuan Bisnis
 
 Alih-alih mengandalkan stasiun pemantauan di darat, kita memanfaatkan data satelit **Sentinel-5P TROPOMI** dari Copernicus Data Space Ecosystem. Satelit ini mengukur gas-gas polutan di atmosfer dari orbit, sehingga kita bisa mendapatkan gambaran kualitas udara di atas seluruh wilayah kabupaten.
+
+## Polutan yang Dianalisis
 
 Polutan yang dianalisis cukup beragam, dan masing-masing punya cerita sendiri:
 
@@ -13,15 +19,21 @@ Polutan yang dianalisis cukup beragam, dan masing-masing punya cerita sendiri:
 - **HCHO (Formaldehida)** adalah indikator senyawa organik yang banyak dilepaskan industri maupun vegetasi, dan sering disebut sebagai "benih" pembentuk polusi udara lain.
 - **SO₂ (Sulfur Dioxide)** umumnya berasal dari pembakaran bahan bakar yang mengandung belerang di industri dan pembangkit listrik.
 - **O₃ (Ozon)** di permukaan tanah bukanlah ozon pelindung di langit, melainkan polutan yang terbentuk ketika sinar matahari bereaksi dengan gas-gas lain — biasanya meningkat saat cuaca cerah.
-- **CH₄ (Metana)** adalah gas rumah kaca yang berasal dari aktivitas pertanian, kebocoran jaringan gas, dan pengolahan limbah. Kadar CH₄ yang tinggi turut berkontribusi terhadap pemanasan global.
+- **CH₄ (Metana)** adalah gas rumah kaca yang berasal dari aktivitas pertanian, kebocoran jaringan gas, dan pengolahan limbah.
 
-Alur kerja analisis ini sederhana: siapkan batas wilayah Sidoarjo → ambil data satelit satu tahun terakhir untuk tiap polutan → rapikan dan gabungkan datanya → visualisasikan trennya → simpan hasilnya.
+## Alur Kerja
 
----
+Alur kerja analisis ini sederhana:
+
+1. Siapkan batas wilayah Sidoarjo (GeoJSON)
+2. Ambil data satelit satu tahun terakhir untuk tiap polutan
+3. Rapikan dan gabungkan datanya
+4. Visualisasikan trennya
+5. Simpan hasilnya
 
 ## Unduh Data Analisis
 
-Semua file di bawah ini tersimpan di folder `data/downloads/`. Klik tombol untuk mengunduh.
+Semua file tersimpan di folder `data/downloads/`.
 
 ### Batas Wilayah
 

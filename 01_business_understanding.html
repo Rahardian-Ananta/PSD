@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P &#8212; My sample book</title>
+    <title>Business Understanding &#8212; My sample book</title>
   
   
   
@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '01_business_understanding';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Analisis dan Interpretasi" href="02_data_understanding.html" />
+    <link rel="prev" title="Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,7 +168,8 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_data_understanding.html">Analisis dan Interpretasi</a></li>
 
 </ul>
@@ -353,7 +354,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P</h1>
+    <h1>Business Understanding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -363,7 +364,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">Business Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-bisnis">Tujuan Bisnis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polutan-yang-dianalisis">Polutan yang Dianalisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">Alur Kerja</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-data-analisis">Unduh Data Analisis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-wilayah">Batas Wilayah</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengukuran-satelit-per-polutan">Hasil Pengukuran Satelit per Polutan</a></li>
@@ -381,12 +385,19 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="analisis-polutan-atmosfer-di-kabupaten-sidoarjo-berdasarkan-citra-satelit-sentinel-5p">
-<h1>Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P<a class="headerlink" href="#analisis-polutan-atmosfer-di-kabupaten-sidoarjo-berdasarkan-citra-satelit-sentinel-5p" title="Link to this heading">#</a></h1>
-<section id="business-understanding">
-<h2>Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
-<p>Kualitas udara adalah salah satu penentu kesehatan masyarakat. Notebook ini bertujuan memahami bagaimana konsentrasi beberapa polutan udara berubah sepanjang satu tahun terakhir di Kabupaten Sidoarjo, Jawa Timur — sebuah wilayah yang padat aktivitas industri dan lalu lintas.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
+<h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
+<section id="latar-belakang">
+<h2>Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Kualitas udara adalah salah satu penentu kesehatan masyarakat. Kabupaten Sidoarjo, Jawa Timur, merupakan wilayah padat aktivitas industri dan lalu lintas yang memerlukan pemantauan kualitas udara secara berkelanjutan. Namun, stasiun pemantauan di darat memiliki keterbatasan jumlah dan cakupan spasial.</p>
+<p><strong>Bagaimana cara memantau dan menganalisis konsentrasi polutan udara di seluruh wilayah Sidoarjo secara komprehensif?</strong></p>
+</section>
+<section id="tujuan-bisnis">
+<h2>Tujuan Bisnis<a class="headerlink" href="#tujuan-bisnis" title="Link to this heading">#</a></h2>
 <p>Alih-alih mengandalkan stasiun pemantauan di darat, kita memanfaatkan data satelit <strong>Sentinel-5P TROPOMI</strong> dari Copernicus Data Space Ecosystem. Satelit ini mengukur gas-gas polutan di atmosfer dari orbit, sehingga kita bisa mendapatkan gambaran kualitas udara di atas seluruh wilayah kabupaten.</p>
+</section>
+<section id="polutan-yang-dianalisis">
+<h2>Polutan yang Dianalisis<a class="headerlink" href="#polutan-yang-dianalisis" title="Link to this heading">#</a></h2>
 <p>Polutan yang dianalisis cukup beragam, dan masing-masing punya cerita sendiri:</p>
 <ul class="simple">
 <li><p><strong>NO₂ (Nitrogen Dioxide)</strong> adalah gas yang terutama keluar dari knalpot kendaraan dan cerobong pabrik. Semakin ramai lalu lintas dan industri, semakin tinggi NO₂.</p></li>
@@ -394,14 +405,23 @@
 <li><p><strong>HCHO (Formaldehida)</strong> adalah indikator senyawa organik yang banyak dilepaskan industri maupun vegetasi, dan sering disebut sebagai “benih” pembentuk polusi udara lain.</p></li>
 <li><p><strong>SO₂ (Sulfur Dioxide)</strong> umumnya berasal dari pembakaran bahan bakar yang mengandung belerang di industri dan pembangkit listrik.</p></li>
 <li><p><strong>O₃ (Ozon)</strong> di permukaan tanah bukanlah ozon pelindung di langit, melainkan polutan yang terbentuk ketika sinar matahari bereaksi dengan gas-gas lain — biasanya meningkat saat cuaca cerah.</p></li>
-<li><p><strong>CH₄ (Metana)</strong> adalah gas rumah kaca yang berasal dari aktivitas pertanian, kebocoran jaringan gas, dan pengolahan limbah. Kadar CH₄ yang tinggi turut berkontribusi terhadap pemanasan global.</p></li>
+<li><p><strong>CH₄ (Metana)</strong> adalah gas rumah kaca yang berasal dari aktivitas pertanian, kebocoran jaringan gas, dan pengolahan limbah.</p></li>
 </ul>
-<p>Alur kerja analisis ini sederhana: siapkan batas wilayah Sidoarjo → ambil data satelit satu tahun terakhir untuk tiap polutan → rapikan dan gabungkan datanya → visualisasikan trennya → simpan hasilnya.</p>
 </section>
-<hr class="docutils" />
+<section id="alur-kerja">
+<h2>Alur Kerja<a class="headerlink" href="#alur-kerja" title="Link to this heading">#</a></h2>
+<p>Alur kerja analisis ini sederhana:</p>
+<ol class="arabic simple">
+<li><p>Siapkan batas wilayah Sidoarjo (GeoJSON)</p></li>
+<li><p>Ambil data satelit satu tahun terakhir untuk tiap polutan</p></li>
+<li><p>Rapikan dan gabungkan datanya</p></li>
+<li><p>Visualisasikan trennya</p></li>
+<li><p>Simpan hasilnya</p></li>
+</ol>
+</section>
 <section id="unduh-data-analisis">
 <h2>Unduh Data Analisis<a class="headerlink" href="#unduh-data-analisis" title="Link to this heading">#</a></h2>
-<p>Semua file di bawah ini tersimpan di folder <code class="docutils literal notranslate"><span class="pre">data/downloads/</span></code>. Klik tombol untuk mengunduh.</p>
+<p>Semua file tersimpan di folder <code class="docutils literal notranslate"><span class="pre">data/downloads/</span></code>.</p>
 <section id="batas-wilayah">
 <h3>Batas Wilayah<a class="headerlink" href="#batas-wilayah" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -478,6 +498,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_data_understanding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analisis dan Interpretasi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -496,7 +534,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">Business Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-bisnis">Tujuan Bisnis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polutan-yang-dianalisis">Polutan yang Dianalisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">Alur Kerja</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-data-analisis">Unduh Data Analisis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-wilayah">Batas Wilayah</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengukuran-satelit-per-polutan">Hasil Pengukuran Satelit per Polutan</a></li>
