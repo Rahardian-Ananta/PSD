@@ -19,7 +19,7 @@ Kualitas udara merupakan salah satu penentu kesehatan masyarakat. Kabupaten Sido
 Kami memanfaatkan data satelit **Sentinel-5P TROPOMI** dari Copernicus Data Space Ecosystem untuk menganalisis konsentrasi polutan atmosfer di Kabupaten Sidoarjo. Pendekatan ini memungkinkan:
 
 1. Pemantauan kualitas udara secara spasial di seluruh wilayah kabupaten tanpa bergantung pada stasiun darat.
-2. Analisis tren polutan NO₂, CO, HCHO, SO₂, dan O₃ selama satu tahun terakhir.
+2. Analisis tren polutan NO₂, CO, HCHO, SO₂, O₃, dan CH₄ selama satu tahun terakhir.
 3. Identifikasi pola temporal dan spasial emisi polutan untuk mendukung pengambilan keputusan berbasis data.
 
 ---
@@ -63,7 +63,8 @@ Sesuai dengan kurikulum mata kuliah, proyek ini mengikuti standar industri **CRI
 
 Gunakan menu di sebelah kiri untuk menelusuri setiap bagian:
 
-1. **Memahami Polutan & Datanya** -- Deskripsi polutan yang dianalisis (NO₂, CO, HCHO, SO₂, O₃), data satelit, dan hasil visualisasi tren.
+1. **Business Understanding** -- Definisi masalah, tujuan analisis, dan data yang tersedia untuk diunduh.
+2. **Data Understanding** -- Pengunduhan data satelit Sentinel-5P, pemrosesan, dan visualisasi tren keenam polutan.
 
 ---
 
