@@ -4,7 +4,5 @@
 format: jb-book
 root: intro
 chapters:
-  - file: 01_business_understanding
-    title: Business Understanding
   - file: 02_data_understanding
     title: Data Understanding
