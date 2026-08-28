@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Analisis dan Interpretasi &#8212; My sample book</title>
+    <title>Data Understanding &#8212; My sample book</title>
   
   
   
@@ -163,14 +163,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kabupaten Sidoarjo Berdasarkan Citra Satelit Sentinel-5P
+                    Introduction
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01_business_understanding.html">Business Understanding</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis dan Interpretasi</a></li>
-
 </ul>
 
     </div>
@@ -353,7 +352,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Analisis dan Interpretasi</h1>
+    <h1>Data Understanding</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -363,10 +362,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis dan Interpretasi</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-dan-interpretasi">Analisis dan Interpretasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -377,7 +375,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>openeo
 <span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
@@ -1361,14 +1361,15 @@ Semua file CSV berhasil di-ZIP ke: sidoarjo_pollutants_data.zip
 </div>
 <p>Terakhir, semua file CSV hasil analisis dikemas ke dalam satu arsip ZIP (<code class="docutils literal notranslate"><span class="pre">sidoarjo_pollutants_data.zip</span></code>) supaya mudah diunduh sekaligus. Jika notebook dijalankan di Colab, unduhan bahkan dimulai otomatis.</p>
 <section id="analisis-dan-interpretasi">
-<h1>Analisis dan Interpretasi<a class="headerlink" href="#analisis-dan-interpretasi" title="Link to this heading">#</a></h1>
+<h2>Analisis dan Interpretasi<a class="headerlink" href="#analisis-dan-interpretasi" title="Link to this heading">#</a></h2>
 <p>Melihat kelima grafik di atas, ada beberapa cerita yang menonjol. Konsentrasi <strong>NO₂</strong> bergerak naik-turun sepanjang tahun dengan lonjakan pada periode tertentu — pola yang wajar untuk wilayah padat kendaraan seperti Sidoarjo, karena NO₂ sangat berkaitan dengan intensitas lalu lintas dan industri. <strong>CO</strong> menunjukkan tren yang relatif stabil dengan fluktuasi ringan, mengikuti aktivitas pembakaran bahan bakar sehari-hari. Kurva <strong>O₃</strong> tampak lebih tinggi pada bulan-bulan cerah, sesuai sifatnya yang terbentuk dengan bantuan sinar matahari. Sementara itu, <strong>HCHO</strong> dan <strong>SO₂</strong> berada pada level yang rendah namun tetap berfluktuasi, dengan SO₂ sesekali mengalami lonjakan singkat yang bisa berkaitan dengan aktivitas industri tertentu.</p>
 <p>Perlu diingat bahwa garis yang kita lihat adalah hasil smoothing rolling mean 30 hari — jadi yang terbaca adalah gelombang tren jangka panjang, bukan kejadian harian.</p>
 </section>
 <section id="kesimpulan">
-<h1>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
 <p>Analisis ini menunjukkan bahwa citra satelit Sentinel-5P dapat memberi gambaran kualitas udara Kabupaten Sidoarjo selama satu tahun penuh tanpa perlu stasiun pemantauan tambahan. Dari alur business understanding hingga visualisasi, kita berhasil mengubah ribuan pengamatan satelit menjadi lima kurva tren yang mudah dibaca.</p>
 <p>Langkah lanjutan yang bisa dilakukan antara lain: membandingkan dengan tahun-tahun sebelumnya, menguji korelasi antar polutan (misalnya apakah O₃ naik saat NO₂ turun), atau memetakan distribusi spasial di dalam kabupaten untuk menemukan titik-titik sumber emisi. Data yang sudah tersimpan dalam ZIP siap dipakai untuk analisis lanjutan tersebut.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1428,10 +1429,9 @@ Semua file CSV berhasil di-ZIP ke: sidoarjo_pollutants_data.zip
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis dan Interpretasi</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-dan-interpretasi">Analisis dan Interpretasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
