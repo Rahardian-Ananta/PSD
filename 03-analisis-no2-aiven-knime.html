@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Laporan Analisis Data Time Series \(\text{NO}_2\): Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (\(N = 264\)) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03-analisis-no2-aiven-knime';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Data Understanding" href="02_data_understanding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding.html">Analisis dan Interpretasi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis NO2 Aiven KNIME</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F03-analisis-no2-aiven-knime.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03-analisis-no2-aiven-knime.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Laporan Analisis Data Time Series \text{NO}_2: Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (N = 264)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrasi-dan-ingest-data-ke-postgresql-aiven">1. Migrasi dan Ingest Data ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#template-kode-python-ingestion">Template Kode Python Ingestion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-menjalankan-script-python">Cara Menjalankan Script Python:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-workflow-dan-detail-konfigurasi-node-knime">2. Setup Workflow dan Detail Konfigurasi Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-setup-setiap-node-knime">Penjelasan Detail Setup Setiap Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-node-postgresql-connector">A. Node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-node-db-table-selector">B. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-node-db-reader">C. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-node-db-query-reader-opsional-alternatif">D. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code> (Opsional / Alternatif)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-node-statistics">E. Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-konfigurasi-node-knime">Tabel Ringkasan Konfigurasi Node KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-rumus-dan-perhitungan-statistik-n-264">3. Penjelasan Fitur, Rumus, dan Perhitungan Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-total-data-n-missing-value-count">A. Total Data (<span class="math notranslate nohighlight">\(N\)</span>) &amp; Missing Value Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-minimum-text-min-dan-maximum-text-max">B. Minimum (<span class="math notranslate nohighlight">\(\text{Min}\)</span>) dan Maximum (<span class="math notranslate nohighlight">\(\text{Max}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-overall-sum-dan-mean-bar-x">C. Overall Sum dan Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-variance-s-2-dan-standard-deviation-s">D. Variance (<span class="math notranslate nohighlight">\(s^2\)</span>) dan Standard Deviation (<span class="math notranslate nohighlight">\(s\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-median-q-2-kuartil-1-q-1-dan-kuartil-3-q-3">E. Median (<span class="math notranslate nohighlight">\(Q_2\)</span>), Kuartil 1 (<span class="math notranslate nohighlight">\(Q_1\)</span>), dan Kuartil 3 (<span class="math notranslate nohighlight">\(Q_3\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-skewness-kemencengan">F. Skewness (Kemencengan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-kurtosis-keruncingan-puncak">G. Kurtosis (Keruncingan Puncak)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-statistik-n-264">4. Tabel Ringkasan Komparasi Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="laporan-analisis-data-time-series-text-no-2-ingest-postgresql-aiven-workflow-knime-dan-kalkulasi-statistik-n-264">
+<h1>Laporan Analisis Data Time Series <span class="math notranslate nohighlight">\(\text{NO}_2\)</span>: Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)<a class="headerlink" href="#laporan-analisis-data-time-series-text-no-2-ingest-postgresql-aiven-workflow-knime-dan-kalkulasi-statistik-n-264" title="Link to this heading">#</a></h1>
+<p>Dokumen ini merupakan laporan teknis lengkap proses pengolahan data <em>time series</em> konsentrasi Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>) dari berkas CSV <code class="docutils literal notranslate"><span class="pre">sidoarjo_NO2.csv</span></code>. Pengolahan dimulai dari migrasi data ke cloud database PostgreSQL Aiven, pembuatan workflow analitik pada KNIME Analytics Platform, hingga pembuktian rumus dan kalkulasi statistik deskriptif secara manual berdasarkan <strong>264 data valid</strong> (setelah membuang 102 nilai <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p>
+<hr class="docutils" />
+<section id="migrasi-dan-ingest-data-ke-postgresql-aiven">
+<h2>1. Migrasi dan Ingest Data ke PostgreSQL Aiven<a class="headerlink" href="#migrasi-dan-ingest-data-ke-postgresql-aiven" title="Link to this heading">#</a></h2>
+<p>Data awal terdiri dari 366 baris waktu. Karena terdapat 102 baris dengan nilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">null</span></code>, proses ingest mengunggah seluruh struktur tabel ke database PostgreSQL Aiven dengan presisi <code class="docutils literal notranslate"><span class="pre">DOUBLE</span> <span class="pre">PRECISION</span></code> (<code class="docutils literal notranslate"><span class="pre">Float</span> <span class="pre">53-bit</span></code>) untuk menjaga ketelitian angka hingga skala desimal mikro (<span class="math notranslate nohighlight">\(10^{-5}\)</span>).</p>
+<section id="template-kode-python-ingestion">
+<h3>Template Kode Python Ingestion<a class="headerlink" href="#template-kode-python-ingestion" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Float</span>
+
+<span class="c1"># 1. Template Konfigurasi URI Koneksi PostgreSQL Aiven (dengan SSL Mandatory)</span>
+<span class="c1"># Ganti &lt;USERNAME&gt;, &lt;PASSWORD&gt;, &lt;HOST&gt;, &lt;PORT&gt;, dan &lt;DATABASE_NAME&gt; sesuai kredensial Aiven Anda</span>
+<span class="n">DB_URI</span> <span class="o">=</span> <span class="s2">&quot;postgresql://&lt;USERNAME&gt;:&lt;PASSWORD&gt;@&lt;HOST&gt;:&lt;PORT&gt;/&lt;DATABASE_NAME&gt;?sslmode=require&quot;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">DB_URI</span><span class="p">)</span>
+
+<span class="c1"># 2. Pembuatan Skema Tabel DDL</span>
+<span class="n">create_table_sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">DROP TABLE IF EXISTS sidoarjo_no2;</span>
+
+<span class="s2">CREATE TABLE sidoarjo_no2 (</span>
+<span class="s2">    id BIGSERIAL PRIMARY KEY,</span>
+<span class="s2">    date TIMESTAMPTZ NOT NULL,</span>
+<span class="s2">    feature_index INT DEFAULT 0,</span>
+<span class="s2">    no2 NUMERIC(15, 10)</span>
+<span class="s2">);</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="n">create_table_sql</span><span class="p">))</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="c1"># 3. Path Berkas CSV dan Pembacaan Data</span>
+<span class="c1"># Masukkan jalur berkas (lokal relatif maupun path absolut sistem operasi)</span>
+<span class="n">csv_file_path</span> <span class="o">=</span> <span class="s2">&quot;C:/path/ke/berkas/sidoarjo_NO2.csv&quot;</span>  <span class="c1"># Contoh path absolut</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;NO2&#39;</span><span class="p">:</span> <span class="s1">&#39;no2&#39;</span><span class="p">})</span>
+
+<span class="c1"># 4. Ingest Data dengan Explicit Data Type Mapping (Float 53-bit)</span>
+<span class="n">dtype_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;no2&#39;</span><span class="p">:</span> <span class="n">Float</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;sidoarjo_no2&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_mapping</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data berhasil diunggah ulang dengan tipe float 53-bit!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Status Service PostgreSQL Aiven" src="_images/01-aiven-postgres-dashboard.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 01 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/01-aiven-postgres-dashboard.png</span></code>):</strong> Unggah tangkapan layar dari dashboard Aiven Console yang menampilkan status service PostgreSQL dalam kondisi <em>Running</em>, lengkap dengan informasi Host URI, Port, dan Database Name.</p>
+</div></blockquote>
+</section>
+<section id="cara-menjalankan-script-python">
+<h3>Cara Menjalankan Script Python:<a class="headerlink" href="#cara-menjalankan-script-python" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Script Python tidak harus disimpan atau dijalankan di folder yang sama dengan berkas CSV <code class="docutils literal notranslate"><span class="pre">sidoarjo_NO2.csv</span></code>.</p></li>
+<li><p>Cukup tentukan lokasi penyimpanan berkas CSV pada variabel <code class="docutils literal notranslate"><span class="pre">csv_file_path</span></code> mengggunakan <em>relative path</em> (contoh: <code class="docutils literal notranslate"><span class="pre">./data/sidoarjo_NO2.csv</span></code>) atau <em>absolute path</em> sistem operasi (contoh: <code class="docutils literal notranslate"><span class="pre">D:/Projects/Dataset/sidoarjo_NO2.csv</span></code>).</p></li>
+<li><p>Jalankan script melalui terminal atau IDE pilihan Anda:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>ingest_aiven.py
+</pre></div>
+</div>
+</li>
+</ul>
+<p><img alt="Log Eksekusi Ingest Python" src="_images/02-python-ingestion-log.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 02 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/02-python-ingestion-log.png</span></code>):</strong> Tangkapan layar dari terminal / Jupyter Notebook yang menampilkan pesan konfirmasi eksekusi <code class="docutils literal notranslate"><span class="pre">&quot;Data</span> <span class="pre">berhasil</span> <span class="pre">diunggah</span> <span class="pre">ulang</span> <span class="pre">dengan</span> <span class="pre">tipe</span> <span class="pre">float</span> <span class="pre">53-bit!&quot;</span></code>.</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="setup-workflow-dan-detail-konfigurasi-node-knime">
+<h2>2. Setup Workflow dan Detail Konfigurasi Node KNIME<a class="headerlink" href="#setup-workflow-dan-detail-konfigurasi-node-knime" title="Link to this heading">#</a></h2>
+<p>Arsitektur aliran data di KNIME Analytics Platform menyusun alur pengolahan dari cloud database Aiven menuju pemrosesan statistik:</p>
+<p><img alt="KNIME Workflow Pipeline Overview" src="_images/03-knime-workflow-overview.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 03 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/03-knime-workflow-overview.png</span></code>):</strong> Tangkapan layar dari kanvas workflow KNIME yang menampilkan alur node: <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code> terhubung ke <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Statistics</span></code>, serta koneksi cabang ke <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code>.</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="penjelasan-detail-setup-setiap-node-knime">
+<h3>Penjelasan Detail Setup Setiap Node KNIME<a class="headerlink" href="#penjelasan-detail-setup-setiap-node-knime" title="Link to this heading">#</a></h3>
+<section id="a-node-postgresql-connector">
+<h4>A. Node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code><a class="headerlink" href="#a-node-postgresql-connector" title="Link to this heading">#</a></h4>
+<p>Node ini bertugas membuka jalur komunikasi JDBC yang terenkripsi aman ke instance PostgreSQL Aiven.</p>
+<p><img alt="Konfigurasi PostgreSQL Connector Node" src="_images/04-knime-postgres-connector-config.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 04 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/04-knime-postgres-connector-config.png</span></code>):</strong> Tangkapan layar jendela dialog pengaturan koneksi database JDBC pada node PostgreSQL Connector di KNIME.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Masukkan alamat Host/URI database server Aiven.</p></li>
+<li><p>Masukkan nomor port koneksi yang disediakan oleh Aiven.</p></li>
+<li><p>Masukkan nama database target (<code class="docutils literal notranslate"><span class="pre">defaultdb</span></code>).</p></li>
+<li><p>Pada bagian <em>Authentication</em>, pilih <em>User &amp; Password</em> kemudian isikan kredensial akun database Aiven.</p></li>
+<li><p>Buka tab <strong>SSL</strong>, centang opsi <strong>Require SSL</strong> / <strong>Prefer SSL</strong> untuk mengaktifkan enkripsi TLS/SSL (wajib untuk layanan cloud Aiven).</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="b-node-db-table-selector">
+<h4>B. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code><a class="headerlink" href="#b-node-db-table-selector" title="Link to this heading">#</a></h4>
+<p>Node ini menerima koneksi DB (port berwarna merah) dari <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code> untuk mengidentifikasi dan memilih tabel yang akan dianalisis.</p>
+<p><img alt="Konfigurasi DB Table Selector Node" src="_images/05-knime-db-table-selector-config.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 05 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/05-knime-db-table-selector-config.png</span></code>):</strong> Tangkapan layar jendela penjelajah skema database pada node DB Table Selector di KNIME.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Hubungkan port DB input dari node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code>.</p></li>
+<li><p>Klik tombol <strong>Select Table…</strong>.</p></li>
+<li><p>Pilih skema <code class="docutils literal notranslate"><span class="pre">public</span></code> dan tentukan nama tabel <code class="docutils literal notranslate"><span class="pre">sidoarjo_no2</span></code>.</p></li>
+<li><p>Tekan <strong>OK</strong> dan jalankan node (<strong>Execute</strong> / <span class="math notranslate nohighlight">\(F7\)</span>).</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="c-node-db-reader">
+<h4>C. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code><a class="headerlink" href="#c-node-db-reader" title="Link to this heading">#</a></h4>
+<p>Node ini mengeksekusi perintah pembacaan SQL dari <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code> dan mengonversi data dari database menjadi tabel memori internal KNIME (port data berwarna hitam).</p>
+<p><img alt="Konfigurasi DB Reader Node" src="_images/06-knime-db-reader-config.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 06 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/06-knime-db-reader-config.png</span></code>):</strong> Tangkapan layar opsi pengaturan pembacaan tabel dan fetch size pada node DB Reader di KNIME.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Hubungkan port DB input dari node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code>.</p></li>
+<li><p>Pengaturan <code class="docutils literal notranslate"><span class="pre">Fetch</span> <span class="pre">Size</span></code> diset pada angka default (<code class="docutils literal notranslate"><span class="pre">10000</span></code>) untuk efisiensi pembacaan data <em>time series</em>.</p></li>
+<li><p>Jalankan node (<strong>Execute</strong>) hingga indikator lampu berubah menjadi hijau.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="d-node-db-query-reader-opsional-alternatif">
+<h4>D. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code> (Opsional / Alternatif)<a class="headerlink" href="#d-node-db-query-reader-opsional-alternatif" title="Link to this heading">#</a></h4>
+<p>Node ini dapat digunakan sebagai pengganti gabungan <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code> dan <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> apabila ingin menjalankan kueri SQL khusus secara langsung (misalnya melakukan ekstraksi data atau pembersihan data di tingkat database).</p>
+<p><img alt="Konfigurasi DB Query Reader Node" src="_images/07-knime-db-query-reader-config.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 07 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/07-knime-db-query-reader-config.png</span></code>):</strong> Tangkapan layar jendela SQL Editor pada node DB Query Reader di KNIME.</p>
+</div></blockquote>
+<ul>
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic">
+<li><p>Hubungkan port DB input langsung dari <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code>.</p></li>
+<li><p>Tulis kueri SQL pada editor, misalnya:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sidoarjo_no2</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">no2</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Eksekusi node untuk memuat hasil kueri ke dalam tabel data KNIME.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="e-node-statistics">
+<h4>E. Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code><a class="headerlink" href="#e-node-statistics" title="Link to this heading">#</a></h4>
+<p>Node ini menghitung metrik statistik deskriptif dari tabel data yang diterima dari <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> atau <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code>.</p>
+<p><img alt="Konfigurasi Statistics Node" src="_images/08-knime-statistics-node-config.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 08 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/08-knime-statistics-node-config.png</span></code>):</strong> Tangkapan layar jendela pengaturan seleksi kolom numerik dan kalkulasi kuartil pada node Statistics di KNIME.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Langkah Konfigurasi</strong>:</p>
+<ol class="arabic simple">
+<li><p>Hubungkan port data tabel (hitam) dari <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code> ke port input node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code>.</p></li>
+<li><p>Pada daftar <strong>Include Columns</strong>, masukkan kolom numerik <code class="docutils literal notranslate"><span class="pre">no2</span></code>.</p></li>
+<li><p>Centang opsi <strong>Calculate Median &amp; Quartiles</strong> untuk mengaktifkan kalkulasi persentil (<span class="math notranslate nohighlight">\(Q_1, Q_2, Q_3\)</span>).</p></li>
+<li><p>Eksekusi node dan buka tampilan <strong>Statistics View</strong> atau <strong>Statistics Table</strong>.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tabel-ringkasan-konfigurasi-node-knime">
+<h3>Tabel Ringkasan Konfigurasi Node KNIME<a class="headerlink" href="#tabel-ringkasan-konfigurasi-node-knime" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Node Name</p></th>
+<th class="head text-left"><p>Fungsi &amp; Jalur Koneksi</p></th>
+<th class="head text-left"><p>Parameter Konfigurasi yang Dibutuhkan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>PostgreSQL Connector</strong></p></td>
+<td class="text-left"><p>Node sumber utama koneksi JDBC SSL ke Aiven.</p></td>
+<td class="text-left"><p>• Database Hostname / Cloud URI<br>• Database Port Number<br>• Database Name<br>• Username &amp; Password Authentication<br>• SSL Requirement Mode (<code class="docutils literal notranslate"><span class="pre">Require</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>DB Table Selector</strong></p></td>
+<td class="text-left"><p>Menerima koneksi DB (merah) dari Connector untuk memilih tabel.</p></td>
+<td class="text-left"><p>• Database Schema (<code class="docutils literal notranslate"><span class="pre">public</span></code>)<br>• Target Table Name (<code class="docutils literal notranslate"><span class="pre">sidoarjo_no2</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>DB Reader</strong></p></td>
+<td class="text-left"><p>Membaca seluruh data dari tabel SQL ke format internal KNIME.</p></td>
+<td class="text-left"><p>• Input DB Connection<br>• Data Fetch Size</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>DB Query Reader</strong></p></td>
+<td class="text-left"><p>Node alternatif untuk mengeksekusi <em>custom query</em> SQL langsung.</p></td>
+<td class="text-left"><p>• Direct SQL Statement Query</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Statistics</strong></p></td>
+<td class="text-left"><p>Menghitung statistik deskriptif numerik dari data terfilter.</p></td>
+<td class="text-left"><p>• Selected Numerical Column (<code class="docutils literal notranslate"><span class="pre">no2</span></code>)<br>• Median &amp; Quantile Calculation Toggle</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-fitur-rumus-dan-perhitungan-statistik-n-264">
+<h2>3. Penjelasan Fitur, Rumus, dan Perhitungan Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)<a class="headerlink" href="#penjelasan-fitur-rumus-dan-perhitungan-statistik-n-264" title="Link to this heading">#</a></h2>
+<p>Mengapa angka <strong>Min</strong>, <strong>Max</strong>, <strong>Mean</strong>, <strong>Std Dev</strong>, dan <strong>Variance</strong> pada tabel keluaran KNIME terlihat bernilai <code class="docutils literal notranslate"><span class="pre">0</span></code>?
+Hal ini disebabkan oleh tampilan default KNIME (<em>Display Format</em>) yang membulatkan desimal hingga 2-3 angka di belakang koma. Karena konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> berada pada orde <span class="math notranslate nohighlight">\(10^{-5}\)</span> (<span class="math notranslate nohighlight">\(\approx 0.000037\)</span>), pembulatan otomatis menampilkannya sebagai <code class="docutils literal notranslate"><span class="pre">0</span></code>. Namun, nilai <strong>Skewness</strong> (<span class="math notranslate nohighlight">\(0.876\)</span>), <strong>Kurtosis</strong> (<span class="math notranslate nohighlight">\(1.858\)</span>), <strong>Overall Sum</strong> (<span class="math notranslate nohighlight">\(0.01\)</span>), dan <strong>Missing Values</strong> (<span class="math notranslate nohighlight">\(102\)</span>) membuktikan bahwa perhitungan presisi tetap berjalan di latar belakang.</p>
+<p><img alt="Statistics Table Output di KNIME" src="data/images/analisis_no2/09-knime-statistics-table-output.png" /></p>
+<blockquote>
+<div><p><strong>Panduan Gambar 09 (<code class="docutils literal notranslate"><span class="pre">data/images/analisis_no2/09-knime-statistics-table-output.png</span></code>):</strong> Tangkapan layar tampilan tabel hasil eksekusi node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code> KNIME yang menunjukkan hasil metrik untuk kolom <code class="docutils literal notranslate"><span class="pre">no2</span></code> (Missing: 102, Overall Sum: 0.01, Skewness: 0.876, Kurtosis: 1.858).</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="a-total-data-n-missing-value-count">
+<h3>A. Total Data (<span class="math notranslate nohighlight">\(N\)</span>) &amp; Missing Value Count<a class="headerlink" href="#a-total-data-n-missing-value-count" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Dari 366 total baris waktu, terdapat 102 baris ber-nilai kosong (<code class="docutils literal notranslate"><span class="pre">null</span></code>). Perhitungan statistik deskriptif secara otomatis mengabaikan nilai <code class="docutils literal notranslate"><span class="pre">null</span></code> sehingga total sampel data valid yang diproses adalah <span class="math notranslate nohighlight">\(N = 264\)</span>.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(N_{\text{valid}} = N_{\text{total}} - N_{\text{missing}} = 366 - 102 = 264\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="b-minimum-text-min-dan-maximum-text-max">
+<h3>B. Minimum (<span class="math notranslate nohighlight">\(\text{Min}\)</span>) dan Maximum (<span class="math notranslate nohighlight">\(\text{Max}\)</span>)<a class="headerlink" href="#b-minimum-text-min-dan-maximum-text-max" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Nilai konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> terkecil dan terbesar di antara 264 data valid.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Min} = \min(x_1, x_2, \dots, x_{264}), \quad \text{Max} = \max(x_1, x_2, \dots, x_{264})\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:
+$<span class="math notranslate nohighlight">\(\text{Min} = 0.0000034155 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Max} = 0.0000957728 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="c-overall-sum-dan-mean-bar-x">
+<h3>C. Overall Sum dan Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)<a class="headerlink" href="#c-overall-sum-dan-mean-bar-x" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: <strong>Overall Sum</strong> adalah akumulasi total nilai 264 sampel data, sedangkan <strong>Mean</strong> adalah nilai rata-rata konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span>.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Overall Sum} = \sum_{i=1}^{264} x_i, \quad \bar{x} = \frac{1}{N} \sum_{i=1}^{264} x_i\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:
+$<span class="math notranslate nohighlight">\(\text{Overall Sum} = 0.0097575836 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0.01)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\bar{x} = \frac{0.0097575836}{264} = 0.0000369605 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="d-variance-s-2-dan-standard-deviation-s">
+<h3>D. Variance (<span class="math notranslate nohighlight">\(s^2\)</span>) dan Standard Deviation (<span class="math notranslate nohighlight">\(s\)</span>)<a class="headerlink" href="#d-variance-s-2-dan-standard-deviation-s" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Mengukur sebaran dan deviasi baku data terhadap titik rata-ratanya berdasarkan derajat kebebasan sampel (<span class="math notranslate nohighlight">\(N - 1 = 263\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(s^2 = \frac{1}{N-1} \sum_{i=1}^{264} (x_i - \bar{x})^2, \quad s = \sqrt{s^2}\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:
+$<span class="math notranslate nohighlight">\(\sum_{i=1}^{264} (x_i - \bar{x})^2 = 0.000000050878\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(s^2 = \frac{0.000000050878}{263} = 1.934567 \times 10^{-10} \quad (\text{Tampilan KNIME}: 0)\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(s = \sqrt{1.934567 \times 10^{-10}} = 0.0000139089 \text{ mol/m}^2 \quad (\text{Tampilan KNIME}: 0)\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="e-median-q-2-kuartil-1-q-1-dan-kuartil-3-q-3">
+<h3>E. Median (<span class="math notranslate nohighlight">\(Q_2\)</span>), Kuartil 1 (<span class="math notranslate nohighlight">\(Q_1\)</span>), dan Kuartil 3 (<span class="math notranslate nohighlight">\(Q_3\)</span>)<a class="headerlink" href="#e-median-q-2-kuartil-1-q-1-dan-kuartil-3-q-3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Nilai batas kuartil dari 264 data yang telah diurutkan dari terkecil hingga terbesar.</p></li>
+<li><p><strong>Rumus Posisi Interpolasi Linear</strong>:
+$<span class="math notranslate nohighlight">\(L_p = 1 + (N - 1) \cdot p = 1 + 263 \cdot p\)</span>$</p></li>
+<li><p><strong>Hasil Perhitungan Presisi</strong>:</p>
+<ul>
+<li><p><strong><span class="math notranslate nohighlight">\(Q_1\)</span> (Persentil 25%, <span class="math notranslate nohighlight">\(p=0.25\)</span>)</strong>: Posisi <span class="math notranslate nohighlight">\(L_{0.25} = 66.75 \implies Q_1 = 0.0000273069 \text{ mol/m}^2\)</span></p></li>
+<li><p><strong>Median / <span class="math notranslate nohighlight">\(Q_2\)</span> (Persentil 50%, <span class="math notranslate nohighlight">\(p=0.50\)</span>)</strong>: Posisi <span class="math notranslate nohighlight">\(L_{0.50} = 132.50 \implies Q_2 = 0.0000349860 \text{ mol/m}^2\)</span></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(Q_3\)</span> (Persentil 75%, <span class="math notranslate nohighlight">\(p=0.75\)</span>)</strong>: Posisi <span class="math notranslate nohighlight">\(L_{0.75} = 198.25 \implies Q_3 = 0.0000437760 \text{ mol/m}^2\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="f-skewness-kemencengan">
+<h3>F. Skewness (Kemencengan)<a class="headerlink" href="#f-skewness-kemencengan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Mengukur ketidaksimetrisan distribusi data. Nilai positif <span class="math notranslate nohighlight">\(0.876\)</span> menunjukkan bahwa distribusi data <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> miring ke kanan (<em>right-skewed</em>), di mana mayoritas konsentrasi bernilai rendah dengan beberapa lonjakan konsentrasi tinggi.</p></li>
+<li><p><strong>Rumus (Sample Unbiased Skewness)</strong>:
+$<span class="math notranslate nohighlight">\(\text{Skewness} = \frac{N}{(N-1)(N-2)} \sum_{i=1}^{264} \left( \frac{x_i - \bar{x}}{s} \right)^3\)</span>$</p></li>
+<li><p><strong>Kalkulasi</strong>:
+$<span class="math notranslate nohighlight">\(\frac{N}{(N-1)(N-2)} = \frac{264}{263 \times 262} = \frac{264}{68906} \approx 0.0038313\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\sum_{i=1}^{264} \left( \frac{x_i - \bar{x}}{s} \right)^3 = 228.544\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Skewness} = 0.0038313 \times 228.544 = \mathbf{0.8756} \quad (\text{Ditampilkan KNIME}: \mathbf{0.876})\)</span>$</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="g-kurtosis-keruncingan-puncak">
+<h3>G. Kurtosis (Keruncingan Puncak)<a class="headerlink" href="#g-kurtosis-keruncingan-puncak" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Penjelasan</strong>: Mengukur derajat keruncingan puncak distribusi data (<em>Excess Kurtosis</em>). Nilai positif <span class="math notranslate nohighlight">\(1.858\)</span> mengindikasikan distribusi bersifat <em>leptokurtik</em> (puncak lebih runcing dari distribusi normal dengan ekor lebih tebal).</p></li>
+<li><p><strong>Rumus (Sample Unbiased Excess Kurtosis)</strong>:
+$<span class="math notranslate nohighlight">\(\text{Kurtosis} = \frac{N(N+1)}{(N-1)(N-2)(N-3)} \sum_{i=1}^{264} \left( \frac{x_i - \bar{x}}{s} \right)^4 - \frac{3(N-1)^2}{(N-2)(N-3)}\)</span>$</p></li>
+<li><p><strong>Kalkulasi</strong>:
+$<span class="math notranslate nohighlight">\(\text{Suku Pertama} = \frac{264 \times 265}{263 \times 262 \times 261} \sum z_i^4 = \frac{69960}{17984466} \times 1221.75 = 4.7501\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Suku Kedua} = \frac{3 \times (263)^2}{263 \times 262} = \frac{3 \times 263}{262} = \frac{789}{262} \approx 2.8920\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\text{Kurtosis} = 4.7501 - 2.8920 = \mathbf{1.8581} \quad (\text{Ditampilkan KNIME}: \mathbf{1.858})\)</span>$</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tabel-ringkasan-komparasi-statistik-n-264">
+<h2>4. Tabel Ringkasan Komparasi Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)<a class="headerlink" href="#tabel-ringkasan-komparasi-statistik-n-264" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Indikator Statistik</p></th>
+<th class="head text-left"><p>Nilai Presisi Sebenarnya</p></th>
+<th class="head text-left"><p>Tampilan Teks Node Statistics KNIME</p></th>
+<th class="head text-left"><p>Keterangan Tampilan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Valid Rows (<span class="math notranslate nohighlight">\(N\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(264\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(264\)</span></p></td>
+<td class="text-left"><p>Data tanpa <code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Missing Values</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(102\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(102\)</span></p></td>
+<td class="text-left"><p>Baris bernilai <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Minimum</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000034155\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Maximum</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000957728\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000369605\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Overall Sum</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0097575836\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0.01</span></code></p></td>
+<td class="text-left"><p>Pembulatan 2 desimal</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Variance (<span class="math notranslate nohighlight">\(s^2\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.934567 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Std Deviation (<span class="math notranslate nohighlight">\(s\)</span>)</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000139089\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>Terpotong rounding desimal KNIME</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Skewness</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.875625\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0.876</span></code></p></td>
+<td class="text-left"><p>Sesuai persis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Kurtosis</strong></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.858087\)</span></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1.858</span></code></p></td>
+<td class="text-left"><p>Sesuai persis</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_data_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Understanding</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrasi-dan-ingest-data-ke-postgresql-aiven">1. Migrasi dan Ingest Data ke PostgreSQL Aiven</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#template-kode-python-ingestion">Template Kode Python Ingestion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-menjalankan-script-python">Cara Menjalankan Script Python:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-workflow-dan-detail-konfigurasi-node-knime">2. Setup Workflow dan Detail Konfigurasi Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-setup-setiap-node-knime">Penjelasan Detail Setup Setiap Node KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-node-postgresql-connector">A. Node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-node-db-table-selector">B. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-node-db-reader">C. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-node-db-query-reader-opsional-alternatif">D. Node <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Query</span> <span class="pre">Reader</span></code> (Opsional / Alternatif)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-node-statistics">E. Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-konfigurasi-node-knime">Tabel Ringkasan Konfigurasi Node KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-rumus-dan-perhitungan-statistik-n-264">3. Penjelasan Fitur, Rumus, dan Perhitungan Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-total-data-n-missing-value-count">A. Total Data (<span class="math notranslate nohighlight">\(N\)</span>) &amp; Missing Value Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-minimum-text-min-dan-maximum-text-max">B. Minimum (<span class="math notranslate nohighlight">\(\text{Min}\)</span>) dan Maximum (<span class="math notranslate nohighlight">\(\text{Max}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-overall-sum-dan-mean-bar-x">C. Overall Sum dan Mean (<span class="math notranslate nohighlight">\(\bar{x}\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-variance-s-2-dan-standard-deviation-s">D. Variance (<span class="math notranslate nohighlight">\(s^2\)</span>) dan Standard Deviation (<span class="math notranslate nohighlight">\(s\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-median-q-2-kuartil-1-q-1-dan-kuartil-3-q-3">E. Median (<span class="math notranslate nohighlight">\(Q_2\)</span>), Kuartil 1 (<span class="math notranslate nohighlight">\(Q_1\)</span>), dan Kuartil 3 (<span class="math notranslate nohighlight">\(Q_3\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-skewness-kemencengan">F. Skewness (Kemencengan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-kurtosis-keruncingan-puncak">G. Kurtosis (Keruncingan Puncak)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-statistik-n-264">4. Tabel Ringkasan Komparasi Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

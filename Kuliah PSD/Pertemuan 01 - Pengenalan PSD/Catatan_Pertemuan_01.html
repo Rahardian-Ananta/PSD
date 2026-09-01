@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Catatan Perkuliahan PSD - Pertemuan 1 &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Kuliah PSD/Pertemuan 01 - Pengenalan PSD/Catatan_Pertemuan_01';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding.html">Analisis dan Interpretasi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03-analisis-no2-aiven-knime.html">Analisis NO2 Aiven KNIME</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FKuliah PSD/Pertemuan 01 - Pengenalan PSD/Catatan_Pertemuan_01.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Kuliah PSD/Pertemuan 01 - Pengenalan PSD/Catatan_Pertemuan_01.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Catatan Perkuliahan PSD - Pertemuan 1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengenalan-rencana-pembelajaran-semester-rps">Pengenalan Rencana Pembelajaran Semester (RPS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivitas-setup">Aktivitas &amp; Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekosistem-software-tools">Ekosistem Software &amp; Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-belajar-referensi">Sumber Belajar &amp; Referensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-1-analisis-polutan-atmosfer">Tugas 1: Analisis Polutan Atmosfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-tugas">Deskripsi Tugas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-data">Spesifikasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm-adaptif">Metodologi CRISP-DM (Adaptif)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-pembahasan-storytelling">Struktur Pembahasan (Storytelling)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#business-domain-understanding">1. Business &amp; Domain Understanding</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding-eksplorasi">2. Data Understanding &amp; Eksplorasi</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-pengerjaan">Checklist Pengerjaan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-tambahan">Catatan Tambahan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="catatan-perkuliahan-psd-pertemuan-1">
+<h1>Catatan Perkuliahan PSD - Pertemuan 1<a class="headerlink" href="#catatan-perkuliahan-psd-pertemuan-1" title="Link to this heading">#</a></h1>
+<section id="pengenalan-rencana-pembelajaran-semester-rps">
+<h2>Pengenalan Rencana Pembelajaran Semester (RPS)<a class="headerlink" href="#pengenalan-rencana-pembelajaran-semester-rps" title="Link to this heading">#</a></h2>
+<p>Pada pertemuan perdana, fokus utama adalah pengenalan RPS, penyiapan repositori proyek, pemahaman ekosistem tools pengolahan data spasial, serta pengenalan library visualisasi geospasial interaktif.</p>
+</section>
+<hr class="docutils" />
+<section id="aktivitas-setup">
+<h2>Aktivitas &amp; Setup<a class="headerlink" href="#aktivitas-setup" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>GitHub Repository:</strong> Repositori <code class="docutils literal notranslate"><span class="pre">PSD</span></code> telah dibuat</p></li>
+<li><p><strong>Deployment:</strong> Repositori di-deploy ke GitHub Pages: <a class="reference external" href="https://rahardian-ananta.github.io/PSD">https://rahardian-ananta.github.io/PSD</a></p></li>
+<li><p><strong>Library Utama:</strong> Mempelajari <strong>Folium</strong> (library Python berbasis Leaflet.js) untuk visualisasi peta interaktif</p></li>
+<li><p><strong>Dokumen:</strong> Rencana Pembelajaran Semester (RPS) telah diterima</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ekosistem-software-tools">
+<h2>Ekosistem Software &amp; Tools<a class="headerlink" href="#ekosistem-software-tools" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Software / Platform</p></th>
+<th class="head text-left"><p>Kategori</p></th>
+<th class="head text-left"><p>Fungsi Utama</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Python &amp; Folium</strong></p></td>
+<td class="text-left"><p>Scripting &amp; Web Maps</p></td>
+<td class="text-left"><p>Pemrosesan data, API crawling, visualisasi peta interaktif</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>KNIME Analytics</strong></p></td>
+<td class="text-left"><p>Data Science Workflow</p></td>
+<td class="text-left"><p>Visual programming untuk data pipeline, preprocessing, ETL</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>QGIS</strong></p></td>
+<td class="text-left"><p>Desktop GIS</p></td>
+<td class="text-left"><p>Analisis spasial, layer manajemen vektor/raster, kartografi</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Orange Data Mining</strong></p></td>
+<td class="text-left"><p>Data Exploration &amp; ML</p></td>
+<td class="text-left"><p>Analisis data visual, eksplorasi statistik, pemodelan interaktif</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>CDSE JupyterHub</strong></p></td>
+<td class="text-left"><p>Cloud Remote Sensing</p></td>
+<td class="text-left"><p>Ekstraksi dan pengolahan data citra satelit Copernicus via OpenEO API</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><a class="reference external" href="http://GeoJSON.io">GeoJSON.io</a></strong></p></td>
+<td class="text-left"><p>Web Spatial Utility</p></td>
+<td class="text-left"><p>Penentuan Bounding Box / poligon area studi dalam format GeoJSON</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="sumber-belajar-referensi">
+<h2>Sumber Belajar &amp; Referensi<a class="headerlink" href="#sumber-belajar-referensi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Earth Lab Data Science:</strong> <a class="reference external" href="https://earthdatascience.org/courses/">https://earthdatascience.org/courses/</a></p></li>
+<li><p><strong>CDSE JupyterHub:</strong> <a class="reference external" href="https://jupyterhub.dataspace.copernicus.eu/">https://jupyterhub.dataspace.copernicus.eu/</a></p></li>
+<li><p><strong>GeoJSON Tool:</strong> <a class="reference external" href="https://geojson.io/">https://geojson.io/</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tugas-1-analisis-polutan-atmosfer">
+<h2>Tugas 1: Analisis Polutan Atmosfer<a class="headerlink" href="#tugas-1-analisis-polutan-atmosfer" title="Link to this heading">#</a></h2>
+<section id="deskripsi-tugas">
+<h3>Deskripsi Tugas<a class="headerlink" href="#deskripsi-tugas" title="Link to this heading">#</a></h3>
+<p>Melakukan crawling data time-series konsentrasi polutan atmosfer untuk area studi, mengeksplorasi data, dan menyajikannya dalam bentuk narasi data (data storytelling) berbasis CRISP-DM.</p>
+</section>
+<section id="spesifikasi-data">
+<h3>Spesifikasi Data<a class="headerlink" href="#spesifikasi-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Sumber:</strong> Sentinel-5P TROPOMI via CDSE</p></li>
+<li><p><strong>Pilihan Polutan:</strong></p>
+<ul>
+<li><p>NO2 (Nitrogen Dioxide) - emisi transportasi dan industri</p></li>
+<li><p>CO (Carbon Monoxide) - pembakaran tidak sempurna</p></li>
+<li><p>HCHO (Formaldehyde) - prekursor VOC dan polusi industri</p></li>
+<li><p>SO2 / O3 / Aerosol Index (opsional lainnya)</p></li>
+</ul>
+</li>
+<li><p><strong>Rentang Waktu:</strong> 1 tahun terakhir (hingga akhir Agustus)</p></li>
+<li><p><strong>Format:</strong> File <code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></li>
+</ul>
+</section>
+<section id="metodologi-crisp-dm-adaptif">
+<h3>Metodologi CRISP-DM (Adaptif)<a class="headerlink" href="#metodologi-crisp-dm-adaptif" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1.</span> <span class="n">Business</span> <span class="n">Understanding</span><span class="p">]</span>  <span class="o">--&gt;</span>  <span class="p">[</span><span class="mf">2.</span> <span class="n">Data</span> <span class="n">Understanding</span><span class="p">]</span>
+<span class="o">*</span> <span class="n">Definisi</span> <span class="n">Polutan</span> <span class="o">&amp;</span> <span class="n">Masalah</span>      <span class="o">*</span> <span class="n">Crawling</span> <span class="n">Data</span> <span class="n">CSV</span> <span class="p">(</span><span class="n">CDSE</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Sumber</span> <span class="n">Emisi</span> <span class="o">&amp;</span> <span class="n">Dampak</span>           <span class="o">*</span> <span class="n">Eksplorasi</span> <span class="n">Statistik</span> <span class="p">(</span><span class="n">EDA</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Sudut</span> <span class="n">Pandang</span> <span class="n">Storyteller</span>       <span class="o">*</span> <span class="n">Visualisasi</span> <span class="n">Grafik</span> <span class="o">&amp;</span> <span class="n">Tren</span>
+
+<span class="p">[</span><span class="mf">3.</span> <span class="n">Preprocessing</span><span class="p">]</span> <span class="p">(</span><span class="n">Dasar</span><span class="p">)</span>   <span class="o">--&gt;</span>  <span class="p">[</span><span class="mf">4.</span> <span class="n">Modeling</span> <span class="o">&amp;</span> <span class="n">Evaluasi</span><span class="p">]</span>
+<span class="o">*</span> <span class="n">Filter</span> <span class="o">&amp;</span> <span class="n">Agregasi</span> <span class="n">Temporal</span>      <span class="o">*</span> <span class="p">(</span><span class="n">Tidak</span> <span class="n">diwajibkan</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Tugas ini hanya fokus pada Business Understanding, Data Understanding, serta Visualisasi &amp; Eksplorasi Data. Tidak diwajibkan membangun model Machine Learning.</p>
+</div></blockquote>
+</section>
+<section id="struktur-pembahasan-storytelling">
+<h3>Struktur Pembahasan (Storytelling)<a class="headerlink" href="#struktur-pembahasan-storytelling" title="Link to this heading">#</a></h3>
+<section id="business-domain-understanding">
+<h4>1. Business &amp; Domain Understanding<a class="headerlink" href="#business-domain-understanding" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Latar belakang masalah kualitas udara di wilayah studi</p></li>
+<li><p>Karakteristik polutan yang dipilih</p></li>
+<li><p>Sumber utama pelepasan emisi</p></li>
+<li><p>Dampak paparan terhadap kesehatan dan lingkungan</p></li>
+</ul>
+</section>
+<section id="data-understanding-eksplorasi">
+<h4>2. Data Understanding &amp; Eksplorasi<a class="headerlink" href="#data-understanding-eksplorasi" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Metadata dataset (sumber, resolusi spasial, koordinat)</p></li>
+<li><p>Eksplorasi statistik (rata-rata, median, min, max)</p></li>
+<li><p>Identifikasi spike atau anomali polusi</p></li>
+<li><p>Visualisasi grafis (time-series, pola musiman, peta interaktif)</p></li>
+</ul>
+</section>
+</section>
+<section id="checklist-pengerjaan">
+<h3>Checklist Pengerjaan<a class="headerlink" href="#checklist-pengerjaan" title="Link to this heading">#</a></h3>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Menentukan area studi dan membuat poligon di <a class="reference external" href="http://geojson.io">geojson.io</a></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Memilih jenis polutan dari katalog CDSE</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Mengambil data time-series 1 tahun terakhir</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Menyimpan hasil ke file <code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Melakukan pembersihan data sederhana</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Membuat grafik visualisasi (Time-Series Plot &amp; Heatmap)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Menulis narasi data (storytelling)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Memperbarui repositori GitHub</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="catatan-tambahan">
+<h2>Catatan Tambahan<a class="headerlink" href="#catatan-tambahan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Jangan lupa tampilkan data time series untuk kode data understanding di tugas 1</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Kuliah PSD\Pertemuan 01 - Pengenalan PSD"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengenalan-rencana-pembelajaran-semester-rps">Pengenalan Rencana Pembelajaran Semester (RPS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivitas-setup">Aktivitas &amp; Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekosistem-software-tools">Ekosistem Software &amp; Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-belajar-referensi">Sumber Belajar &amp; Referensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas-1-analisis-polutan-atmosfer">Tugas 1: Analisis Polutan Atmosfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-tugas">Deskripsi Tugas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-data">Spesifikasi Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm-adaptif">Metodologi CRISP-DM (Adaptif)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-pembahasan-storytelling">Struktur Pembahasan (Storytelling)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#business-domain-understanding">1. Business &amp; Domain Understanding</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding-eksplorasi">2. Data Understanding &amp; Eksplorasi</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-pengerjaan">Checklist Pengerjaan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-tambahan">Catatan Tambahan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
