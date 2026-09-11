@@ -63,8 +63,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '02_data_understanding';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Laporan Analisis Data Time Series \(\text{NO}_2\): Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (\(N = 264\))" href="03-analisis-no2-aiven-knime.html" />
-    <link rel="prev" title="Business Understanding" href="01_business_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -115,6 +113,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,10 +168,35 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01_business_understanding.html">Business Understanding</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis dan Interpretasi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03-analisis-no2-aiven-knime.html">Analisis NO2 Aiven KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
 </ul>
 
     </div>
@@ -231,7 +256,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -248,7 +273,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F02_data_understanding.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F02_data_understanding.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -1404,24 +1429,6 @@ Semua file CSV berhasil di-ZIP ke: sidoarjo_pollutants_data.zip
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="01_business_understanding.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Business Understanding</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="03-analisis-no2-aiven-knime.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Laporan Analisis Data Time Series <span class="math notranslate nohighlight">\(\text{NO}_2\)</span>: Ingest PostgreSQL Aiven, Workflow KNIME, dan Kalkulasi Statistik (<span class="math notranslate nohighlight">\(N = 264\)</span>)</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

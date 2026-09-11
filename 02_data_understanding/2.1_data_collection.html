@@ -1,0 +1,1393 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.1 Data Collection &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_data_understanding/2.1_data_collection';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2 Deskripsi Dataset" href="2.2_deskripsi_dataset.html" />
+    <link rel="prev" title="BAB 1 — BUSINESS UNDERSTANDING" href="../01_business_understanding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F02_data_understanding/2.1_data_collection.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/02_data_understanding/2.1_data_collection.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.1 Data Collection</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-dan-interpretasi">Analisis dan Interpretasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-collection">
+<h1>2.1 Data Collection<a class="headerlink" href="#data-collection" title="Link to this heading">#</a></h1>
+<p>Dokumen interaktif (<em>notebook</em>) ini mendemonstrasikan proses pengumpulan data (<em>Data Collection</em>) penginderaan jauh polutan atmosfer menggunakan pustaka openeo dari <em>Copernicus Data Space Ecosystem</em> untuk wilayah <strong>Kecamatan Jabon, Kecamatan Jabon</strong> dengan rentang waktu <strong>31 Agustus 2025 hingga 31 Agustus 2026</strong> (366 hari observasi).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">openeo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shapely.geometry</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Baca GeoJSON batas wilayah Kecamatan Jabon</span>
+<span class="n">_geojson_path</span> <span class="o">=</span> <span class="s1">&#39;jabon.geojson&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">_geojson_path</span><span class="p">):</span>
+    <span class="n">_geojson_path</span> <span class="o">=</span> <span class="s1">&#39;../jabon.geojson&#39;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">_geojson_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_f</span><span class="p">:</span>
+    <span class="n">_geojson_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">_f</span><span class="p">)</span>
+
+<span class="c1"># Hitung centroid wilayah untuk memusatkan peta</span>
+<span class="n">_shp</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">_geojson_data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
+<span class="n">_centroid</span> <span class="o">=</span> <span class="n">_shp</span><span class="o">.</span><span class="n">centroid</span>
+
+<span class="c1"># Buat peta interaktif Folium</span>
+<span class="n">_m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">_centroid</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">_centroid</span><span class="o">.</span><span class="n">x</span><span class="p">],</span>
+    <span class="n">zoom_start</span><span class="o">=</span><span class="mi">12</span>
+<span class="p">)</span>
+
+<span class="c1"># Tambahkan poligon batas Kecamatan Jabon</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span>
+    <span class="n">_geojson_data</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Kecamatan Jabon&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">_m</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan peta</span>
+<span class="n">_m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_89b20ce21dd59d441c8f5a3882e16e32 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_89b20ce21dd59d441c8f5a3882e16e32&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_89b20ce21dd59d441c8f5a3882e16e32 = L.map(
+                &quot;map_89b20ce21dd59d441c8f5a3882e16e32&quot;,
+                {
+                    center: [-7.544883392704936, 112.7980086953642],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 12,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_234e73e6d283c02f6dcb2bb34cd6cf9e = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_234e73e6d283c02f6dcb2bb34cd6cf9e.addTo(map_89b20ce21dd59d441c8f5a3882e16e32);
+        
+    
+
+        function geo_json_dba362cc4feccb1febe2c4a51a67ea42_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_dba362cc4feccb1febe2c4a51a67ea42 = L.geoJson(null, {
+                onEachFeature: geo_json_dba362cc4feccb1febe2c4a51a67ea42_onEachFeature,
+            
+            ...{
+}
+        });
+
+        function geo_json_dba362cc4feccb1febe2c4a51a67ea42_add (data) {
+            geo_json_dba362cc4feccb1febe2c4a51a67ea42
+                .addData(data);
+        }
+            geo_json_dba362cc4feccb1febe2c4a51a67ea42_add({&quot;copyright&quot;: &quot;The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.&quot;, &quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[112.8222674, -7.4929007], [112.821831, -7.4946485], [112.8214067, -7.4954381], [112.8209331, -7.4962608], [112.8205905, -7.4969188], [112.820494, -7.4974444], [112.8205618, -7.4979202], [112.820777, -7.498264], [112.8210911, -7.4986566], [112.8218002, -7.4990969], [112.8229049, -7.4997653], [112.8232924, -7.5001364], [112.823593, -7.5011026], [112.8238636, -7.5019999], [112.8237326, -7.502566], [112.8236014, -7.5031323], [112.8232793, -7.5039648], [112.8228421, -7.505423], [112.8227147, -7.5059028], [112.8226977, -7.5062624], [112.8227481, -7.5065629], [112.8230721, -7.5074408], [112.8235892, -7.5082232], [112.8237912, -7.5086549], [112.8238607, -7.5093201], [112.8237965, -7.5099193], [112.8236654, -7.5104854], [112.8235667, -7.5108186], [112.8232693, -7.5115186], [112.8230391, -7.5123181], [112.8227423, -7.5131845], [112.8225448, -7.5138175], [112.8218172, -7.5153844], [112.8213216, -7.5165842], [112.8209258, -7.5176839], [112.8206766, -7.518391], [112.8201849, -7.518935], [112.8196928, -7.5194298], [112.8188794, -7.5198765], [112.8158957, -7.5211945], [112.8152302, -7.5215668], [112.8148117, -7.5219133], [112.8144676, -7.5223582], [112.8141493, -7.5230246], [112.8139549, -7.5238137], [112.813836, -7.5249227], [112.8138127, -7.5252677], [112.8135666, -7.5254904], [112.8131964, -7.5255904], [112.8126529, -7.5255927], [112.811887, -7.5255713], [112.811467, -7.525573], [112.8108252, -7.5254623], [112.8105806, -7.52516], [112.8102937, -7.5244133], [112.8099462, -7.5237476], [112.8096597, -7.5230817], [112.8094148, -7.5227187], [112.8090695, -7.5225382], [112.8086635, -7.5224187], [112.8084151, -7.5223985], [112.8077103, -7.5223417], [112.8067169, -7.522366], [112.8059666, -7.5223085], [112.8051749, -7.5220691], [112.8043021, -7.5218099], [112.8037135, -7.5216708], [112.8025574, -7.5215543], [112.8014828, -7.5215385], [112.8011788, -7.52156], [112.8006326, -7.5218654], [112.8002482, -7.522049], [112.7998778, -7.5224777], [112.7985737, -7.5236839], [112.7977205, -7.5242096], [112.797302, -7.5242983], [112.7967439, -7.5243876], [112.7961859, -7.5245291], [112.7957507, -7.5248267], [112.7954143, -7.524866], [112.7947018, -7.5244308], [112.7938449, -7.524034], [112.7932196, -7.5238137], [112.7918399, -7.5236279], [112.79067, -7.5235283], [112.7895705, -7.5235501], [112.7885409, -7.5236066], [112.7881919, -7.5236428], [112.7878958, -7.5237832], [112.7876869, -7.5239234], [112.7877066, -7.5244628], [112.7881624, -7.5250038], [112.7887859, -7.5253568], [112.7889806, -7.5254269], [112.7892086, -7.525558], [112.7896367, -7.5259248], [112.7900944, -7.5264396], [112.7902241, -7.5266137], [112.790299, -7.526845], [112.7902506, -7.5275739], [112.790249, -7.5278521], [112.7902743, -7.5279797], [112.7901832, -7.5282294], [112.789365, -7.528755], [112.788615, -7.5288973], [112.7878813, -7.528761], [112.787199, -7.5283809], [112.7866037, -7.5279482], [112.7860091, -7.5276547], [112.7855197, -7.5275001], [112.7850134, -7.5274673], [112.7845596, -7.5274866], [112.7842632, -7.5275574], [112.7838102, -7.5277507], [112.7834796, -7.5280305], [112.7826273, -7.5284084], [112.7817363, -7.528412], [112.781248, -7.5283294], [112.7808229, -7.5281407], [112.7803972, -7.5277828], [112.779843, -7.5271293], [112.7793117, -7.5268988], [112.7787599, -7.5268587], [112.7780397, -7.5271155], [112.7774469, -7.527414], [112.7765781, -7.5276714], [112.7759843, -7.5277161], [112.7757933, -7.5276957], [112.7752187, -7.5272538], [112.7748556, -7.526663], [112.7744717, -7.5261358], [112.774322, -7.5258614], [112.7740035, -7.5257781], [112.7738123, -7.5257154], [112.7734944, -7.5258013], [112.7728385, -7.5262058], [112.7721393, -7.5264413], [112.7716092, -7.5265069], [112.771376, -7.5265502], [112.7707608, -7.5265527], [112.7698188, -7.5266092], [112.7695249, -7.5266397], [112.7687466, -7.5268774], [112.7682477, -7.527114], [112.7678375, -7.5274528], [112.7675299, -7.5277326], [112.7672362, -7.5278217], [112.7669569, -7.5278375], [112.7667506, -7.5277211], [112.766559, -7.5276046], [112.7659693, -7.5271965], [112.7654088, -7.5267736], [112.7651733, -7.5267362], [112.7650893, -7.5267984], [112.7646463, -7.5269751], [112.7642028, -7.5271497], [112.7637317, -7.5272065], [112.7632477, -7.5272004], [112.7623635, -7.5270075], [112.7619803, -7.52689], [112.7614949, -7.5265954], [112.7605359, -7.5261396], [112.7600377, -7.5258874], [112.7595981, -7.5256365], [112.7577297, -7.5260721], [112.7575097, -7.5260572], [112.7573373, -7.5260133], [112.7570977, -7.5260126], [112.7570555, -7.5260211], [112.7569223, -7.5261862], [112.7567804, -7.5263707], [112.7566439, -7.5264777], [112.7563578, -7.5264605], [112.7559563, -7.5265208], [112.7556211, -7.5266054], [112.7553046, -7.5267254], [112.7550778, -7.526916], [112.7548741, -7.5270996], [112.7547493, -7.5272408], [112.7546451, -7.5274079], [112.754479, -7.5276744], [112.7544413, -7.5277348], [112.7543666, -7.5279236], [112.7543527, -7.5280645], [112.7543284, -7.5283204], [112.7543023, -7.5285943], [112.7542292, -7.5291468], [112.7541908, -7.5293657], [112.7540545, -7.5300473], [112.7539308, -7.5305127], [112.7538058, -7.5310778], [112.7537566, -7.5313081], [112.7536622, -7.5316813], [112.7535507, -7.5322239], [112.753511, -7.5326138], [112.7534867, -7.5329805], [112.7534648, -7.5333121], [112.7534636, -7.533471], [112.7534718, -7.5336986], [112.7535314, -7.5341013], [112.7534224, -7.5340751], [112.7529981, -7.5339991], [112.7521961, -7.5338554], [112.7517964, -7.5337839], [112.7510475, -7.5336566], [112.7509282, -7.5338503], [112.7508058, -7.5340579], [112.7507244, -7.5342106], [112.750675, -7.5343414], [112.7505658, -7.534558], [112.750421, -7.5348628], [112.7502348, -7.5351654], [112.7499992, -7.5355451], [112.749672, -7.536093], [112.7492093, -7.5366118], [112.7487827, -7.5372196], [112.7483915, -7.5377381], [112.7480361, -7.5382564], [112.7478583, -7.5385067], [112.7473394, -7.538384], [112.7468742, -7.5382788], [112.7463195, -7.5381385], [112.7457826, -7.5379802], [112.7451921, -7.5378222], [112.7446732, -7.5376816], [112.7439754, -7.5375418], [112.7432419, -7.5373665], [112.7426568, -7.5372648], [112.7425624, -7.5372302], [112.7420684, -7.5371084], [112.7414263, -7.5369668], [112.7403778, -7.5366945], [112.7391308, -7.5364638], [112.7385565, -7.5363185], [112.7385556, -7.5366721], [112.7384859, -7.537118], [112.7384156, -7.5374213], [112.7383103, -7.5379387], [112.7382168, -7.538391], [112.7372907, -7.5381213], [112.7366783, -7.537951], [112.7350761, -7.5374968], [112.7347093, -7.5374064], [112.7339865, -7.5372056], [112.7333833, -7.5370191], [112.7334932, -7.5360793], [112.7336167, -7.5356689], [112.7336687, -7.5352408], [112.7337567, -7.534884], [112.7335421, -7.5348671], [112.7331487, -7.5348507], [112.7326838, -7.5347991], [112.7321832, -7.5347833], [112.7318076, -7.5347313], [112.7313605, -7.5346796], [112.7309669, -7.5346098], [112.730466, -7.5345049], [112.7300904, -7.5344529], [112.7295896, -7.5343657], [112.7292316, -7.5342602], [112.7286231, -7.5340843], [112.7281398, -7.5339258], [112.7277819, -7.5338202], [112.7274061, -7.5337148], [112.727066, -7.5336092], [112.726726, -7.5335214], [112.7266553, -7.5337177], [112.726549, -7.5339677], [112.7264429, -7.5342356], [112.7263011, -7.5345391], [112.7261907, -7.5347428], [112.7261547, -7.5348054], [112.7257769, -7.5346643], [112.7247317, -7.5343123], [112.7238584, -7.5340829], [112.7235005, -7.533989], [112.7226912, -7.5337606], [112.7224976, -7.5337954], [112.7223864, -7.5338638], [112.7223236, -7.5339024], [112.7220757, -7.5340587], [112.7217542, -7.5341059], [112.7215719, -7.5340672], [112.7213874, -7.5339476], [112.7211762, -7.5338769], [112.720605, -7.5337972], [112.7200921, -7.5338105], [112.7195674, -7.5338671], [112.7188511, -7.5340407], [112.7186871, -7.5340805], [112.7184723, -7.534153], [112.7180179, -7.5344034], [112.7175376, -7.534612], [112.7167421, -7.5347826], [112.7165218, -7.5348305], [112.7164971, -7.5348318], [112.7164008, -7.5348332], [112.7163557, -7.5350481], [112.7163763, -7.5353118], [112.7164033, -7.5355756], [112.7162844, -7.5358572], [112.7160329, -7.5362164], [112.7157747, -7.5364915], [112.7152396, -7.5370383], [112.7146484, -7.5366257], [112.7143617, -7.5364487], [112.7141467, -7.5363247], [112.7140576, -7.5364141], [112.7138796, -7.5365931], [112.7135767, -7.5368439], [112.713274, -7.5371481], [112.7128821, -7.5375061], [112.7125795, -7.5378282], [112.7122054, -7.5381505], [112.7120622, -7.5380976], [112.7115786, -7.5378855], [112.7109876, -7.5376026], [112.7105221, -7.5374084], [112.7099669, -7.537161], [112.7096088, -7.537002], [112.709161, -7.536772], [112.7087133, -7.5365598], [112.7083418, -7.5364002], [112.7082329, -7.5365441], [112.7081134, -7.5367634], [112.7076276, -7.5376662], [112.7073304, -7.5382483], [112.7060752, -7.5401306], [112.7058156, -7.5404799], [112.7056611, -7.5406882], [112.7056372, -7.5407314], [112.7054617, -7.5410288], [112.7051615, -7.5414249], [112.7047707, -7.5420681], [112.7045051, -7.5427108], [112.7041864, -7.5435142], [112.7039386, -7.5441213], [112.7037261, -7.544639], [112.7036116, -7.5451685], [112.7044601, -7.5450238], [112.7056426, -7.5449346], [112.7061843, -7.5449327], [112.7061843, -7.5452145], [112.7062454, -7.5455526], [112.7062988, -7.5458058], [112.7063827, -7.5460313], [112.7064742, -7.5462282], [112.7067565, -7.5464524], [112.7072067, -7.5466765], [112.7076339, -7.5468438], [112.7082824, -7.5470951], [112.70874, -7.5473001], [112.7087402, -7.5473002], [112.7092437, -7.5476268], [112.7095336, -7.5479358], [112.7098464, -7.5483292], [112.7100143, -7.5486105], [112.7101287, -7.5489486], [112.7101592, -7.549343], [112.7101592, -7.5497378], [112.7101363, -7.5501607], [112.7101058, -7.5506967], [112.7101363, -7.5514858], [112.7101669, -7.552275], [112.7102889, -7.5530637], [112.7103423, -7.5537122], [112.7104873, -7.5543035], [112.7107162, -7.5551484], [112.7108533, -7.5554378], [112.7108535, -7.5554383], [112.711029, -7.5558236], [112.7113494, -7.5565274], [112.7116317, -7.5570057], [112.7118835, -7.557371], [112.7124252, -7.5579045], [112.7131347, -7.558409], [112.7136459, -7.5587738], [112.7140731, -7.5591105], [112.7145232, -7.5593904], [112.7154845, -7.5597251], [112.7157134, -7.5597771], [112.7157206, -7.5597787], [112.716339, -7.5599192], [112.7170409, -7.5600289], [112.7177505, -7.560139], [112.7185134, -7.5605024], [112.719223, -7.5610073], [112.7197341, -7.5615128], [112.7201919, -7.5620182], [112.7207259, -7.5626362], [112.7212142, -7.5632547], [112.7215793, -7.563731], [112.7215804, -7.5637324], [112.7217788, -7.5643519], [112.7219848, -7.5649994], [112.7221832, -7.5654214], [112.7223815, -7.5657309], [112.7226409, -7.566181], [112.7228622, -7.566603], [112.7230071, -7.5670255], [112.7232055, -7.567673], [112.7233505, -7.568095], [112.7235488, -7.5685456], [112.7238899, -7.5688801], [112.7238921, -7.5688823], [112.7243423, -7.5692189], [112.7250289, -7.5696109], [112.7257613, -7.5699747], [112.7263564, -7.5702541], [112.7272033, -7.5705326], [112.7276, -7.5706437], [112.7281112, -7.57067], [112.7285613, -7.5706118], [112.7294158, -7.570524], [112.7302017, -7.5704082], [112.7308273, -7.5703491], [112.7315597, -7.5702899], [112.7322921, -7.5703152], [112.7328338, -7.5703696], [112.7335662, -7.5705355], [112.7342452, -7.5707019], [112.7349548, -7.5708683], [112.7355499, -7.5710915], [112.7357558, -7.5712417], [112.7358932, -7.5713437], [112.7363738, -7.5716522], [112.7369384, -7.5720728], [112.7371504, -7.5722489], [112.737152, -7.5722502], [112.7374801, -7.5725215], [112.7378463, -7.5728019], [112.7383041, -7.573026], [112.7388915, -7.5732206], [112.7391662, -7.5732382], [112.7391709, -7.5732385], [112.7397155, -7.573274], [112.7410735, -7.573212], [112.7422332, -7.5730665], [112.7434158, -7.5728362], [112.744461, -7.572409], [112.7453078, -7.5720113], [112.7461547, -7.5717819], [112.7469177, -7.5717509], [112.7477111, -7.5718887], [112.7483062, -7.5722244], [112.7488174, -7.5725325], [112.749382, -7.5728968], [112.7497253, -7.5731209], [112.7499999, -7.5732463], [112.7520293, -7.5748761], [112.7529143, -7.575239], [112.7533874, -7.5752738], [112.754013, -7.5749415], [112.7550048, -7.574168], [112.7558441, -7.573468], [112.7559127, -7.5734404], [112.7564315, -7.5732091], [112.7580871, -7.5733126], [112.7593002, -7.5735643], [112.7602004, -7.5739434], [112.7613677, -7.5744351], [112.7624358, -7.5748709], [112.763977, -7.5746082], [112.7653732, -7.5744188], [112.766838, -7.574303], [112.7674636, -7.5741909], [112.7677287, -7.5739391], [112.7677306, -7.5739372], [112.7683791, -7.5733073], [112.7687835, -7.5725125], [112.7688522, -7.5723651], [112.7690276, -7.5719245], [112.7697295, -7.5705903], [112.7701721, -7.5701125], [112.7712325, -7.5696681], [112.7725906, -7.5695527], [112.7731551, -7.5696953], [112.7738647, -7.5700606], [112.7749786, -7.5708664], [112.7756728, -7.5714772], [112.7762908, -7.5717938], [112.7762926, -7.5717921], [112.7765121, -7.5715721], [112.7769012, -7.5708588], [112.7774429, -7.5702179], [112.7775344, -7.5691374], [112.7779998, -7.5683497], [112.7792968, -7.5672153], [112.7801818, -7.5665243], [112.7816619, -7.5660027], [112.7820968, -7.5657342], [112.7822189, -7.5656665], [112.782257, -7.5650576], [112.7823409, -7.564905], [112.7828216, -7.5647343], [112.7832946, -7.5644863], [112.7838744, -7.5641706], [112.7843093, -7.5635927], [112.7845077, -7.5631336], [112.784706, -7.5627783], [112.7857436, -7.5627778], [112.7862014, -7.5629814], [112.7871093, -7.5635093], [112.7872161, -7.5635965], [112.7876739, -7.5640162], [112.7878417, -7.5641244], [112.7880401, -7.5641697], [112.7885131, -7.5640205], [112.7890909, -7.563829], [112.7890929, -7.5638283], [112.7897414, -7.5643132], [112.7899246, -7.5643986], [112.7901916, -7.5644482], [112.7904967, -7.564431], [112.7907104, -7.5643642], [112.7913741, -7.5637925], [112.7925796, -7.5628698], [112.7932815, -7.5623878], [112.7935332, -7.5622118], [112.7946166, -7.5624349], [112.7947768, -7.5623749], [112.7949523, -7.5622233], [112.7951583, -7.5619443], [112.7955474, -7.5614317], [112.795845, -7.5611885], [112.7960738, -7.561086], [112.7961349, -7.5607808], [112.7962493, -7.5604437], [112.7965164, -7.560385], [112.7966918, -7.5606316], [112.7968368, -7.5609825], [112.7976226, -7.5616229], [112.7982558, -7.5611871], [112.798355, -7.5610221], [112.7984084, -7.5608123], [112.7983932, -7.5605739], [112.7979431, -7.559841], [112.7979125, -7.5589302], [112.7979507, -7.558709], [112.7980346, -7.5585149], [112.7984618, -7.5583074], [112.7993545, -7.5583652], [112.7997283, -7.558955], [112.7997817, -7.5595077], [112.799652, -7.5615418], [112.7998275, -7.5618585], [112.8003234, -7.5620702], [112.8009109, -7.5621279], [112.8014411, -7.5620465], [112.8014449, -7.5620459], [112.8016357, -7.5615542], [112.8018035, -7.5606888], [112.8020248, -7.5600164], [112.8021316, -7.5595758], [112.8021316, -7.5591014], [112.8027343, -7.5589917], [112.8029632, -7.5589569], [112.8031844, -7.5590046], [112.803749, -7.5593484], [112.8039474, -7.55947], [112.804222, -7.5595086], [112.8045806, -7.5594805], [112.804779, -7.5594133], [112.8049926, -7.5592564], [112.8050841, -7.5591171], [112.8051452, -7.5588177], [112.8051299, -7.558359], [112.8050307, -7.5578421], [112.8049087, -7.5573719], [112.8048782, -7.5570963], [112.8049315, -7.5566957], [112.805046, -7.5563129], [112.8052062, -7.5559662], [112.8054275, -7.5556596], [112.8056335, -7.5554636], [112.806137, -7.5551837], [112.8065108, -7.5550368], [112.8071899, -7.5549558], [112.8078384, -7.554941], [112.808525, -7.5550268], [112.809471, -7.5553539], [112.8097533, -7.555435], [112.8099517, -7.5554517], [112.8101043, -7.5553983], [112.8103484, -7.5551727], [112.8106765, -7.5548122], [112.810913, -7.5546063], [112.8110656, -7.5545242], [112.8116378, -7.5545872], [112.8117294, -7.5546229], [112.811872, -7.5546942], [112.8118743, -7.5546954], [112.8118496, -7.5547586], [112.8115234, -7.5555933], [112.811264, -7.556268], [112.8109283, -7.5568245], [112.811058, -7.5568855], [112.8111114, -7.5569079], [112.81118, -7.5569499], [112.8112258, -7.5569785], [112.8112563, -7.5569933], [112.8115386, -7.5571745], [112.8118667, -7.5573972], [112.8121947, -7.5576242], [112.8125152, -7.5578726], [112.812622, -7.5579737], [112.8127212, -7.5581282], [112.8128051, -7.5582641], [112.8128509, -7.5583971], [112.8128967, -7.5585387], [112.8128967, -7.5586737], [112.8139419, -7.5590818], [112.8146056, -7.5590542], [112.8165206, -7.5589178], [112.8167266, -7.5588735], [112.816986, -7.5586923], [112.8175887, -7.5581763], [112.8182372, -7.5576094], [112.8186111, -7.5572918], [112.8189086, -7.5571182], [112.8199996, -7.5567997], [112.8205642, -7.5566075], [112.8215179, -7.5561493], [112.8227309, -7.5554894], [112.823265, -7.5551751], [112.8235244, -7.5550664], [112.8239287, -7.5550087], [112.8242568, -7.5550035], [112.8243331, -7.5550411], [112.824562, -7.5548556], [112.8249206, -7.5546515], [112.8255691, -7.5543979], [112.8259048, -7.5542658], [112.8264846, -7.5537956], [112.8266982, -7.5536259], [112.8270873, -7.5534613], [112.8277282, -7.5533145], [112.8279952, -7.5531967], [112.828392, -7.5530274], [112.8288955, -7.5528596], [112.8291549, -7.5528152], [112.8296279, -7.5528534], [112.8299789, -7.5528925], [112.8300933, -7.5528825], [112.830223, -7.5527842], [112.8303908, -7.5526069], [112.8305968, -7.5525168], [112.8308868, -7.5524786], [112.8313064, -7.5525544], [112.8316039, -7.5526145], [112.8317413, -7.552594], [112.8318938, -7.5525115], [112.8320312, -7.5523704], [112.8322906, -7.5527494], [112.8330535, -7.553345], [112.8339156, -7.5537713], [112.8348006, -7.554035], [112.8354949, -7.5541943], [112.8357925, -7.5543411], [112.8358535, -7.5548828], [112.8356093, -7.5556353], [112.8351211, -7.5564931], [112.8348693, -7.5573209], [112.8348464, -7.5585473], [112.8352279, -7.5599716], [112.8359222, -7.5618222], [112.8364028, -7.5635269], [112.8369445, -7.5652426], [112.837387, -7.5669587], [112.8375014, -7.5683539], [112.8384704, -7.5697458], [112.8389192, -7.5702403], [112.8389205, -7.5702417], [112.8402023, -7.5716713], [112.8412697, -7.5722703], [112.8412704, -7.5722707], [112.8417205, -7.5725239], [112.8424758, -7.5733798], [112.8433456, -7.5748795], [112.8439941, -7.5763796], [112.8444708, -7.5768928], [112.8455544, -7.5774563], [112.8464556, -7.5771542], [112.8493351, -7.5760503], [112.849731, -7.5766795], [112.852415, -7.5752923], [112.8529829, -7.5756827], [112.853945, -7.5745389], [112.8549609, -7.5752012], [112.8556337, -7.5743206], [112.8567391, -7.574726], [112.8572003, -7.5739529], [112.858743, -7.5747622], [112.8590215, -7.5730325], [112.8620012, -7.5743074], [112.86206, -7.5724451], [112.865004, -7.5734448], [112.8644505, -7.5728967], [112.8673776, -7.5722227], [112.8697924, -7.5716667], [112.8699005, -7.5711454], [112.8699262, -7.5702635], [112.8697488, -7.5692419], [112.8691754, -7.5672752], [112.8686071, -7.5654455], [112.8685516, -7.5649208], [112.8685677, -7.5645025], [112.8687953, -7.5641231], [112.8688902, -7.5639504], [112.8691978, -7.5637518], [112.8694868, -7.5636339], [112.8701556, -7.5635294], [112.8705954, -7.5637102], [112.8713572, -7.564109], [112.8718507, -7.5643111], [112.8724354, -7.5644972], [112.873224, -7.5647258], [112.8740019, -7.5649971], [112.8746724, -7.5651938], [112.8752947, -7.5652257], [112.8760993, -7.5650874], [112.8770542, -7.5646089], [112.8776497, -7.5642313], [112.878347, -7.5637102], [112.8790395, -7.5631758], [112.8800118, -7.5621453], [112.8800251, -7.5619986], [112.8799616, -7.5618815], [112.8798161, -7.5617309], [112.879522, -7.5613393], [112.8790047, -7.5604189], [112.878706, -7.5600723], [112.8782732, -7.5598664], [112.8775199, -7.5595425], [112.8764749, -7.5589454], [112.8758204, -7.5581318], [112.8753966, -7.5574299], [112.8751337, -7.5567173], [112.8747582, -7.5556271], [112.8744417, -7.5551326], [112.8738838, -7.5546539], [112.8730899, -7.5541115], [112.8722799, -7.5534787], [112.8706705, -7.5521333], [112.8692865, -7.5509314], [112.8681707, -7.54957], [112.8675484, -7.5475705], [112.8673768, -7.5455284], [112.8674197, -7.5440181], [112.8677845, -7.5418484], [112.868557, -7.5407422], [112.8694582, -7.5400828], [112.8714108, -7.5393382], [112.8725588, -7.5387852], [112.8727412, -7.5383385], [112.8727305, -7.5378705], [112.8723979, -7.5371791], [112.8709495, -7.5348392], [112.8701073, -7.5337277], [112.8688144, -7.5325098], [112.8665185, -7.5303613], [112.8640938, -7.5282553], [112.8617763, -7.5262557], [112.860403, -7.5245751], [112.8592872, -7.5232349], [112.8575921, -7.5211076], [112.8567123, -7.5201716], [112.8547597, -7.5190867], [112.851541, -7.517321], [112.8491807, -7.5156191], [112.8464234, -7.513428], [112.8440523, -7.5114283], [112.8419602, -7.5095987], [112.8409731, -7.5089393], [112.8402114, -7.5085776], [112.8394067, -7.5083861], [112.8383446, -7.508067], [112.8375184, -7.5078117], [112.8370142, -7.5075458], [112.8365314, -7.5069608], [112.8355014, -7.5057482], [112.8342676, -7.5039825], [112.8334629, -7.5026954], [112.8324652, -7.5013339], [112.8312635, -7.4997808], [112.8305554, -7.4987703], [112.8296649, -7.4975577], [112.8289246, -7.4968237], [112.827892, -7.4959143], [112.8273341, -7.4954117], [112.8268674, -7.4949676], [112.8262746, -7.4944543], [112.8256094, -7.4938746], [112.8250837, -7.4934411], [112.8246465, -7.4931061], [112.8241986, -7.4928454], [112.8238553, -7.4926992], [112.8235495, -7.4926832], [112.8232974, -7.4927364], [112.8230479, -7.4928561], [112.8228441, -7.4930236], [112.8226241, -7.4931034], [112.8224686, -7.4930954], [112.8222674, -7.4929007]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;relation/9680049&quot;, &quot;properties&quot;: {&quot;@id&quot;: &quot;relation/9680049&quot;, &quot;admin_level&quot;: &quot;6&quot;, &quot;boundary&quot;: &quot;administrative&quot;, &quot;name&quot;: &quot;Jabon&quot;, &quot;type&quot;: &quot;boundary&quot;, &quot;wikidata&quot;: &quot;Q11544705&quot;, &quot;wikipedia&quot;: &quot;id:Jabon, Sidoarjo&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;generator&quot;: &quot;overpass-turbo&quot;, &quot;timestamp&quot;: &quot;2026-09-10T14:37:51Z&quot;, &quot;type&quot;: &quot;FeatureCollection&quot;});
+        geo_json_dba362cc4feccb1febe2c4a51a67ea42.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_dba362cc4feccb1febe2c4a51a67ea42.addTo(map_89b20ce21dd59d441c8f5a3882e16e32);
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+<p>Kita mulai dengan menyiapkan “peralatan dapur”. Library <code class="docutils literal notranslate"><span class="pre">openeo</span></code> dipasang dan diimpor agar bisa berkomunikasi dengan layanan data Copernicus, sementara <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">os</span></code>, dan <code class="docutils literal notranslate"><span class="pre">sys</span></code> akan membantu pengolahan tabel, angka, dan file di sepanjang analisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setelah semua alat siap, kita membuka “gerbang” menuju gudang data satelit Copernicus. Fungsi <code class="docutils literal notranslate"><span class="pre">connect</span></code> membuat koneksi ke server openEO, dan <code class="docutils literal notranslate"><span class="pre">authenticate_oidc()</span></code> mengautentikasi identitas kita — biasanya lewat tautan login yang muncul di output. Setelah langkah ini berhasil, kita berhak mengunduh data Sentinel-5P.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GEOJSON_PATH</span> <span class="o">=</span> <span class="s2">&quot;jabon.geojson&quot;</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">GEOJSON_PATH</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s2">&quot;google.colab&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File &#39;jabon.geojson&#39; tidak ditemukan di sesi ini. Silakan upload:&quot;</span><span class="p">)</span>
+        <span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+        <span class="c1"># Jika nama file hasil upload berbeda, ubah namanya menjadi jabon.geojson</span>
+        <span class="n">uploaded_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">uploaded_name</span> <span class="o">!=</span> <span class="n">GEOJSON_PATH</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">uploaded_name</span><span class="p">,</span> <span class="n">GEOJSON_PATH</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">GEOJSON_PATH</span><span class="si">}</span><span class="s2">&#39; tidak ditemukan. Letakkan file ini di direktori kerja sebelum lanjut.&quot;</span>
+        <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menggunakan file AOI: </span><span class="si">{</span><span class="n">GEOJSON_PATH</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menggunakan file AOI: jabon.geojson
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sebelum mengambil data satelit, kita butuh “kertas peta” berisi batas administrasi Kecamatan Jabon dalam format GeoJSON (<code class="docutils literal notranslate"><span class="pre">jabon.geojson</span></code>). Kode ini memastikan file tersebut tersedia: kalau belum ada dan kita sedang berjalan di Google Colab, pengguna diminta mengunggahnya; nama file hasil unggahan dirapikan menjadi <code class="docutils literal notranslate"><span class="pre">jabon.geojson</span></code>. Kalau file tetap tidak ditemukan di lingkungan lain, proses dihentikan dengan pesan yang jelas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">shapely.geometry</span>
+
+<span class="c1"># Baca file GeoJSON berisi batas wilayah Kecamatan Jabon</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">GEOJSON_PATH</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">geojson_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">feature</span> <span class="o">=</span> <span class="n">geojson_data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
+
+<span class="c1"># Ubah GeoJSON menjadi objek geometri shapely untuk seluruh wilayah kabupaten</span>
+<span class="n">shp</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Geometry type: </span><span class="si">{</span><span class="n">shp</span><span class="o">.</span><span class="n">geom_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">shp</span><span class="o">.</span><span class="n">geom_type</span> <span class="o">==</span> <span class="s1">&#39;MultiPolygon&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah bagian polygon: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">shp</span><span class="o">.</span><span class="n">geoms</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shp</span><span class="o">.</span><span class="n">geoms</span><span class="p">):</span>
+        <span class="n">pw</span><span class="p">,</span> <span class="n">ps</span><span class="p">,</span> <span class="n">pe</span><span class="p">,</span> <span class="n">pn</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  bagian </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: bbox approx </span><span class="si">{</span><span class="p">(</span><span class="n">pe</span><span class="o">-</span><span class="n">pw</span><span class="p">)</span><span class="o">*</span><span class="mi">111</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> km x </span><span class="si">{</span><span class="p">(</span><span class="n">pn</span><span class="o">-</span><span class="n">ps</span><span class="p">)</span><span class="o">*</span><span class="mi">111</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> km, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s2"> vertices&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gunakan geometri lengkap sebagai area of interest (AOI)</span>
+<span class="n">aoi</span> <span class="o">=</span> <span class="n">geometry</span>
+
+<span class="c1"># Hitung bounding box dari keseluruhan geometri kabupaten</span>
+<span class="n">west</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">north</span> <span class="o">=</span> <span class="n">shp</span><span class="o">.</span><span class="n">bounds</span>
+<span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="n">west</span><span class="p">,</span>
+    <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="n">south</span><span class="p">,</span>
+    <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="n">east</span><span class="p">,</span>
+    <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="n">north</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">AOI defined for Kecamatan Jabon region&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bounding box: </span><span class="si">{</span><span class="n">spatial_extent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bounding box size (approx): </span><span class="si">{</span><span class="p">(</span><span class="n">east</span><span class="o">-</span><span class="n">west</span><span class="p">)</span><span class="o">*</span><span class="mi">111</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km x </span><span class="si">{</span><span class="p">(</span><span class="n">north</span><span class="o">-</span><span class="n">south</span><span class="p">)</span><span class="o">*</span><span class="mi">111</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geometry type: Polygon
+
+AOI defined for Kecamatan Jabon region
+Bounding box: {&#39;west&#39;: 112.7036116, &#39;south&#39;: -7.5774563, &#39;east&#39;: 112.8800251, &#39;north&#39;: -7.4926832}
+Bounding box size (approx): 19.6 km x 9.4 km
+</pre></div>
+</div>
+</div>
+</div>
+<p>File GeoJSON kemudian dibaca dan diubah menjadi objek geometri menggunakan <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, sehingga kita bisa memeriksa bentuk wilayahnya (misalnya apakah berupa MultiPolygon) serta menghitung bounding box — kotak pembatas utara-selatan-timur-barat yang mencakup seluruh Kecamatan Jabon. Kotak inilah yang nantinya memberi tahu satelit area mana yang harus diamati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pollutant_bands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">,</span> <span class="s2">&quot;CO&quot;</span><span class="p">,</span> <span class="s2">&quot;HCHO&quot;</span><span class="p">,</span> <span class="s2">&quot;SO2&quot;</span><span class="p">,</span> <span class="s2">&quot;O3&quot;</span><span class="p">,</span> <span class="s2">&quot;CH4&quot;</span><span class="p">]</span>
+<span class="n">time_extent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2025-08-31&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-08-31&quot;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_pollutant_cube</span><span class="p">(</span><span class="n">band</span><span class="p">):</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+        <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+        <span class="n">temporal_extent</span><span class="o">=</span><span class="n">time_extent</span><span class="p">,</span>
+        <span class="n">spatial_extent</span><span class="o">=</span><span class="n">spatial_extent</span><span class="p">,</span>
+        <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="n">band</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="c1"># Rata-ratakan nilai per hari agar setiap tanggal hanya punya satu nilai</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+    <span class="c1"># Hitung rata-rata spasial di seluruh wilayah sehingga menjadi deret waktu harian</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cube</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akan membuat </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pollutant_bands</span><span class="p">)</span><span class="si">}</span><span class="s2"> job terpisah, satu per polutan: </span><span class="si">{</span><span class="n">pollutant_bands</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akan membuat 6 job terpisah, satu per polutan: [&#39;NO2&#39;, &#39;CO&#39;, &#39;HCHO&#39;, &#39;SO2&#39;, &#39;O3&#39;, &#39;CH4&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sekarang saatnya menyusun “pesanan” data. Untuk setiap polutan (NO2, CO, HCHO, SO2, O3), fungsi <code class="docutils literal notranslate"><span class="pre">build_pollutant_cube</span></code> memuat koleksi Sentinel-5P L2 pada rentang waktu satu tahun dan area Kecamatan Jabon. Nilai mentahnya lalu dirata-ratakan per hari, kemudian dirata-ratakan lagi secara spasial di atas geometri kabupaten — hasil akhirnya adalah deret waktu harian: satu angka konsentrasi per tanggal per polutan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output_files</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">pollutant_bands</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Menjalankan job untuk band: </span><span class="si">{</span><span class="n">band</span><span class="si">}</span><span class="s2"> ===&quot;</span><span class="p">)</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">build_pollutant_cube</span><span class="p">(</span><span class="n">band</span><span class="p">)</span>
+    <span class="n">outputfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;jabon_</span><span class="si">{</span><span class="n">band</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="c1"># Simpan hasil dalam format CSV</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Polutan Kecamatan Jabon - </span><span class="si">{</span><span class="n">band</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="n">outputfile</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;CSV&quot;</span><span class="p">)</span>
+    <span class="n">output_files</span><span class="p">[</span><span class="n">band</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputfile</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selesai: </span><span class="si">{</span><span class="n">outputfile</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Semua job selesai. File output:&quot;</span><span class="p">,</span> <span class="n">output_files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Menjalankan job untuk band: NO2 ===
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: send &#39;start&#39;
+0:00:05 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: queued (progress 0%)
+0:00:11 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: queued (progress 0%)
+0:00:18 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: queued (progress 0%)
+0:00:27 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: queued (progress 0%)
+0:00:38 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:00:54 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:01:11 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:01:32 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:01:58 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:02:29 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:03:09 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:03:56 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:04:56 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: running (progress N/A)
+0:06:00 Job &#39;j-26091020570541eb9092cc677e8c95f4&#39;: finished (progress 100%)
+Selesai: jabon_NO2.csv
+
+=== Menjalankan job untuk band: CO ===
+0:00:00 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: send &#39;start&#39;
+0:00:05 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: queued (progress 0%)
+0:00:14 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: queued (progress 0%)
+0:00:22 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:00:32 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:00:43 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:00:57 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:01:14 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:01:36 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:02:03 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:02:35 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:03:15 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: running (progress N/A)
+0:04:04 Job &#39;j-2609102106544a4b92bdf3abad074999&#39;: finished (progress 100%)
+Selesai: jabon_CO.csv
+
+=== Menjalankan job untuk band: HCHO ===
+0:00:00 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: send &#39;start&#39;
+0:00:10 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: queued (progress 0%)
+0:00:18 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: queued (progress 0%)
+0:00:27 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: queued (progress 0%)
+0:00:39 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: queued (progress 0%)
+0:00:52 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: queued (progress 0%)
+0:01:06 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:01:26 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:01:47 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:02:13 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:02:47 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:03:26 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:04:13 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: running (progress N/A)
+0:05:24 Job &#39;j-2609102113074dacbb549efbcdf24abe&#39;: finished (progress 100%)
+Selesai: jabon_HCHO.csv
+
+=== Menjalankan job untuk band: SO2 ===
+0:00:00 Job &#39;j-26091021211049649692990b8236bab5&#39;: send &#39;start&#39;
+0:00:15 Job &#39;j-26091021211049649692990b8236bab5&#39;: queued (progress 0%)
+0:00:23 Job &#39;j-26091021211049649692990b8236bab5&#39;: queued (progress 0%)
+0:00:30 Job &#39;j-26091021211049649692990b8236bab5&#39;: queued (progress 0%)
+0:00:40 Job &#39;j-26091021211049649692990b8236bab5&#39;: queued (progress 0%)
+0:00:52 Job &#39;j-26091021211049649692990b8236bab5&#39;: queued (progress 0%)
+0:01:09 Job &#39;j-26091021211049649692990b8236bab5&#39;: queued (progress 0%)
+0:01:29 Job &#39;j-26091021211049649692990b8236bab5&#39;: running (progress N/A)
+0:01:52 Job &#39;j-26091021211049649692990b8236bab5&#39;: running (progress N/A)
+0:02:17 Job &#39;j-26091021211049649692990b8236bab5&#39;: running (progress N/A)
+0:02:50 Job &#39;j-26091021211049649692990b8236bab5&#39;: running (progress N/A)
+0:03:29 Job &#39;j-26091021211049649692990b8236bab5&#39;: running (progress N/A)
+0:04:20 Job &#39;j-26091021211049649692990b8236bab5&#39;: finished (progress 100%)
+Selesai: jabon_SO2.csv
+
+=== Menjalankan job untuk band: O3 ===
+0:00:00 Job &#39;j-2609102127384e109d201df01874728f&#39;: send &#39;start&#39;
+0:00:25 Job &#39;j-2609102127384e109d201df01874728f&#39;: queued (progress 0%)
+0:00:33 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:00:43 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:00:53 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:01:06 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:01:21 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:01:42 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:02:04 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:02:31 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:03:04 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:03:44 Job &#39;j-2609102127384e109d201df01874728f&#39;: running (progress N/A)
+0:04:38 Job &#39;j-2609102127384e109d201df01874728f&#39;: finished (progress 100%)
+Selesai: jabon_O3.csv
+
+=== Menjalankan job untuk band: CH4 ===
+0:00:00 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: send &#39;start&#39;
+0:00:09 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: queued (progress 0%)
+0:00:18 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: queued (progress 0%)
+0:00:26 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: queued (progress 0%)
+0:00:39 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: queued (progress 0%)
+0:00:52 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: queued (progress 0%)
+0:01:06 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: running (progress N/A)
+0:01:25 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: running (progress N/A)
+0:01:48 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: running (progress N/A)
+0:02:14 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: running (progress N/A)
+0:02:48 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: running (progress N/A)
+0:03:28 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: running (progress N/A)
+0:04:17 Job &#39;j-2609102134024d1a925ea8c6752575ac&#39;: finished (progress 100%)
+Selesai: jabon_CH4.csv
+
+Semua job selesai. File output: {&#39;NO2&#39;: &#39;jabon_NO2.csv&#39;, &#39;CO&#39;: &#39;jabon_CO.csv&#39;, &#39;HCHO&#39;: &#39;jabon_HCHO.csv&#39;, &#39;SO2&#39;: &#39;jabon_SO2.csv&#39;, &#39;O3&#39;: &#39;jabon_O3.csv&#39;, &#39;CH4&#39;: &#39;jabon_CH4.csv&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pesanan yang sudah disusun dikirim ke server untuk dihitung. Loop ini menjalankan satu batch job per polutan, menunggunya sampai selesai (progresnya terlihat di output), lalu mengunduh hasilnya sebagai file CSV — misalnya <code class="docutils literal notranslate"><span class="pre">jabon_NO2.csv</span></code>. Setelah loop selesai, kelima polutan sudah tersimpan rapi di lima file CSV.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Untuk tahap visualisasi, kita mengimpor <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> — library standar Python untuk menggambar grafik.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">series_by_pollutant</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">band</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">output_files</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">band</span><span class="si">}</span><span class="s2">: kolom = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Cari kolom yang berisi tanggal/waktu</span>
+    <span class="n">time_col_candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;datetime&quot;</span><span class="p">)]</span>
+    <span class="n">time_col</span> <span class="o">=</span> <span class="n">time_col_candidates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">time_col_candidates</span> <span class="k">else</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Tentukan kolom yang berisi nilai konsentrasi polutan</span>
+    <span class="n">exclude_cols</span> <span class="o">=</span> <span class="p">{</span><span class="n">time_col</span><span class="p">,</span> <span class="s2">&quot;feature_index&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">value_col</span> <span class="o">=</span> <span class="n">band</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">numeric_candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude_cols</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">])]</span>
+        <span class="n">value_col</span> <span class="o">=</span> <span class="n">numeric_candidates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">times</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">time_col</span><span class="p">])</span>
+    <span class="n">series_by_pollutant</span><span class="p">[</span><span class="n">band</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">times</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">band</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  -&gt; </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span><span class="si">}</span><span class="s2"> titik waktu, kolom waktu=&#39;</span><span class="si">{</span><span class="n">time_col</span><span class="si">}</span><span class="s2">&#39;, kolom nilai=&#39;</span><span class="si">{</span><span class="n">value_col</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gabungkan kelima polutan menjadi satu tabel berdasarkan tanggal</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">series_by_pollutant</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">combined</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span>
+<span class="n">combined</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NO2: kolom = [&#39;date&#39;, &#39;feature_index&#39;, &#39;NO2&#39;]
+  -&gt; 366 titik waktu, kolom waktu=&#39;date&#39;, kolom nilai=&#39;NO2&#39;
+CO: kolom = [&#39;date&#39;, &#39;feature_index&#39;, &#39;CO&#39;]
+  -&gt; 366 titik waktu, kolom waktu=&#39;date&#39;, kolom nilai=&#39;CO&#39;
+HCHO: kolom = [&#39;date&#39;, &#39;feature_index&#39;, &#39;HCHO&#39;]
+  -&gt; 366 titik waktu, kolom waktu=&#39;date&#39;, kolom nilai=&#39;HCHO&#39;
+SO2: kolom = [&#39;date&#39;, &#39;feature_index&#39;, &#39;SO2&#39;]
+  -&gt; 366 titik waktu, kolom waktu=&#39;date&#39;, kolom nilai=&#39;SO2&#39;
+O3: kolom = [&#39;date&#39;, &#39;feature_index&#39;, &#39;O3&#39;]
+  -&gt; 366 titik waktu, kolom waktu=&#39;date&#39;, kolom nilai=&#39;O3&#39;
+CH4: kolom = [&#39;date&#39;, &#39;feature_index&#39;, &#39;CH4&#39;]
+  -&gt; 366 titik waktu, kolom waktu=&#39;date&#39;, kolom nilai=&#39;CH4&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NO2</th>
+      <th>CO</th>
+      <th>HCHO</th>
+      <th>SO2</th>
+      <th>O3</th>
+      <th>CH4</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2025-08-30 00:00:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-08-31 00:00:00+00:00</th>
+      <td>1.154831e-05</td>
+      <td>NaN</td>
+      <td>0.000054</td>
+      <td>-0.000292</td>
+      <td>0.115559</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-09-01 00:00:00+00:00</th>
+      <td>1.989465e-05</td>
+      <td>0.028394</td>
+      <td>0.000096</td>
+      <td>0.000299</td>
+      <td>0.115130</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-09-02 00:00:00+00:00</th>
+      <td>-1.293079e-07</td>
+      <td>0.024614</td>
+      <td>0.000096</td>
+      <td>-0.000185</td>
+      <td>0.114912</td>
+      <td>1822.120850</td>
+    </tr>
+    <tr>
+      <th>2025-09-03 00:00:00+00:00</th>
+      <td>1.628330e-05</td>
+      <td>0.023711</td>
+      <td>0.000082</td>
+      <td>0.000391</td>
+      <td>0.113595</td>
+      <td>1876.171875</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Lima file CSV dari struktur kolom yang mungkin berbeda-beda kini dibaca satu per satu. Kode ini otomatis mengenali kolom mana yang berisi tanggal dan kolom mana yang berisi nilai konsentrasi, lalu mengubahnya menjadi deret waktu pandas. Terakhir, kelima deret tersebut digabung menjadi satu tabel <code class="docutils literal notranslate"><span class="pre">combined</span></code> dengan indeks tanggal yang sama — sehingga sekilas kita sudah bisa melihat angka harian semua polutan berdampingan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rolling</span> <span class="o">=</span> <span class="n">combined</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">rolling</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NO2</th>
+      <th>CO</th>
+      <th>HCHO</th>
+      <th>SO2</th>
+      <th>O3</th>
+      <th>CH4</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2025-08-30 00:00:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-08-31 00:00:00+00:00</th>
+      <td>0.000012</td>
+      <td>NaN</td>
+      <td>0.000054</td>
+      <td>-0.000292</td>
+      <td>0.115559</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-09-01 00:00:00+00:00</th>
+      <td>0.000016</td>
+      <td>0.028394</td>
+      <td>0.000075</td>
+      <td>0.000004</td>
+      <td>0.115345</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-09-02 00:00:00+00:00</th>
+      <td>0.000010</td>
+      <td>0.026504</td>
+      <td>0.000082</td>
+      <td>-0.000059</td>
+      <td>0.115201</td>
+      <td>1822.120850</td>
+    </tr>
+    <tr>
+      <th>2025-09-03 00:00:00+00:00</th>
+      <td>0.000012</td>
+      <td>0.025573</td>
+      <td>0.000082</td>
+      <td>0.000053</td>
+      <td>0.114799</td>
+      <td>1849.146362</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Data harian asli cenderung “bergerigi” karena fluktuasi harian. Di sinilah rolling mean 30 hari berperan: setiap titik diganti dengan rata-rata 30 hari terakhirnya. Hasilnya, <code class="docutils literal notranslate"><span class="pre">rolling</span></code>, adalah versi kurva yang lebih halus sehingga tren jangka panjang tiap polutan lebih mudah terbaca.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gambar grafik garis tren waktu untuk masing-masing polutan</span>
+<span class="n">pollutant_labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;NO2&#39;</span><span class="p">:</span> <span class="s1">&#39;NO₂ (mol/m²)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CO&#39;</span><span class="p">:</span> <span class="s1">&#39;CO (mol/m²)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HCHO&#39;</span><span class="p">:</span> <span class="s1">&#39;HCHO (mol/m²)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SO2&#39;</span><span class="p">:</span> <span class="s1">&#39;SO₂ (mol/m²)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;O3&#39;</span><span class="p">:</span> <span class="s1">&#39;O₃ (mol/m²)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CH4&#39;</span><span class="p">:</span> <span class="s1">&#39;CH₄ (mol/m²)&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NO2&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;HCHO&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;CH4&#39;</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pollutant_bands</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">band</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pollutant_bands</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">rolling</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">pollutant_labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">band</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rolling</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">rolling</span><span class="p">[</span><span class="n">band</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Konsentrasi </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1"> di Kecamatan Jabon&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Waktu&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fdbfffaba66c157b76b690515c987826c1fa8aa57ea09ceb703efef112eadb4f.png" src="../_images/fdbfffaba66c157b76b690515c987826c1fa8aa57ea09ceb703efef112eadb4f.png" />
+</div>
+</div>
+<p>Inilah momen utamanya: kelima polutan digambar sebagai grafik garis dalam panel terpisah, masing-masing dengan warna dan label satuan sendiri. Dari sini kita dapat mengamati naik-turunnya konsentrasi sepanjang tahun — pola yang akan kita interpretasikan di bagian akhir notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simpan data gabungan dan versi rolling mean ke file CSV</span>
+<span class="n">combined</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;jabon_pollutants.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">rolling</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;jabon_pollutants_rolling30.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data disimpan ke jabon_pollutants.csv dan jabon_pollutants_rolling30.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Data shape: </span><span class="si">{</span><span class="n">combined</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">First few rows:&#39;</span><span class="p">)</span>
+<span class="n">combined</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data disimpan ke jabon_pollutants.csv dan jabon_pollutants_rolling30.csv
+Data shape: (366, 6)
+
+First few rows:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NO2</th>
+      <th>CO</th>
+      <th>HCHO</th>
+      <th>SO2</th>
+      <th>O3</th>
+      <th>CH4</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2025-08-30 00:00:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-08-31 00:00:00+00:00</th>
+      <td>1.154831e-05</td>
+      <td>NaN</td>
+      <td>0.000054</td>
+      <td>-0.000292</td>
+      <td>0.115559</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-09-01 00:00:00+00:00</th>
+      <td>1.989465e-05</td>
+      <td>0.028394</td>
+      <td>0.000096</td>
+      <td>0.000299</td>
+      <td>0.115130</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2025-09-02 00:00:00+00:00</th>
+      <td>-1.293079e-07</td>
+      <td>0.024614</td>
+      <td>0.000096</td>
+      <td>-0.000185</td>
+      <td>0.114912</td>
+      <td>1822.120850</td>
+    </tr>
+    <tr>
+      <th>2025-09-03 00:00:00+00:00</th>
+      <td>1.628330e-05</td>
+      <td>0.023711</td>
+      <td>0.000082</td>
+      <td>0.000391</td>
+      <td>0.113595</td>
+      <td>1876.171875</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Agar hasil analisis tidak hilang, dua versi data disimpan sebagai CSV: tabel gabungan harian (<code class="docutils literal notranslate"><span class="pre">jabon_pollutants.csv</span></code>) dan versi rolling mean 30 hari (<code class="docutils literal notranslate"><span class="pre">jabon_pollutants_rolling30.csv</span></code>). Beberapa baris pertama ditampilkan sebagai pemeriksaan cepat bahwa isinya masuk akal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+
+<span class="n">output_zip_filename</span> <span class="o">=</span> <span class="s1">&#39;jabon_pollutants_data.zip&#39;</span>
+<span class="n">csv_files_to_zip</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;jabon_NO2.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_CO.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_HCHO.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_SO2.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_O3.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_CH4.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_pollutants.csv&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;jabon_pollutants_rolling30.csv&#39;</span>
+<span class="p">]</span>
+
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">output_zip_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipf</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">csv_file</span> <span class="ow">in</span> <span class="n">csv_files_to_zip</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">csv_file</span><span class="p">):</span>
+            <span class="n">zipf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">csv_file</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Menambahkan </span><span class="si">{</span><span class="n">csv_file</span><span class="si">}</span><span class="s1"> ke </span><span class="si">{</span><span class="n">output_zip_filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Peringatan: </span><span class="si">{</span><span class="n">csv_file</span><span class="si">}</span><span class="s1"> tidak ditemukan dan tidak akan ditambahkan ke ZIP.&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Semua file CSV berhasil di-ZIP ke: </span><span class="si">{</span><span class="n">output_zip_filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Jika berjalan di Google Colab, unduh file ZIP secara otomatis</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+    <span class="n">files</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">output_zip_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menambahkan jabon_NO2.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_CO.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_HCHO.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_SO2.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_O3.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_CH4.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_pollutants.csv ke jabon_pollutants_data.zip
+Menambahkan jabon_pollutants_rolling30.csv ke jabon_pollutants_data.zip
+Semua file CSV berhasil di-ZIP ke: jabon_pollutants_data.zip
+</pre></div>
+</div>
+</div>
+</div>
+<p>Terakhir, semua file CSV hasil analisis dikemas ke dalam satu arsip ZIP (<code class="docutils literal notranslate"><span class="pre">jabon_pollutants_data.zip</span></code>) supaya mudah diunduh sekaligus. Jika notebook dijalankan di Colab, unduhan bahkan dimulai otomatis.</p>
+<section id="analisis-dan-interpretasi">
+<h2>Analisis dan Interpretasi<a class="headerlink" href="#analisis-dan-interpretasi" title="Link to this heading">#</a></h2>
+<p>Melihat kelima grafik di atas, ada beberapa cerita yang menonjol. Konsentrasi <strong>NO₂</strong> bergerak naik-turun sepanjang tahun dengan lonjakan pada periode tertentu — pola yang wajar untuk wilayah padat kendaraan seperti Kecamatan Jabon, karena NO₂ sangat berkaitan dengan intensitas lalu lintas dan industri. <strong>CO</strong> menunjukkan tren yang relatif stabil dengan fluktuasi ringan, mengikuti aktivitas pembakaran bahan bakar sehari-hari. Kurva <strong>O₃</strong> tampak lebih tinggi pada bulan-bulan cerah, sesuai sifatnya yang terbentuk dengan bantuan sinar matahari. Sementara itu, <strong>HCHO</strong> dan <strong>SO₂</strong> berada pada level yang rendah namun tetap berfluktuasi, dengan SO₂ sesekali mengalami lonjakan singkat yang bisa berkaitan dengan aktivitas industri tertentu.</p>
+<p>Perlu diingat bahwa garis yang kita lihat adalah hasil smoothing rolling mean 30 hari — jadi yang terbaca adalah gelombang tren jangka panjang, bukan kejadian harian.</p>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Analisis ini menunjukkan bahwa citra satelit Sentinel-5P dapat memberi gambaran kualitas udara Kecamatan Jabon selama satu tahun penuh tanpa perlu stasiun pemantauan tambahan. Dari alur business understanding hingga visualisasi, kita berhasil mengubah ribuan pengamatan satelit menjadi lima kurva tren yang mudah dibaca.</p>
+<p>Langkah lanjutan yang bisa dilakukan antara lain: membandingkan dengan tahun-tahun sebelumnya, menguji korelasi antar polutan (misalnya apakah O₃ naik saat NO₂ turun), atau memetakan distribusi spasial di dalam kabupaten untuk menemukan titik-titik sumber emisi. Data yang sudah tersimpan dalam ZIP siap dipakai untuk analisis lanjutan tersebut.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./02_data_understanding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../01_business_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">BAB 1 — BUSINESS UNDERSTANDING</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2.2_deskripsi_dataset.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2.2 Deskripsi Dataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-dan-interpretasi">Analisis dan Interpretasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

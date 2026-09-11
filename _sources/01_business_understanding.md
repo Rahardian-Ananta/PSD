@@ -1,83 +1,53 @@
-# Business Understanding
+# BAB 1 — BUSINESS UNDERSTANDING
 
-## Latar Belakang
+Dokumentasi ini merinci pemahaman bisnis (*Business Understanding*) dalam kerangka metodologi **CRISP-DM** (*Cross-Industry Standard Process for Data Mining*) untuk proyek analisis polutan atmosfer berbasis penginderaan jauh satelit Sentinel-5P di wilayah **Kecamatan Jabon, Kabupaten Sidoarjo**.
 
-Kualitas udara adalah salah satu penentu kesehatan masyarakat. Kabupaten Sidoarjo, Jawa Timur, merupakan wilayah padat aktivitas industri dan lalu lintas yang memerlukan pemantauan kualitas udara secara berkelanjutan. Namun, stasiun pemantauan di darat memiliki keterbatasan jumlah dan cakupan spasial.
+---
 
-**Bagaimana cara memantau dan menganalisis konsentrasi polutan udara di seluruh wilayah Sidoarjo secara komprehensif?**
+## 1.1 Latar Belakang / Permasalahan
 
-## Tujuan Bisnis
+Kualitas udara merupakan indikator fundamental penentu kesehatan lingkungan dan kelangsungan hidup masyarakat. **Kecamatan Jabon**, yang terletak di ujung selatan Kabupaten Sidoarjo, Jawa Timur, memiliki posisi geografis dan ekologis yang unik sekaligus rentan:
 
-Alih-alih mengandalkan stasiun pemantauan di darat, kita memanfaatkan data satelit **Sentinel-5P TROPOMI** dari Copernicus Data Space Ecosystem. Satelit ini mengukur gas-gas polutan di atmosfer dari orbit, sehingga kita bisa mendapatkan gambaran kualitas udara di atas seluruh wilayah kabupaten.
+1. **Karakteristik Wilayah & Koridor Lalu Lintas Industri**: Kecamatan Jabon berbatasan langsung dengan Kabupaten Pasuruan dan dilintasi oleh koridor transportasi logistik arteri primer serta aktivitas industri pengolahan. Wilayah ini juga berdekatan dengan kawasan terdampak luapan lumpur Lapindo yang mengalami perubahan tata guna lahan secara masif.
+2. **Keterbatasan Stasiun Pemantau Kualitas Udara (SPKU) di Darat**: Stasiun pemantauan kualitas udara terestrial konvensional memerlukan biaya pengadaan dan pemeliharaan instrumen yang sangat tinggi. Akibatnya, stasiun pemantau darat umumnya hanya terkonsentrasi di pusat perkotaan Kabupaten Sidoarjo dan tidak mencakup wilayah sub-urban/rural seperti Kecamatan Jabon.
+3. **Kebutuhan Pengawasan Spasial Berkelanjutan**: Pemantauan titik tunggal di darat tidak mampu menyajikan resolusi spasial yang merata di seluruh bentang wilayah seluas $\approx 82\text{ km}^2$. 
 
-## Polutan yang Dianalisis
+Oleh karena itu, diperlukan pemanfaatan teknologi penginderaan jauh (*remote sensing*) berbasis satelit **Sentinel-5P TROPOMI** (*Tropospheric Monitoring Instrument*) dari *Copernicus Data Space Ecosystem*. Satelit ini mengorbit bumi secara polar untuk mengukur kolom densitas berbagai gas polutan atmosfer dengan resolusi harian, menjadikannya alternatif terbaik untuk memantau dinamika kualitas udara di Kecamatan Jabon secara komprehensif.
 
-Polutan yang dianalisis cukup beragam, dan masing-masing punya cerita sendiri:
+> **Rumusan Masalah Utama:**  
+> *"Bagaimana memantau, memetakan, dan menganalisis dinamika konsentrasi polutan atmosfer di seluruh wilayah Kecamatan Jabon secara berkala selama periode satu tahun penuh tanpa bergantung pada infrastruktur stasiun pemantau darat?"*
 
-- **NO₂ (Nitrogen Dioxide)** adalah gas yang terutama keluar dari knalpot kendaraan dan cerobong pabrik. Semakin ramai lalu lintas dan industri, semakin tinggi NO₂.
-- **CO (Carbon Monoxide)** muncul dari pembakaran tidak sempurna bahan bakar, misalnya mesin kendaraan atau pembakaran biomassa.
-- **HCHO (Formaldehida)** adalah indikator senyawa organik yang banyak dilepaskan industri maupun vegetasi, dan sering disebut sebagai "benih" pembentuk polusi udara lain.
-- **SO₂ (Sulfur Dioxide)** umumnya berasal dari pembakaran bahan bakar yang mengandung belerang di industri dan pembangkit listrik.
-- **O₃ (Ozon)** di permukaan tanah bukanlah ozon pelindung di langit, melainkan polutan yang terbentuk ketika sinar matahari bereaksi dengan gas-gas lain — biasanya meningkat saat cuaca cerah.
-- **CH₄ (Metana)** adalah gas rumah kaca yang berasal dari aktivitas pertanian, kebocoran jaringan gas, dan pengolahan limbah.
+---
 
-## Alur Kerja
+## 1.2 Tujuan
 
-Alur kerja analisis ini sederhana:
+Proyek sains data ini bertujuan untuk:
 
-1. Siapkan batas wilayah Sidoarjo (GeoJSON)
-2. Ambil data satelit satu tahun terakhir untuk tiap polutan
-3. Rapikan dan gabungkan datanya
-4. Visualisasikan trennya
-5. Simpan hasilnya
+1. **Memetakan Konsentrasi Polutan Atmosfer**: Mengumpulkan dan mengolah deret waktu (*time series*) harian konsentrasi 6 polutan udara utama di atas wilayah Kecamatan Jabon dari tanggal **31 Agustus 2025 hingga 31 Agustus 2026** (periode 366 hari observasi).
+2. **Menganalisis Karakteristik & Dinamika 6 Polutan Utama**:
+   - **Nitrogen Dioksida ($\text{NO}_2$)**: Emisi hasil pembakaran bahan bakar kendaraan bermotor dan cerobong industri di sekitar jalur arteri Jabon.
+   - **Karbon Monoksida ($\text{CO}$)**: Hasil pembakaran hidrokarbon yang tidak sempurna dari sektor transportasi dan pembakaran biomassa.
+   - **Formaldehida ($\text{HCHO}$)**: Penanda senyawa organik volatil (*Volatile Organic Compounds* / VOC) yang dilepaskan oleh aktivitas industri kimia dan degradasi vegetasi.
+   - **Sulfur Dioksida ($\text{SO}_2$)**: Emisi dari pembakaran batu bara, minyak bumi belerang tinggi, atau proses termal industri.
+   - **Ozon Permukaan ($\text{O}_3$)**: Polutan fotokimia sekunder yang terbentuk akibat reaksi fotolisis antara prekursor polutan dengan radiasi sinar matahari.
+   - **Metana ($\text{CH}_4$)**: Gas rumah kaca utama yang bersumber dari lahan basah/pertanian sawah, tambak, dan tempat pemrosesan akhir sampah di sekitar wilayah Jabon.
+3. **Membangun Pipeline Sains Data Terstandar**: Menerapkan tahapan CRISP-DM yang mencakup integrasi database cloud (*Aiven PostgreSQL*), eksplorasi data analitik (*KNIME Analytics Platform*), pembersihan & penanganan nilai hilang (*Interpolasi Linear*), hingga ekstraksi fitur deret waktu (*TSFEL*).
 
-## Unduh Data Analisis
+---
 
-Semua file tersimpan di folder `data/downloads/`.
+## 1.3 Pertanyaan / Kebutuhan Analisis
 
-### Batas Wilayah
+Untuk memastikan arah analisis terukur dan memberikan wawasan (*actionable insights*) yang aplikatif, kebutuhan analisis dirumuskan ke dalam pertanyaan-pertanyaan kunci berikut:
 
-- **sidoarjo.geojson** — batas administrasi Kabupaten Sidoarjo dalam format GeoJSON; dipakai sebagai area of interest saat mengambil data satelit.
+| No | Kebutuhan Analisis | Pertanyaan Kunci | Luaran yang Diharapkan |
+| :-: | :--- | :--- | :--- |
+| **1** | **Pola Temporal & Tren Musiman** | Bagaimana variasi konsentrasi polutan harian dan tren musiman (musim kemarau vs. musim hujan) di Kecamatan Jabon sepanjang 31 Agustus 2025 – 31 Agustus 2026? | Grafik kurva deret waktu harian dan tren *rolling average* per polutan. |
+| **2** | **Kualitas Data & Missing Value** | Berapa proporsi data yang hilang (*missing value*) pada citra satelit Sentinel-5P akibat tutupan awan (*cloud mask*), dan bagaimana strategi imputasi yang mempertahankan kontinuitas sinyal? | Identifikasi 102 nilai *missing* serta pembuktian restorasi deret waktu menggunakan interpolasi linear. |
+| **3** | **Deteksi Anomali & Emisi Ekstrem** | Kapan terjadinya peristiwa anomali konsentrasi polutan tertinggi (*peak concentration / outlier*), dan faktor meteorologis atau antropogenik apa yang memicu kondisi tersebut? | Deteksi ambang batas pencilan (*Interquartile Range* / IQR) dan identifikasi tanggal kejadian ekstrem. |
+| **4** | **Karakteristik Distribusi Statistik** | Bagaimana bentuk sebaran probabilitas data polutan (apakah simetris atau condong ke kanan / *right-skewed* dengan ekor tebal)? | Metrik deskriptif presisi tinggi: Mean, Deviasi Standar, Kuartil, Skewness, dan Kurtosis. |
+| **5** | **Representasi Fitur Deret Waktu** | Fitur-fitur matematika apa saja dari domain statistik, temporal, dan spektral yang paling representatif dalam mencirikan profil polutan di Kecamatan Jabon? | Matriks 68 fitur *time series* hasil ekstraksi pustaka TSFEL untuk pemodelan prediktif lanjutan. |
 
-<a href="data/downloads/sidoarjo.geojson" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> Unduh sidoarjo.geojson</a>
+---
 
-### Hasil Pengukuran Satelit per Polutan
-
-Masing-masing berisi deret waktu harian: satu kolom tanggal dan satu kolom konsentrasi polutan (mol/m²) hasil rata-rata spasial di seluruh Sidoarjo:
-
-- **sidoarjo_NO2.csv** — Nitrogen Dioxide — indikator emisi kendaraan dan industri.
-- **sidoarjo_CO.csv** — Carbon Monoxide — hasil pembakaran tidak sempurna bahan bakar.
-- **sidoarjo_HCHO.csv** — Formaldehyde — penanda senyawa organik volatil (VOC).
-- **sidoarjo_SO2.csv** — Sulfur Dioxide — emisi industri/pembangkit listrik.
-- **sidoarjo_O3.csv** — Ozon permukaan — polutan sekunder yang terbentuk oleh sinar matahari.
-- **sidoarjo_CH4.csv** — Metana — gas rumah kaca dari aktivitas pertanian dan industri.
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_NO2.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_NO2.csv</a>
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_CO.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_CO.csv</a>
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_HCHO.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_HCHO.csv</a>
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_SO2.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_SO2.csv</a>
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_O3.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_O3.csv</a>
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_CH4.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_CH4.csv</a>
-
-### Data Gabungan & Versi Tren
-
-- **sidoarjo_pollutants.csv** — keenam polutan digabung dalam satu tabel dengan indeks tanggal yang sama (data harian mentah).
-- **sidoarjo_pollutants_rolling30.csv** — versi rolling mean 30 hari dari tabel gabungan; kurvanya lebih halus sehingga tren jangka panjang lebih mudah dibaca.
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_pollutants.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_pollutants.csv</a>
-
-<a href="data/downloads/sidoarjo_pollutants_data/sidoarjo_pollutants_rolling30.csv" download
-   style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;"> sidoarjo_pollutants_rolling30.csv</a>
+> [!NOTE]
+> Seluruh prosedur pengumpulan data (*Data Collection*), batas poligon GeoJSON (`jabon.geojson`), serta berkas dataset deret waktu tersedia dan dibahas secara mendalam pada **BAB 2 — DATA UNDERSTANDING**.
