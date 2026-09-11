@@ -9,12 +9,16 @@ __pycache__/
 *.so
 .pytest_cache/
 
-# Environment
+# Environment & secrets
 .env
 .venv
 env/
 venv/
 ENV/
+local_config.py
+
+# Private folder (berisi kredensial asli, TIDAK untuk GitHub)
+private/
 
 # OS files
 .DS_Store
