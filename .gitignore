@@ -1,0 +1,22 @@
+# Jupyter Book build artifacts
+_build/
+.jupyter_cache/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

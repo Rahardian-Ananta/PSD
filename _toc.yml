@@ -1,0 +1,54 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: BAB 1 — BUSINESS UNDERSTANDING
+    chapters:
+      - file: 01_business_understanding
+        title: Business Understanding
+
+  - caption: BAB 2 — DATA UNDERSTANDING
+    chapters:
+      - file: 02_data_understanding/2.1_data_collection
+        title: 2.1 Data Collection
+      - file: 02_data_understanding/2.2_deskripsi_dataset
+        title: 2.2 Deskripsi Dataset
+      - file: 02_data_understanding/2.3_exploratory_data_analysis
+        title: 2.3 Exploratory Data Analysis (EDA)
+      - file: 02_data_understanding/2.4_identifikasi_missing_value
+        title: 2.4 Identifikasi Missing Value
+      - file: 02_data_understanding/2.5_identifikasi_outlier
+        title: 2.5 Identifikasi Outlier
+      - file: 02_data_understanding/2.6_kesimpulan_data_understanding
+        title: 2.6 Kesimpulan Data Understanding
+      - file: 02_data_understanding/2.7_analisis_no2_aiven_knime
+        title: 2.7 Praktikum Analisis Aiven & KNIME
+
+
+  - caption: BAB 3 — DATA PREPROCESSING
+    chapters:
+      - file: 03_data_preprocessing/3.1_pembersihan_data
+        title: 3.1 Pembersihan Data
+      - file: 03_data_preprocessing/3.2_penanganan_outlier
+        title: 3.2 Penanganan Outlier
+      - file: 03_data_preprocessing/3.3_imputasi_missing_value
+        title: 3.3 Imputasi Missing Value
+      - file: 03_data_preprocessing/3.4_validasi_data_bersih
+        title: 3.4 Validasi Data Bersih
+
+  - caption: BAB 4 — FEATURE EXTRACTION
+    chapters:
+      - file: 04_feature_extraction/4.1_persiapan_data
+        title: 4.1 Persiapan Data untuk Ekstraksi
+      - file: 04_feature_extraction/4.2_ekstraksi_fitur_tsfel
+        title: 4.2 Ekstraksi Fitur Menggunakan TSFEL
+      - file: 04_feature_extraction/4.3_fitur_domain_statistical
+        title: 4.3 Fitur Domain Statistical
+      - file: 04_feature_extraction/4.4_fitur_domain_temporal
+        title: 4.4 Fitur Domain Temporal
+      - file: 04_feature_extraction/4.5_fitur_domain_spectral
+        title: 4.5 Fitur Domain Spectral
+      - file: 04_feature_extraction/4.6_hasil_ekstraksi_68_fitur
+        title: 4.6 Hasil Ekstraksi 68 Fitur
