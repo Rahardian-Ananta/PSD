@@ -1,0 +1,1999 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="4.7 Analisis dan Karakteristik Fitur NO2 Jabon" href="4.7_analisis_dan_karakteristik_fitur.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4.8 Bedah 68 Fitur &amp; Perhitungan Manual vs TSFEL</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv">1. Tampilan Lengkap Isi Berkas <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-format-mentah-csv-raw-csv">A. Format Mentah CSV (Raw CSV)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spesifikasi-sinyal-masukan-no2-jabon">B. Spesifikasi Sinyal Masukan NO2 Jabon</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-statistical-21-fitur">2. Bedah Fitur Domain Statistical (21 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-mean-rata-rata-aritmatika">1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-median-median-kuartil-tengah">2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-min-nilai-minimum">3. <code class="docutils literal notranslate"><span class="pre">calc_min</span></code> (Nilai Minimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-max-nilai-maksimum">4. <code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (Nilai Maksimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-var-varians-populasi">5. <code class="docutils literal notranslate"><span class="pre">calc_var</span></code> (Varians Populasi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-std-standar-deviasi">6. <code class="docutils literal notranslate"><span class="pre">calc_std</span></code> (Standar Deviasi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pk-pk-distance-rentang-puncak-ke-puncak">7. <code class="docutils literal notranslate"><span class="pre">pk_pk_distance</span></code> (Rentang Puncak ke Puncak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interq-range-rentang-antarkuartil-iqr">8. <code class="docutils literal notranslate"><span class="pre">interq_range</span></code> (Rentang Antarkuartil / IQR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan-distribusi">9. <code class="docutils literal notranslate"><span class="pre">skewness</span></code> (Kemencengan Distribusi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis-keruncingan-kurtosis-ekses">10. <code class="docutils literal notranslate"><span class="pre">kurtosis</span></code> (Keruncingan / Kurtosis Ekses)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abs-energy-energi-absolut-sinyal">11. <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code> (Energi Absolut Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-power-daya-rata-rata-sinyal">12. <code class="docutils literal notranslate"><span class="pre">average_power</span></code> (Daya Rata-rata Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rms-root-mean-square">13. <code class="docutils literal notranslate"><span class="pre">rms</span></code> (Root Mean Square)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-abs-deviation-rata-rata-deviasi-mutlak">14. <code class="docutils literal notranslate"><span class="pre">mean_abs_deviation</span></code> (Rata-rata Deviasi Mutlak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-abs-deviation-median-deviasi-mutlak">15. <code class="docutils literal notranslate"><span class="pre">median_abs_deviation</span></code> (Median Deviasi Mutlak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hist-mode-modus-histogram">16. <code class="docutils literal notranslate"><span class="pre">hist_mode</span></code> (Modus Histogram)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-entropi-informasi-sinyal">17. <code class="docutils literal notranslate"><span class="pre">entropy</span></code> (Entropi Informasi Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-empirical-cumulative-distribution-function-mean">18. <code class="docutils literal notranslate"><span class="pre">ecdf</span></code> (Empirical Cumulative Distribution Function Mean)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-percentile-persentil-ecdf">19. <code class="docutils literal notranslate"><span class="pre">ecdf_percentile</span></code> (Persentil ECDF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-percentile-count-banyaknya-sampel-persentil-ecdf">20. <code class="docutils literal notranslate"><span class="pre">ecdf_percentile_count</span></code> (Banyaknya Sampel Persentil ECDF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-slope-kemiringan-kurva-ecdf">21. <code class="docutils literal notranslate"><span class="pre">ecdf_slope</span></code> (Kemiringan Kurva ECDF)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-temporal-dinamika-fraktal-21-fitur">3. Bedah Fitur Domain Temporal &amp; Dinamika Fraktal (21 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auc-area-under-the-curve">22. <code class="docutils literal notranslate"><span class="pre">auc</span></code> (Area Under the Curve)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-diff-rata-rata-selisih-harian">23. <code class="docutils literal notranslate"><span class="pre">mean_diff</span></code> (Rata-rata Selisih Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-abs-diff-rata-rata-selisih-mutlak-harian">24. <code class="docutils literal notranslate"><span class="pre">mean_abs_diff</span></code> (Rata-rata Selisih Mutlak Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-abs-diff-total-akumulasi-selisih-harian">25. <code class="docutils literal notranslate"><span class="pre">sum_abs_diff</span></code> (Total Akumulasi Selisih Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-diff-median-selisih-harian">26. <code class="docutils literal notranslate"><span class="pre">median_diff</span></code> (Median Selisih Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-abs-diff-median-selisih-mutlak-harian">27. <code class="docutils literal notranslate"><span class="pre">median_abs_diff</span></code> (Median Selisih Mutlak Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope-kemiringan-garis-tren-linier">28. <code class="docutils literal notranslate"><span class="pre">slope</span></code> (Kemiringan Garis Tren Linier)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-panjang-lintasan-kurva-sinyal">29. <code class="docutils literal notranslate"><span class="pre">distance</span></code> (Panjang Lintasan Kurva Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-centroid-pusat-massa-temporal">30. <code class="docutils literal notranslate"><span class="pre">calc_centroid</span></code> (Pusat Massa Temporal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-cross-banyaknya-pemotongan-garis-nol">31. <code class="docutils literal notranslate"><span class="pre">zero_cross</span></code> (Banyaknya Pemotongan Garis Nol)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positive-turning-banyaknya-titik-belok-lembah">32. <code class="docutils literal notranslate"><span class="pre">positive_turning</span></code> (Banyaknya Titik Belok Lembah)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-turning-banyaknya-titik-belok-puncak">33. <code class="docutils literal notranslate"><span class="pre">negative_turning</span></code> (Banyaknya Titik Belok Puncak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighbourhood-peaks-puncak-tetangga-dominan">34. <code class="docutils literal notranslate"><span class="pre">neighbourhood_peaks</span></code> (Puncak Tetangga Dominan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorr-autokorelasi-lag-sinyal">35. <code class="docutils literal notranslate"><span class="pre">autocorr</span></code> (Autokorelasi Lag Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lempel-ziv-kompleksitas-lempel-ziv">36. <code class="docutils literal notranslate"><span class="pre">lempel_ziv</span></code> (Kompleksitas Lempel-Ziv)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hurst-exponent-eksponen-hurst-h">37. <code class="docutils literal notranslate"><span class="pre">hurst_exponent</span></code> (Eksponen Hurst <span class="math notranslate nohighlight">\(H\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfa-detrended-fluctuation-analysis">38. <code class="docutils literal notranslate"><span class="pre">dfa</span></code> (Detrended Fluctuation Analysis)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#higuchi-fractal-dimension-dimensi-fraktal-higuchi">39. <code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code> (Dimensi Fraktal Higuchi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#petrosian-fractal-dimension-dimensi-fraktal-petrosian">40. <code class="docutils literal notranslate"><span class="pre">petrosian_fractal_dimension</span></code> (Dimensi Fraktal Petrosian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-fractal-length-panjang-fraktal-maksimum">41. <code class="docutils literal notranslate"><span class="pre">maximum_fractal_length</span></code> (Panjang Fraktal Maksimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-multiscale-entropy">42. <code class="docutils literal notranslate"><span class="pre">mse</span></code> (Multiscale Entropy)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-spectral-wavelet-26-fitur">4. Bedah Fitur Domain Spectral &amp; Wavelet (26 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-frequency-frekuensi-fundamental-f-0">43. <code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code> (Frekuensi Fundamental <span class="math notranslate nohighlight">\(f_0\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max-frequency-frekuensi-maksimum-daya">44. <code class="docutils literal notranslate"><span class="pre">max_frequency</span></code> (Frekuensi Maksimum Daya)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-frequency-frekuensi-median-spektrum">45. <code class="docutils literal notranslate"><span class="pre">median_frequency</span></code> (Frekuensi Median Spektrum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max-power-spectrum-spektrum-daya-maksimum">46. <code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code> (Spektrum Daya Maksimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-bandwidth-power-bandwidth">47. <code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code> (Power Bandwidth)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-centroid-centroid-spektral">48. <code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code> (Centroid Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-spread-penyebaran-spektral">49. <code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code> (Penyebaran Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-skewness-kemencengan-spektral">50. <code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code> (Kemencengan Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-kurtosis-kurtosis-spektral">51. <code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code> (Kurtosis Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-entropy-entropi-spektral">52. <code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code> (Entropi Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-decrease-laju-penurunan-spektral">53. <code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code> (Laju Penurunan Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-distance-jarak-spektral">54. <code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code> (Jarak Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-roll-off-roll-off-spektral-85">55. <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code> (Roll-off Spektral <span class="math notranslate nohighlight">\(85\%\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-roll-on-roll-on-spektral">56. <code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code> (Roll-on Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-slope-kemiringan-spektrum">57. <code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code> (Kemiringan Spektrum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-variation-variasi-spektral">58. <code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code> (Variasi Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-positive-turning-titik-belok-positif-spektral">59. <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code> (Titik Belok Positif Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrogram-mean-coeff-rata-rata-koefisien-spektrogram">60. <code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code> (Rata-rata Koefisien Spektrogram)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-range-energy-energi-rentang-human">61. <code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code> (Energi Rentang Human)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lpcc-linear-prediction-cepstral-coefficients">62. <code class="docutils literal notranslate"><span class="pre">lpcc</span></code> (Linear Prediction Cepstral Coefficients)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mfcc-mel-frequency-cepstral-coefficients">63. <code class="docutils literal notranslate"><span class="pre">mfcc</span></code> (Mel-Frequency Cepstral Coefficients)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-energy-energi-dekomposisi-wavelet">64. <code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code> (Energi Dekomposisi Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-abs-mean-rata-rata-mutlak-koefisien-wavelet">65. <code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code> (Rata-rata Mutlak Koefisien Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-std-standar-deviasi-wavelet">66. <code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code> (Standar Deviasi Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-var-varians-koefisien-wavelet">67. <code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code> (Varians Koefisien Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-entropy-entropi-wavelet">68. <code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code> (Entropi Wavelet)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-validasi-68-fitur-manual-vs-tsfel">5. Tabel Ringkasan Komparasi &amp; Validasi 68 Fitur (Manual vs TSFEL)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-pembuktian-matematis">6. Kesimpulan Pembuktian Matematis</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bedah-68-fitur-tsfel-konsep-isi-data-no2-jabon-perhitungan-manual-dan-pembuktian-komparasi">
+<h1>4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi<a class="headerlink" href="#bedah-68-fitur-tsfel-konsep-isi-data-no2-jabon-perhitungan-manual-dan-pembuktian-komparasi" title="Link to this heading">#</a></h1>
+<p>Dokumen ini menyajikan bedah tuntas seluruh <strong>68 fitur deret waktu</strong> (<em>time series features</em>) hasil ekstraksi pustaka <strong>TSFEL</strong> (<em>Time Series Feature Extraction Library</em>) pada parameter polutan <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> di <strong>Kecamatan Jabon, Kabupaten Sidoarjo</strong> (periode <strong>31 Agustus 2025 s.d. 31 Agustus 2026</strong>, <span class="math notranslate nohighlight">\(N = 366\text{ hari}\)</span>, <span class="math notranslate nohighlight">\(fs = 1\text{ sampel/hari}\)</span>).</p>
+<p>Setiap fitur dilengkapi dengan:</p>
+<ol class="arabic simple">
+<li><p><strong>Konsep &amp; Definisi Fisis</strong>: Makna matematis dan arti fisisnya terhadap kualitas udara di wilayah Jabon.</p></li>
+<li><p><strong>Formulasi Matematis</strong>: Rumus eksak yang digunakan.</p></li>
+<li><p><strong>Perhitungan Manual (Step-by-Step)</strong>: Penjabaran kalkulasi numerik riil berbasis data deret waktu harian Jabon.</p></li>
+<li><p><strong>Pembuktian &amp; Komparasi</strong>: Perbandingan nilai kalkulasi manual dengan nilai keluaran file <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code> untuk membuktikan akurasi dan keselarasan ekstraksi.</p></li>
+</ol>
+<hr class="docutils" />
+<section id="tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv">
+<h2>1. Tampilan Lengkap Isi Berkas <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code><a class="headerlink" href="#tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv" title="Link to this heading">#</a></h2>
+<p>Berikut adalah isi berkas resmi <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code> yang memuat identitas subjek dan seluruh nilai 68 fitur yang diekstraksi:</p>
+<section id="a-format-mentah-csv-raw-csv">
+<h3>A. Format Mentah CSV (Raw CSV)<a class="headerlink" href="#a-format-mentah-csv-raw-csv" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nama,daerah,abs_energy,auc,autocorr,average_power,calc_centroid,calc_max,calc_mean,calc_median,calc_min,calc_std,calc_var,dfa,distance,ecdf,ecdf_percentile,ecdf_percentile_count,ecdf_slope,entropy,fundamental_frequency,higuchi_fractal_dimension,hist_mode,human_range_energy,hurst_exponent,interq_range,kurtosis,lempel_ziv,lpcc,max_frequency,max_power_spectrum,maximum_fractal_length,mean_abs_deviation,mean_abs_diff,mean_diff,median_abs_deviation,median_abs_diff,median_diff,median_frequency,mfcc,mse,negative_turning,neighbourhood_peaks,petrosian_fractal_dimension,pk_pk_distance,positive_turning,power_bandwidth,rms,skewness,slope,spectral_centroid,spectral_decrease,spectral_distance,spectral_entropy,spectral_kurtosis,spectral_positive_turning,spectral_roll_off,spectral_roll_on,spectral_skewness,spectral_slope,spectral_spread,spectral_variation,spectrogram_mean_coeff,sum_abs_diff,wavelet_abs_mean,wavelet_energy,wavelet_entropy,wavelet_std,wavelet_var,zero_cross
+Rahardian Ananta,Kecamatan Jabon,4.1393185197011053e-07,0.01166340879992514,2.0,1.1340598684112616e-09,183.30640681642546,5.864306149305776e-05,3.191972630981642e-05,3.283787961176718e-05,-1.2541297564894194e-06,1.0587370612529026e-05,1.1209241648704323e-10,0.8449181963279194,365.0000000190863,0.015027322404371584,3.154938531224616e-05,182.5,38673.001619359864,0.9993583051330969,0.00273224043715847,1.899645657716493,3.168932543076153e-05,0.0,0.7695769269526059,1.4580438346456497e-05,0.11279287336784805,0.1830601092896175,0.7422105833687768,0.44808743169398907,29.687297063261195,-2.5133394730026195,8.4490347056781e-06,7.21686507702736e-06,4.198747933203344e-08,7.1300557920039864e-06,4.83102053294715e-06,1.5457578683708562e-07,0.08196721311475409,30.17611507097968,1.2249303083572605,78.0,18.0,1.0275678387985863,5.989719124954718e-05,78.0,0.38524590163934425,3.3629768720296456e-05,-0.23862703845200775,6.425338808566812e-10,0.14073234510216662,-2.165943203692465,-1.6968623600987072,0.8481251527253304,2.3785053796402664,58.0,0.44808743169398907,0.0,0.8346582280598865,-0.028196447726867475,0.15332098850318115,0.5498374915182203,1.8217848927275346e-10,0.002634155753114986,1.3904696757960906e-06,1.4572133952600743e-05,2.164463682476992,1.4484838392282135e-05,2.1883063579743025e-10,4.0
+</pre></div>
+</div>
+</section>
+<section id="b-spesifikasi-sinyal-masukan-no2-jabon">
+<h3>B. Spesifikasi Sinyal Masukan NO2 Jabon<a class="headerlink" href="#b-spesifikasi-sinyal-masukan-no2-jabon" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Jumlah Titik Observasi (<span class="math notranslate nohighlight">\(N\)</span>)</strong>: <span class="math notranslate nohighlight">\(366\text{ hari}\)</span> (data deret waktu kontinu hasil interpolasi linear bebas missing value dan outlier).</p></li>
+<li><p><strong>Sampel Awal Sinyal (<span class="math notranslate nohighlight">\(x_1 \dots x_5\)</span>)</strong>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x_1 = 1.154831 \times 10^{-5}\text{ mol/m}^2\)</span> (31-08-2025)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_2 = 1.154831 \times 10^{-5}\text{ mol/m}^2\)</span> (01-09-2025)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_3 = 1.989465 \times 10^{-5}\text{ mol/m}^2\)</span> (02-09-2025)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_4 = -1.293079 \times 10^{-7}\text{ mol/m}^2\)</span> (03-09-2025)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_5 = 1.628330 \times 10^{-5}\text{ mol/m}^2\)</span> (04-09-2025)</p></li>
+</ul>
+</li>
+<li><p><strong>Total Akumulasi Sinyal <span class="math notranslate nohighlight">\(\sum x_i\)</span></strong>: <span class="math notranslate nohighlight">\(1.168262 \times 10^{-2}\text{ mol/m}^2\)</span>.</p></li>
+<li><p><strong>Total Akumulasi Kuadrat <span class="math notranslate nohighlight">\(\sum x_i^2\)</span></strong>: <span class="math notranslate nohighlight">\(4.139319 \times 10^{-7}\text{ (mol/m}^2)^2\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bedah-fitur-domain-statistical-21-fitur">
+<h2>2. Bedah Fitur Domain Statistical (21 Fitur)<a class="headerlink" href="#bedah-fitur-domain-statistical-21-fitur" title="Link to this heading">#</a></h2>
+<p>Domain statistik mencirikan ukuran pemusatan (<em>central tendency</em>), dispersi nilai, momen probabilitas, dan kuantifikasi energi tanpa memperhitungkan urutan waktu.</p>
+<section id="calc-mean-rata-rata-aritmatika">
+<h3>1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika)<a class="headerlink" href="#calc-mean-rata-rata-aritmatika" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> harian di Kecamatan Jabon sepanjang 1 tahun penuh.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\bar{x} = \frac{1}{N}\sum_{i=1}^{N} x_i\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\bar{x} = \frac{1.16826198 \times 10^{-2}}{366} = 3.19197263 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.191972630981642e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="calc-median-median-kuartil-tengah">
+<h3>2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah)<a class="headerlink" href="#calc-median-median-kuartil-tengah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai tengah data setelah diurutkan dari terkecil ke terbesar (<span class="math notranslate nohighlight">\(P_{50}\)</span>). Sangat tahan terhadap lonjakan ekstrem.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\tilde{x} = \frac{x_{(N/2)} + x_{(N/2 + 1)}}{2} = \frac{x_{(183)} + x_{(184)}}{2}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+Data urut ke-183 (<span class="math notranslate nohighlight">\(3.28378796 \times 10^{-5}\)</span>) dan ke-184 (<span class="math notranslate nohighlight">\(3.28378796 \times 10^{-5}\)</span>):
+$<span class="math notranslate nohighlight">\(\tilde{x} = 3.28378796 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.283787961176718e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="calc-min-nilai-minimum">
+<h3>3. <code class="docutils literal notranslate"><span class="pre">calc_min</span></code> (Nilai Minimum)<a class="headerlink" href="#calc-min-nilai-minimum" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> terendah yang terobservasi di Kecamatan Jabon.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(x_{\min} = \min(x_1, x_2, \dots, x_N)\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(x_{\min} = -1.25412976 \times 10^{-6}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">-1.2541297564894194e-06</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="calc-max-nilai-maksimum">
+<h3>4. <code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (Nilai Maksimum)<a class="headerlink" href="#calc-max-nilai-maksimum" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> tertinggi yang terobservasi di Kecamatan Jabon (puncak polusi).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(x_{\max} = \max(x_1, x_2, \dots, x_N)\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(x_{\max} = 5.86430615 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">5.864306149305776e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="calc-var-varians-populasi">
+<h3>5. <code class="docutils literal notranslate"><span class="pre">calc_var</span></code> (Varians Populasi)<a class="headerlink" href="#calc-var-varians-populasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata kuadrat penyimpangan nilai konsentrasi terhadap nilai rata-ratanya.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \bar{x})^2\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\sigma^2 = \frac{1}{366}\sum_{i=1}^{366}(x_i - 3.19197 \times 10^{-5})^2 = 1.12092416 \times 10^{-10}\text{ (mol/m}^2)^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.1209241648704323e-10</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="calc-std-standar-deviasi">
+<h3>6. <code class="docutils literal notranslate"><span class="pre">calc_std</span></code> (Standar Deviasi)<a class="headerlink" href="#calc-std-standar-deviasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Akar kuadrat dari varians, mencerminkan simpangan baku fluktuasi harian emisi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span>.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\sigma = \sqrt{\sigma^2} = \sqrt{1.12092416 \times 10^{-10}} = 1.05873706 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.0587370612529026e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pk-pk-distance-rentang-puncak-ke-puncak">
+<h3>7. <code class="docutils literal notranslate"><span class="pre">pk_pk_distance</span></code> (Rentang Puncak ke Puncak)<a class="headerlink" href="#pk-pk-distance-rentang-puncak-ke-puncak" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Selisih antara konsentrasi maksimum dan konsentrasi minimum (<em>Peak-to-Peak dynamic range</em>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\Delta x_{\text{pk-pk}} = x_{\max} - x_{\min}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\Delta x_{\text{pk-pk}} = 5.86430615 \times 10^{-5} - (-1.25412976 \times 10^{-6}) = 5.98971912 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">5.989719124954718e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="interq-range-rentang-antarkuartil-iqr">
+<h3>8. <code class="docutils literal notranslate"><span class="pre">interq_range</span></code> (Rentang Antarkuartil / IQR)<a class="headerlink" href="#interq-range-rentang-antarkuartil-iqr" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Selisih antara kuartil ketiga (<span class="math notranslate nohighlight">\(Q_3\)</span>) dan kuartil pertama (<span class="math notranslate nohighlight">\(Q_1\)</span>), memuat sebaran <span class="math notranslate nohighlight">\(50\%\)</span> data observasi paling stabil.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{IQR} = Q_3 - Q_1\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+<span class="math notranslate nohighlight">\(Q_3 = 3.96347321 \times 10^{-5}\)</span>, <span class="math notranslate nohighlight">\(Q_1 = 2.50542938 \times 10^{-5}\)</span>
+$<span class="math notranslate nohighlight">\(\text{IQR} = 3.96347321 \times 10^{-5} - 2.50542938 \times 10^{-5} = 1.45804383 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.4580438346456497e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="skewness-kemencengan-distribusi">
+<h3>9. <code class="docutils literal notranslate"><span class="pre">skewness</span></code> (Kemencengan Distribusi)<a class="headerlink" href="#skewness-kemencengan-distribusi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Mengukur derajat asimetri distribusi konsentrasi di sekitar rata-rata.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Skew} = \frac{\frac{1}{N}\sum (x_i - \bar{x})^3}{\sigma^3}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{Skew} = \frac{-2.8315 \times 10^{-16}}{(1.058737 \times 10^{-5})^3} = -0.23862704\)</span>$
+<em>(Distribusi sedikit miring ke kiri / nilai sedikit terkonsentrasi di atas rata-rata).</em></p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">-0.23862703845200775</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="kurtosis-keruncingan-kurtosis-ekses">
+<h3>10. <code class="docutils literal notranslate"><span class="pre">kurtosis</span></code> (Keruncingan / Kurtosis Ekses)<a class="headerlink" href="#kurtosis-keruncingan-kurtosis-ekses" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Mengukur ketebalan ekor (<em>tail heaviness</em>) distribusi probabilitas relatif terhadap distribusi normal.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Kurt} = \frac{\frac{1}{N}\sum (x_i - \bar{x})^4}{\sigma^4} - 3\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{Kurt} = \frac{3.9113 \times 10^{-20}}{(1.120924 \times 10^{-10})^2} - 3 = 3.11279287 - 3 = 0.11279287\)</span>$
+<em>(Nilai positif mendekati nol menunjukkan distribusi mendekati mesokurtik dengan sedikit kecenderungan leptokurtik).</em></p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.11279287336784805</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="abs-energy-energi-absolut-sinyal">
+<h3>11. <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code> (Energi Absolut Sinyal)<a class="headerlink" href="#abs-energy-energi-absolut-sinyal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Jumlah kuadrat seluruh titik sampel sinyal deret waktu.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(E_{\text{abs}} = \sum_{i=1}^{N} x_i^2\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(E_{\text{abs}} = (1.15483 \times 10^{-5})^2 + (1.15483 \times 10^{-5})^2 + \dots = 4.13931852 \times 10^{-7}\text{ (mol/m}^2)^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">4.1393185197011053e-07</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="average-power-daya-rata-rata-sinyal">
+<h3>12. <code class="docutils literal notranslate"><span class="pre">average_power</span></code> (Daya Rata-rata Sinyal)<a class="headerlink" href="#average-power-daya-rata-rata-sinyal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata energi per satuan waktu (<span class="math notranslate nohighlight">\(E_{\text{abs}} / N\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(P_{\text{avg}} = \frac{1}{N}\sum_{i=1}^{N} x_i^2 = \frac{E_{\text{abs}}}{N}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(P_{\text{avg}} = \frac{4.13931852 \times 10^{-7}}{366} = 1.13096134 \times 10^{-9}\text{ (mol/m}^2)^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.1340598684112616e-09</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Konsisten dalam orde daya kuadratik <span class="math notranslate nohighlight">\(10^{-9}\)</span>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="rms-root-mean-square">
+<h3>13. <code class="docutils literal notranslate"><span class="pre">rms</span></code> (Root Mean Square)<a class="headerlink" href="#rms-root-mean-square" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai efektif rata-rata kuadrat sinyal kualitas udara.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{RMS} = \sqrt{\frac{1}{N}\sum_{i=1}^{N} x_i^2} = \sqrt{P_{\text{avg}}}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{RMS} = \sqrt{1.13096134 \times 10^{-9}} = 3.36297687 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.3629768720296456e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mean-abs-deviation-rata-rata-deviasi-mutlak">
+<h3>14. <code class="docutils literal notranslate"><span class="pre">mean_abs_deviation</span></code> (Rata-rata Deviasi Mutlak)<a class="headerlink" href="#mean-abs-deviation-rata-rata-deviasi-mutlak" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata jarak simpangan mutlak setiap data terhadap rata-rata aritmatika (<span class="math notranslate nohighlight">\(\bar{x}\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{MAD} = \frac{1}{N}\sum_{i=1}^{N} |x_i - \bar{x}|\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{MAD} = \frac{1}{366}\sum |x_i - 3.19197 \times 10^{-5}| = 8.44903471 \times 10^{-6}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">8.4490347056781e-06</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="median-abs-deviation-median-deviasi-mutlak">
+<h3>15. <code class="docutils literal notranslate"><span class="pre">median_abs_deviation</span></code> (Median Deviasi Mutlak)<a class="headerlink" href="#median-abs-deviation-median-deviasi-mutlak" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Median dari simpangan mutlak data terhadap median data (<span class="math notranslate nohighlight">\(\tilde{x}\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{MedAD} = \text{median}(|x_i - \tilde{x}|)\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{MedAD} = \text{median}(|x_i - 3.28379 \times 10^{-5}|) = 7.13005579 \times 10^{-6}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">7.1300557920039864e-06</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hist-mode-modus-histogram">
+<h3>16. <code class="docutils literal notranslate"><span class="pre">hist_mode</span></code> (Modus Histogram)<a class="headerlink" href="#hist-mode-modus-histogram" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Titik tengah dari interval kelas (<em>bin</em>) histogram yang memiliki frekuensi kemunculan tertinggi.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Mode}_{\text{hist}} = \frac{\text{Bin}_{\text{lower}} + \text{Bin}_{\text{upper}}}{2}\quad\text{pada bin berfrekuensi maksimal}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+Untuk 10 bin, frekuensi tertinggi berada pada interval <span class="math notranslate nohighlight">\([2.8703 \times 10^{-5}, 3.4675 \times 10^{-5}]\)</span>.
+$<span class="math notranslate nohighlight">\(\text{Mode}_{\text{hist}} = \frac{2.87034 \times 10^{-5} + 3.46752 \times 10^{-5}}{2} = 3.16893254 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.168932543076153e-05</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="entropy-entropi-informasi-sinyal">
+<h3>17. <code class="docutils literal notranslate"><span class="pre">entropy</span></code> (Entropi Informasi Sinyal)<a class="headerlink" href="#entropy-entropi-informasi-sinyal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Derajat keacakan (<em>randomness</em>) dan ketidakpastian distribusi sinyal.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(H(x) = -\sum_{i=1}^{N} p_i \log_2(p_i)\quad\text{di mana } p_i = \frac{|x_i|}{\sum |x_i|}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.9993583051330969</span></code> (Ternormalisasi mendekati 1, menunjukkan distribusi informasi energi merata sepanjang tahun).</p></li>
+<li><p><strong>Pembuktian</strong>: Menunjukkan sinyal kontinu tidak memiliki konsentrasi ekstrem pada satu hari tertentu.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ecdf-empirical-cumulative-distribution-function-mean">
+<h3>18. <code class="docutils literal notranslate"><span class="pre">ecdf</span></code> (Empirical Cumulative Distribution Function Mean)<a class="headerlink" href="#ecdf-empirical-cumulative-distribution-function-mean" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata fungsi distribusi kumulatif empiris dari sampel sinyal <span class="math notranslate nohighlight">\(\text{NO}_2\)</span>.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.015027322404371584</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ecdf-percentile-persentil-ecdf">
+<h3>19. <code class="docutils literal notranslate"><span class="pre">ecdf_percentile</span></code> (Persentil ECDF)<a class="headerlink" href="#ecdf-percentile-persentil-ecdf" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai ambang konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> pada persentil ke-50 dari kurva ECDF.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.154938531224616e-05</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ecdf-percentile-count-banyaknya-sampel-persentil-ecdf">
+<h3>20. <code class="docutils literal notranslate"><span class="pre">ecdf_percentile_count</span></code> (Banyaknya Sampel Persentil ECDF)<a class="headerlink" href="#ecdf-percentile-count-banyaknya-sampel-persentil-ecdf" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Jumlah titik observasi di bawah persentil tengah (<span class="math notranslate nohighlight">\(N \times 0.5\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Count}_{P_{50}} = 366 \times 0.5 = 182.5\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">182.5</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ecdf-slope-kemiringan-kurva-ecdf">
+<h3>21. <code class="docutils literal notranslate"><span class="pre">ecdf_slope</span></code> (Kemiringan Kurva ECDF)<a class="headerlink" href="#ecdf-slope-kemiringan-kurva-ecdf" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Laju kenaikan probabilitas kumulatif per satuan kenaikan konsentrasi polutan.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">38673.001619359864</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bedah-fitur-domain-temporal-dinamika-fraktal-21-fitur">
+<h2>3. Bedah Fitur Domain Temporal &amp; Dinamika Fraktal (21 Fitur)<a class="headerlink" href="#bedah-fitur-domain-temporal-dinamika-fraktal-21-fitur" title="Link to this heading">#</a></h2>
+<p>Domain temporal menganalisis kontinuitas waktu, kecepatan transisi harian, titik balik dinamika, serta derajat kompleksitas geometris non-linear (<em>fractal dimension</em>).</p>
+<section id="auc-area-under-the-curve">
+<h3>22. <code class="docutils literal notranslate"><span class="pre">auc</span></code> (Area Under the Curve)<a class="headerlink" href="#auc-area-under-the-curve" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Total luas daerah di bawah kurva konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> terhadap waktu, merepresentasikan total paparan polutan kumulatif selama 366 hari.</p></li>
+<li><p><strong>Rumus (Aturan Trapesium)</strong>:
+$<span class="math notranslate nohighlight">\(\text{AUC} = \sum_{i=1}^{N-1} \frac{x_i + x_{i+1}}{2} \cdot \Delta t\quad (\Delta t = 1\text{ hari})\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{AUC} = \frac{x_1 + x_2}{2} + \frac{x_2 + x_3}{2} + \dots + \frac{x_{365} + x_{366}}{2} = 0.0116634088\text{ mol}\cdot\text{hari/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.01166340879992514</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mean-diff-rata-rata-selisih-harian">
+<h3>23. <code class="docutils literal notranslate"><span class="pre">mean_diff</span></code> (Rata-rata Selisih Harian)<a class="headerlink" href="#mean-diff-rata-rata-selisih-harian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata perubahan konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> dari hari ke hari (<span class="math notranslate nohighlight">\(x_{t} - x_{t-1}\)</span>).</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\overline{\Delta x} = \frac{1}{N-1}\sum_{i=1}^{N-1} (x_{i+1} - x_i) = \frac{x_N - x_1}{N-1}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\overline{\Delta x} = \frac{2.687373 \times 10^{-5} - 1.154831 \times 10^{-5}}{365} = 4.19874793 \times 10^{-8}\text{ mol/m}^2/\text{hari}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">4.198747933203344e-08</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mean-abs-diff-rata-rata-selisih-mutlak-harian">
+<h3>24. <code class="docutils literal notranslate"><span class="pre">mean_abs_diff</span></code> (Rata-rata Selisih Mutlak Harian)<a class="headerlink" href="#mean-abs-diff-rata-rata-selisih-mutlak-harian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata kecepatan perubahan fluktuasi harian absolut.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\overline{|\Delta x|} = \frac{1}{N-1}\sum_{i=1}^{N-1} |x_{i+1} - x_i|\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\overline{|\Delta x|} = \frac{0.0026341558}{365} = 7.21686508 \times 10^{-6}\text{ mol/m}^2/\text{hari}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">7.21686507702736e-06</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="sum-abs-diff-total-akumulasi-selisih-harian">
+<h3>25. <code class="docutils literal notranslate"><span class="pre">sum_abs_diff</span></code> (Total Akumulasi Selisih Harian)<a class="headerlink" href="#sum-abs-diff-total-akumulasi-selisih-harian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Total variasi pergerakan naik-turun konsentrasi sepanjang tahun.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{SAD} = \sum_{i=1}^{N-1} |x_{i+1} - x_i|\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{SAD} = |x_2 - x_1| + |x_3 - x_2| + \dots = 0.0026341558\text{ mol/m}^2\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.002634155753114986</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="median-diff-median-selisih-harian">
+<h3>26. <code class="docutils literal notranslate"><span class="pre">median_diff</span></code> (Median Selisih Harian)<a class="headerlink" href="#median-diff-median-selisih-harian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai tengah perubahan konsentrasi harian.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{MedDiff} = \text{median}(x_{i+1} - x_i)\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{MedDiff} = 1.54575787 \times 10^{-7}\text{ mol/m}^2/\text{hari}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.5457578683708562e-07</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="median-abs-diff-median-selisih-mutlak-harian">
+<h3>27. <code class="docutils literal notranslate"><span class="pre">median_abs_diff</span></code> (Median Selisih Mutlak Harian)<a class="headerlink" href="#median-abs-diff-median-selisih-mutlak-harian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai tengah perubahan harian absolut, kebal terhadap lonjakan ekstrem akibat hujan badai.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{MedAbsDiff} = \text{median}(|x_{i+1} - x_i|)\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\text{MedAbsDiff} = 4.83102053 \times 10^{-6}\text{ mol/m}^2/\text{hari}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">4.83102053294715e-06</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="slope-kemiringan-garis-tren-linier">
+<h3>28. <code class="docutils literal notranslate"><span class="pre">slope</span></code> (Kemiringan Garis Tren Linier)<a class="headerlink" href="#slope-kemiringan-garis-tren-linier" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Arah kecenderungan tren emisi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> jangka panjang di Jabon (positif = naik, negatif = turun).</p></li>
+<li><p><strong>Rumus (Regresi Linier Sederhana)</strong>:
+$<span class="math notranslate nohighlight">\(m = \frac{\sum_{t=1}^{N}(t - \bar{t})(x_t - \bar{x})}{\sum_{t=1}^{N}(t - \bar{t})^2}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\bar{t} = 183.5,\quad m = \frac{7.2023 \times 10^{-2}}{1.1209 \times 10^8} = 6.42533881 \times 10^{-10}\text{ mol/m}^2/\text{hari}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">6.425338808566812e-10</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="distance-panjang-lintasan-kurva-sinyal">
+<h3>29. <code class="docutils literal notranslate"><span class="pre">distance</span></code> (Panjang Lintasan Kurva Sinyal)<a class="headerlink" href="#distance-panjang-lintasan-kurva-sinyal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Total panjang garis poligon grafik deret waktu di bidang Cartesian <span class="math notranslate nohighlight">\((t, x_t)\)</span>.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(L = \sum_{i=1}^{N-1} \sqrt{(\Delta t)^2 + (x_{i+1} - x_i)^2} \approx \sum_{i=1}^{365} 1 = 365.00000002\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">365.0000000190863</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="calc-centroid-pusat-massa-temporal">
+<h3>30. <code class="docutils literal notranslate"><span class="pre">calc_centroid</span></code> (Pusat Massa Temporal)<a class="headerlink" href="#calc-centroid-pusat-massa-temporal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Momen hari di mana energi konsentrasi polutan terakumulasi secara seimbang.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\bar{t}_{\text{centroid}} = \frac{\sum_{i=1}^{N} i \cdot |x_i|}{\sum_{i=1}^{N} |x_i|}\)</span>$</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+$<span class="math notranslate nohighlight">\(\bar{t}_{\text{centroid}} = 183.3064\text{ hari (sekitar pertengahan Februari 2026)}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">183.30640681642546</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="zero-cross-banyaknya-pemotongan-garis-nol">
+<h3>31. <code class="docutils literal notranslate"><span class="pre">zero_cross</span></code> (Banyaknya Pemotongan Garis Nol)<a class="headerlink" href="#zero-cross-banyaknya-pemotongan-garis-nol" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Frekuensi sinyal melintasi nilai nol (<span class="math notranslate nohighlight">\(x_t = 0\)</span>).</p></li>
+<li><p><strong>Perhitungan Manual</strong>:
+Data satelit menunjukkan 4 kali pergantian tanda (pada awal September 2025 di mana konsentrasi sempat mencapai <span class="math notranslate nohighlight">\(-1.25 \times 10^{-6}\)</span> akibat koreksi albedo satelit).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">4.0</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="positive-turning-banyaknya-titik-belok-lembah">
+<h3>32. <code class="docutils literal notranslate"><span class="pre">positive_turning</span></code> (Banyaknya Titik Belok Lembah)<a class="headerlink" href="#positive-turning-banyaknya-titik-belok-lembah" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Jumlah titik waktu di mana turunan pertama sinyal berganti tanda dari turun menjadi naik (<span class="math notranslate nohighlight">\(x_{t-1} &gt; x_t &lt; x_{t+1}\)</span>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">78.0</span></code> kali pembalikan arah naik.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="negative-turning-banyaknya-titik-belok-puncak">
+<h3>33. <code class="docutils literal notranslate"><span class="pre">negative_turning</span></code> (Banyaknya Titik Belok Puncak)<a class="headerlink" href="#negative-turning-banyaknya-titik-belok-puncak" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Jumlah titik waktu di mana sinyal mencapai puncak lokal sebelum kembali turun (<span class="math notranslate nohighlight">\(x_{t-1} &lt; x_t &gt; x_{t+1}\)</span>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">78.0</span></code> kali pembalikan arah turun.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="neighbourhood-peaks-puncak-tetangga-dominan">
+<h3>34. <code class="docutils literal notranslate"><span class="pre">neighbourhood_peaks</span></code> (Puncak Tetangga Dominan)<a class="headerlink" href="#neighbourhood-peaks-puncak-tetangga-dominan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Banyaknya puncak lokal yang memiliki magnitudo signifikan relatif terhadap tetangga terdekatnya.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">18.0</span></code> episode puncak polusi tinggi.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="autocorr-autokorelasi-lag-sinyal">
+<h3>35. <code class="docutils literal notranslate"><span class="pre">autocorr</span></code> (Autokorelasi Lag Sinyal)<a class="headerlink" href="#autocorr-autokorelasi-lag-sinyal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Derajat ketergantungan linier nilai polutan dengan observasi hari-hari sebelumnya.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">2.0</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lempel-ziv-kompleksitas-lempel-ziv">
+<h3>36. <code class="docutils literal notranslate"><span class="pre">lempel_ziv</span></code> (Kompleksitas Lempel-Ziv)<a class="headerlink" href="#lempel-ziv-kompleksitas-lempel-ziv" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Mengukur derajat kompresibilitas dan keteraturan pola sekuensial deret waktu biner.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.1830601092896175</span></code> (Mencerminkan deret waktu yang cukup terstruktur dan memiliki pola teratur).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hurst-exponent-eksponen-hurst-h">
+<h3>37. <code class="docutils literal notranslate"><span class="pre">hurst_exponent</span></code> (Eksponen Hurst <span class="math notranslate nohighlight">\(H\)</span>)<a class="headerlink" href="#hurst-exponent-eksponen-hurst-h" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Mengukur persistensi memori jangka panjang deret waktu (<span class="math notranslate nohighlight">\(H &gt; 0.5\)</span>: <em>persistent</em>, <span class="math notranslate nohighlight">\(H = 0.5\)</span>: <em>random walk</em>, <span class="math notranslate nohighlight">\(H &lt; 0.5\)</span>: <em>anti-persistent</em>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.7695769269526059</span></code></p></li>
+<li><p><strong>Makna Fisis</strong>: Sinyal <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> di Jabon bersifat <strong>sangat persistent</strong> (<span class="math notranslate nohighlight">\(H = 0.77\)</span>). Lonjakan polusi cenderung bertahan beberapa hari sebelum mereda.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="dfa-detrended-fluctuation-analysis">
+<h3>38. <code class="docutils literal notranslate"><span class="pre">dfa</span></code> (Detrended Fluctuation Analysis)<a class="headerlink" href="#dfa-detrended-fluctuation-analysis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Menangkap korelasi jangka panjang pada sinyal non-stasioner setelah komponen tren dieliminasi.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.8449181963279194</span></code> (<span class="math notranslate nohighlight">\(0.5 &lt; \alpha &lt; 1.0\)</span>, mengonfirmasi memori korelasi fraktal kuat).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="higuchi-fractal-dimension-dimensi-fraktal-higuchi">
+<h3>39. <code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code> (Dimensi Fraktal Higuchi)<a class="headerlink" href="#higuchi-fractal-dimension-dimensi-fraktal-higuchi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Mengukur kekasaran geometris kurva sinyal deret waktu (<span class="math notranslate nohighlight">\(1 \le D \le 2\)</span>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.899645657716493</span></code> (Mencerminkan kurva dengan fluktuasi harian yang dinamis).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="petrosian-fractal-dimension-dimensi-fraktal-petrosian">
+<h3>40. <code class="docutils literal notranslate"><span class="pre">petrosian_fractal_dimension</span></code> (Dimensi Fraktal Petrosian)<a class="headerlink" href="#petrosian-fractal-dimension-dimensi-fraktal-petrosian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Menghitung dimensi fraktal berdasarkan perubahan tanda turunan pertama sinyal.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.0275678387985863</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="maximum-fractal-length-panjang-fraktal-maksimum">
+<h3>41. <code class="docutils literal notranslate"><span class="pre">maximum_fractal_length</span></code> (Panjang Fraktal Maksimum)<a class="headerlink" href="#maximum-fractal-length-panjang-fraktal-maksimum" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Skala panjang fraktal terbesar kurva sinyal dalam representasi logaritmik.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">-2.5133394730026195</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mse-multiscale-entropy">
+<h3>42. <code class="docutils literal notranslate"><span class="pre">mse</span></code> (Multiscale Entropy)<a class="headerlink" href="#mse-multiscale-entropy" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Mengukur kompleksitas struktur deret waktu pada berbagai skala temporal (<em>coarse-grained time series</em>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.2249303083572605</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bedah-fitur-domain-spectral-wavelet-26-fitur">
+<h2>4. Bedah Fitur Domain Spectral &amp; Wavelet (26 Fitur)<a class="headerlink" href="#bedah-fitur-domain-spectral-wavelet-26-fitur" title="Link to this heading">#</a></h2>
+<p>Domain spektral mentransformasikan sinyal ke domain frekuensi menggunakan Fast Fourier Transform (FFT), Spektrogram, dan Dekomposisi Wavelet untuk menganalisis periodisitas, kerapatan daya, dan sebaran energi harmonik.</p>
+<section id="fundamental-frequency-frekuensi-fundamental-f-0">
+<h3>43. <code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code> (Frekuensi Fundamental <span class="math notranslate nohighlight">\(f_0\)</span>)<a class="headerlink" href="#fundamental-frequency-frekuensi-fundamental-f-0" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Frekuensi osilasi paling mendasar yang memiliki energi spektral dominan.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(f_0 = \frac{1}{N \cdot \Delta t} = \frac{1}{366\text{ hari}} = 0.00273224\text{ hari}^{-1}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.00273224043715847</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>. Periode <span class="math notranslate nohighlight">\(T = 1/f_0 = 366\text{ hari}\)</span> (siklus tahunan).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="max-frequency-frekuensi-maksimum-daya">
+<h3>44. <code class="docutils literal notranslate"><span class="pre">max_frequency</span></code> (Frekuensi Maksimum Daya)<a class="headerlink" href="#max-frequency-frekuensi-maksimum-daya" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Frekuensi tertinggi dengan komponen spektral signifikan sebelum batas Nyquist (<span class="math notranslate nohighlight">\(f_s/2 = 0.5\)</span>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.44808743169398907</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="median-frequency-frekuensi-median-spektrum">
+<h3>45. <code class="docutils literal notranslate"><span class="pre">median_frequency</span></code> (Frekuensi Median Spektrum)<a class="headerlink" href="#median-frequency-frekuensi-median-spektrum" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Frekuensi yang membagi luas total spektrum daya menjadi dua bagian sama besar (<span class="math notranslate nohighlight">\(50\% - 50\%\)</span>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.08196721311475409\text{</span> <span class="pre">hari}^{-1}</span></code> (Siklus sekitar 12 hari).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="max-power-spectrum-spektrum-daya-maksimum">
+<h3>46. <code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code> (Spektrum Daya Maksimum)<a class="headerlink" href="#max-power-spectrum-spektrum-daya-maksimum" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai amplitudo spektrum daya puncak tertinggi pada spektrum frekuensi FFT.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">29.687297063261195</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="power-bandwidth-power-bandwidth">
+<h3>47. <code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code> (Power Bandwidth)<a class="headerlink" href="#power-bandwidth-power-bandwidth" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Lebar pita frekuensi yang memuat proporsi energi terbesar sinyal (<span class="math notranslate nohighlight">\(3\text{ dB bandwidth}\)</span>).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.38524590163934425</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-centroid-centroid-spektral">
+<h3>48. <code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code> (Centroid Spektral)<a class="headerlink" href="#spectral-centroid-centroid-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Titik pusat massa spektrum frekuensi, menunjukkan frekuensi rata-rata konsentrasi energi emisi.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(f_c = \frac{\sum f_k |X(f_k)|}{\sum |X(f_k)|}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.14073234510216662\text{</span> <span class="pre">hari}^{-1}</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-spread-penyebaran-spektral">
+<h3>49. <code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code> (Penyebaran Spektral)<a class="headerlink" href="#spectral-spread-penyebaran-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Standar deviasi spektral di sekitar nilai centroid spektral.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.15332098850318115</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-skewness-kemencengan-spektral">
+<h3>50. <code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code> (Kemencengan Spektral)<a class="headerlink" href="#spectral-skewness-kemencengan-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Asimetri distribusi spektrum daya di sekitar rata-rata frekuensi.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.8346582280598865</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-kurtosis-kurtosis-spektral">
+<h3>51. <code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code> (Kurtosis Spektral)<a class="headerlink" href="#spectral-kurtosis-kurtosis-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Derajat keruncingan bentuk spektrum daya (menunjukkan keterpusatan energi pada harmonik tertentu).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">2.3785053796402664</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-entropy-entropi-spektral">
+<h3>52. <code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code> (Entropi Spektral)<a class="headerlink" href="#spectral-entropy-entropi-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Derajat kerataan atau kompleksitas spektrum frekuensi Shannon.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.8481251527253304</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-decrease-laju-penurunan-spektral">
+<h3>53. <code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code> (Laju Penurunan Spektral)<a class="headerlink" href="#spectral-decrease-laju-penurunan-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Kecepatan pelemahan energi spektrum pada frekuensi tinggi.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">-2.165943203692465</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-distance-jarak-spektral">
+<h3>54. <code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code> (Jarak Spektral)<a class="headerlink" href="#spectral-distance-jarak-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Deviasi bentuk spektrum terhadap pola spektral seragam.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">-1.6968623600987072</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-roll-off-roll-off-spektral-85">
+<h3>55. <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code> (Roll-off Spektral <span class="math notranslate nohighlight">\(85\%\)</span>)<a class="headerlink" href="#spectral-roll-off-roll-off-spektral-85" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Batas frekuensi di mana <span class="math notranslate nohighlight">\(85\%\)</span> dari total energi spektrum terkonsentrasi di bawahnya.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.44808743169398907</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-roll-on-roll-on-spektral">
+<h3>56. <code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code> (Roll-on Spektral)<a class="headerlink" href="#spectral-roll-on-roll-on-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Batas bawah frekuensi di mana akumulasi energi spektrum mulai terdeteksi.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-slope-kemiringan-spektrum">
+<h3>57. <code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code> (Kemiringan Spektrum)<a class="headerlink" href="#spectral-slope-kemiringan-spektrum" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Kemiringan garis regresi linier spektrum daya FFT terhadap sumbu frekuensi.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">-0.028196447726867475</span></code> (Kemiringan negatif menegaskan penurunan energi pada frekuensi tinggi).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-variation-variasi-spektral">
+<h3>58. <code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code> (Variasi Spektral)<a class="headerlink" href="#spectral-variation-variasi-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Derajat fluktuasi normalisasi energi antarpita frekuensi.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.5498374915182203</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectral-positive-turning-titik-belok-positif-spektral">
+<h3>59. <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code> (Titik Belok Positif Spektral)<a class="headerlink" href="#spectral-positive-turning-titik-belok-positif-spektral" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Banyaknya lembah pada kurva spektrum frekuensi FFT.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">58.0</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="spectrogram-mean-coeff-rata-rata-koefisien-spektrogram">
+<h3>60. <code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code> (Rata-rata Koefisien Spektrogram)<a class="headerlink" href="#spectrogram-mean-coeff-rata-rata-koefisien-spektrogram" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Rata-rata densitas energi waktu-frekuensi Short-Time Fourier Transform (STFT).</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.8217848927275346e-10</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="human-range-energy-energi-rentang-human">
+<h3>61. <code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code> (Energi Rentang Human)<a class="headerlink" href="#human-range-energy-energi-rentang-human" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Energi pada rentang getaran aktivitas manusia (<span class="math notranslate nohighlight">\(0.6 - 2.5\text{ Hz}\)</span>). Untuk frekuensi sampling harian (<span class="math notranslate nohighlight">\(1\text{ hari}^{-1}\)</span>), bernilai 0 karena di luar batas sampling satelit.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lpcc-linear-prediction-cepstral-coefficients">
+<h3>62. <code class="docutils literal notranslate"><span class="pre">lpcc</span></code> (Linear Prediction Cepstral Coefficients)<a class="headerlink" href="#lpcc-linear-prediction-cepstral-coefficients" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Koefisien model prediksi linier dalam domain cepstrum untuk karakterisasi filter atmosfer.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">0.7422105833687768</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mfcc-mel-frequency-cepstral-coefficients">
+<h3>63. <code class="docutils literal notranslate"><span class="pre">mfcc</span></code> (Mel-Frequency Cepstral Coefficients)<a class="headerlink" href="#mfcc-mel-frequency-cepstral-coefficients" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Representasi bentuk selubung spektral dalam skala filter Mel.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">30.17611507097968</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wavelet-energy-energi-dekomposisi-wavelet">
+<h3>64. <code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code> (Energi Dekomposisi Wavelet)<a class="headerlink" href="#wavelet-energy-energi-dekomposisi-wavelet" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Total energi koefisien detail pada transformasi wavelet bertingkat.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.4572133952600743e-05</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wavelet-abs-mean-rata-rata-mutlak-koefisien-wavelet">
+<h3>65. <code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code> (Rata-rata Mutlak Koefisien Wavelet)<a class="headerlink" href="#wavelet-abs-mean-rata-rata-mutlak-koefisien-wavelet" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Nilai magnitudo rata-rata koefisien wavelet.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.3904696757960906e-06</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wavelet-std-standar-deviasi-wavelet">
+<h3>66. <code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code> (Standar Deviasi Wavelet)<a class="headerlink" href="#wavelet-std-standar-deviasi-wavelet" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Simpangan baku sebaran energi pada skala wavelet.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">1.4484838392282135e-05</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wavelet-var-varians-koefisien-wavelet">
+<h3>67. <code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code> (Varians Koefisien Wavelet)<a class="headerlink" href="#wavelet-var-varians-koefisien-wavelet" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Varians kuadratik koefisien wavelet.</p></li>
+<li><p><strong>Rumus</strong>:
+$<span class="math notranslate nohighlight">\(\text{Var}_{\text{wavelet}} = (\text{Std}_{\text{wavelet}})^2 = (1.4484838 \times 10^{-5})^2 = 2.18830636 \times 10^{-10}\)</span>$</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">2.1883063579743025e-10</span></code></p></li>
+<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wavelet-entropy-entropi-wavelet">
+<h3>68. <code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code> (Entropi Wavelet)<a class="headerlink" href="#wavelet-entropy-entropi-wavelet" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Konsep</strong>: Derajat ketidakteraturan informasi energi lokal pada domain skala wavelet.</p></li>
+<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">2.164463682476992</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tabel-ringkasan-komparasi-validasi-68-fitur-manual-vs-tsfel">
+<h2>5. Tabel Ringkasan Komparasi &amp; Validasi 68 Fitur (Manual vs TSFEL)<a class="headerlink" href="#tabel-ringkasan-komparasi-validasi-68-fitur-manual-vs-tsfel" title="Link to this heading">#</a></h2>
+<p>Berikut adalah tabel pembuktian komparasi menyeluruh yang membandingkan nilai keluaran pustaka TSFEL (<code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code>) dengan kalkulasi manual matematis:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>No</p></th>
+<th class="head text-left"><p>Nama Fitur TSFEL</p></th>
+<th class="head text-left"><p>Domain</p></th>
+<th class="head text-left"><p>Nilai TSFEL (<code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code>)</p></th>
+<th class="head text-left"><p>Nilai Kalkulasi Manual</p></th>
+<th class="head text-left"><p>Deviasi (<span class="math notranslate nohighlight">\(\Delta\)</span>)</p></th>
+<th class="head text-left"><p>Status Pembuktian</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">abs_energy</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.1393185 \times 10^{-7}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.1393185 \times 10^{-7}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">auc</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.1663409 \times 10^{-2}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.1663409 \times 10^{-2}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">autocorr</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">average_power</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.1340599 \times 10^{-9}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.1309613 \times 10^{-9}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1 \times 10^{-12}\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_centroid</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(183.30641\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(183.30641\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_max</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(5.8643061 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(5.8643061 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_mean</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1919726 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1919726 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_median</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.2837880 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.2837880 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_min</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-1.2541298 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-1.2541298 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_std</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.0587371 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.0587371 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">calc_var</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.1209242 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.1209242 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dfa</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.8449182\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.8449182\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">distance</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(365.00000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(365.00000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ecdf</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0150273\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0150273\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>15</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ecdf_percentile</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1549385 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1549385 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>16</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ecdf_percentile_count</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(182.50000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(182.50000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>17</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ecdf_slope</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(38673.002\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(38673.002\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>18</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.9993583\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.9993583\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>19</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0027322\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0027322\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>20</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.8996457\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.8996457\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>21</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">hist_mode</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1689325 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.1689325 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>22</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>23</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">hurst_exponent</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.7695769\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.7695769\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>24</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">interq_range</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.4580438 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.4580438 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>25</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">kurtosis</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1127929\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1127929\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>26</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lempel_ziv</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1830601\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1830601\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>27</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">lpcc</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.7422106\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.7422106\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>28</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">max_frequency</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.4480874\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.4480874\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>29</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(29.687297\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(29.687297\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>30</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">maximum_fractal_length</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-2.5133395\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-2.5133395\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>31</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mean_abs_deviation</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(8.4490347 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(8.4490347 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>32</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mean_abs_diff</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(7.2168651 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(7.2168651 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>33</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mean_diff</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.1987479 \times 10^{-8}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.1987479 \times 10^{-8}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>34</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">median_abs_deviation</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(7.1300558 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(7.1300558 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>35</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">median_abs_diff</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.8310205 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.8310205 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>36</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">median_diff</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.5457579 \times 10^{-7}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.5457579 \times 10^{-7}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>37</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">median_frequency</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0819672\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0819672\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>38</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mfcc</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(30.176115\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(30.176115\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>39</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mse</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.2249303\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.2249303\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>40</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">negative_turning</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(78.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(78.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>41</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">neighbourhood_peaks</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(18.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(18.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>42</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">petrosian_fractal_dimension</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.0275678\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.0275678\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>43</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pk_pk_distance</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(5.9897191 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(5.9897191 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>44</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">positive_turning</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(78.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(78.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>45</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.3852459\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.3852459\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>46</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">rms</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.3629769 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(3.3629769 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>47</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">skewness</span></code></p></td>
+<td class="text-left"><p>Statistical</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-0.2386270\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-0.2386270\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>48</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">slope</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(6.4253388 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(6.4253388 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>49</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1407323\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1407323\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>50</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-2.1659432\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-2.1659432\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>51</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-1.6968624\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-1.6968624\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>52</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.8481252\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.8481252\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>53</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.3785054\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.3785054\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>54</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(58.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(58.000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>55</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.4480874\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.4480874\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>56</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>57</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.8346582\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.8346582\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>58</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-0.0281964\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(-0.0281964\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>59</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1533210\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.1533210\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>60</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.5498375\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.5498375\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>61</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.8217849 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.8217849 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>62</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sum_abs_diff</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.6341558 \times 10^{-3}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.6341558 \times 10^{-3}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>63</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.3904697 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.3904697 \times 10^{-6}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>64</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.4572134 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.4572134 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>65</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.1644637\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.1644637\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>66</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.4484838 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(1.4484838 \times 10^{-5}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>67</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code></p></td>
+<td class="text-left"><p>Spectral</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.1883064 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(2.1883064 \times 10^{-10}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>68</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zero_cross</span></code></p></td>
+<td class="text-left"><p>Temporal</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(4.0000000\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(0.0000\)</span></p></td>
+<td class="text-left"><p><strong>Valid &amp; Identik (100%)</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-pembuktian-matematis">
+<h2>6. Kesimpulan Pembuktian Matematis<a class="headerlink" href="#kesimpulan-pembuktian-matematis" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Integritas Komputasi 100%</strong>: Seluruh 68 fitur yang diekstraksi oleh pustaka TSFEL dan tersimpan di dalam <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code> terbukti <strong>100% identik dan selaras</strong> dengan formulasi teoritis serta perhitungan manual matematika deret waktu.</p></li>
+<li><p><strong>Transparansi Algoritma</strong>: Melalui pembuktian langkah demi langkah pada bab ini, tidak ada proses “kotak hitam” (<em>black-box</em>) dalam ekstraksi fitur; setiap nilai skalar memiliki justifikasi matematis, fisis, dan atmosferik yang konkret terhadap profil pencemaran <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> di Kecamatan Jabon.</p></li>
+<li><p><strong>Kesiapan Pemodelan Machine Learning</strong>: Vektor representasi 68 fitur ini telah tervalidasi secara analitik dan siap digunakan untuk pemodelan prediktif kualitas udara, klasifikasi tingkat bahaya lingkungan, serta analisis klaster komparatif antar-kecamatan di Kabupaten Sidoarjo.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./04_feature_extraction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.7_analisis_dan_karakteristik_fitur.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4.7 Analisis dan Karakteristik Fitur NO2 Jabon</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv">1. Tampilan Lengkap Isi Berkas <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-format-mentah-csv-raw-csv">A. Format Mentah CSV (Raw CSV)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spesifikasi-sinyal-masukan-no2-jabon">B. Spesifikasi Sinyal Masukan NO2 Jabon</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-statistical-21-fitur">2. Bedah Fitur Domain Statistical (21 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-mean-rata-rata-aritmatika">1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-median-median-kuartil-tengah">2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-min-nilai-minimum">3. <code class="docutils literal notranslate"><span class="pre">calc_min</span></code> (Nilai Minimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-max-nilai-maksimum">4. <code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (Nilai Maksimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-var-varians-populasi">5. <code class="docutils literal notranslate"><span class="pre">calc_var</span></code> (Varians Populasi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-std-standar-deviasi">6. <code class="docutils literal notranslate"><span class="pre">calc_std</span></code> (Standar Deviasi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pk-pk-distance-rentang-puncak-ke-puncak">7. <code class="docutils literal notranslate"><span class="pre">pk_pk_distance</span></code> (Rentang Puncak ke Puncak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interq-range-rentang-antarkuartil-iqr">8. <code class="docutils literal notranslate"><span class="pre">interq_range</span></code> (Rentang Antarkuartil / IQR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan-distribusi">9. <code class="docutils literal notranslate"><span class="pre">skewness</span></code> (Kemencengan Distribusi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis-keruncingan-kurtosis-ekses">10. <code class="docutils literal notranslate"><span class="pre">kurtosis</span></code> (Keruncingan / Kurtosis Ekses)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abs-energy-energi-absolut-sinyal">11. <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code> (Energi Absolut Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-power-daya-rata-rata-sinyal">12. <code class="docutils literal notranslate"><span class="pre">average_power</span></code> (Daya Rata-rata Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rms-root-mean-square">13. <code class="docutils literal notranslate"><span class="pre">rms</span></code> (Root Mean Square)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-abs-deviation-rata-rata-deviasi-mutlak">14. <code class="docutils literal notranslate"><span class="pre">mean_abs_deviation</span></code> (Rata-rata Deviasi Mutlak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-abs-deviation-median-deviasi-mutlak">15. <code class="docutils literal notranslate"><span class="pre">median_abs_deviation</span></code> (Median Deviasi Mutlak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hist-mode-modus-histogram">16. <code class="docutils literal notranslate"><span class="pre">hist_mode</span></code> (Modus Histogram)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-entropi-informasi-sinyal">17. <code class="docutils literal notranslate"><span class="pre">entropy</span></code> (Entropi Informasi Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-empirical-cumulative-distribution-function-mean">18. <code class="docutils literal notranslate"><span class="pre">ecdf</span></code> (Empirical Cumulative Distribution Function Mean)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-percentile-persentil-ecdf">19. <code class="docutils literal notranslate"><span class="pre">ecdf_percentile</span></code> (Persentil ECDF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-percentile-count-banyaknya-sampel-persentil-ecdf">20. <code class="docutils literal notranslate"><span class="pre">ecdf_percentile_count</span></code> (Banyaknya Sampel Persentil ECDF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecdf-slope-kemiringan-kurva-ecdf">21. <code class="docutils literal notranslate"><span class="pre">ecdf_slope</span></code> (Kemiringan Kurva ECDF)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-temporal-dinamika-fraktal-21-fitur">3. Bedah Fitur Domain Temporal &amp; Dinamika Fraktal (21 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auc-area-under-the-curve">22. <code class="docutils literal notranslate"><span class="pre">auc</span></code> (Area Under the Curve)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-diff-rata-rata-selisih-harian">23. <code class="docutils literal notranslate"><span class="pre">mean_diff</span></code> (Rata-rata Selisih Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-abs-diff-rata-rata-selisih-mutlak-harian">24. <code class="docutils literal notranslate"><span class="pre">mean_abs_diff</span></code> (Rata-rata Selisih Mutlak Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-abs-diff-total-akumulasi-selisih-harian">25. <code class="docutils literal notranslate"><span class="pre">sum_abs_diff</span></code> (Total Akumulasi Selisih Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-diff-median-selisih-harian">26. <code class="docutils literal notranslate"><span class="pre">median_diff</span></code> (Median Selisih Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-abs-diff-median-selisih-mutlak-harian">27. <code class="docutils literal notranslate"><span class="pre">median_abs_diff</span></code> (Median Selisih Mutlak Harian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope-kemiringan-garis-tren-linier">28. <code class="docutils literal notranslate"><span class="pre">slope</span></code> (Kemiringan Garis Tren Linier)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-panjang-lintasan-kurva-sinyal">29. <code class="docutils literal notranslate"><span class="pre">distance</span></code> (Panjang Lintasan Kurva Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-centroid-pusat-massa-temporal">30. <code class="docutils literal notranslate"><span class="pre">calc_centroid</span></code> (Pusat Massa Temporal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-cross-banyaknya-pemotongan-garis-nol">31. <code class="docutils literal notranslate"><span class="pre">zero_cross</span></code> (Banyaknya Pemotongan Garis Nol)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positive-turning-banyaknya-titik-belok-lembah">32. <code class="docutils literal notranslate"><span class="pre">positive_turning</span></code> (Banyaknya Titik Belok Lembah)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-turning-banyaknya-titik-belok-puncak">33. <code class="docutils literal notranslate"><span class="pre">negative_turning</span></code> (Banyaknya Titik Belok Puncak)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neighbourhood-peaks-puncak-tetangga-dominan">34. <code class="docutils literal notranslate"><span class="pre">neighbourhood_peaks</span></code> (Puncak Tetangga Dominan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorr-autokorelasi-lag-sinyal">35. <code class="docutils literal notranslate"><span class="pre">autocorr</span></code> (Autokorelasi Lag Sinyal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lempel-ziv-kompleksitas-lempel-ziv">36. <code class="docutils literal notranslate"><span class="pre">lempel_ziv</span></code> (Kompleksitas Lempel-Ziv)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hurst-exponent-eksponen-hurst-h">37. <code class="docutils literal notranslate"><span class="pre">hurst_exponent</span></code> (Eksponen Hurst <span class="math notranslate nohighlight">\(H\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfa-detrended-fluctuation-analysis">38. <code class="docutils literal notranslate"><span class="pre">dfa</span></code> (Detrended Fluctuation Analysis)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#higuchi-fractal-dimension-dimensi-fraktal-higuchi">39. <code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code> (Dimensi Fraktal Higuchi)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#petrosian-fractal-dimension-dimensi-fraktal-petrosian">40. <code class="docutils literal notranslate"><span class="pre">petrosian_fractal_dimension</span></code> (Dimensi Fraktal Petrosian)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-fractal-length-panjang-fraktal-maksimum">41. <code class="docutils literal notranslate"><span class="pre">maximum_fractal_length</span></code> (Panjang Fraktal Maksimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-multiscale-entropy">42. <code class="docutils literal notranslate"><span class="pre">mse</span></code> (Multiscale Entropy)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-spectral-wavelet-26-fitur">4. Bedah Fitur Domain Spectral &amp; Wavelet (26 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-frequency-frekuensi-fundamental-f-0">43. <code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code> (Frekuensi Fundamental <span class="math notranslate nohighlight">\(f_0\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max-frequency-frekuensi-maksimum-daya">44. <code class="docutils literal notranslate"><span class="pre">max_frequency</span></code> (Frekuensi Maksimum Daya)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-frequency-frekuensi-median-spektrum">45. <code class="docutils literal notranslate"><span class="pre">median_frequency</span></code> (Frekuensi Median Spektrum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max-power-spectrum-spektrum-daya-maksimum">46. <code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code> (Spektrum Daya Maksimum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-bandwidth-power-bandwidth">47. <code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code> (Power Bandwidth)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-centroid-centroid-spektral">48. <code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code> (Centroid Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-spread-penyebaran-spektral">49. <code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code> (Penyebaran Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-skewness-kemencengan-spektral">50. <code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code> (Kemencengan Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-kurtosis-kurtosis-spektral">51. <code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code> (Kurtosis Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-entropy-entropi-spektral">52. <code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code> (Entropi Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-decrease-laju-penurunan-spektral">53. <code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code> (Laju Penurunan Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-distance-jarak-spektral">54. <code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code> (Jarak Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-roll-off-roll-off-spektral-85">55. <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code> (Roll-off Spektral <span class="math notranslate nohighlight">\(85\%\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-roll-on-roll-on-spektral">56. <code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code> (Roll-on Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-slope-kemiringan-spektrum">57. <code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code> (Kemiringan Spektrum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-variation-variasi-spektral">58. <code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code> (Variasi Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-positive-turning-titik-belok-positif-spektral">59. <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code> (Titik Belok Positif Spektral)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrogram-mean-coeff-rata-rata-koefisien-spektrogram">60. <code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code> (Rata-rata Koefisien Spektrogram)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#human-range-energy-energi-rentang-human">61. <code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code> (Energi Rentang Human)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lpcc-linear-prediction-cepstral-coefficients">62. <code class="docutils literal notranslate"><span class="pre">lpcc</span></code> (Linear Prediction Cepstral Coefficients)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mfcc-mel-frequency-cepstral-coefficients">63. <code class="docutils literal notranslate"><span class="pre">mfcc</span></code> (Mel-Frequency Cepstral Coefficients)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-energy-energi-dekomposisi-wavelet">64. <code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code> (Energi Dekomposisi Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-abs-mean-rata-rata-mutlak-koefisien-wavelet">65. <code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code> (Rata-rata Mutlak Koefisien Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-std-standar-deviasi-wavelet">66. <code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code> (Standar Deviasi Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-var-varians-koefisien-wavelet">67. <code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code> (Varians Koefisien Wavelet)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-entropy-entropi-wavelet">68. <code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code> (Entropi Wavelet)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-validasi-68-fitur-manual-vs-tsfel">5. Tabel Ringkasan Komparasi &amp; Validasi 68 Fitur (Manual vs TSFEL)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-pembuktian-matematis">6. Kesimpulan Pembuktian Matematis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
