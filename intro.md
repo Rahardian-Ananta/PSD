@@ -95,6 +95,8 @@ Gunakan menu navigasi di sebelah kiri untuk menelusuri setiap bagian:
    - 4.4 Fitur Domain Temporal
    - 4.5 Fitur Domain Spectral
    - 4.6 Hasil Ekstraksi 68 Fitur
+   - 4.7 Analisis dan Karakteristik Fitur
+   - 4.8 Bedah 68 Fitur & Perhitungan Manual vs TSFEL
 
 ---
 
