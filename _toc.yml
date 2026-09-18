@@ -57,3 +57,12 @@ parts:
       - file: 04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual
         title: 4.8 Bedah 68 Fitur & Perhitungan Manual vs TSFEL
 
+  - caption: BAB 5 — CLUSTERING & ANALISIS KOMPARATIF
+    chapters:
+      - file: 05_clustering/5.1_reduksi_dimensi_pca
+        title: 5.1 Reduksi Dimensi PCA (68 → 37)
+      - file: 05_clustering/5.2_kmeans_clustering
+        title: 5.2 K-Means Clustering
+      - file: 05_clustering/5.3_komparasi_dan_kesimpulan
+        title: 5.3 Komparasi dan Kesimpulan
+
