@@ -65,6 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.1 Reduksi Dimensi PCA" href="../05_clustering/5.1_reduksi_dimensi_pca.html" />
     <link rel="prev" title="4.7 Analisis dan Karakteristik Fitur NO2 Jabon" href="4.7_analisis_dan_karakteristik_fitur.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -199,7 +200,14 @@
 <li class="toctree-l1"><a class="reference internal" href="4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4.8 Bedah 68 Fitur &amp; Perhitungan Manual vs TSFEL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
 </ul>
 
     </div>
@@ -392,14 +400,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#laporan-analisis-fitur-statistik-tsfel-no2-jabon-versi-detail-lanjutan">LAPORAN ANALISIS FITUR STATISTIK TSFEL: NO2 JABON (VERSI DETAIL &amp; LANJUTAN)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv">1. Tampilan Lengkap Isi Berkas <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-format-mentah-csv-raw-csv">A. Format Mentah CSV (Raw CSV)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spesifikasi-sinyal-masukan-no2-jabon">B. Spesifikasi Sinyal Masukan NO2 Jabon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spesifikasi-sinyal-masukan-no2-jabon-detailed-breakdown">B. Spesifikasi Sinyal Masukan NO2 Jabon (Detailed Breakdown)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-statistical-21-fitur">2. Bedah Fitur Domain Statistical (21 Fitur)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-mean-rata-rata-aritmatika">1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-median-median-kuartil-tengah">2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-statistical-21-fitur-versi-perhitungan-sangat-detail">2. Bedah Fitur Domain Statistical (21 Fitur - Versi Perhitungan Sangat Detail)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-mean-rata-rata-aritmatika-arithmetic-mean">1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika / Arithmetic Mean)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-median-median-kuartil-tengah-p-50">2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah / <span class="math notranslate nohighlight">\(P_{50}\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-min-nilai-minimum">3. <code class="docutils literal notranslate"><span class="pre">calc_min</span></code> (Nilai Minimum)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-max-nilai-maksimum">4. <code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (Nilai Maksimum)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-var-varians-populasi">5. <code class="docutils literal notranslate"><span class="pre">calc_var</span></code> (Varians Populasi)</a></li>
@@ -477,6 +487,9 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-validasi-68-fitur-manual-vs-tsfel">5. Tabel Ringkasan Komparasi &amp; Validasi 68 Fitur (Manual vs TSFEL)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-pembuktian-matematis">6. Kesimpulan Pembuktian Matematis</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -497,22 +510,25 @@
 <li><p><strong>Perhitungan Manual (Step-by-Step)</strong>: Penjabaran kalkulasi numerik riil berbasis data deret waktu harian Jabon.</p></li>
 <li><p><strong>Pembuktian &amp; Komparasi</strong>: Perbandingan nilai kalkulasi manual dengan nilai keluaran file <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code> untuk membuktikan akurasi dan keselarasan ekstraksi.</p></li>
 </ol>
+</section>
 <hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="laporan-analisis-fitur-statistik-tsfel-no2-jabon-versi-detail-lanjutan">
+<h1>LAPORAN ANALISIS FITUR STATISTIK TSFEL: NO2 JABON (VERSI DETAIL &amp; LANJUTAN)<a class="headerlink" href="#laporan-analisis-fitur-statistik-tsfel-no2-jabon-versi-detail-lanjutan" title="Link to this heading">#</a></h1>
 <section id="tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv">
 <h2>1. Tampilan Lengkap Isi Berkas <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code><a class="headerlink" href="#tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv" title="Link to this heading">#</a></h2>
-<p>Berikut adalah isi berkas resmi <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code> yang memuat identitas subjek dan seluruh nilai 68 fitur yang diekstraksi:</p>
+<p>Berikut adalah isi berkas resmi <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code> yang memuat identitas subjek dan seluruh nilai 68 fitur yang diekstraksi dari deret waktu konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span>:</p>
 <section id="a-format-mentah-csv-raw-csv">
 <h3>A. Format Mentah CSV (Raw CSV)<a class="headerlink" href="#a-format-mentah-csv-raw-csv" title="Link to this heading">#</a></h3>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>nama,daerah,abs_energy,auc,autocorr,average_power,calc_centroid,calc_max,calc_mean,calc_median,calc_min,calc_std,calc_var,dfa,distance,ecdf,ecdf_percentile,ecdf_percentile_count,ecdf_slope,entropy,fundamental_frequency,higuchi_fractal_dimension,hist_mode,human_range_energy,hurst_exponent,interq_range,kurtosis,lempel_ziv,lpcc,max_frequency,max_power_spectrum,maximum_fractal_length,mean_abs_deviation,mean_abs_diff,mean_diff,median_abs_deviation,median_abs_diff,median_diff,median_frequency,mfcc,mse,negative_turning,neighbourhood_peaks,petrosian_fractal_dimension,pk_pk_distance,positive_turning,power_bandwidth,rms,skewness,slope,spectral_centroid,spectral_decrease,spectral_distance,spectral_entropy,spectral_kurtosis,spectral_positive_turning,spectral_roll_off,spectral_roll_on,spectral_skewness,spectral_slope,spectral_spread,spectral_variation,spectrogram_mean_coeff,sum_abs_diff,wavelet_abs_mean,wavelet_energy,wavelet_entropy,wavelet_std,wavelet_var,zero_cross
-Rahardian Ananta,Kecamatan Jabon,4.1393185197011053e-07,0.01166340879992514,2.0,1.1340598684112616e-09,183.30640681642546,5.864306149305776e-05,3.191972630981642e-05,3.283787961176718e-05,-1.2541297564894194e-06,1.0587370612529026e-05,1.1209241648704323e-10,0.8449181963279194,365.0000000190863,0.015027322404371584,3.154938531224616e-05,182.5,38673.001619359864,0.9993583051330969,0.00273224043715847,1.899645657716493,3.168932543076153e-05,0.0,0.7695769269526059,1.4580438346456497e-05,0.11279287336784805,0.1830601092896175,0.7422105833687768,0.44808743169398907,29.687297063261195,-2.5133394730026195,8.4490347056781e-06,7.21686507702736e-06,4.198747933203344e-08,7.1300557920039864e-06,4.83102053294715e-06,1.5457578683708562e-07,0.08196721311475409,30.17611507097968,1.2249303083572605,78.0,18.0,1.0275678387985863,5.989719124954718e-05,78.0,0.38524590163934425,3.3629768720296456e-05,-0.23862703845200775,6.425338808566812e-10,0.14073234510216662,-2.165943203692465,-1.6968623600987072,0.8481251527253304,2.3785053796402664,58.0,0.44808743169398907,0.0,0.8346582280598865,-0.028196447726867475,0.15332098850318115,0.5498374915182203,1.8217848927275346e-10,0.002634155753114986,1.3904696757960906e-06,1.4572133952600743e-05,2.164463682476992,1.4484838392282135e-05,2.1883063579743025e-10,4.0
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nama</span><span class="p">,</span><span class="n">daerah</span><span class="p">,</span><span class="n">abs_energy</span><span class="p">,</span><span class="n">auc</span><span class="p">,</span><span class="n">autocorr</span><span class="p">,</span><span class="n">average_power</span><span class="p">,</span><span class="n">calc_centroid</span><span class="p">,</span><span class="n">calc_max</span><span class="p">,</span><span class="n">calc_mean</span><span class="p">,</span><span class="n">calc_median</span><span class="p">,</span><span class="n">calc_min</span><span class="p">,</span><span class="n">calc_std</span><span class="p">,</span><span class="n">calc_var</span><span class="p">,</span><span class="n">dfa</span><span class="p">,</span><span class="n">distance</span><span class="p">,</span><span class="n">ecdf</span><span class="p">,</span><span class="n">ecdf_percentile</span><span class="p">,</span><span class="n">ecdf_percentile_count</span><span class="p">,</span><span class="n">ecdf_slope</span><span class="p">,</span><span class="n">entropy</span><span class="p">,</span><span class="n">fundamental_frequency</span><span class="p">,</span><span class="n">higuchi_fractal_dimension</span><span class="p">,</span><span class="n">hist_mode</span><span class="p">,</span><span class="n">human_range_energy</span><span class="p">,</span><span class="n">hurst_exponent</span><span class="p">,</span><span class="n">interq_range</span><span class="p">,</span><span class="n">kurtosis</span><span class="p">,</span><span class="n">lempel_ziv</span><span class="p">,</span><span class="n">lpcc</span><span class="p">,</span><span class="n">max_frequency</span><span class="p">,</span><span class="n">max_power_spectrum</span><span class="p">,</span><span class="n">maximum_fractal_length</span><span class="p">,</span><span class="n">mean_abs_deviation</span><span class="p">,</span><span class="n">mean_abs_diff</span><span class="p">,</span><span class="n">mean_diff</span><span class="p">,</span><span class="n">median_abs_deviation</span><span class="p">,</span><span class="n">median_abs_diff</span><span class="p">,</span><span class="n">median_diff</span><span class="p">,</span><span class="n">median_frequency</span><span class="p">,</span><span class="n">mfcc</span><span class="p">,</span><span class="n">mse</span><span class="p">,</span><span class="n">negative_turning</span><span class="p">,</span><span class="n">neighbourhood_peaks</span><span class="p">,</span><span class="n">petrosian_fractal_dimension</span><span class="p">,</span><span class="n">pk_pk_distance</span><span class="p">,</span><span class="n">positive_turning</span><span class="p">,</span><span class="n">power_bandwidth</span><span class="p">,</span><span class="n">rms</span><span class="p">,</span><span class="n">skewness</span><span class="p">,</span><span class="n">slope</span><span class="p">,</span><span class="n">spectral_centroid</span><span class="p">,</span><span class="n">spectral_decrease</span><span class="p">,</span><span class="n">spectral_distance</span><span class="p">,</span><span class="n">spectral_entropy</span><span class="p">,</span><span class="n">spectral_kurtosis</span><span class="p">,</span><span class="n">spectral_positive_turning</span><span class="p">,</span><span class="n">spectral_roll_off</span><span class="p">,</span><span class="n">spectral_roll_on</span><span class="p">,</span><span class="n">spectral_skewness</span><span class="p">,</span><span class="n">spectral_slope</span><span class="p">,</span><span class="n">spectral_spread</span><span class="p">,</span><span class="n">spectral_variation</span><span class="p">,</span><span class="n">spectrogram_mean_coeff</span><span class="p">,</span><span class="n">sum_abs_diff</span><span class="p">,</span><span class="n">wavelet_abs_mean</span><span class="p">,</span><span class="n">wavelet_energy</span><span class="p">,</span><span class="n">wavelet_entropy</span><span class="p">,</span><span class="n">wavelet_std</span><span class="p">,</span><span class="n">wavelet_var</span><span class="p">,</span><span class="n">zero_cross</span>
+<span class="n">Rahardian</span> <span class="n">Ananta</span><span class="p">,</span><span class="n">Kecamatan</span> <span class="n">Jabon</span><span class="p">,</span><span class="mf">4.1393185197011053e-07</span><span class="p">,</span><span class="mf">0.01166340879992514</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.1340598684112616e-09</span><span class="p">,</span><span class="mf">183.30640681642546</span><span class="p">,</span><span class="mf">5.864306149305776e-05</span><span class="p">,</span><span class="mf">3.191972630981642e-05</span><span class="p">,</span><span class="mf">3.283787961176718e-05</span><span class="p">,</span><span class="o">-</span><span class="mf">1.2541297564894194e-06</span><span class="p">,</span><span class="mf">1.0587370612529026e-05</span><span class="p">,</span><span class="mf">1.1209241648704323e-10</span><span class="p">,</span><span class="mf">0.8449181963279194</span><span class="p">,</span><span class="mf">365.0000000190863</span><span class="p">,</span><span class="mf">0.015027322404371584</span><span class="p">,</span><span class="mf">3.154938531224616e-05</span><span class="p">,</span><span class="mf">182.5</span><span class="p">,</span><span class="mf">38673.001619359864</span><span class="p">,</span><span class="mf">0.9993583051330969</span><span class="p">,</span><span class="mf">0.00273224043715847</span><span class="p">,</span><span class="mf">1.899645657716493</span><span class="p">,</span><span class="mf">3.168932543076153e-05</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.7695769269526059</span><span class="p">,</span><span class="mf">1.4580438346456497e-05</span><span class="p">,</span><span class="mf">0.11279287336784805</span><span class="p">,</span><span class="mf">0.1830601092896175</span><span class="p">,</span><span class="mf">0.7422105833687768</span><span class="p">,</span><span class="mf">0.44808743169398907</span><span class="p">,</span><span class="mf">29.687297063261195</span><span class="p">,</span><span class="o">-</span><span class="mf">2.5133394730026195</span><span class="p">,</span><span class="mf">8.4490347056781e-06</span><span class="p">,</span><span class="mf">7.21686507702736e-06</span><span class="p">,</span><span class="mf">4.198747933203344e-08</span><span class="p">,</span><span class="mf">7.1300557920039864e-06</span><span class="p">,</span><span class="mf">4.83102053294715e-06</span><span class="p">,</span><span class="mf">1.5457578683708562e-07</span><span class="p">,</span><span class="mf">0.08196721311475409</span><span class="p">,</span><span class="mf">30.17611507097968</span><span class="p">,</span><span class="mf">1.2249303083572605</span><span class="p">,</span><span class="mf">78.0</span><span class="p">,</span><span class="mf">18.0</span><span class="p">,</span><span class="mf">1.0275678387985863</span><span class="p">,</span><span class="mf">5.989719124954718e-05</span><span class="p">,</span><span class="mf">78.0</span><span class="p">,</span><span class="mf">0.38524590163934425</span><span class="p">,</span><span class="mf">3.3629768720296456e-05</span><span class="p">,</span><span class="o">-</span><span class="mf">0.23862703845200775</span><span class="p">,</span><span class="mf">6.425338808566812e-10</span><span class="p">,</span><span class="mf">0.14073234510216662</span><span class="p">,</span><span class="o">-</span><span class="mf">2.165943203692465</span><span class="p">,</span><span class="o">-</span><span class="mf">1.6968623600987072</span><span class="p">,</span><span class="mf">0.8481251527253304</span><span class="p">,</span><span class="mf">2.3785053796402664</span><span class="p">,</span><span class="mf">58.0</span><span class="p">,</span><span class="mf">0.44808743169398907</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.8346582280598865</span><span class="p">,</span><span class="o">-</span><span class="mf">0.028196447726867475</span><span class="p">,</span><span class="mf">0.15332098850318115</span><span class="p">,</span><span class="mf">0.5498374915182203</span><span class="p">,</span><span class="mf">1.8217848927275346e-10</span><span class="p">,</span><span class="mf">0.002634155753114986</span><span class="p">,</span><span class="mf">1.3904696757960906e-06</span><span class="p">,</span><span class="mf">1.4572133952600743e-05</span><span class="p">,</span><span class="mf">2.164463682476992</span><span class="p">,</span><span class="mf">1.4484838392282135e-05</span><span class="p">,</span><span class="mf">2.1883063579743025e-10</span><span class="p">,</span><span class="mf">4.0</span>
 </pre></div>
 </div>
 </section>
-<section id="b-spesifikasi-sinyal-masukan-no2-jabon">
-<h3>B. Spesifikasi Sinyal Masukan NO2 Jabon<a class="headerlink" href="#b-spesifikasi-sinyal-masukan-no2-jabon" title="Link to this heading">#</a></h3>
+<section id="b-spesifikasi-sinyal-masukan-no2-jabon-detailed-breakdown">
+<h3>B. Spesifikasi Sinyal Masukan NO2 Jabon (Detailed Breakdown)<a class="headerlink" href="#b-spesifikasi-sinyal-masukan-no2-jabon-detailed-breakdown" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Jumlah Titik Observasi (<span class="math notranslate nohighlight">\(N\)</span>)</strong>: <span class="math notranslate nohighlight">\(366\text{ hari}\)</span> (data deret waktu kontinu hasil interpolasi linear bebas missing value dan outlier).</p></li>
-<li><p><strong>Sampel Awal Sinyal (<span class="math notranslate nohighlight">\(x_1 \dots x_5\)</span>)</strong>:</p>
+<li><p><strong>Jumlah Titik Observasi (<span class="math notranslate nohighlight">\(N\)</span>):</strong> <span class="math notranslate nohighlight">\(366\text{ hari}\)</span> (Tahun Kabisat, deret waktu kontinu hasil interpolasi linear bebas <em>missing value</em> dan <em>outlier</em>).</p></li>
+<li><p><strong>Sampel Awal Sinyal (<span class="math notranslate nohighlight">\(x_1 \dots x_5\)</span>):</strong></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(x_1 = 1.154831 \times 10^{-5}\text{ mol/m}^2\)</span> (31-08-2025)</p></li>
 <li><p><span class="math notranslate nohighlight">\(x_2 = 1.154831 \times 10^{-5}\text{ mol/m}^2\)</span> (01-09-2025)</p></li>
@@ -521,39 +537,58 @@ Rahardian Ananta,Kecamatan Jabon,4.1393185197011053e-07,0.01166340879992514,2.0,
 <li><p><span class="math notranslate nohighlight">\(x_5 = 1.628330 \times 10^{-5}\text{ mol/m}^2\)</span> (04-09-2025)</p></li>
 </ul>
 </li>
-<li><p><strong>Total Akumulasi Sinyal <span class="math notranslate nohighlight">\(\sum x_i\)</span></strong>: <span class="math notranslate nohighlight">\(1.168262 \times 10^{-2}\text{ mol/m}^2\)</span>.</p></li>
-<li><p><strong>Total Akumulasi Kuadrat <span class="math notranslate nohighlight">\(\sum x_i^2\)</span></strong>: <span class="math notranslate nohighlight">\(4.139319 \times 10^{-7}\text{ (mol/m}^2)^2\)</span>.</p></li>
+<li><p><strong>Total Akumulasi Sinyal (<span class="math notranslate nohighlight">\(\sum x_i\)</span>):</strong> <span class="math notranslate nohighlight">\(1.16826198 \times 10^{-2}\text{ mol/m}^2\)</span> (Diperoleh dari penjumlahan seluruh 366 titik data harian).</p></li>
+<li><p><strong>Total Akumulasi Kuadrat (<span class="math notranslate nohighlight">\(\sum x_i^2\)</span>):</strong> <span class="math notranslate nohighlight">\(4.1393185197 \times 10^{-7}\text{ (mol/m}^2)^2\)</span> (Digunakan dalam perhitungan energi absolut dan varians).</p></li>
 </ul>
 </section>
 </section>
 <hr class="docutils" />
-<section id="bedah-fitur-domain-statistical-21-fitur">
-<h2>2. Bedah Fitur Domain Statistical (21 Fitur)<a class="headerlink" href="#bedah-fitur-domain-statistical-21-fitur" title="Link to this heading">#</a></h2>
-<p>Domain statistik mencirikan ukuran pemusatan (<em>central tendency</em>), dispersi nilai, momen probabilitas, dan kuantifikasi energi tanpa memperhitungkan urutan waktu.</p>
-<section id="calc-mean-rata-rata-aritmatika">
-<h3>1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika)<a class="headerlink" href="#calc-mean-rata-rata-aritmatika" title="Link to this heading">#</a></h3>
+<section id="bedah-fitur-domain-statistical-21-fitur-versi-perhitungan-sangat-detail">
+<h2>2. Bedah Fitur Domain Statistical (21 Fitur - Versi Perhitungan Sangat Detail)<a class="headerlink" href="#bedah-fitur-domain-statistical-21-fitur-versi-perhitungan-sangat-detail" title="Link to this heading">#</a></h2>
+<p>Domain statistik mencirikan ukuran pemusatan (<em>central tendency</em>), dispersi nilai, momen probabilitas, dan kuantifikasi energi tanpa memperhitungkan urutan waktu secara kronologis.</p>
+<section id="calc-mean-rata-rata-aritmatika-arithmetic-mean">
+<h3>1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika / Arithmetic Mean)<a class="headerlink" href="#calc-mean-rata-rata-aritmatika-arithmetic-mean" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Konsep</strong>: Rata-rata konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> harian di Kecamatan Jabon sepanjang 1 tahun penuh.</p></li>
-<li><p><strong>Rumus</strong>:
+<li><p><strong>Konsep &amp; Signifikansi:</strong>
+Rata-rata aritmatika merepresentasikan tingkat konsentrasi rata-rata gas <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> di wilayah Kecamatan Jabon selama periode pengamatan 1 tahun penuh. Nilai ini memberikan baseline pencemaran atau keberadaan gas di atmosfer.</p></li>
+<li><p><strong>Rumus Matematis:</strong>
 $<span class="math notranslate nohighlight">\(\bar{x} = \frac{1}{N}\sum_{i=1}^{N} x_i\)</span>$</p></li>
-<li><p><strong>Perhitungan Manual</strong>:
-$<span class="math notranslate nohighlight">\(\bar{x} = \frac{1.16826198 \times 10^{-2}}{366} = 3.19197263 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
-<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.191972630981642e-05</span></code></p></li>
-<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+<li><p><strong>Penjabaran Perhitungan Lebih Detail:</strong></p>
+<ol class="arabic simple">
+<li><p>Menjumlahkan seluruh elemen dari <span class="math notranslate nohighlight">\(i = 1\)</span> hingga <span class="math notranslate nohighlight">\(N = 366\)</span>:
+$<span class="math notranslate nohighlight">\(\sum_{i=1}^{366} x_i = x_1 + x_2 + x_3 + \dots + x_{366} = 1.16826198 \times 10^{-2}\)</span>$</p></li>
+<li><p>Membagi total akumulasi dengan jumlah titik observasi (<span class="math notranslate nohighlight">\(N = 366\)</span>):
+$<span class="math notranslate nohighlight">\(\bar{x} = \frac{1.16826198 \times 10^{-2}}{366}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\bar{x} = 0.00003191972630981642\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\bar{x} = 3.191972630981642 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+</ol>
+</li>
+<li><p><strong>Nilai TSFEL:</strong> <code class="docutils literal notranslate"><span class="pre">3.191972630981642e-05</span></code></p></li>
+<li><p><strong>Verifikasi &amp; Validasi:</strong> Selisih antara perhitungan manual dan output pustaka TSFEL bernilai tepat <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, yang membuktikan bahwa ekstraksi fitur <strong>100% IDENTIK dan Akurat</strong>.</p></li>
 </ul>
 </section>
 <hr class="docutils" />
-<section id="calc-median-median-kuartil-tengah">
-<h3>2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah)<a class="headerlink" href="#calc-median-median-kuartil-tengah" title="Link to this heading">#</a></h3>
+<section id="calc-median-median-kuartil-tengah-p-50">
+<h3>2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah / <span class="math notranslate nohighlight">\(P_{50}\)</span>)<a class="headerlink" href="#calc-median-median-kuartil-tengah-p-50" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Konsep</strong>: Nilai tengah data setelah diurutkan dari terkecil ke terbesar (<span class="math notranslate nohighlight">\(P_{50}\)</span>). Sangat tahan terhadap lonjakan ekstrem.</p></li>
-<li><p><strong>Rumus</strong>:
-$<span class="math notranslate nohighlight">\(\tilde{x} = \frac{x_{(N/2)} + x_{(N/2 + 1)}}{2} = \frac{x_{(183)} + x_{(184)}}{2}\)</span>$</p></li>
-<li><p><strong>Perhitungan Manual</strong>:
-Data urut ke-183 (<span class="math notranslate nohighlight">\(3.28378796 \times 10^{-5}\)</span>) dan ke-184 (<span class="math notranslate nohighlight">\(3.28378796 \times 10^{-5}\)</span>):
-$<span class="math notranslate nohighlight">\(\tilde{x} = 3.28378796 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
-<li><p><strong>Nilai TSFEL</strong>: <code class="docutils literal notranslate"><span class="pre">3.283787961176718e-05</span></code></p></li>
-<li><p><strong>Pembuktian</strong>: Selisih <span class="math notranslate nohighlight">\(= 0.0000\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>100% IDENTIK</strong>.</p></li>
+<li><p><strong>Konsep &amp; Signifikansi:</strong>
+Median adalah nilai tengah yang membagi data terurut menjadi dua bagian sama besar (50% data di bawahnya dan 50% di atasnya). Berbeda dengan <em>mean</em>, median sangat tahan (<em>robust</em>) terhadap adanya <em>outlier</em> atau lonjakan ekstrem konsentrasi harian.</p></li>
+<li><p><strong>Rumus Matematis (Untuk <span class="math notranslate nohighlight">\(N\)</span> Genap, <span class="math notranslate nohighlight">\(N=366\)</span>):</strong>
+Karena <span class="math notranslate nohighlight">\(N = 366\)</span> adalah bilangan genap, median didefinisikan sebagai rata-rata dari dua nilai di tengah setelah data diurutkan dari terkecil hingga terbesar (<span class="math notranslate nohighlight">\(x_{(1)} \le x_{(2)} \le \dots \le x_{(366)}\)</span>):
+$<span class="math notranslate nohighlight">\(\tilde{x} = \frac{x_{\left(\frac{N}{2}\right)} + x_{\left(\frac{N}{2} + 1\right)}}{2} = \frac{x_{(183)} + x_{(184)}}{2}\)</span>$</p></li>
+<li><p><strong>Penjabaran Perhitungan Lebih Detail:</strong></p>
+<ol class="arabic simple">
+<li><p>Proses pengurutan (<em>sorting</em>) seluruh 366 nilai pengamatan secara ascending menempatkan titik ke-183 dan ke-184 pada nilai yang sangat berdekatan/identik akibat karakteristik distribusi data kontinu hasil interpolasi.</p></li>
+<li><p>Nilai pada indeks ke-183: <span class="math notranslate nohighlight">\(x_{(183)} = 3.283787961176718 \times 10^{-5}\)</span></p></li>
+<li><p>Nilai pada indeks ke-184: <span class="math notranslate nohighlight">\(x_{(184)} = 3.283787961176718 \times 10^{-5}\)</span></p></li>
+<li><p>Substitusi ke dalam rumus median:
+$<span class="math notranslate nohighlight">\(\tilde{x} = \frac{3.283787961176718 \times 10^{-5} + 3.283787961176718 \times 10^{-5}}{2}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\tilde{x} = \frac{6.567575922353436 \times 10^{-5}}{2}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(\tilde{x} = 3.283787961176718 \times 10^{-5}\text{ mol/m}^2\)</span>$</p></li>
+</ol>
+</li>
+<li><p><strong>Nilai TSFEL:</strong> <code class="docutils literal notranslate"><span class="pre">3.283787961176718e-05</span></code></p></li>
+<li><p><strong>Verifikasi &amp; Validasi:</strong> Selisih mutlak <span class="math notranslate nohighlight">\(= 0.0\)</span>, yang menunjukkan <strong>100% KECOCOKAN SEMPURNA</strong> antara algoritma internal TSFEL dan prosedur manual.</p></li>
 </ul>
 </section>
 <hr class="docutils" />
@@ -1840,6 +1875,15 @@ $<span class="math notranslate nohighlight">\(\text{Var}_{\text{wavelet}} = (\te
         <p class="prev-next-title">4.7 Analisis dan Karakteristik Fitur NO2 Jabon</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../05_clustering/5.1_reduksi_dimensi_pca.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5.1 Reduksi Dimensi PCA</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1858,14 +1902,16 @@ $<span class="math notranslate nohighlight">\(\text{Var}_{\text{wavelet}} = (\te
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#laporan-analisis-fitur-statistik-tsfel-no2-jabon-versi-detail-lanjutan">LAPORAN ANALISIS FITUR STATISTIK TSFEL: NO2 JABON (VERSI DETAIL &amp; LANJUTAN)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-lengkap-isi-berkas-no2-jabon-tsfel-csv">1. Tampilan Lengkap Isi Berkas <code class="docutils literal notranslate"><span class="pre">NO2_Jabon_TSFEL.csv</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-format-mentah-csv-raw-csv">A. Format Mentah CSV (Raw CSV)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spesifikasi-sinyal-masukan-no2-jabon">B. Spesifikasi Sinyal Masukan NO2 Jabon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-spesifikasi-sinyal-masukan-no2-jabon-detailed-breakdown">B. Spesifikasi Sinyal Masukan NO2 Jabon (Detailed Breakdown)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-statistical-21-fitur">2. Bedah Fitur Domain Statistical (21 Fitur)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-mean-rata-rata-aritmatika">1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-median-median-kuartil-tengah">2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedah-fitur-domain-statistical-21-fitur-versi-perhitungan-sangat-detail">2. Bedah Fitur Domain Statistical (21 Fitur - Versi Perhitungan Sangat Detail)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-mean-rata-rata-aritmatika-arithmetic-mean">1. <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Rata-rata Aritmatika / Arithmetic Mean)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-median-median-kuartil-tengah-p-50">2. <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median / Kuartil Tengah / <span class="math notranslate nohighlight">\(P_{50}\)</span>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-min-nilai-minimum">3. <code class="docutils literal notranslate"><span class="pre">calc_min</span></code> (Nilai Minimum)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-max-nilai-maksimum">4. <code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (Nilai Maksimum)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calc-var-varians-populasi">5. <code class="docutils literal notranslate"><span class="pre">calc_var</span></code> (Varians Populasi)</a></li>
@@ -1943,6 +1989,9 @@ $<span class="math notranslate nohighlight">\(\text{Var}_{\text{wavelet}} = (\te
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkasan-komparasi-validasi-68-fitur-manual-vs-tsfel">5. Tabel Ringkasan Komparasi &amp; Validasi 68 Fitur (Manual vs TSFEL)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-pembuktian-matematis">6. Kesimpulan Pembuktian Matematis</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

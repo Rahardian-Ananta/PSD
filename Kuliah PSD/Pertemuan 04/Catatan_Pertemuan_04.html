@@ -197,6 +197,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur &amp; Perhitungan Manual vs TSFEL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
 </ul>
 
     </div>
@@ -389,16 +397,53 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topik-judul-topik">Topik: [Judul Topik]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topik-ekstraksi-fitur-time-series-tsfel-reduksi-dimensi-pca-dan-k-means-clustering">Topik: Ekstraksi Fitur Time Series (TSFEL), Reduksi Dimensi PCA, dan K-Means Clustering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materi-utama">Materi Utama</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-judul-1">1. [Sub Judul 1]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-judul-2">2. [Sub Judul 2]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-statistik-untuk-fitur-time-series">1. Konsep Dasar Statistik untuk Fitur Time Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fitur-tsfel">2. Domain Fitur TSFEL</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas">Tugas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi">Deskripsi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-pengerjaan">Langkah Pengerjaan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-fitur-rahardian-ananta-no-4">Pembagian Fitur (Rahardian Ananta — No. 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-pengerjaan">Langkah Pengerjaan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-exploratory-data-analysis-eda">FASE 1 — Exploratory Data Analysis (EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-deskripsi-fitur-perhitungan-manual">FASE 2 — Deskripsi Fitur + Perhitungan Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-ekstraksi-fitur-68-fitur-3-polutan">FASE 3 — Ekstraksi Fitur (68 fitur × 3 polutan)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-4-reduksi-dimensi-pca-68-37">FASE 4 — Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-5-k-means-clustering-2-skenario">FASE 5 — K-Means Clustering (2 Skenario)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-6-interpretasi-karakteristik-spasial">FASE 6 — Interpretasi Karakteristik Spasial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-7-implementasi-knime-workflow-lengkap">FASE 7 — Implementasi KNIME (Workflow Lengkap)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-diagram-alur-node">Workflow Diagram (Alur Node)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-membaca-data">Langkah 1: Membaca Data</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-deteksi-missing-value-awal">Langkah 2: Deteksi Missing Value (Awal)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-deteksi-outlier-iqr">Langkah 3: Deteksi Outlier (IQR)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-imputasi-pasca-outlier">Langkah 4: Imputasi Pasca-Outlier</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-filter-kolom">Langkah 5: Filter Kolom</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-normalisasi">Langkah 6: Normalisasi</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-1-clustering-tanpa-reduksi-dimensi-68-fitur">SKENARIO 1: Clustering Tanpa Reduksi Dimensi (68 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s1-1-k-means-clustering">Langkah S1.1: K-Means Clustering</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s1-2-evaluasi-silhouette">Langkah S1.2: Evaluasi Silhouette</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s1-3-visualisasi-hasil">Langkah S1.3: Visualisasi Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-2-clustering-dengan-reduksi-dimensi-pca-68-37-fitur">SKENARIO 2: Clustering Dengan Reduksi Dimensi PCA (68 → 37 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-1-pca">Langkah S2.1: PCA</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-2-cek-variance-explained">Langkah S2.2: Cek Variance Explained</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-3-k-means-pada-37-fitur-pca">Langkah S2.3: K-Means pada 37 Fitur PCA</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-4-evaluasi-visualisasi">Langkah S2.4: Evaluasi + Visualisasi</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#komparasi-hasil-68-fitur-vs-37-fitur-pca">KOMPARASI HASIL: 68 Fitur vs 37 Fitur PCA</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-terakhir-export-hasil">Langkah Terakhir: Export Hasil</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-seluruh-node-knime">Ringkasan Seluruh Node KNIME</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-knime">Tips KNIME</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-penting">Catatan Penting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-tugas-individu-rahardian-ananta">Checklist Tugas Individu (Rahardian Ananta)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">Referensi</a></li>
@@ -415,19 +460,72 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="catatan-perkuliahan-psd-pertemuan-04">
 <h1>Catatan Perkuliahan PSD - Pertemuan 04<a class="headerlink" href="#catatan-perkuliahan-psd-pertemuan-04" title="Link to this heading">#</a></h1>
-<section id="topik-judul-topik">
-<h2>Topik: [Judul Topik]<a class="headerlink" href="#topik-judul-topik" title="Link to this heading">#</a></h2>
+<section id="topik-ekstraksi-fitur-time-series-tsfel-reduksi-dimensi-pca-dan-k-means-clustering">
+<h2>Topik: Ekstraksi Fitur Time Series (TSFEL), Reduksi Dimensi PCA, dan K-Means Clustering<a class="headerlink" href="#topik-ekstraksi-fitur-time-series-tsfel-reduksi-dimensi-pca-dan-k-means-clustering" title="Link to this heading">#</a></h2>
 </section>
 <hr class="docutils" />
 <section id="materi-utama">
 <h2>Materi Utama<a class="headerlink" href="#materi-utama" title="Link to this heading">#</a></h2>
-<section id="sub-judul-1">
-<h3>1. [Sub Judul 1]<a class="headerlink" href="#sub-judul-1" title="Link to this heading">#</a></h3>
-<p>[Isi materi]</p>
+<section id="konsep-dasar-statistik-untuk-fitur-time-series">
+<h3>1. Konsep Dasar Statistik untuk Fitur Time Series<a class="headerlink" href="#konsep-dasar-statistik-untuk-fitur-time-series" title="Link to this heading">#</a></h3>
+<p>Sebelum melakukan ekstraksi fitur, penting untuk memahami konsep dasar statistik yang menjadi fondasi banyak fitur TSFEL:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konsep</p></th>
+<th class="head"><p>Rumus</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Mean (Rata-rata)</strong></p></td>
+<td><p>μ = (1/N) × Σxᵢ</p></td>
+<td><p>Rata-rata aritmatika seluruh nilai</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Median</strong></p></td>
+<td><p>Nilai tengah setelah diurutkan</p></td>
+<td><p>Tahan terhadap outlier</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Standar Deviasi</strong></p></td>
+<td><p>σ = √[(1/N) × Σ(xᵢ - μ)²]</p></td>
+<td><p>Ukuran penyebaran data</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Variansi</strong></p></td>
+<td><p>σ² = (1/N) × Σ(xᵢ - μ)²</p></td>
+<td><p>Kuadrat standar deviasi</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Skewness</strong></p></td>
+<td><p>(1/N) × Σ[(xᵢ - μ)/σ]³</p></td>
+<td><p>Kemencengan distribusi</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Kurtosis</strong></p></td>
+<td><p>(1/N) × Σ[(xᵢ - μ)/σ]⁴ - 3</p></td>
+<td><p>Ketajaman puncak distribusi</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>IQR</strong></p></td>
+<td><p>Q3 - Q1</p></td>
+<td><p>Interquartile range, ukuran dispersi</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RMS</strong></p></td>
+<td><p>√[(1/N) × Σxᵢ²]</p></td>
+<td><p>Root mean square</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Entropy</strong></p></td>
+<td><p>-Σ p(xᵢ) × log₂p(xᵢ)</p></td>
+<td><p>Ukuran ketidakpastian/kemajemukan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="sub-judul-2">
-<h3>2. [Sub Judul 2]<a class="headerlink" href="#sub-judul-2" title="Link to this heading">#</a></h3>
-<p>[Isi materi]</p>
+<section id="domain-fitur-tsfel">
+<h3>2. Domain Fitur TSFEL<a class="headerlink" href="#domain-fitur-tsfel" title="Link to this heading">#</a></h3>
+<p>TSFEL (Time Series Feature Extraction Library) mengelompokkan 68 fitur ke dalam 3 domain:</p>
+<p><strong>A. Domain Statistik</strong> (~28 fitur)
+Contoh: <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_median</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_std</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_var</span></code>, <code class="docutils literal notranslate"><span class="pre">skewness</span></code>, <code class="docutils literal notranslate"><span class="pre">kurtosis</span></code>, <code class="docutils literal notranslate"><span class="pre">rms</span></code>, <code class="docutils literal notranslate"><span class="pre">entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">interq_range</span></code>, <code class="docutils literal notranslate"><span class="pre">median_abs_deviation</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_abs_deviation</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_abs_diff</span></code>, <code class="docutils literal notranslate"><span class="pre">median_abs_diff</span></code>, <code class="docutils literal notranslate"><span class="pre">sum_abs_diff</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_diff</span></code>, <code class="docutils literal notranslate"><span class="pre">median_diff</span></code>, <code class="docutils literal notranslate"><span class="pre">slope</span></code>, <code class="docutils literal notranslate"><span class="pre">pk_pk_distance</span></code>, <code class="docutils literal notranslate"><span class="pre">neighbourhood_peaks</span></code>, <code class="docutils literal notranslate"><span class="pre">positive_turning</span></code>, <code class="docutils literal notranslate"><span class="pre">negative_turning</span></code>, <code class="docutils literal notranslate"><span class="pre">hist_mode</span></code>, <code class="docutils literal notranslate"><span class="pre">auc</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_max</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_min</span></code>, <code class="docutils literal notranslate"><span class="pre">distance</span></code>, <code class="docutils literal notranslate"><span class="pre">zero_cross</span></code></p>
+<p><strong>B. Domain Temporal</strong> (~22 fitur)
+Contoh: <code class="docutils literal notranslate"><span class="pre">autocorr</span></code>, <code class="docutils literal notranslate"><span class="pre">dfa</span></code>, <code class="docutils literal notranslate"><span class="pre">hurst_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">lecmtel_ziv</span></code>, <code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code>, <code class="docutils literal notranslate"><span class="pre">max_frequency</span></code>, <code class="docutils literal notranslate"><span class="pre">median_frequency</span></code>, <code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code>, <code class="docutils literal notranslate"><span class="pre">average_power</span></code>, <code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code>, <code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code>, <code class="docutils literal notranslate"><span class="pre">calc_centroid</span></code></p>
+<p><strong>C. Domain Fraktal/Wavelet</strong> (~18 fitur)
+Contoh: <code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code>, <code class="docutils literal notranslate"><span class="pre">petrosian_fractal_dimension</span></code>, <code class="docutils literal notranslate"><span class="pre">maximum_fractal_length</span></code>, <code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code>, <code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code>, <code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code>, <code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">mfcc</span></code>, <code class="docutils literal notranslate"><span class="pre">lpcc</span></code>, <code class="docutils literal notranslate"><span class="pre">ecdf</span></code>, <code class="docutils literal notranslate"><span class="pre">ecdf_percentile</span></code>, <code class="docutils literal notranslate"><span class="pre">ecdf_percentile_count</span></code>, <code class="docutils literal notranslate"><span class="pre">ecdf_slope</span></code>, <code class="docutils literal notranslate"><span class="pre">mse</span></code>, <code class="docutils literal notranslate"><span class="pre">dfa</span></code>, <code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code></p>
 </section>
 </section>
 <hr class="docutils" />
@@ -435,19 +533,903 @@
 <h2>Tugas<a class="headerlink" href="#tugas" title="Link to this heading">#</a></h2>
 <section id="deskripsi">
 <h3>Deskripsi<a class="headerlink" href="#deskripsi" title="Link to this heading">#</a></h3>
-<p>[Deskripsi tugas]</p>
+<p>Melakukan analisis lengkap terhadap data polutan atmosfer (CO, NO₂, SO₂) dari Kecamatan Jabon, mulai dari ekstraksi fitur time series menggunakan TSFEL, reduksi dimensi PCA, hingga clustering dengan K-Means. Seluruh alur harus dijalankan di <strong>dua platform</strong>: Python (Jupyter Notebook) dan KNIME Analytics Platform.</p>
 </section>
+<section id="pembagian-fitur-rahardian-ananta-no-4">
+<h3>Pembagian Fitur (Rahardian Ananta — No. 4)<a class="headerlink" href="#pembagian-fitur-rahardian-ananta-no-4" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Fungsi TSFEL</p></th>
+<th class="head"><p>Domain</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Fitur 1</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">calc_mean(signal)</span></code></p></td>
+<td><p>Statistik</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Fitur 2</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">calc_median(signal)</span></code></p></td>
+<td><p>Statistik</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p><strong>Catatan:</strong> Setiap mahasiswa mengerjakan 2 fitur. Total 68 fitur × 3 polutan = <strong>204 kolom</strong> hasil ekstraksi gabungan.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
 <section id="langkah-pengerjaan">
 <h3>Langkah Pengerjaan<a class="headerlink" href="#langkah-pengerjaan" title="Link to this heading">#</a></h3>
+<section id="fase-1-exploratory-data-analysis-eda">
+<h4>FASE 1 — Exploratory Data Analysis (EDA)<a class="headerlink" href="#fase-1-exploratory-data-analysis-eda" title="Link to this heading">#</a></h4>
+<p><strong>Tujuan:</strong> Memetakan tren data polutan dan mengidentifikasi kemiripan pola antar polutan.</p>
 <ol class="arabic simple">
-<li><p>[Langkah 1]</p></li>
-<li><p>[Langkah 2]</p></li>
+<li><p>Baca data mentah 3 polutan: <code class="docutils literal notranslate"><span class="pre">jabon_CO.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">jabon_NO2.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">jabon_SO2.csv</span></code></p></li>
+<li><p>Visualisasikan time series harian masing-masing polutan</p></li>
+<li><p>Tambahkan rolling mean 30 hari untuk melihat tren jangka panjang</p></li>
+<li><p>Analisis tren: kapan puncak, kapan rendah, ada pola musiman atau tidak</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Baca data</span>
+<span class="k">for</span> <span class="n">polutan</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">]:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/downloads/jabon_pollutants_data/jabon_</span><span class="si">{</span><span class="n">polutan</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+    <span class="c1"># Plot time series...</span>
+</pre></div>
+</div>
+</section>
+<section id="fase-2-deskripsi-fitur-perhitungan-manual">
+<h4>FASE 2 — Deskripsi Fitur + Perhitungan Manual<a class="headerlink" href="#fase-2-deskripsi-fitur-perhitungan-manual" title="Link to this heading">#</a></h4>
+<p><strong>Tujuan:</strong> Mendeskripsikan teori di balik setiap fitur dan membuktikan perhitungan manual vs komputasi TSFEL.</p>
+<p><strong>Untuk <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> dan <code class="docutils literal notranslate"><span class="pre">calc_median</span></code>:</strong></p>
+<p><strong>A. Deskripsi Teori</strong></p>
+<p><strong>calc_mean (Rata-rata Aritmatika):</strong></p>
+<ul class="simple">
+<li><p><strong>Definisi:</strong> Jumlah seluruh nilai sinyal dibagi dengan jumlah titik data</p></li>
+<li><p><strong>Rumus:</strong> <code class="docutils literal notranslate"><span class="pre">μ</span> <span class="pre">=</span> <span class="pre">(1/N)</span> <span class="pre">×</span> <span class="pre">Σ(i=1</span> <span class="pre">to</span> <span class="pre">N)</span> <span class="pre">xᵢ</span></code></p></li>
+<li><p><strong>Interpretasi:</strong> Menunjukkan tingkat konsentrasi rata-rata polutan selama periode pengamatan</p></li>
+<li><p><strong>Karakteristik:</strong> Sensitif terhadap outlier</p></li>
+</ul>
+<p><strong>calc_median (Nilai Tengah):</strong></p>
+<ul class="simple">
+<li><p><strong>Definisi:</strong> Nilai tengah saat seluruh data diurutkan dari kecil ke besar</p></li>
+<li><p><strong>Rumus (N ganjil):</strong> <code class="docutils literal notranslate"><span class="pre">median</span> <span class="pre">=</span> <span class="pre">x_{(N+1)/2}</span></code></p></li>
+<li><p><strong>Rumus (N genap):</strong> <code class="docutils literal notranslate"><span class="pre">median</span> <span class="pre">=</span> <span class="pre">(x_{N/2}</span> <span class="pre">+</span> <span class="pre">x_{N/2+1})</span> <span class="pre">/</span> <span class="pre">2</span></code></p></li>
+<li><p><strong>Interpretasi:</strong> Pusat distribusi polutan, lebih robust terhadap outlier dibanding mean</p></li>
+<li><p><strong>Karakteristik:</strong> Tidak sensitif terhadap outlier ekstrem</p></li>
+</ul>
+<p><strong>B. Contoh Perhitungan Manual</strong></p>
+<p>Ambil 10 sampel pertama dari sinyal NO₂ yang sudah bersih:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Data</span> <span class="n">sampel</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0000115</span><span class="p">,</span> <span class="mf">0.0000199</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="mf">0.0000163</span><span class="p">,</span> <span class="mf">0.0000118</span><span class="p">,</span>
+              <span class="mf">0.0000150</span><span class="p">,</span> <span class="mf">0.0000095</span><span class="p">,</span> <span class="mf">0.0000130</span><span class="p">,</span> <span class="mf">0.0000110</span><span class="p">,</span> <span class="mf">0.0000140</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p><strong>Perhitungan Manual <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code>:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">μ</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0000115</span> <span class="o">+</span> <span class="mf">0.0000199</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.0000001</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.0000163</span> <span class="o">+</span> <span class="mf">0.0000118</span> <span class="o">+</span>
+     <span class="mf">0.0000150</span> <span class="o">+</span> <span class="mf">0.0000095</span> <span class="o">+</span> <span class="mf">0.0000130</span> <span class="o">+</span> <span class="mf">0.0000110</span> <span class="o">+</span> <span class="mf">0.0000140</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="mf">0.0001219</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="mf">0.00001219</span>
+</pre></div>
+</div>
+<p><strong>Perhitungan Manual <code class="docutils literal notranslate"><span class="pre">calc_median</span></code>:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Urutkan data: [-0.0000001, 0.0000095, 0.0000110, 0.0000115, 0.0000118,
+                0.0000130, 0.0000140, 0.0000150, 0.0000163, 0.0000199]
+N = 10 (genap) → ambil rata-rata posisi ke-5 dan ke-6
+median = (0.0000118 + 0.0000130) / 2 = 0.0000124
+</pre></div>
+</div>
+<p><strong>C. Verifikasi dengan TSFEL</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+
+<span class="c1"># Sinyal sampel</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0000115</span><span class="p">,</span> <span class="mf">0.0000199</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="mf">0.0000163</span><span class="p">,</span> <span class="mf">0.0000118</span><span class="p">,</span>
+                   <span class="mf">0.0000150</span><span class="p">,</span> <span class="mf">0.0000095</span><span class="p">,</span> <span class="mf">0.0000130</span><span class="p">,</span> <span class="mf">0.0000110</span><span class="p">,</span> <span class="mf">0.0000140</span><span class="p">])</span>
+
+<span class="c1"># Ekstraksi pakai TSFEL</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">get_features_single_channel</span><span class="p">(</span><span class="n">domains</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;statistical&#39;</span><span class="p">])</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">time_series_features_extractor</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Bandingkan</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Manual mean:   0.00001219&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TSFEL mean:    </span><span class="si">{</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;calc_mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Manual median: 0.0000124&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TSFEL median:  </span><span class="si">{</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;calc_median&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># → Hasil harus SAMA PERSIS</span>
+</pre></div>
+</div>
+</section>
+<section id="fase-3-ekstraksi-fitur-68-fitur-3-polutan">
+<h4>FASE 3 — Ekstraksi Fitur (68 fitur × 3 polutan)<a class="headerlink" href="#fase-3-ekstraksi-fitur-68-fitur-3-polutan" title="Link to this heading">#</a></h4>
+<p><strong>Tujuan:</strong> Mengekstrak 68 fitur TSFEL dari masing-masing polutan (CO, NO₂, SO2) untuk Kecamatan Jabon.</p>
+<ol class="arabic simple">
+<li><p>Bersihkan data: deteksi outlier (IQR), imputasi missing value (interpolasi waktu)</p></li>
+<li><p>Maks missing value: <strong>15%</strong></p></li>
+<li><p>Ekstrak 68 fitur per polutan menggunakan TSFEL</p></li>
+<li><p>Output: 3 file CSV (satu per polutan), masing-masing berisi 68 kolom fitur</p></li>
+<li><p>Gabungkan jadi satu tabel 204 kolom (68 × 3 polutan)</p></li>
+<li><p>Tambah kolom <code class="docutils literal notranslate"><span class="pre">nama</span></code> dan <code class="docutils literal notranslate"><span class="pre">daerah</span></code></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
+
+<span class="c1"># Daftar 68 fitur</span>
+<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
+<span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
+<span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
+<span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
+<span class="s2">maximum_fractal_length mean_abs_deviation mean_abs_diff mean_diff median_abs_deviation</span>
+<span class="s2">median_abs_diff median_diff median_frequency mfcc mse negative_turning neighbourhood_peaks</span>
+<span class="s2">petrosian_fractal_dimension pk_pk_distance positive_turning power_bandwidth rms skewness slope</span>
+<span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
+<span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
+<span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
+<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;fs&quot;</span> <span class="ow">in</span> <span class="n">params</span> <span class="k">else</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="c1"># Convert ke scalar jika perlu</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;values&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Ekstraksi per polutan</span>
+<span class="k">for</span> <span class="n">polutan</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">]:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/downloads/jabon_clean_data/jabon_</span><span class="si">{</span><span class="n">polutan</span><span class="si">}</span><span class="s1">_clean.csv&#39;</span><span class="p">)</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">polutan</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
+    <span class="n">features_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nama&#39;</span><span class="p">,</span> <span class="s1">&#39;Rahardian Ananta&#39;</span><span class="p">)</span>
+    <span class="n">features_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;daerah&#39;</span><span class="p">,</span> <span class="s1">&#39;Kecamatan Jabon&#39;</span><span class="p">)</span>
+    <span class="n">features_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">polutan</span><span class="si">}</span><span class="s1">_Jabon_TSFEL.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fase-4-reduksi-dimensi-pca-68-37">
+<h4>FASE 4 — Reduksi Dimensi PCA (68 → 37)<a class="headerlink" href="#fase-4-reduksi-dimensi-pca-68-37" title="Link to this heading">#</a></h4>
+<p><strong>Tujuan:</strong> Menyusutkan 68 fitur menjadi 37 komponen utama yang paling representatif.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># Gabungkan fitur 3 polutan</span>
+<span class="n">combined_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;CO_Jabon_TSFEL.csv&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NO2_Jabon_TSFEL.csv&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SO2_Jabon_TSFEL.csv&#39;</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Standarisasi</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">combined_features</span><span class="p">)</span>
+
+<span class="c1"># PCA 68 → 37</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance explained: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fase-5-k-means-clustering-2-skenario">
+<h4>FASE 5 — K-Means Clustering (2 Skenario)<a class="headerlink" href="#fase-5-k-means-clustering-2-skenario" title="Link to this heading">#</a></h4>
+<p><strong>Tujuan:</strong> Menentukan jumlah cluster optimal dan membandingkan hasil tanpa vs dengan reduksi dimensi.</p>
+<p><strong>Skenario 1: Tanpa Reduksi Dimensi (68 fitur)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Elbow Method</span>
+<span class="n">inertias</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">silhouettes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">K_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_range</span><span class="p">:</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+    <span class="n">inertias</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">km</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+    <span class="n">silhouettes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span>
+
+<span class="c1"># Plot Elbow + Silhouette</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_range</span><span class="p">,</span> <span class="n">inertias</span><span class="p">,</span> <span class="s1">&#39;bo-&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (K)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Inertia&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Elbow Method — 68 Fitur&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_range</span><span class="p">,</span> <span class="n">silhouettes</span><span class="p">,</span> <span class="s1">&#39;ro-&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (K)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Silhouette Score — 68 Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Tentukan K terbaik (silhouette tertinggi)</span>
+<span class="n">best_k</span> <span class="o">=</span> <span class="n">K_range</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">silhouettes</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K terbaik: </span><span class="si">{</span><span class="n">best_k</span><span class="si">}</span><span class="s2"> (silhouette=</span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">silhouettes</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Skenario 2: Dengan Reduksi Dimensi (37 fitur PCA)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ulangi langkah yang sama dengan X_pca (37 fitur)</span>
+<span class="n">inertias_pca</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">silhouettes_pca</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_range</span><span class="p">:</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_pca</span><span class="p">)</span>
+    <span class="n">inertias_pca</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">km</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+    <span class="n">silhouettes_pca</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span>
+
+<span class="c1"># Bandingkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;68 fitur — K terbaik: </span><span class="si">{</span><span class="n">K_range</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">silhouettes</span><span class="p">)]</span><span class="si">}</span><span class="s2">, silhouette: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">silhouettes</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;37 fitur — K terbaik: </span><span class="si">{</span><span class="n">K_range</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">silhouettes_pca</span><span class="p">)]</span><span class="si">}</span><span class="s2">, silhouette: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">silhouettes_pca</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Evaluasi &amp; Komparasi:</strong></p>
+<ul class="simple">
+<li><p>Bandingkan Silhouette Score kedua skenario</p></li>
+<li><p>Bandingkan interpretasi cluster</p></li>
+<li><p>Tentukan mana yang lebih representatif</p></li>
+</ul>
+</section>
+<section id="fase-6-interpretasi-karakteristik-spasial">
+<h4>FASE 6 — Interpretasi Karakteristik Spasial<a class="headerlink" href="#fase-6-interpretasi-karakteristik-spasial" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Analisis hasil cluster: Kecamatan dalam cluster sama → karakteristik polutan mirip</p></li>
+<li><p>Visualisasikan hasil cluster pada peta (Folium/GeoPandas)</p></li>
+<li><p>Catatan pengembangan: ke depan bisa digabung 3 polutan sekaligus (68 × 3 = 204 fitur gabungan)</p></li>
+</ul>
+</section>
+<section id="fase-7-implementasi-knime-workflow-lengkap">
+<h4>FASE 7 — Implementasi KNIME (Workflow Lengkap)<a class="headerlink" href="#fase-7-implementasi-knime-workflow-lengkap" title="Link to this heading">#</a></h4>
+<p>Seluruh alur analisis harus dijalankan ulang di <strong>KNIME Analytics Platform</strong> menggunakan node-node visual. Berikut workflow lengkap dari awal hingga akhir.</p>
+<hr class="docutils" />
+<section id="workflow-diagram-alur-node">
+<h5>Workflow Diagram (Alur Node)<a class="headerlink" href="#workflow-diagram-alur-node" title="Link to this heading">#</a></h5>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[CSV Reader]
+     │
+     ▼
+[Missing Value]  ──→  [Numeric Outliers]
+     │                       │
+     │                       ▼
+     │               [Missing Value 2]  (imputasi pasca-outlier)
+     │                       │
+     ▼                       ▼
+[Column Filter]  ←──────────┘
+     │
+     ├─── SKENARIO 1 (68 Fitur) ──────────────────────────────┐
+     │                                                        │
+     │   [Normalize] ──→ [K-Means] ──→ [Silhouette]          │
+     │                      │                                  │
+     │                      ▼                                  │
+     │               [Scatter Plot]                            │
+     │                                                        │
+     ├─── SKENARIO 2 (37 Fitur PCA) ─────────────────────────┐│
+     │                                                       ││
+     │   [Normalize] ──→ [PCA] ──→ [K-Means] ──→ [Silhouette]│
+     │                        │              │                  │
+     │                        ▼              ▼                  │
+     │               [PCA Expl. Variance] [Scatter Plot]       │
+     │                                                        │
+     └─────────────── KOMPARASI HASIL ────────────────────────┘│
+                                                               │
+     [Table Creator] (ringkasan metrik) ←──────────────────────┘
+              │
+              ▼
+     [Excel Writer]  /  [CSV Writer]
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="langkah-1-membaca-data">
+<h5>Langkah 1: Membaca Data<a class="headerlink" href="#langkah-1-membaca-data" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">Reader</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>File</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jabon_CO_clean.csv</span></code> (ulangi untuk NO₂, SO₂)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Separator</p></td>
+<td><p>Comma (,)</p></td>
+</tr>
+<tr class="row-even"><td><p>Header row</p></td>
+<td><p>Centang (First row = column names)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Column types</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">date</span></code> → String, kolom polutan → Double</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong> Node ini membaca file CSV dan menampilkannya sebagai tabel di KNIME. Setelah connect, klik <strong>OK</strong>. Ulangi untuk ketiga polutan atau gunakan <strong>Table Row to Variable</strong> + loop.</p>
+</section>
+<hr class="docutils" />
+<section id="langkah-2-deteksi-missing-value-awal">
+<h5>Langkah 2: Deteksi Missing Value (Awal)<a class="headerlink" href="#langkah-2-deteksi-missing-value-awal" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tab Missing Value Treatment</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Kolom polutan (CO/NO2/SO2)</p></td>
+<td><p><strong>Remove rows</strong> atau <strong>Mean/Median</strong> (tergantung % missing)</p></td>
+</tr>
+<tr class="row-even"><td><p>Kolom lainnya</p></td>
+<td><p>Remove (kolom yang tidak relevan)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag node <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span></code> dari KNIME Node Repository</p></li>
+<li><p>Connect output <code class="docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">Reader</span></code> → input <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span></code></p></li>
+<li><p>Double-click node → tab ** treat missing values in selected columns**</p></li>
+<li><p>Jika missing &lt; 15% → pilih <strong>Mean</strong> atau <strong>Median</strong></p></li>
+<li><p>Jika missing &gt; 15% → pertimbangkan <strong>Remove rows</strong> (tapi harus tetap &lt; 15%)</p></li>
+<li><p>Klik <strong>OK</strong>, lalu <strong>Execute</strong></p></li>
 </ol>
 </section>
+<hr class="docutils" />
+<section id="langkah-3-deteksi-outlier-iqr">
+<h5>Langkah 3: Deteksi Outlier (IQR)<a class="headerlink" href="#langkah-3-deteksi-outlier-iqr" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Numeric</span> <span class="pre">Outliers</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Method</p></td>
+<td><p><strong>IQR (Interquartile Range)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Factor</p></td>
+<td><p><strong>1.5</strong> (standar: Q1 - 1.5×IQR s.d. Q3 + 1.5×IQR)</p></td>
+</tr>
+<tr class="row-even"><td><p>Column selection</p></td>
+<td><p>Kolom polutan saja (CO / NO2 / SO2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output column</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">outlier</span></code> (kolom baru: <code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">Numeric</span> <span class="pre">Outliers</span></code> dari Repository</p></li>
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span></code> output → <code class="docutils literal notranslate"><span class="pre">Numeric</span> <span class="pre">Outliers</span></code> input</p></li>
+<li><p>Double-click → pilih kolom polutan sebagai <strong>Selected columns</strong></p></li>
+<li><p>Method: pilih <strong>IQR</strong>, Factor: <strong>1.5</strong></p></li>
+<li><p>Centang <strong>Append column with outlier info</strong></p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong></p></li>
+<li><p>Output: tabel asli + kolom tambahan <code class="docutils literal notranslate"><span class="pre">Outlier</span></code> (TRUE jika outlier)</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="langkah-4-imputasi-pasca-outlier">
+<h5>Langkah 4: Imputasi Pasca-Outlier<a class="headerlink" href="#langkah-4-imputasi-pasca-outlier" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span></code> (kedua)</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Treatment</p></td>
+<td><p><strong>Linear Interpolation</strong> (atau Mean)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kolom polutan</p></td>
+<td><p><strong>Linear Interpolation</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span></code> baru</p></li>
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">Numeric</span> <span class="pre">Outliers</span></code> → <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span> <span class="pre">2</span></code></p></li>
+<li><p>Double-click → pada kolom polutan, pilih <strong>Linear interpolation</strong></p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong></p></li>
+<li><p>Sekarang semua outlier sudah diganti dengan nilai interpolasi → data bersih</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="langkah-5-filter-kolom">
+<h5>Langkah 5: Filter Kolom<a class="headerlink" href="#langkah-5-filter-kolom" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Column</span> <span class="pre">Filter</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tab Include</p></td>
+<td><p>Kolom polutan (CO / NO2 / SO2), kolom date</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tab Exclude</p></td>
+<td><p>Kolom <code class="docutils literal notranslate"><span class="pre">outlier</span></code>, <code class="docutils literal notranslate"><span class="pre">feature_index</span></code>, kolom tidak relevan lainnya</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">Column</span> <span class="pre">Filter</span></code></p></li>
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">Value</span> <span class="pre">2</span></code> → <code class="docutils literal notranslate"><span class="pre">Column</span> <span class="pre">Filter</span></code></p></li>
+<li><p>Double-click → pindahkan kolom yang <strong>diperlukan</strong> ke sisi <strong>Include</strong></p></li>
+<li><p>Pindahkan kolom <code class="docutils literal notranslate"><span class="pre">outlier</span></code> dan lainnya ke <strong>Exclude</strong></p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="langkah-6-normalisasi">
+<h5>Langkah 6: Normalisasi<a class="headerlink" href="#langkah-6-normalisasi" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Normalize</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Normalization method</p></td>
+<td><p><strong>Z-Score (Standardization)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Apply to</p></td>
+<td><p>Semua kolom numerik (kolom polutan)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p><strong>Penting:</strong> Normalisasi wajib sebelum PCA dan K-Means agar fitur dengan skala besar tidak mendominasi.</p>
+</div></blockquote>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">Normalize</span></code></p></li>
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">Column</span> <span class="pre">Filter</span></code> → <code class="docutils literal notranslate"><span class="pre">Normalize</span></code></p></li>
+<li><p>Double-click → method: <strong>Z-Score</strong></p></li>
+<li><p>Apply to: <strong>All numerical columns</strong></p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="skenario-1-clustering-tanpa-reduksi-dimensi-68-fitur">
+<h5>SKENARIO 1: Clustering Tanpa Reduksi Dimensi (68 Fitur)<a class="headerlink" href="#skenario-1-clustering-tanpa-reduksi-dimensi-68-fitur" title="Link to this heading">#</a></h5>
+<section id="langkah-s1-1-k-means-clustering">
+<h6>Langkah S1.1: K-Means Clustering<a class="headerlink" href="#langkah-s1-1-k-means-clustering" title="Link to this heading">#</a></h6>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">K-Means</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Number of clusters</p></td>
+<td><p><strong>3</strong> (mulai dari 3, lalu ubah ke 2, 4, 5 dst. untuk Elbow)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random seed</p></td>
+<td><p><strong>42</strong> (agar hasil reproducible)</p></td>
+</tr>
+<tr class="row-even"><td><p>Max iterations</p></td>
+<td><p><strong>100</strong> (default)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Distance function</p></td>
+<td><p><strong>Euclidean</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Initialize</p></td>
+<td><p><strong>K-Means++</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">K-Means</span></code></p></li>
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">Normalize</span></code> → <code class="docutils literal notranslate"><span class="pre">K-Means</span></code></p></li>
+<li><p>Double-click → Number of clusters: <strong>3</strong> (awal)</p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong></p></li>
+<li><p>Output: tabel dengan kolom tambahan <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> (label cluster: 0, 1, 2, …)</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Elbow Method:</strong> Untuk mencari K optimal, jalankan node K-Means <strong>berulang kali</strong> dengan K = 2, 3, 4, 5, …, 10. Catat inertia (within-cluster sum of squares) di masing-masing.</p>
+</div></blockquote>
+</section>
+<section id="langkah-s1-2-evaluasi-silhouette">
+<h6>Langkah S1.2: Evaluasi Silhouette<a class="headerlink" href="#langkah-s1-2-evaluasi-silhouette" title="Link to this heading">#</a></h6>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Silhouette</span> <span class="pre">Coefficient</span></code> (atau gunakan Python Script untuk hitung manual)</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Distance function</p></td>
+<td><p><strong>Euclidean</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Column</p></td>
+<td><p>Kolom hasil cluster label</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jika pakai Python Script node di KNIME:</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># df adalah tabel masukan KNIME</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Silhouette Score: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="langkah-s1-3-visualisasi-hasil">
+<h6>Langkah S1.3: Visualisasi Hasil<a class="headerlink" href="#langkah-s1-3-visualisasi-hasil" title="Link to this heading">#</a></h6>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Scatter</span> <span class="pre">Plot</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>X-Axis</p></td>
+<td><p>Kolom pertama (atau PCA komponen 1 jika pakai)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Y-Axis</p></td>
+<td><p>Kolom kedua (atau PCA komponen 2)</p></td>
+</tr>
+<tr class="row-even"><td><p>Color</p></td>
+<td><p>Kolom <code class="docutils literal notranslate"><span class="pre">Cluster</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">K-Means</span></code> → <code class="docutils literal notranslate"><span class="pre">Scatter</span> <span class="pre">Plot</span></code></p></li>
+<li><p>Double-click → pilih X, Y, dan Color column</p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong> → muncul plot interaktif</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="skenario-2-clustering-dengan-reduksi-dimensi-pca-68-37-fitur">
+<h5>SKENARIO 2: Clustering Dengan Reduksi Dimensi PCA (68 → 37 Fitur)<a class="headerlink" href="#skenario-2-clustering-dengan-reduksi-dimensi-pca-68-37-fitur" title="Link to this heading">#</a></h5>
+<section id="langkah-s2-1-pca">
+<h6>Langkah S2.1: PCA<a class="headerlink" href="#langkah-s2-1-pca" title="Link to this heading">#</a></h6>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">PCA</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Number of components</p></td>
+<td><p><strong>37</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Scaling</p></td>
+<td><p><strong>Z-Score</strong> (atau gunakan hasil Normalize sebelumnya)</p></td>
+</tr>
+<tr class="row-even"><td><p>Method</p></td>
+<td><p><strong>SVD</strong> (default)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">PCA</span></code> dari Repository</p></li>
+<li><p>Connect <code class="docutils literal notranslate"><span class="pre">Normalize</span></code> (output dari Langkah 6) → <code class="docutils literal notranslate"><span class="pre">PCA</span></code></p></li>
+<li><p>Double-click → Number of components: <strong>37</strong></p></li>
+<li><p><strong>OK</strong> → <strong>Execute</strong></p></li>
+<li><p>Output: tabel baru dengan 37 kolom (PC1 s.d. PC37) + kolom <code class="docutils literal notranslate"><span class="pre">Explained</span> <span class="pre">Variance</span></code></p></li>
+</ol>
+</section>
+<section id="langkah-s2-2-cek-variance-explained">
+<h6>Langkah S2.2: Cek Variance Explained<a class="headerlink" href="#langkah-s2-2-cek-variance-explained" title="Link to this heading">#</a></h6>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">PCA</span></code> (sudah termasuk output variance)</p>
+<p>Atau gunakan <strong>Python Script</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Di KNIME Python Script node</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">total_var</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total variance explained by 37 PCs: </span><span class="si">{</span><span class="n">total_var</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan variance per komponen</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">var</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Target:</strong> 37 komponen harus menjelaskan ≥ 85-95% total variance. Jika kurang, tambah jumlah komponen.</p>
+</div></blockquote>
+</section>
+<section id="langkah-s2-3-k-means-pada-37-fitur-pca">
+<h6>Langkah S2.3: K-Means pada 37 Fitur PCA<a class="headerlink" href="#langkah-s2-3-k-means-pada-37-fitur-pca" title="Link to this heading">#</a></h6>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">K-Means</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Number of clusters</p></td>
+<td><p><strong>3</strong> (awal, lalu variasikan untuk Elbow)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random seed</p></td>
+<td><p><strong>42</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Max iterations</p></td>
+<td><p><strong>100</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Distance function</p></td>
+<td><p><strong>Euclidean</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Initialize</p></td>
+<td><p><strong>K-Means++</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong> Sama seperti Skenario 1, tapi inputnya dari output <code class="docutils literal notranslate"><span class="pre">PCA</span></code> (37 kolom).</p>
+</section>
+<section id="langkah-s2-4-evaluasi-visualisasi">
+<h6>Langkah S2.4: Evaluasi + Visualisasi<a class="headerlink" href="#langkah-s2-4-evaluasi-visualisasi" title="Link to this heading">#</a></h6>
+<p>Sama seperti Skenario 1: <code class="docutils literal notranslate"><span class="pre">Silhouette</span> <span class="pre">Coefficient</span></code> + <code class="docutils literal notranslate"><span class="pre">Scatter</span> <span class="pre">Plot</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="komparasi-hasil-68-fitur-vs-37-fitur-pca">
+<h5>KOMPARASI HASIL: 68 Fitur vs 37 Fitur PCA<a class="headerlink" href="#komparasi-hasil-68-fitur-vs-37-fitur-pca" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">Table</span> <span class="pre">Creator</span></code> (untuk merangkum hasil)</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Kolom 1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Skenario</span></code> (String)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kolom 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Jumlah_Fitur</span></code> (Integer)</p></td>
+</tr>
+<tr class="row-even"><td><p>Kolom 3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">K_Terbaik</span></code> (Integer)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kolom 4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Silhouette_Score</span></code> (Double)</p></td>
+</tr>
+<tr class="row-even"><td><p>Kolom 5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Variance_Explained</span></code> (String)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Data yang dimasukkan:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Skenario</p></th>
+<th class="head"><p>Jumlah Fitur</p></th>
+<th class="head"><p>K Terbaik</p></th>
+<th class="head"><p>Silhouette Score</p></th>
+<th class="head"><p>Variance Explained</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tanpa PCA</p></td>
+<td><p>68</p></td>
+<td><p>(dari Elbow)</p></td>
+<td><p>(tertinggi)</p></td>
+<td><p>100%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dengan PCA</p></td>
+<td><p>37</p></td>
+<td><p>(dari Elbow)</p></td>
+<td><p>(tertinggi)</p></td>
+<td><p>(dari output PCA)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Cara kerja:</strong></p>
+<ol class="arabic simple">
+<li><p>Drag <code class="docutils literal notranslate"><span class="pre">Table</span> <span class="pre">Creator</span></code></p></li>
+<li><p>Masukkan data komparasi di atas</p></li>
+<li><p>Connect ke <code class="docutils literal notranslate"><span class="pre">Excel</span> <span class="pre">Writer</span></code> atau <code class="docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">Writer</span></code> untuk export</p></li>
+<li><p><strong>Execute</strong></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="langkah-terakhir-export-hasil">
+<h5>Langkah Terakhir: Export Hasil<a class="headerlink" href="#langkah-terakhir-export-hasil" title="Link to this heading">#</a></h5>
+<p><strong>Node:</strong> <code class="docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">Writer</span></code> atau <code class="docutils literal notranslate"><span class="pre">Excel</span> <span class="pre">Writer</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Konfigurasi</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>File path</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hasil_klastering_jabon.csv</span></code> (atau <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Write header</p></td>
+<td><p>Centang</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Output:</strong> File hasil clustering siap diupload ke web statis.</p>
+</section>
+<hr class="docutils" />
+<section id="ringkasan-seluruh-node-knime">
+<h5>Ringkasan Seluruh Node KNIME<a class="headerlink" href="#ringkasan-seluruh-node-knime" title="Link to this heading">#</a></h5>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No.</p></th>
+<th class="head"><p>Node</p></th>
+<th class="head"><p>Fungsi</p></th>
+<th class="head"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>CSV Reader</p></td>
+<td><p>Membaca data mentah</p></td>
+<td><p>Tabel data harian</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Missing Value</p></td>
+<td><p>Cek &amp; handle missing value awal</p></td>
+<td><p>Tabel tanpa NaN</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Numeric Outliers</p></td>
+<td><p>Deteksi outlier (IQR 1.5)</p></td>
+<td><p>Tabel + kolom outlier</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Missing Value (2)</p></td>
+<td><p>Imputasi pasca-outlier (interpolasi)</p></td>
+<td><p>Tabel bersih</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Column Filter</p></td>
+<td><p>Pilih kolom yang diperlukan</p></td>
+<td><p>Tabel ringkas</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Normalize</p></td>
+<td><p>Standarisasi Z-Score</p></td>
+<td><p>Tabel ternormalisasi</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>K-Means (Skenario 1)</p></td>
+<td><p>Clustering 68 fitur</p></td>
+<td><p>Tabel + label cluster</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>PCA</p></td>
+<td><p>Reduksi dimensi 68→37</p></td>
+<td><p>Tabel 37 PC</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>K-Means (Skenario 2)</p></td>
+<td><p>Clustering 37 fitur PCA</p></td>
+<td><p>Tabel + label cluster</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Silhouette Coefficient</p></td>
+<td><p>Evaluasi kualitas cluster</p></td>
+<td><p>Skor silhouette</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Scatter Plot</p></td>
+<td><p>Visualisasi cluster</p></td>
+<td><p>Plot interaktif</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Table Creator</p></td>
+<td><p>Ringkasan komparasi</p></td>
+<td><p>Tabel metrik</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>CSV/Excel Writer</p></td>
+<td><p>Export hasil akhir</p></td>
+<td><p>File CSV/XLSX</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="tips-knime">
+<h5>Tips KNIME<a class="headerlink" href="#tips-knime" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p><strong>Variasi K:</strong> Untuk Elbow Method, duplikat sub-workflow K-Means dan ubah <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">clusters</span></code> di masing-masing (K=2 s.d. K=10). Jalankan semua, lalu kumpulkan inertia-nya.</p></li>
+<li><p><strong>Loop (opsional):</strong> Bisa pakai <code class="docutils literal notranslate"><span class="pre">Loop</span></code> node untuk otomasi variasi K, tapi untuk tugas ini cukup manual.</p></li>
+<li><p><strong>Python Integration:</strong> Jika ada node yang tidak tersedia (misal TSFEL), gunakan <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Script</span></code> node. Install TSFEL di environment KNIME: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tsfel</span></code> di Python Preferences KNIME.</p></li>
+<li><p><strong>Metadata:</strong> Tambahkan annotation (klik kanan workspace → <strong>Add Annotation</strong>) untuk menjelaskan setiap tahap workflow.</p></li>
+<li><p><strong>Save:</strong> Save workflow dengan nama <code class="docutils literal notranslate"><span class="pre">PSD_Klastering_Jabon_(nama).knwf</span></code></p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
 <section id="catatan-penting">
 <h3>Catatan Penting<a class="headerlink" href="#catatan-penting" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>[Catatan]</p></li>
+<li><p><strong>Data:</strong> Kecamatan Jabon, periode 31 Agustus 2025 — 31 Agustus 2026 (366 hari)</p></li>
+<li><p><strong>Polutan yang diekstraksi:</strong> CO, NO₂, SO₂ (bukan 6 polutan, hanya 3 ini)</p></li>
+<li><p><strong>Maks missing value:</strong> 15%</p></li>
+<li><p><strong>Jumlah fitur per polutan:</strong> 68 fitur TSFEL</p></li>
+<li><p><strong>Total kolom fitur:</strong> 68 × 3 polutan = <strong>204 kolom</strong></p></li>
+<li><p><strong>Output per orang:</strong> 1 file CSV per polutan (nama + daerah + 68 fitur)</p></li>
+<li><p><strong>Pengumpulan:</strong> Upload ke <a class="reference external" href="https://psd.basisdata2-c.my.id/index.php">https://psd.basisdata2-c.my.id/index.php</a></p></li>
+<li><p><strong>Deadline pengumpulan fitur:</strong> Jumat malam, 18 September 2026</p></li>
+<li><p><strong>Deadline clustering:</strong> Sabtu-Minggu (setelah semua fitur terkumpul)</p></li>
+<li><p><strong>Dual platform:</strong> Python + KNIME</p></li>
+<li><p><strong>Preprocessing wajib sebelum ekstraksi:</strong> deteksi outlier (IQR) → imputasi missing value (interpolasi waktu)</p></li>
+<li><p><strong>File data clean sudah tersedia:</strong> <code class="docutils literal notranslate"><span class="pre">data/downloads/jabon_clean_data/jabon_{CO,NO2,SO2}_clean.csv</span></code></p></li>
+<li><p><strong>Script otomatis:</strong> <code class="docutils literal notranslate"><span class="pre">run_all_jabon.py</span></code> bisa dijadikan referensi untuk alur kerja</p></li>
+</ul>
+</section>
+<section id="checklist-tugas-individu-rahardian-ananta">
+<h3>Checklist Tugas Individu (Rahardian Ananta)<a class="headerlink" href="#checklist-tugas-individu-rahardian-ananta" title="Link to this heading">#</a></h3>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> EDA time series 3 polutan (CO, NO₂, SO₂) — plot harian + rolling mean</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Deskripsi teori <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> dan <code class="docutils literal notranslate"><span class="pre">calc_median</span></code></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Perhitungan manual kedua fitur (dengan sampel data nyata)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Verifikasi manual vs TSFEL → hasil harus sama</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Ekstraksi fitur <code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> + <code class="docutils literal notranslate"><span class="pre">calc_median</span></code> untuk CO, NO₂, SO₂</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Output CSV: nama, daerah, 6 kolom fitur (2 fitur × 3 polutan)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Upload ke web statis</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Implementasi di KNIME</p></li>
 </ul>
 </section>
 </section>
@@ -455,7 +1437,12 @@
 <section id="referensi">
 <h2>Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>[Referensi 1]</p></li>
+<li><p><a class="reference external" href="https://tsfel.readthedocs.io/">TSFEL Documentation</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html">Scikit-learn PCA</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">Scikit-learn KMeans</a></p></li>
+<li><p><a class="reference external" href="https://www.knime.com/">KNIME Analytics Platform</a></p></li>
+<li><p>Data: Sentinel-5P L2 via Copernicus Data Space Ecosystem (openeo)</p></li>
+<li><p>Web pengumpulan: <a class="reference external" href="https://psd.basisdata2-c.my.id/index.php">https://psd.basisdata2-c.my.id/index.php</a></p></li>
 </ul>
 </section>
 </section>
@@ -508,16 +1495,53 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topik-judul-topik">Topik: [Judul Topik]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topik-ekstraksi-fitur-time-series-tsfel-reduksi-dimensi-pca-dan-k-means-clustering">Topik: Ekstraksi Fitur Time Series (TSFEL), Reduksi Dimensi PCA, dan K-Means Clustering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materi-utama">Materi Utama</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-judul-1">1. [Sub Judul 1]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-judul-2">2. [Sub Judul 2]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-statistik-untuk-fitur-time-series">1. Konsep Dasar Statistik untuk Fitur Time Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fitur-tsfel">2. Domain Fitur TSFEL</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tugas">Tugas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi">Deskripsi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-pengerjaan">Langkah Pengerjaan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-fitur-rahardian-ananta-no-4">Pembagian Fitur (Rahardian Ananta — No. 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-pengerjaan">Langkah Pengerjaan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-exploratory-data-analysis-eda">FASE 1 — Exploratory Data Analysis (EDA)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-deskripsi-fitur-perhitungan-manual">FASE 2 — Deskripsi Fitur + Perhitungan Manual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-ekstraksi-fitur-68-fitur-3-polutan">FASE 3 — Ekstraksi Fitur (68 fitur × 3 polutan)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-4-reduksi-dimensi-pca-68-37">FASE 4 — Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-5-k-means-clustering-2-skenario">FASE 5 — K-Means Clustering (2 Skenario)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-6-interpretasi-karakteristik-spasial">FASE 6 — Interpretasi Karakteristik Spasial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-7-implementasi-knime-workflow-lengkap">FASE 7 — Implementasi KNIME (Workflow Lengkap)</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-diagram-alur-node">Workflow Diagram (Alur Node)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-membaca-data">Langkah 1: Membaca Data</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-deteksi-missing-value-awal">Langkah 2: Deteksi Missing Value (Awal)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-deteksi-outlier-iqr">Langkah 3: Deteksi Outlier (IQR)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-imputasi-pasca-outlier">Langkah 4: Imputasi Pasca-Outlier</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-filter-kolom">Langkah 5: Filter Kolom</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-normalisasi">Langkah 6: Normalisasi</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-1-clustering-tanpa-reduksi-dimensi-68-fitur">SKENARIO 1: Clustering Tanpa Reduksi Dimensi (68 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s1-1-k-means-clustering">Langkah S1.1: K-Means Clustering</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s1-2-evaluasi-silhouette">Langkah S1.2: Evaluasi Silhouette</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s1-3-visualisasi-hasil">Langkah S1.3: Visualisasi Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-2-clustering-dengan-reduksi-dimensi-pca-68-37-fitur">SKENARIO 2: Clustering Dengan Reduksi Dimensi PCA (68 → 37 Fitur)</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-1-pca">Langkah S2.1: PCA</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-2-cek-variance-explained">Langkah S2.2: Cek Variance Explained</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-3-k-means-pada-37-fitur-pca">Langkah S2.3: K-Means pada 37 Fitur PCA</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-s2-4-evaluasi-visualisasi">Langkah S2.4: Evaluasi + Visualisasi</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#komparasi-hasil-68-fitur-vs-37-fitur-pca">KOMPARASI HASIL: 68 Fitur vs 37 Fitur PCA</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-terakhir-export-hasil">Langkah Terakhir: Export Hasil</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-seluruh-node-knime">Ringkasan Seluruh Node KNIME</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-knime">Tips KNIME</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-penting">Catatan Penting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-tugas-individu-rahardian-ananta">Checklist Tugas Individu (Rahardian Ananta)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">Referensi</a></li>
