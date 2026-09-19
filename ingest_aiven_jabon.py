@@ -11,9 +11,7 @@ engine = create_engine(DB_URI)
 print("🚀 Memulai proses ingest database Aiven untuk Kecamatan Jabon...")
 
 # 2. Ingest Tabel Spesifik jabon_no2 (Untuk Alur KNIME)
-no2_path = "02_data_understanding/jabon_NO2.csv"
-if not os.path.exists(no2_path):
-    no2_path = "data/downloads/jabon_pollutants_data/jabon_NO2.csv"
+no2_path = "data/downloads/jabon_pollutants_data/jabon_NO2.csv"
 
 df_no2 = pd.read_csv(no2_path)
 df_no2['date'] = pd.to_datetime(df_no2['date'])
@@ -35,9 +33,7 @@ df_no2.to_sql('jabon_no2', engine, if_exists='append', index=False, dtype={'no2'
 print("✅ Tabel jabon_no2 berhasil diunggah!")
 
 # 3. Ingest Tabel Gabungan Multi-Polutan Mentah (jabon_pollutants_raw)
-raw_path = "02_data_understanding/jabon_pollutants.csv"
-if not os.path.exists(raw_path):
-    raw_path = "data/downloads/jabon_pollutants_data/jabon_pollutants.csv"
+raw_path = "data/downloads/jabon_pollutants_data/jabon_pollutants.csv"
 
 if os.path.exists(raw_path):
     df_raw = pd.read_csv(raw_path)

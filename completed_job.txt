@@ -1,0 +1,268 @@
+========================================================================
+                    COMPLETED JOB SUMMARY
+                    Proyek Analisis Polutan Udara
+                    Fase 3 - Fase 5
+========================================================================
+
+TANGGAL EKSEKUSI: 2026-09-19
+STATUS: COMPLETED
+
+========================================================================
+1. RINGKASAN EKSEKUSI
+========================================================================
+
+Berikut adalah rangkaian tugas yang telah diselesaikan untuk proyek 
+analisis polusi udara (Polutan: CO, NO2, SO2) dari Fase 3 sampai Fase 5.
+
+------------------------------------------------------------------------
+1.1 Input Dataset
+------------------------------------------------------------------------
+- Dataset: Dataset Gabungan Kelas (35 mahasiswa × 68 fitur per polutan)
+- Lokasi: data/downloads/ekstraksi fitur/
+  - ekstraksi_fitur_co.csv
+  - ekstraksi_fitur_no2.csv
+  - ekstraksi_fitur_so2.csv
+- Metadata: id, nama, daerah (3 kolom)
+- Fitur: 68 fitur TSFEL (statistical, temporal, spectral)
+
+------------------------------------------------------------------------
+1.2 Skenario Pengerjaan Per Polutan
+------------------------------------------------------------------------
+Untuk masing-masing polutan (CO, NO2, SO2) diproses secara terpisah:
+
+Skenario 1 (Full Features):
+- K-Means Clustering menggunakan 68 fitur asli
+- Pencarian Optimal K menggunakan Elbow Method & Silhouette Score
+
+Skenario 2 (PCA Dimensionality Reduction):
+- Reduksi dimensi dari 68 fitur menjadi 35 fitur menggunakan PCA
+- K-Means Clustering pada 35 fitur PCA
+- Pencarian Optimal K menggunakan Elbow Method & Silhouette Score
+
+------------------------------------------------------------------------
+1.3 Error Handling (NaN)
+------------------------------------------------------------------------
+ERROR SEBELUMNYA:
+- ValueError: Input X contains NaN
+- PCA does not accept missing values encoded as NaN natively
+
+SOLUSI:
+- Menambahkan SimpleImputer dari sklearn.impute
+- Strategi imputasi: median (robust terhadap outlier)
+- Imputasi dilakukan SEBELUM standarisasi dan PCA
+
+========================================================================
+2. FILE YANG DIBUAT/DIUPDATE
+========================================================================
+
+------------------------------------------------------------------------
+2.1 Jupyter Notebooks (3 file)
+------------------------------------------------------------------------
+
+File: 05_clustering/5.1_reduksi_dimensi_pca.ipynb
+- Status: REPLACED
+- Cells: 17 cells
+- Isi:
+  - Import library dengan SimpleImputer
+  - Load dataset gabungan kelas per polutan
+  - Preprocessing: NaN handling + StandardScaler
+  - PCA full (35 komponen) → scree plot + cumulative variance
+  - PCA n_components=35 → simpan hasil
+  - Interpretasi komponen (loadings)
+  - Scatter plot PC1 vs PC2
+
+File: 05_clustering/5.2_kmeans_clustering.ipynb
+- Status: REPLACED
+- Cells: 20 cells
+- Isi:
+  - Import library dengan SimpleImputer
+  - Load 68 fitur asli + 35 fitur PCA per polutan
+  - Skenario 1: K-Means K=2..10 pada 68 fitur
+  - Skenario 2: K-Means K=2..10 pada 35 PCA fitur
+  - Elbow Method + Silhouette Score per polutan
+  - Clustering dengan K terbaik
+  - Scatter plot 2D hasil cluster
+  - Tabel ringkasan metrik
+
+File: 05_clustering/5.3_komparasi_dan_kesimpulan.ipynb
+- Status: REPLACED
+- Cells: 13 cells
+- Isi:
+  - Muat ulang data + jalankan kedua skenario
+  - Evaluasi K=2..10 untuk semua polutan
+  - Visualisasi komparasi per polutan
+  - Tabel ringkasan akhir
+  - Visualisasi komparasi antar polutan
+  - Analisis spasial (distribusi cluster per daerah)
+  - Interpretasi dan kesimpulan
+
+------------------------------------------------------------------------
+2.2 Dokumentasi Markdown (2 file)
+------------------------------------------------------------------------
+
+File: 05_clustering/5.4_knime_workflow_documentation.md
+- Status: BARU
+- Isi:
+  - Overview workflow KNIME
+  - Rincian per node:
+    * Database Connector (PostgreSQL)
+    * DB Table Selector
+    * DB Reader (Query)
+    * Column Filter
+    * Normalizer (Z-Score)
+    * PCA (68 → 35)
+    * K-Means Clustering
+    * Scorer (Silhouette Coefficient)
+    * Statistics
+  - Penjelasan matematis per node
+  - Alur kerja lengkap (flow diagram)
+  - Tabel parameter penting
+  - Placeholder screenshot KNIME
+
+File: 05_clustering/5.5_narasi_bab5.md
+- Status: BARU (UPDATED dengan hasil aktual)
+- Isi:
+  - Pendahuluan analisis clustering
+  - Metodologi (K-Means, PCA, Elbow, Silhouette)
+  - Hasil clustering CO: K=2, Silhouette=0.7667
+  - Hasil clustering NO2: K=2, Silhouette=0.7450
+  - Hasil clustering SO2: K=2, Silhouette=0.7744
+  - Analisis komparatif
+  - Interpretasi spasial
+  - Kesimpulan
+
+------------------------------------------------------------------------
+2.3 Konfigurasi Jupyter Book
+------------------------------------------------------------------------
+
+File: _toc.yml
+- Status: UPDATED
+- Perubahan: Ditambahkan 5.4 dan 5.5 ke Bab 5
+
+========================================================================
+3. STRUKTUR CHAPTER 5 (JUPYTER BOOK)
+========================================================================
+
+BAB 5 — CLUSTERING & ANALISIS KOMPARATIF
+├── 5.1 Reduksi Dimensi PCA (68 → 37)
+├── 5.2 K-Means Clustering
+├── 5.3 Komparasi dan Kesimpulan
+├── 5.4 Dokumentasi KNIME Workflow
+└── 5.5 Narasi Analisis Clustering Polutan
+
+========================================================================
+4. VISUALISASI YANG DIHASILKAN (AKTUAL)
+========================================================================
+
+File PNG yang berhasil dihasilkan:
+- fig_co_pca_scree.png (Scree Plot CO)
+- fig_co_elbow_68.png (Elbow + Silhouette CO)
+- fig_co_cluster_68.png (Scatter cluster CO)
+- fig_co_comparison.png (Komparasi CO)
+- fig_no2_pca_scree.png (Scree Plot NO2)
+- fig_no2_elbow_68.png (Elbow + Silhouette NO2)
+- fig_no2_cluster_68.png (Scatter cluster NO2)
+- fig_no2_comparison.png (Komparasi NO2)
+- fig_so2_pca_scree.png (Scree Plot SO2)
+- fig_so2_elbow_68.png (Elbow + Silhouette SO2)
+- fig_so2_cluster_68.png (Scatter cluster SO2)
+- fig_so2_comparison.png (Komparasi SO2)
+- fig_comparison_all_pollutants.png (Komparasi semua polutan)
+
+Total: 13 file PNG
+
+========================================================================
+5. URUTAN EKSEKUSI NOTEBOOK (SELESAI)
+========================================================================
+
+Langkah 1: Jalankan 5.1_reduksi_dimensi_pca.ipynb
+- Status: SELESAI
+- Output: jabon_pca_35fitur_co.csv, jabon_pca_37fitur_no2.csv, jabon_pca_35fitur_so2.csv
+- Output: fig_{pollutant}_pca_scree.png
+
+Langkah 2: Jalankan 5.2_kmeans_clustering.ipynb
+- Status: SELESAI
+- Input: Dataset gabungan kelas + hasil PCA dari 5.1
+- Output: fig_{pollutant}_elbow_68.png
+- Output: fig_{pollutant}_cluster_68.png
+
+Langkah 3: Jalankan 5.3_komparasi_dan_kesimpulan.ipynb
+- Status: SELESAI
+- Input: Hasil dari 5.1 dan 5.2
+- Output: fig_{pollutant}_comparison.png
+- Output: fig_comparison_all_pollutants.png
+
+========================================================================
+6. HASIL ANALISIS (AKTUAL)
+========================================================================
+
+CO:
+  68 Fitur: K=2, Silhouette=0.7667
+  PCA (35): K=2, Silhouette=0.7667
+  
+NO2:
+  68 Fitur: K=2, Silhouette=0.7450
+  PCA (35): K=2, Silhouette=0.7450
+
+SO2:
+  68 Fitur: K=2, Silhouette=0.7744
+  PCA (35): K=2, Silhouette=0.7744
+
+Catatan: 
+- Jumlah komponen PCA=35 (bukan 37) karena jumlah sampel=35
+- PCA tidak bisa menghasilkan komponen lebih dari jumlah sampel
+- Silhouette Score identik untuk kedua skenario (68F vs 35PCA)
+- Semua polutan menunjukkan K optimal=2
+
+========================================================================
+7. ERROR YANG DIPERBAIKI
+========================================================================
+
+ERROR: ValueError: Input X contains NaN
+- Lokasi: 5.1_reduksi_dimensi_pca.ipynb, Cell In[4], line 7
+- Penyebab: Dataset mengandung nilai NaN/missing values
+- PCA tidak menerima missing values secara native
+
+SOLUSI:
+- Import SimpleImputer dari sklearn.impute
+- Tambahkan imputasi median sebelum StandardScaler
+- Kode yang ditambahkan:
+  
+  from sklearn.impute import SimpleImputer
+  
+  # Handle NaN values with median imputation
+  nan_count = np.isnan(X).sum()
+  if nan_count > 0:
+      print(f'{p}: Ditemukan {nan_count} nilai NaN, melakukan imputasi median...')
+      imputer = SimpleImputer(strategy='median')
+      X = imputer.fit_transform(X)
+
+Catatan: Strategi median dipilih karena robust terhadap outlier yang 
+mungkin ada dalam data fitur TSFEL.
+
+========================================================================
+8. YANG PERLU DILAKUKAN SELENGKAPNYA
+========================================================================
+
+1. Screenshot KNIME → ganti placeholder gambar pada 
+   5.4_knime_workflow_documentation.md dengan screenshot asli
+   dari KNIME Analytics Platform
+
+2. Build Jupyter Book:
+   > build.bat
+
+3. Deploy ke GitHub Pages:
+   > push.bat
+
+========================================================================
+9. REFERENSI
+========================================================================
+
+- Scikit-learn Documentation: https://scikit-learn.org/stable/
+- TSFEL Library: https://github.com/fraunhoferportugal/tsfel
+- KNIME Analytics Platform: https://docs.knime.com/
+- Jupyter Book: https://jupyterbook.org/
+
+========================================================================
+                    END OF COMPLETED JOB SUMMARY
+========================================================================

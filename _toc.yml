@@ -60,9 +60,13 @@ parts:
   - caption: BAB 5 — CLUSTERING & ANALISIS KOMPARATIF
     chapters:
       - file: 05_clustering/5.1_reduksi_dimensi_pca
-        title: 5.1 Reduksi Dimensi PCA (68 → 37)
+        title: 5.1 Reduksi Dimensi PCA
       - file: 05_clustering/5.2_kmeans_clustering
         title: 5.2 K-Means Clustering
       - file: 05_clustering/5.3_komparasi_dan_kesimpulan
         title: 5.3 Komparasi dan Kesimpulan
+      - file: 05_clustering/5.4_knime_workflow_documentation
+        title: 5.4 Dokumentasi KNIME Workflow
+      - file: 05_clustering/5.5_narasi_bab5
+        title: 5.5 Analisis Clustering Polutan
 
