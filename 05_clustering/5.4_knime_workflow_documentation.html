@@ -1,0 +1,886 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5.4 Dokumentasi KNIME Workflow — Clustering Polutan &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_clustering/5.4_knime_workflow_documentation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.5 Analisis Clustering Polutan Atmosfer Kecamatan Jabon" href="5.5_narasi_bab5.html" />
+    <link rel="prev" title="5.3 Komparasi dan Kesimpulan" href="5.3_komparasi_dan_kesimpulan.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.5_narasi_bab5.html">5.5 Narasi Analisis Clustering Polutan</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F05_clustering/5.4_knime_workflow_documentation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/05_clustering/5.4_knime_workflow_documentation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5.4 Dokumentasi KNIME Workflow — Clustering Polutan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-workflow">5.4.1 Overview Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-per-node">5.4.2 Rincian Per Node</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-database-connector-postgresql">Node 1: Database Connector (PostgreSQL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-db-table-selector">Node 2: DB Table Selector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-db-reader-query">Node 3: DB Reader (Query)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-column-filter">Node 4: Column Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-normalizer-z-score">Node 5: Normalizer (Z-Score)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-pca-principal-component-analysis">Node 6: PCA (Principal Component Analysis)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-7-k-means-clustering">Node 7: K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-8-scorer-silhouette-coefficient">Node 8: Scorer (Silhouette Coefficient)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-9-statistics">Node 9: Statistics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-lengkap-flow">5.4.3 Alur Kerja Lengkap (Flow)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-parameter-penting">5.4.4 Konfigurasi Parameter Penting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#screenshot-workflow-placeholder">5.4.5 Screenshot Workflow (Placeholder)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dokumentasi-knime-workflow-clustering-polutan">
+<h1>5.4 Dokumentasi KNIME Workflow — Clustering Polutan<a class="headerlink" href="#dokumentasi-knime-workflow-clustering-polutan" title="Link to this heading">#</a></h1>
+<p>Dokumentasi ini menjelaskan alur kerja (<em>workflow</em>) implementasi analisis clustering menggunakan <strong>KNIME Analytics Platform</strong> untuk masing-masing polutan (CO, NO₂, SO₂).</p>
+<hr class="docutils" />
+<section id="overview-workflow">
+<h2>5.4.1 Overview Workflow<a class="headerlink" href="#overview-workflow" title="Link to this heading">#</a></h2>
+<p><img alt="Workflow KNIME Overview" src="05_clustering/fig_knime_workflow_overview.png" /></p>
+<p><strong>Deskripsi Umum:</strong>
+Workflow KNIME melakukan analisis clustering pada dataset gabungan kelas (35 mahasiswa × 68 fitur) untuk setiap polutan secara terpisah. Alur kerja mencakup tahap:</p>
+<ol class="arabic simple">
+<li><p><strong>Setup / Konfigurasi</strong> — Load data dari PostgreSQL (Aiven Cloud)</p></li>
+<li><p><strong>Preprocessing</strong> — Normalisasi fitur</p></li>
+<li><p><strong>Dimensionality Reduction</strong> — PCA (opsional, untuk Skenario 2)</p></li>
+<li><p><strong>Clustering</strong> — K-Means dengan berbagai nilai K</p></li>
+<li><p><strong>Evaluasi</strong> — Silhouette Coefficient &amp; Scoring</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="rincian-per-node">
+<h2>5.4.2 Rincian Per Node<a class="headerlink" href="#rincian-per-node" title="Link to this heading">#</a></h2>
+<section id="node-1-database-connector-postgresql">
+<h3>Node 1: Database Connector (PostgreSQL)<a class="headerlink" href="#node-1-database-connector-postgresql" title="Link to this heading">#</a></h3>
+<p><img alt="Database Connector Config" src="05_clustering/fig_knime_db_connector_config.png" /></p>
+<p><strong>Fungsi:</strong> Menghubungkan KNIME ke database PostgreSQL di Aiven Cloud yang berisi dataset fitur hasil ekstraksi TSFEL.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Database Type:</strong> PostgreSQL</p></li>
+<li><p><strong>Host:</strong> (sesuai konfigurasi Aiven)</p></li>
+<li><p><strong>Port:</strong> 5432</p></li>
+<li><p><strong>Database:</strong> (nama database)</p></li>
+<li><p><strong>Username / Password:</strong> (credentials dari Aiven dashboard)</p></li>
+</ul>
+<p><strong>Penjelasan:</strong>
+Node ini membangun koneksi JDBC ke database cloud. Dataset yang tersimpan di PostgreSQL merupakan hasil import dari file CSV ekstraksi fitur (35 data mahasiswa × 68 fitur per polutan).</p>
+</section>
+<hr class="docutils" />
+<section id="node-2-db-table-selector">
+<h3>Node 2: DB Table Selector<a class="headerlink" href="#node-2-db-table-selector" title="Link to this heading">#</a></h3>
+<p><img alt="DB Table Selector Config" src="05_clustering/fig_knime_db_table_selector_config.png" /></p>
+<p><strong>Fungsi:</strong> Memilih tabel spesifik dari database yang akan diproses.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Schema:</strong> public</p></li>
+<li><p><strong>Table:</strong> ekstraksi_fitur_co / ekstraksi_fitur_no2 / ekstraksi_fitur_so2</p></li>
+</ul>
+<p><strong>Penjelasan:</strong>
+Node ini memungkinkan pemilihan tabel berdasarkan polutan yang sedang dianalisis. Untuk setiap eksekusi workflow, pilih salah satu tabel polutan.</p>
+</section>
+<hr class="docutils" />
+<section id="node-3-db-reader-query">
+<h3>Node 3: DB Reader (Query)<a class="headerlink" href="#node-3-db-reader-query" title="Link to this heading">#</a></h3>
+<p><img alt="DB Reader Config" src="05_clustering/fig_knime_db_reader_config.png" /></p>
+<p><strong>Fungsi:</strong> Membaca data dari database dan mengubahnya menjadi tabel KNIME.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>SQL Query:</strong> <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">ekstraksi_fitur_{pollutant}</span></code></p></li>
+<li><p><strong>Output:</strong> Tabel dengan 35 baris × 71 kolom (3 metadata + 68 fitur)</p></li>
+</ul>
+<p><strong>Penjelasan:</strong>
+Node ini mengeksekusi SQL query untuk mengekstrak seluruh data dari tabel yang dipilih. Hasilnya adalah tabel KNIME yang siap diproses lebih lanjut.</p>
+</section>
+<hr class="docutils" />
+<section id="node-4-column-filter">
+<h3>Node 4: Column Filter<a class="headerlink" href="#node-4-column-filter" title="Link to this heading">#</a></h3>
+<p><img alt="Column Filter Config" src="05_clustering/fig_knime_column_filter_config.png" /></p>
+<p><strong>Fungsi:</strong> Memfilter kolom — memisahkan kolom metadata dari kolom fitur.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Include:</strong> 68 kolom fitur (abs_energy, auc, autocorr, …, zero_cross)</p></li>
+<li><p><strong>Exclude:</strong> id, nama, daerah</p></li>
+</ul>
+<p><strong>Penjelasan:</strong>
+Hanya kolom fitur numerik yang digunakan untuk clustering. Kolom metadata (id, nama, daerah) disimpan terpisah untuk keperluan interpretasi hasil.</p>
+</section>
+<hr class="docutils" />
+<section id="node-5-normalizer-z-score">
+<h3>Node 5: Normalizer (Z-Score)<a class="headerlink" href="#node-5-normalizer-z-score" title="Link to this heading">#</a></h3>
+<p><img alt="Normalizer Config" src="05_clustering/fig_knime_normalizer_config.png" /></p>
+<p><strong>Fungsi:</strong> Standarisasi fitur menggunakan metode Z-Score agar setiap fitur memiliki mean=0 dan standard deviation=1.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Method:</strong> Z-Score (Standardization)</p></li>
+<li><p><strong>Apply to:</strong> Semua kolom fitur</p></li>
+</ul>
+<p><strong>Penjelasan Matematis:</strong></p>
+<p>Z-Score transformasi dilakukan dengan rumus:</p>
+<div class="math notranslate nohighlight">
+\[z = \frac{x - \mu}{\sigma}\]</div>
+<p>dimana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> = nilai fitur asli</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> = mean dari fitur</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> = standard deviation dari fitur</p></li>
+</ul>
+<p><strong>Mengapa Normalisasi Diperlukan?</strong></p>
+<ul class="simple">
+<li><p>K-Means menggunakan jarak Euclidean, sehingga sangat sensitif terhadap skala fitur</p></li>
+<li><p>PCA juga membutuhkan data yang sudah distandarisasi agar komponen utama tidak bias ke fitur dengan skala besar</p></li>
+<li><p>Tanpa normalisasi, fitur dengan satuan besar (misal: <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code>) akan mendominasi perhitungan jarak</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="node-6-pca-principal-component-analysis">
+<h3>Node 6: PCA (Principal Component Analysis)<a class="headerlink" href="#node-6-pca-principal-component-analysis" title="Link to this heading">#</a></h3>
+<p><img alt="PCA Config" src="05_clustering/fig_knime_pca_config.png" /></p>
+<p><strong>Fungsi:</strong> Reduksi dimensi dari 68 fitur menjadi 37 komponen utama (untuk Skenario 2).</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Number of components:</strong> 37</p></li>
+<li><p><strong>Method:</strong> SVD (Singular Value Decomposition)</p></li>
+<li><p><strong>Scaling:</strong> Tidak dilakukan lagi (sudah dinormalisasi di Node 5)</p></li>
+</ul>
+<p><strong>Penjelasan Matematis:</strong></p>
+<p>PCA bekerja dengan langkah-langkah berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Matriks Covariance:</strong>
+$<span class="math notranslate nohighlight">\(C = \frac{1}{n-1} X^T X\)</span>$</p></li>
+<li><p><strong>Eigenvalue Decomposition:</strong>
+$<span class="math notranslate nohighlight">\(C v = \lambda v\)</span>$</p></li>
+</ol>
+<p>dimana <span class="math notranslate nohighlight">\(v\)</span> adalah eigenvector (komponen utama) dan <span class="math notranslate nohighlight">\(\lambda\)</span> adalah eigenvalue (variance yang dijelaskan).</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Proyeksi:</strong>
+$<span class="math notranslate nohighlight">\(X_{PCA} = X \cdot V_k\)</span>$</p></li>
+</ol>
+<p>dimana <span class="math notranslate nohighlight">\(V_k\)</span> adalah matriks eigenvector terpilih (37 komponen dengan eigenvalue terbesar).</p>
+<p><strong>Output:</strong> Tabel dengan 35 baris × 37 kolom PCA.</p>
+</section>
+<hr class="docutils" />
+<section id="node-7-k-means-clustering">
+<h3>Node 7: K-Means Clustering<a class="headerlink" href="#node-7-k-means-clustering" title="Link to this heading">#</a></h3>
+<p><img alt="K-Means Config" src="05_clustering/fig_knime_kmeans_config.png" /></p>
+<p><strong>Fungsi:</strong> Melakukan clustering menggunakan algoritma K-Means.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Number of clusters (K):</strong> 2, 3, 4, 5, 6, 7, 8, 9, 10 (dijalankan untuk setiap K)</p></li>
+<li><p><strong>Max iterations:</strong> 300</p></li>
+<li><p><strong>Number of runs:</strong> 10</p></li>
+<li><p><strong>Random seed:</strong> 42 (untuk reproducibility)</p></li>
+<li><p><strong>Distance measure:</strong> Euclidean</p></li>
+</ul>
+<p><strong>Penjelasan Matematis:</strong></p>
+<p>K-Means bekerja dengan algoritma berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Inisialisasi:</strong> Pilih K titik pusat (centroids) secara acak</p></li>
+<li><p><strong>Assignment:</strong> Setiap titik data ditugkan ke centroid terdekat berdasarkan jarak Euclidean:
+$<span class="math notranslate nohighlight">\(d(x_i, c_j) = \sqrt{\sum_{k=1}^{p} (x_{ik} - c_{jk})^2}\)</span>$</p></li>
+<li><p><strong>Update:</strong> Hitung ulang centroid sebagai rata-rata titik-titik dalam cluster:
+$<span class="math notranslate nohighlight">\(c_j = \frac{1}{|S_j|} \sum_{x_i \in S_j} x_i\)</span>$</p></li>
+<li><p><strong>Iterasi:</strong> Ulangi langkah 2-3 sampai konvergen (centroid tidak berubah signifikan)</p></li>
+</ol>
+<p><strong>Objective Function (Inertia/WCSS):</strong>
+$<span class="math notranslate nohighlight">\(J = \sum_{j=1}^{K} \sum_{x_i \in S_j} \|x_i - c_j\|^2\)</span>$</p>
+<p>Inertia yang lebih rendah menunjukkan cluster yang lebih compact.</p>
+</section>
+<hr class="docutils" />
+<section id="node-8-scorer-silhouette-coefficient">
+<h3>Node 8: Scorer (Silhouette Coefficient)<a class="headerlink" href="#node-8-scorer-silhouette-coefficient" title="Link to this heading">#</a></h3>
+<p><img alt="Scorer Config" src="05_clustering/fig_knime_scorer_config.png" /></p>
+<p><strong>Fungsi:</strong> Mengevaluasi kualitas cluster menggunakan Silhouette Coefficient.</p>
+<p><strong>Konfigurasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Column:</strong> Label cluster dari K-Means</p></li>
+<li><p><strong>Distance measure:</strong> Euclidean</p></li>
+</ul>
+<p><strong>Penjelasan Matematis:</strong></p>
+<p>Silhouette Coefficient untuk setiap titik <span class="math notranslate nohighlight">\(i\)</span> dihitung dengan:</p>
+<div class="math notranslate nohighlight">
+\[s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}\]</div>
+<p>dimana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a(i)\)</span> = rata-rata jarak titik <span class="math notranslate nohighlight">\(i\)</span> ke semua titik lain dalam cluster yang sama (intra-cluster distance)</p></li>
+<li><p><span class="math notranslate nohighlight">\(b(i)\)</span> = rata-rata jarak minimum titik <span class="math notranslate nohighlight">\(i\)</span> ke semua titik di cluster terdekat yang berbeda (nearest-cluster distance)</p></li>
+</ul>
+<p><strong>Interpretasi:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s(i) \approx 1\)</span> → Titik berada jauh dari cluster tetangga (cluster yang baik)</p></li>
+<li><p><span class="math notranslate nohighlight">\(s(i) \approx 0\)</span> → Titik berada di batas antara dua cluster</p></li>
+<li><p><span class="math notranslate nohighlight">\(s(i) \approx -1\)</span> → Titik mungkin berada di cluster yang salah</p></li>
+</ul>
+<p><strong>Silhouette Score Rata-rata:</strong>
+$<span class="math notranslate nohighlight">\(\bar{s} = \frac{1}{n} \sum_{i=1}^{n} s(i)\)</span>$</p>
+<p>Skor rata-rata mendekati 1 menunjukkan clustering yang berkualitas tinggi.</p>
+</section>
+<hr class="docutils" />
+<section id="node-9-statistics">
+<h3>Node 9: Statistics<a class="headerlink" href="#node-9-statistics" title="Link to this heading">#</a></h3>
+<p><img alt="Statistics Config" src="05_clustering/fig_knime_statistics_node_config.png" /></p>
+<p><strong>Fungsi:</strong> Menampilkan statistik deskriptif dari hasil clustering.</p>
+<p><strong>Output:</strong></p>
+<ul class="simple">
+<li><p>Mean, median, std dev untuk setiap fitur per cluster</p></li>
+<li><p>Distribusi jumlah data per cluster</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="alur-kerja-lengkap-flow">
+<h2>5.4.3 Alur Kerja Lengkap (Flow)<a class="headerlink" href="#alur-kerja-lengkap-flow" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CSV Reader / DB Reader
+        |
+        v
+  Column Filter (drop metadata)
+        |
+        v
+    Normalizer (Z-Score)
+        |
+        v
+  ┌─────────────────┐
+  │  Skenario 1:    │    Skenario 2:
+  │  Tanpa PCA      │    PCA (68 → 37)
+  └────────┬────────┘         |
+           |                  v
+           |          PCA (n_components=37)
+           |                  |
+           v                  v
+      K-Means (K=2..10)
+           |
+           v
+    Silhouette Coefficient
+           |
+           v
+    Evaluasi &amp; Perbandingan
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="konfigurasi-parameter-penting">
+<h2>5.4.4 Konfigurasi Parameter Penting<a class="headerlink" href="#konfigurasi-parameter-penting" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K (jumlah cluster)</p></td>
+<td><p>2 - 10</p></td>
+<td><p>Dicari K optimal dengan Elbow &amp; Silhouette</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max iterations</p></td>
+<td><p>300</p></td>
+<td><p>Batas iterasi maksimum K-Means</p></td>
+</tr>
+<tr class="row-even"><td><p>Number of runs</p></td>
+<td><p>10</p></td>
+<td><p>Jumlah inisialisasi acak</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random seed</p></td>
+<td><p>42</p></td>
+<td><p>Untuk reproducibility</p></td>
+</tr>
+<tr class="row-even"><td><p>PCA components</p></td>
+<td><p>37</p></td>
+<td><p>Jumlah komponen utama yang dipertahankan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Normalization</p></td>
+<td><p>Z-Score</p></td>
+<td><p>Standarisasi (mean=0, std=1)</p></td>
+</tr>
+<tr class="row-even"><td><p>Distance measure</p></td>
+<td><p>Euclidean</p></td>
+<td><p>Untuk K-Means dan Silhouette</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="screenshot-workflow-placeholder">
+<h2>5.4.5 Screenshot Workflow (Placeholder)<a class="headerlink" href="#screenshot-workflow-placeholder" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>Catatan:</strong> Ganti placeholder di bawah dengan screenshot asli dari KNIME Analytics Platform.</p>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tahapan</p></th>
+<th class="head"><p>Screenshot</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Overview Workflow</p></td>
+<td><p><img alt="Workflow Overview" src="05_clustering/fig_knime_workflow_overview.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>Database Connector</p></td>
+<td><p><img alt="DB Connector" src="05_clustering/fig_knime_db_connector_config.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>DB Table Selector</p></td>
+<td><p><img alt="Table Selector" src="05_clustering/fig_knime_db_table_selector_config.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>DB Reader</p></td>
+<td><p><img alt="DB Reader" src="05_clustering/fig_knime_db_reader_config.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Column Filter</p></td>
+<td><p><img alt="Column Filter" src="05_clustering/fig_knime_column_filter_config.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>Normalizer</p></td>
+<td><p><img alt="Normalizer" src="05_clustering/fig_knime_normalizer_config.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>PCA</p></td>
+<td><p><img alt="PCA" src="05_clustering/fig_knime_pca_config.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>K-Means</p></td>
+<td><p><img alt="K-Means" src="05_clustering/fig_knime_kmeans_config.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Scorer</p></td>
+<td><p><img alt="Scorer" src="05_clustering/fig_knime_scorer_config.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>Statistics</p></td>
+<td><p><img alt="Statistics" src="05_clustering/fig_knime_statistics_node_config.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./05_clustering"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="5.3_komparasi_dan_kesimpulan.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">5.3 Komparasi dan Kesimpulan</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5.5_narasi_bab5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5.5 Analisis Clustering Polutan Atmosfer Kecamatan Jabon</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-workflow">5.4.1 Overview Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-per-node">5.4.2 Rincian Per Node</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-database-connector-postgresql">Node 1: Database Connector (PostgreSQL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-db-table-selector">Node 2: DB Table Selector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-db-reader-query">Node 3: DB Reader (Query)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-column-filter">Node 4: Column Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-normalizer-z-score">Node 5: Normalizer (Z-Score)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-pca-principal-component-analysis">Node 6: PCA (Principal Component Analysis)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-7-k-means-clustering">Node 7: K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-8-scorer-silhouette-coefficient">Node 8: Scorer (Silhouette Coefficient)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-9-statistics">Node 9: Statistics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-lengkap-flow">5.4.3 Alur Kerja Lengkap (Flow)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-parameter-penting">5.4.4 Konfigurasi Parameter Penting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#screenshot-workflow-placeholder">5.4.5 Screenshot Workflow (Placeholder)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

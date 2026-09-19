@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5.5 Analisis Clustering Polutan Atmosfer Kecamatan Jabon &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_clustering/5.5_narasi_bab5';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="5.4 Dokumentasi KNIME Workflow — Clustering Polutan" href="5.4_knime_workflow_documentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5.5 Narasi Analisis Clustering Polutan</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F05_clustering/5.5_narasi_bab5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/05_clustering/5.5_narasi_bab5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>5.5 Analisis Clustering Polutan Atmosfer Kecamatan Jabon</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">5.5.1 Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi">5.5.2 Metodologi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-k-means">Algoritma K-Means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-penentuan-k-optimal">Metode Penentuan K Optimal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-principal-component-analysis">PCA (Principal Component Analysis)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-co-carbon-monoxide">5.5.3 Hasil Clustering CO (Carbon Monoxide)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-1-68-fitur-asli">Skenario 1: 68 Fitur Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-2-35-fitur-pca">Skenario 2: 35 Fitur PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-spasial-co">Analisis Spasial CO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-no2-nitrogen-dioxide">5.5.4 Hasil Clustering NO₂ (Nitrogen Dioxide)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Skenario 1: 68 Fitur Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Skenario 2: 35 Fitur PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-spasial-no2">Analisis Spasial NO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-so2-sulfur-dioxide">5.5.5 Hasil Clustering SO₂ (Sulfur Dioxide)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Skenario 1: 68 Fitur Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Skenario 2: 35 Fitur PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-spasial-so2">Analisis Spasial SO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-komparatif">5.5.6 Analisis Komparatif</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-skenario-1-vs-skenario-2">Perbandingan Skenario 1 vs Skenario 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-utama">Temuan Utama</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-spasial">5.5.7 Interpretasi Spasial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemetaan-zona-kualitas-udara">Pemetaan Zona Kualitas Udara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-per-wilayah">Analisis per Wilayah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-kebijakan">Rekomendasi Kebijakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.5.8 Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-clustering-polutan-atmosfer-kecamatan-jabon">
+<h1>5.5 Analisis Clustering Polutan Atmosfer Kecamatan Jabon<a class="headerlink" href="#analisis-clustering-polutan-atmosfer-kecamatan-jabon" title="Link to this heading">#</a></h1>
+<section id="pendahuluan">
+<h2>5.5.1 Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
+<p>Setelah melalui tahap ekstraksi fitur pada Bab 4, diperoleh <strong>68 fitur time-series</strong> dari data konsentrasi polutan CO, NO₂, dan SO₂ menggunakan library TSFEL (<em>Time Series Feature Extraction Library</em>). Pada Bab 5 ini, dilakukan analisis <strong>clustering</strong> menggunakan algoritma <strong>K-Means</strong> untuk mengelompokkan wilayah Kecamatan Jabon berdasarkan karakteristik polutan atmosfer.</p>
+<p>Analisis clustering bertujuan untuk:</p>
+<ol class="arabic simple">
+<li><p>Mengidentifikasi kelompok wilayah dengan pola polusi serupa</p></li>
+<li><p>Menentukan zona kualitas udara berdasarkan karakteristik spasial</p></li>
+<li><p>Memberikan dasar pengambilan keputusan untuk kebijakan pengendalian emisi</p></li>
+</ol>
+<p>Dua pendekatan yang dikomparasi dalam analisis ini adalah:</p>
+<ul class="simple">
+<li><p><strong>Skenario 1:</strong> K-Means pada 68 fitur asli (tanpa reduksi dimensi)</p></li>
+<li><p><strong>Skenario 2:</strong> K-Means pada 37 fitur hasil reduksi PCA (<em>Principal Component Analysis</em>)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="metodologi">
+<h2>5.5.2 Metodologi<a class="headerlink" href="#metodologi" title="Link to this heading">#</a></h2>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<p>Dataset yang digunakan adalah <strong>dataset gabungan kelas</strong> yang terdiri dari 35 data mahasiswa, masing-masing dengan 68 fitur TSFEL per polutan. Fitur-fitur ini mencakup tiga domain:</p>
+<ul class="simple">
+<li><p><strong>Statistical:</strong> mean, median, std, skewness, kurtosis, entropy, dll.</p></li>
+<li><p><strong>Temporal:</strong> autocorrelation, DFA, Hjorth complexity, zero crossing, dll.</p></li>
+<li><p><strong>Spectral:</strong> spectral centroid, spectral entropy, spectral roll-off, MFCC, wavelet, dll.</p></li>
+</ul>
+</section>
+<section id="algoritma-k-means">
+<h3>Algoritma K-Means<a class="headerlink" href="#algoritma-k-means" title="Link to this heading">#</a></h3>
+<p>K-Means adalah algoritma clustering partisional yang membagi <span class="math notranslate nohighlight">\(n\)</span> objek menjadi <span class="math notranslate nohighlight">\(k\)</span> cluster berdasarkan jarak Euclidean. Algoritma ini bekerja dengan:</p>
+<ol class="arabic simple">
+<li><p><strong>Inisialisasi:</strong> Memilih <span class="math notranslate nohighlight">\(k\)</span> titik pusat (<em>centroids</em>) secara acak</p></li>
+<li><p><strong>Assignment:</strong> Menugaskan setiap titik ke centroid terdekat</p></li>
+<li><p><strong>Update:</strong> Menghitung ulang centroid sebagai rata-rata titik dalam cluster</p></li>
+<li><p><strong>Iterasi:</strong> Mengulangi langkah 2-3 sampai konvergen</p></li>
+</ol>
+<p>Objective function yang diminimalkan adalah <strong>Within-Cluster Sum of Squares (WCSS)</strong>:</p>
+<div class="math notranslate nohighlight">
+\[J = \sum_{j=1}^{k} \sum_{x_i \in C_j} \|x_i - \mu_j\|^2\]</div>
+</section>
+<section id="metode-penentuan-k-optimal">
+<h3>Metode Penentuan K Optimal<a class="headerlink" href="#metode-penentuan-k-optimal" title="Link to this heading">#</a></h3>
+<p><strong>Elbow Method:</strong>
+Mencari titik <em>elbow</em> pada kurva WCSS vs K — titik di mana penurunan WCSS mulai melambat secara signifikan.</p>
+<p><strong>Silhouette Score:</strong>
+Mengukur seberapa mirip sebuah titik dengan cluster-nya sendiri dibandingkan cluster lain:</p>
+<div class="math notranslate nohighlight">
+\[s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}\]</div>
+<p>dimana <span class="math notranslate nohighlight">\(a(i)\)</span> adalah rata-rata jarak intra-cluster dan <span class="math notranslate nohighlight">\(b(i)\)</span> adalah rata-rata jarak ke cluster terdekat.</p>
+</section>
+<section id="pca-principal-component-analysis">
+<h3>PCA (Principal Component Analysis)<a class="headerlink" href="#pca-principal-component-analysis" title="Link to this heading">#</a></h3>
+<p>PCA mereduksi dimensi data dari 68 fitur menjadi 37 komponen utama dengan mempertahankan sebagian besar variansi data. PCA bekerja dengan:</p>
+<ol class="arabic simple">
+<li><p>Menghitung matriks kovariansi</p></li>
+<li><p>Mengekstrak eigenvalue dan eigenvector</p></li>
+<li><p>Memproyeksikan data ke <span class="math notranslate nohighlight">\(k\)</span> komponen utama dengan eigenvalue terbesar</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-clustering-co-carbon-monoxide">
+<h2>5.5.3 Hasil Clustering CO (Carbon Monoxide)<a class="headerlink" href="#hasil-clustering-co-carbon-monoxide" title="Link to this heading">#</a></h2>
+<section id="skenario-1-68-fitur-asli">
+<h3>Skenario 1: 68 Fitur Asli<a class="headerlink" href="#skenario-1-68-fitur-asli" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K Terbaik</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silhouette Score</p></td>
+<td><p>0.7667</p></td>
+</tr>
+<tr class="row-even"><td><p>Inertia</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="skenario-2-35-fitur-pca">
+<h3>Skenario 2: 35 Fitur PCA<a class="headerlink" href="#skenario-2-35-fitur-pca" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K Terbaik</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silhouette Score</p></td>
+<td><p>0.7667</p></td>
+</tr>
+<tr class="row-even"><td><p>Inertia</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-spasial-co">
+<h3>Analisis Spasial CO<a class="headerlink" href="#analisis-spasial-co" title="Link to this heading">#</a></h3>
+<p>Carbon monoxide merupakan polutan yang dihasilkan dari pembakaran bakiak bahan bakar fosil dan kendaraan bermotor. Konsentrasi CO yang tinggi di suatu wilayah menunjukkan aktivitas transportasi dan industri yang padat.</p>
+<p><strong>Distribusi Cluster CO (K=2):</strong></p>
+<ul class="simple">
+<li><p><strong>Cluster 0 (34 data):</strong> Wilayah dengan karakteristik polutan CO normal, meliputi berbagai kecamatan di Jawa Timur dan beberapa wilayah lainnya</p></li>
+<li><p><strong>Cluster 1 (1 data):</strong> Wilayah dengan karakteristik polutan CO berbeda (outlier)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-clustering-no2-nitrogen-dioxide">
+<h2>5.5.4 Hasil Clustering NO₂ (Nitrogen Dioxide)<a class="headerlink" href="#hasil-clustering-no2-nitrogen-dioxide" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Skenario 1: 68 Fitur Asli<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K Terbaik</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silhouette Score</p></td>
+<td><p>0.7450</p></td>
+</tr>
+<tr class="row-even"><td><p>Inertia</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id2">
+<h3>Skenario 2: 35 Fitur PCA<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K Terbaik</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silhouette Score</p></td>
+<td><p>0.7450</p></td>
+</tr>
+<tr class="row-even"><td><p>Inertia</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-spasial-no2">
+<h3>Analisis Spasial NO₂<a class="headerlink" href="#analisis-spasial-no2" title="Link to this heading">#</a></h3>
+<p>Nitrogen dioxide merupakan indikator utama polusi dari emisi kendaraan bermotor dan pembakaran industri. NO₂ berkontribusi terhadap pembentukan smog dan hujan asam. Wilayah dengan konsentrasi NO₂ tinggi biasanya terletak di dekat jalan raya atau kawasan industri.</p>
+<p><strong>Distribusi Cluster NO₂ (K=2):</strong></p>
+<ul class="simple">
+<li><p><strong>Cluster 0 (36 data):</strong> Wilayah dengan karakteristik polutan NO₂ normal</p></li>
+<li><p><strong>Cluster 1 (1 data):</strong> Wilayah dengan karakteristik polutan NO₂ berbeda (outlier)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-clustering-so2-sulfur-dioxide">
+<h2>5.5.5 Hasil Clustering SO₂ (Sulfur Dioxide)<a class="headerlink" href="#hasil-clustering-so2-sulfur-dioxide" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>Skenario 1: 68 Fitur Asli<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K Terbaik</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silhouette Score</p></td>
+<td><p>0.7744</p></td>
+</tr>
+<tr class="row-even"><td><p>Inertia</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id4">
+<h3>Skenario 2: 35 Fitur PCA<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>K Terbaik</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Silhouette Score</p></td>
+<td><p>0.7744</p></td>
+</tr>
+<tr class="row-even"><td><p>Inertia</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-spasial-so2">
+<h3>Analisis Spasial SO₂<a class="headerlink" href="#analisis-spasial-so2" title="Link to this heading">#</a></h3>
+<p>Sulfur dioxide dihasilkan dari pembakaran bahan bakar yang mengandung belerang, terutama di pembangkit listrik tenaga batu bara dan industri manufaktur. SO₂ dapat menyebabkan gangguan pernapasan dan kerusakan ekosistem. Pemetaan konsentrasi SO₂ penting untuk identifikasi sumber polusi industri.</p>
+<p><strong>Distribusi Cluster SO₂ (K=2):</strong></p>
+<ul class="simple">
+<li><p><strong>Cluster 0 (34 data):</strong> Wilayah dengan karakteristik polutan SO₂ normal</p></li>
+<li><p><strong>Cluster 1 (1 data):</strong> Wilayah dengan karakteristik polutan SO₂ berbeda (outlier)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-komparatif">
+<h2>5.5.6 Analisis Komparatif<a class="headerlink" href="#analisis-komparatif" title="Link to this heading">#</a></h2>
+<section id="perbandingan-skenario-1-vs-skenario-2">
+<h3>Perbandingan Skenario 1 vs Skenario 2<a class="headerlink" href="#perbandingan-skenario-1-vs-skenario-2" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head"><p>Skenario</p></th>
+<th class="head"><p>K Terbaik</p></th>
+<th class="head"><p>Silhouette</p></th>
+<th class="head"><p>Status Optimal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td><p>1 (68F)</p></td>
+<td><p>2</p></td>
+<td><p>0.7667</p></td>
+<td><p>Setara</p></td>
+</tr>
+<tr class="row-odd"><td><p>CO</p></td>
+<td><p>2 (35PCA)</p></td>
+<td><p>2</p></td>
+<td><p>0.7667</p></td>
+<td><p>Setara</p></td>
+</tr>
+<tr class="row-even"><td><p>NO₂</p></td>
+<td><p>1 (68F)</p></td>
+<td><p>2</p></td>
+<td><p>0.7450</p></td>
+<td><p>Setara</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td><p>2 (35PCA)</p></td>
+<td><p>2</p></td>
+<td><p>0.7450</p></td>
+<td><p>Setara</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td><p>1 (68F)</p></td>
+<td><p>2</p></td>
+<td><p>0.7744</p></td>
+<td><p>Setara</p></td>
+</tr>
+<tr class="row-odd"><td><p>SO₂</p></td>
+<td><p>2 (35PCA)</p></td>
+<td><p>2</p></td>
+<td><p>0.7744</p></td>
+<td><p>Setara</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="temuan-utama">
+<h3>Temuan Utama<a class="headerlink" href="#temuan-utama" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pengaruh PCA terhadap Kualitas Clustering:</strong></p>
+<ul class="simple">
+<li><p>Silhouette Score untuk kedua skenario identik untuk setiap polutan</p></li>
+<li><p>PCA efektif mereduksi dimensi dari 68 fitur menjadi 35 komponen tanpa kehilangan informasi signifikan</p></li>
+<li><p>Kualitas clustering tetap terjaga meskipun jumlah fitur berkurang</p></li>
+</ul>
+</li>
+<li><p><strong>Karakteristik per Polutan:</strong></p>
+<ul class="simple">
+<li><p><strong>CO:</strong> Silhouette Score = 0.7667, menunjukkan clustering yang sangat baik</p></li>
+<li><p><strong>NO₂:</strong> Silhouette Score = 0.7450, menunjukkan clustering yang baik</p></li>
+<li><p><strong>SO₂:</strong> Silhouette Score = 0.7744, menunjukkan clustering yang sangat baik (terbaik di antara ketiga polutan)</p></li>
+</ul>
+</li>
+<li><p><strong>Rekomendasi Model Terbaik:</strong></p>
+<ul class="simple">
+<li><p><strong>Skenario 2 (35 PCA) direkomendasikan</strong> karena:</p>
+<ul>
+<li><p>Mengurangi dimensi dari 68 menjadi 35 fitur (pengurangan 48.5%)</p></li>
+<li><p>Kualitas clustering sama persis dengan skenario 68 fitur</p></li>
+<li><p>Efisien secara komputasi dan mengurangi risiko overfitting</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="interpretasi-spasial">
+<h2>5.5.7 Interpretasi Spasial<a class="headerlink" href="#interpretasi-spasial" title="Link to this heading">#</a></h2>
+<section id="pemetaan-zona-kualitas-udara">
+<h3>Pemetaan Zona Kualitas Udara<a class="headerlink" href="#pemetaan-zona-kualitas-udara" title="Link to this heading">#</a></h3>
+<p>Berdasarkan hasil clustering terbaik (K=2), wilayah Kecamatan Jabon dan sekitarnya dapat dikelompokkan berdasarkan karakteristik polutan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cluster</p></th>
+<th class="head"><p>Karakteristik</p></th>
+<th class="head"><p>Jumlah Data</p></th>
+<th class="head"><p>Implikasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cluster 0</p></td>
+<td><p>Wilayah dengan konsentrasi polutan normal</p></td>
+<td><p>34-36 data</p></td>
+<td><p>Zona aman, perlu pemantauan berkala</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cluster 1</p></td>
+<td><p>Wilayah dengan karakteristik polutan berbeda (outlier)</p></td>
+<td><p>1 data</p></td>
+<td><p>Perlu investigasi mendalam</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-per-wilayah">
+<h3>Analisis per Wilayah<a class="headerlink" href="#analisis-per-wilayah" title="Link to this heading">#</a></h3>
+<p><strong>Wilayah dalam Cluster 0 (Normal):</strong>
+Meliputi berbagai kecamatan di Jawa Timur seperti:</p>
+<ul class="simple">
+<li><p>Gresik (Manyar, Cerme, Menganti, Dukun, Gresik Kota)</p></li>
+<li><p>Lamongan (Paciran, Kedungpring, Sambeng)</p></li>
+<li><p>Bangkalan (Socah, Tanah Merah, Kwanyar, Labang)</p></li>
+<li><p>Tuban (Kerek, Widang)</p></li>
+<li><p>Sidoarjo (Jabon, Waru)</p></li>
+<li><p>Surabaya (Wonokromo, Asemrowo)</p></li>
+<li><p>Dan wilayah lainnya di Madura, Madiun, Ngawi, Ngajuk, dll.</p></li>
+</ul>
+<p><strong>Wilayah dalam Cluster 1 (Outlier):</strong>
+Hanya 1 wilayah yang menunjukkan karakteristik berbeda, yang memerlukan investigasi lebih lanjut mengenai kondisi polutan di wilayah tersebut.</p>
+</section>
+<section id="rekomendasi-kebijakan">
+<h3>Rekomendasi Kebijakan<a class="headerlink" href="#rekomendasi-kebijakan" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Wilayah Cluster 0 (Normal):</strong></p>
+<ul class="simple">
+<li><p>Pertahankan kualitas udara dengan regulasi yang ada</p></li>
+<li><p>Implementasi sistem pengawasan emisi berkelanjutan</p></li>
+<li><p>Peningkatan fasilitas transportasi umum</p></li>
+<li><p>Pembangunan zona hijau sebagai penyerap polutan</p></li>
+</ul>
+</li>
+<li><p><strong>Wilayah Cluster 1 (Outlier):</strong></p>
+<ul class="simple">
+<li><p>Investigasi mendalam mengenai sumber polusi</p></li>
+<li><p>Implementasi pengawasan emisi yang lebih ketat</p></li>
+<li><p>Evaluasi kondisi lingkungan dan kesehatan masyarakat</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>5.5.8 Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Reduksi Dimensi PCA</strong> dari 68 fitur menjadi 35 komponen berhasil dilakukan dengan baik. PCA mampu mempertahankan informasi sambil mengurangi kompleksitas komputasi sebesar 48.5%.</p></li>
+<li><p><strong>K-Means Clustering</strong> dengan K=2 berhasil mengelompokkan wilayah berdasarkan karakteristik polutan. Semua polutan (CO, NO₂, SO₂) menunjukkan K optimal = 2, yang mengindikasikan adanya dua kelompok wilayah dengan karakteristik polutan yang berbeda.</p></li>
+<li><p><strong>Silhouette Score</strong> menunjukkan kualitas clustering yang sangat baik:</p>
+<ul class="simple">
+<li><p>CO: 0.7667</p></li>
+<li><p>NO₂: 0.7450</p></li>
+<li><p>SO₂: 0.7744 (terbaik)</p></li>
+</ul>
+<p>Semua skor &gt; 0.7 menunjukkan cluster yang sangat terpisah dan compact.</p>
+</li>
+<li><p><strong>Komparasi Skenario</strong> menunjukkan bahwa PCA efektif mereduksi dimensi tanpa mengorbankan kualitas clustering. Silhouette Score identik untuk kedua skenario (68 fitur vs 35 PCA).</p></li>
+<li><p><strong>Analisis spasial</strong> menunjukkan bahwa mayoritas wilayah (34-36 dari 35 data) berada dalam Cluster 0 (karakteristik polutan normal), dengan hanya 1 wilayah sebagai outlier yang memerlukan investigasi lebih lanjut.</p></li>
+<li><p><strong>Rekomendasi:</strong> Skenario 2 (35 PCA) direkomendasikan untuk implementasi production karena efisiensi komputasi yang lebih baik dengan kualitas clustering yang sama.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Referensi:</strong></p>
+<ul class="simple">
+<li><p>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. <em>JMLR 12</em>, pp. 2825-2830.</p></li>
+<li><p>Maklin, C. (2022). TSFEL: Time Series Feature Extraction Library. <em>GitHub Repository</em>.</p></li>
+<li><p>KNIME Analytics Platform Documentation. (2024). <a class="reference external" href="https://docs.knime.com/">https://docs.knime.com/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./05_clustering"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="5.4_knime_workflow_documentation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">5.4 Dokumentasi KNIME Workflow — Clustering Polutan</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">5.5.1 Pendahuluan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi">5.5.2 Metodologi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-k-means">Algoritma K-Means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-penentuan-k-optimal">Metode Penentuan K Optimal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-principal-component-analysis">PCA (Principal Component Analysis)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-co-carbon-monoxide">5.5.3 Hasil Clustering CO (Carbon Monoxide)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-1-68-fitur-asli">Skenario 1: 68 Fitur Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skenario-2-35-fitur-pca">Skenario 2: 35 Fitur PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-spasial-co">Analisis Spasial CO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-no2-nitrogen-dioxide">5.5.4 Hasil Clustering NO₂ (Nitrogen Dioxide)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Skenario 1: 68 Fitur Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Skenario 2: 35 Fitur PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-spasial-no2">Analisis Spasial NO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-clustering-so2-sulfur-dioxide">5.5.5 Hasil Clustering SO₂ (Sulfur Dioxide)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Skenario 1: 68 Fitur Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Skenario 2: 35 Fitur PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-spasial-so2">Analisis Spasial SO₂</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-komparatif">5.5.6 Analisis Komparatif</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-skenario-1-vs-skenario-2">Perbandingan Skenario 1 vs Skenario 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-utama">Temuan Utama</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-spasial">5.5.7 Interpretasi Spasial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemetaan-zona-kualitas-udara">Pemetaan Zona Kualitas Udara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-per-wilayah">Analisis per Wilayah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-kebijakan">Rekomendasi Kebijakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.5.8 Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

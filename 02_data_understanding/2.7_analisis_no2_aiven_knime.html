@@ -208,6 +208,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.5_narasi_bab5.html">5.5 Narasi Analisis Clustering Polutan</a></li>
 </ul>
 
     </div>
@@ -611,9 +613,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🚀 Memulai proses ingest database Aiven untuk Kecamatan Jabon...&quot;</span><span class="p">)</span>
 
 <span class="c1"># 2. Ingest Tabel Spesifik jabon_no2 (Untuk Alur KNIME)</span>
-<span class="n">no2_path</span> <span class="o">=</span> <span class="s2">&quot;02_data_understanding/jabon_NO2.csv&quot;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">no2_path</span><span class="p">):</span>
-    <span class="n">no2_path</span> <span class="o">=</span> <span class="s2">&quot;data/downloads/jabon_pollutants_data/jabon_NO2.csv&quot;</span>
+<span class="n">no2_path</span> <span class="o">=</span> <span class="s2">&quot;data/downloads/jabon_pollutants_data/jabon_NO2.csv&quot;</span>
 
 <span class="n">df_no2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">no2_path</span><span class="p">)</span>
 <span class="n">df_no2</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_no2</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
@@ -635,9 +635,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Tabel jabon_no2 berhasil diunggah!&quot;</span><span class="p">)</span>
 
 <span class="c1"># 3. Ingest Tabel Gabungan Multi-Polutan Mentah (jabon_pollutants_raw)</span>
-<span class="n">raw_path</span> <span class="o">=</span> <span class="s2">&quot;02_data_understanding/jabon_pollutants.csv&quot;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">raw_path</span><span class="p">):</span>
-    <span class="n">raw_path</span> <span class="o">=</span> <span class="s2">&quot;data/downloads/jabon_pollutants_data/jabon_pollutants.csv&quot;</span>
+<span class="n">raw_path</span> <span class="o">=</span> <span class="s2">&quot;data/downloads/jabon_pollutants_data/jabon_pollutants.csv&quot;</span>
 
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">raw_path</span><span class="p">):</span>
     <span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">raw_path</span><span class="p">)</span>

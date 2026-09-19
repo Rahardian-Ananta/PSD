@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.1 Reduksi Dimensi PCA &#8212; My sample book</title>
+    <title>5.1 Reduksi Dimensi PCA — Per Polutan &#8212; My sample book</title>
   
   
   
@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '05_clustering/5.1_reduksi_dimensi_pca';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.2 K-Means Clustering" href="5.2_kmeans_clustering.html" />
+    <link rel="next" title="5.2 K-Means Clustering — Per Polutan" href="5.2_kmeans_clustering.html" />
     <link rel="prev" title="4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -198,13 +198,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur &amp; Perhitungan Manual vs TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.5_narasi_bab5.html">5.5 Narasi Analisis Clustering Polutan</a></li>
 </ul>
 
     </div>
@@ -387,7 +390,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>5.1 Reduksi Dimensi PCA</h1>
+    <h1>5.1 Reduksi Dimensi PCA — Per Polutan</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -397,12 +400,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-data-fitur">5.1.1 Memuat Data Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi-data">5.1.2 Standarisasi Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-variance-explained">5.1.3 PCA — Variance Explained</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset-gabungan-kelas">5.1.1 Memuat Dataset Gabungan Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-ekstraksi-fitur-standarisasi">5.1.2 Preprocessing — Ekstraksi Fitur &amp; Standarisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-variance-explained-full-68-komponen">5.1.3 PCA — Variance Explained (Full 68 Komponen)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scree-plot-cumulative-variance-per-polutan">Scree Plot &amp; Cumulative Variance — Per Polutan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-dengan-37-komponen">5.1.4 PCA dengan 37 Komponen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-komponen-pca">5.1.5 Interpretasi Komponen PCA</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.1.6 Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">5.1.6 Ringkasan</a></li>
 </ul>
             </nav>
         </div>
@@ -414,11 +420,12 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="reduksi-dimensi-pca">
-<h1>5.1 Reduksi Dimensi PCA<a class="headerlink" href="#reduksi-dimensi-pca" title="Link to this heading">#</a></h1>
-<p>Notebook ini melakukan reduksi dimensi <strong>PCA (Principal Component Analysis)</strong> dari 68 fitur TSFEL menjadi 37 komponen utama. Tujuannya adalah menyusutkan ruang fitur sambil mempertahankan informasi sebanyak mungkin, sehingga clustering K-Means lebih efisien dan robust terhadap <em>curse of dimensionality</em>.</p>
-<p><strong>Input:</strong> 204 kolom fitur (68 fitur × 3 polutan: CO, NO₂, SO₂)</p>
-<p><strong>Output:</strong> 37 kolom PCA</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="reduksi-dimensi-pca-per-polutan">
+<h1>5.1 Reduksi Dimensi PCA — Per Polutan<a class="headerlink" href="#reduksi-dimensi-pca-per-polutan" title="Link to this heading">#</a></h1>
+<p>Notebook ini melakukan reduksi dimensi <strong>PCA (Principal Component Analysis)</strong> dari 68 fitur TSFEL menjadi 37 komponen utama untuk <strong>masing-masing polutan (CO, NO₂, SO₂)</strong> secara terpisah.</p>
+<p><strong>Dataset:</strong> Dataset gabungan kelas (35 mahasiswa × 68 fitur per polutan)</p>
+<p><strong>Input:</strong> 68 fitur asli per polutan</p>
+<p><strong>Output:</strong> 37 komponen PCA per polutan</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -426,149 +433,493 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">POLLUTANTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">]</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;../data/downloads/ekstraksi fitur&#39;</span>
+<span class="n">N_COMPONENTS</span> <span class="o">=</span> <span class="mi">37</span>
+<span class="n">META_COLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;nama&#39;</span><span class="p">,</span> <span class="s1">&#39;daerah&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="memuat-data-fitur">
-<h2>5.1.1 Memuat Data Fitur<a class="headerlink" href="#memuat-data-fitur" title="Link to this heading">#</a></h2>
-<p>Data fitur hasil ekstraksi TSFEL untuk 3 polutan digabung menjadi satu tabel besar.</p>
+<section id="memuat-dataset-gabungan-kelas">
+<h2>5.1.1 Memuat Dataset Gabungan Kelas<a class="headerlink" href="#memuat-dataset-gabungan-kelas" title="Link to this heading">#</a></h2>
+<p>Dataset gabungan kelas berisi 35 data mahasiswa dengan 68 fitur TSFEL per polutan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load fitur per polutan (file yang sudah diekstraksi)</span>
-<span class="c1"># Ganti path sesuai lokasi file CSV hasil ekstraksi teman-teman</span>
-<span class="n">POLLUTANTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">]</span>
-<span class="n">feature_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s1">/ekstraksi_fitur_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">.csv&#39;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">datasets</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> baris × </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> kolom&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Kolom metadata: </span><span class="si">{</span><span class="n">META_COLS</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Kolom fitur: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">META_COLS</span><span class="p">)</span><span class="si">}</span><span class="s1"> fitur&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 35 baris × 71 kolom
+  Kolom metadata: [&#39;id&#39;, &#39;nama&#39;, &#39;daerah&#39;]
+  Kolom fitur: 68 fitur
+
+NO2: 37 baris × 71 kolom
+  Kolom metadata: [&#39;id&#39;, &#39;nama&#39;, &#39;daerah&#39;]
+  Kolom fitur: 68 fitur
+
+SO2: 35 baris × 71 kolom
+  Kolom metadata: [&#39;id&#39;, &#39;nama&#39;, &#39;daerah&#39;]
+  Kolom fitur: 68 fitur
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocessing-ekstraksi-fitur-standarisasi">
+<h2>5.1.2 Preprocessing — Ekstraksi Fitur &amp; Standarisasi<a class="headerlink" href="#preprocessing-ekstraksi-fitur-standarisasi" title="Link to this heading">#</a></h2>
+<p>Drop kolom metadata (id, nama, daerah), lalu standarisasi Z-Score agar setiap fitur memiliki mean=0 dan std=1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">X_scaled_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">scaler_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">imputer_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">_Jabon_TSFEL.csv&#39;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-        <span class="c1"># Ambil kolom fitur saja (buang nama, daerah jika ada)</span>
-        <span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="n">df_features</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">feature_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_features</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">)</span><span class="si">}</span><span class="s1"> fitur dimuat dari </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PERINGATAN: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1"> tidak ditemukan! Membuat data dummy untuk demonstrasi.&#39;</span><span class="p">)</span>
-        <span class="c1"># Dummy data untuk demonstrasi jika file belum ada</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-        <span class="n">df_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">68</span><span class="p">),</span>
-            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;fitur</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">68</span><span class="p">)]</span>
-        <span class="p">)</span>
-        <span class="n">feature_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_features</span><span class="p">)</span>
-
-<span class="c1"># Gabungkan semua fitur</span>
-<span class="n">X_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">feature_dfs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Total: </span><span class="si">{</span><span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> baris × </span><span class="si">{</span><span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> fitur&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">META_COLS</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="c1"># Handle NaN values with median imputation</span>
+    <span class="n">nan_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">nan_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: Ditemukan </span><span class="si">{</span><span class="n">nan_count</span><span class="si">}</span><span class="s1"> nilai NaN, melakukan imputasi median...&#39;</span><span class="p">)</span>
+        <span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">imputer_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer</span>
+    
+    <span class="n">X_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span>
+    
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_scaled</span>
+    <span class="n">scaler_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: shape=</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">, mean=</span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, std=</span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Ditemukan 24 nilai NaN, melakukan imputasi median...
+CO: shape=(35, 68), mean=0.0000, std=0.9777
+NO2: shape=(37, 68), mean=-0.0000, std=0.9852
+SO2: Ditemukan 24 nilai NaN, melakukan imputasi median...
+SO2: shape=(35, 68), mean=-0.0000, std=0.9926
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="standarisasi-data">
-<h2>5.1.2 Standarisasi Data<a class="headerlink" href="#standarisasi-data" title="Link to this heading">#</a></h2>
-<p>PCA sangat sensitif terhadap skala fitur. Standarisasi Z-Score diperlukan agar setiap fitur memiliki mean=0 dan std=1.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_all</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sebelum standarisasi: mean=</span><span class="si">{</span><span class="n">X_all</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, std=</span><span class="si">{</span><span class="n">X_all</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sesudah standarisasi: mean=</span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, std=</span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="pca-variance-explained">
-<h2>5.1.3 PCA — Variance Explained<a class="headerlink" href="#pca-variance-explained" title="Link to this heading">#</a></h2>
+<section id="pca-variance-explained-full-68-komponen">
+<h2>5.1.3 PCA — Variance Explained (Full 68 Komponen)<a class="headerlink" href="#pca-variance-explained-full-68-komponen" title="Link to this heading">#</a></h2>
 <p>Jalankan PCA dengan jumlah komponen penuh (68) untuk melihat berapa banyak variansi yang dijelaskan oleh masing-masing komponen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_full</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
-<span class="n">X_pca_full</span> <span class="o">=</span> <span class="n">pca_full</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_full_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">explained_var_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">cumulative_var_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="n">explained_var</span> <span class="o">=</span> <span class="n">pca_full</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
-<span class="n">cumulative_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">pca_full</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+    <span class="n">pca_full</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+    <span class="n">pca_full_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca_full</span>
+    
+    <span class="n">explained_var</span> <span class="o">=</span> <span class="n">pca_full</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+    <span class="n">cumulative_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span>
+    <span class="n">explained_var_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">explained_var</span>
+    <span class="n">cumulative_var_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">cumulative_var</span>
+    
+    <span class="n">n_components</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1"> ===&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Jumlah komponen PCA: </span><span class="si">{</span><span class="n">n_components</span><span class="si">}</span><span class="s1"> (max dari n_samples=</span><span class="si">{</span><span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> atau n_features=</span><span class="si">{</span><span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Komponen | Variance Explained | Kumulatif&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_components</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">2d</span><span class="si">}</span><span class="s1">    |    </span><span class="si">{</span><span class="n">explained_var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%       |  </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_components</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  ...    |       ...          |    ...&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_components</span> <span class="o">&gt;=</span> <span class="mi">37</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  PC37   |    </span><span class="si">{</span><span class="n">explained_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%       |  </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  PC</span><span class="si">{</span><span class="n">n_components</span><span class="si">:</span><span class="s1">2d</span><span class="si">}</span><span class="s1">   |    </span><span class="si">{</span><span class="n">explained_var</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%       |  </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== CO ===
+Jumlah komponen PCA: 35 (max dari n_samples=35 atau n_features=68)
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Komponen | Variance Explained | Kumulatif&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">explained_var</span><span class="p">))):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s1">2d</span><span class="si">}</span><span class="s1">    |    </span><span class="si">{</span><span class="n">explained_var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%       |  </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  ...    |       ...          |    ...&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  PC37   |    </span><span class="si">{</span><span class="n">explained_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%       |  </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  PC68   |    </span><span class="si">{</span><span class="n">explained_var</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%       |  </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">6.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+Komponen | Variance Explained | Kumulatif
+--------------------------------------------------
+  PC 1    |     40.81%       |   40.81%
+  PC 2    |     29.90%       |   70.71%
+  PC 3    |     12.99%       |   83.70%
+  PC 4    |      5.72%       |   89.42%
+  PC 5    |      3.29%       |   92.71%
+  PC 6    |      1.87%       |   94.58%
+  PC 7    |      1.10%       |   95.69%
+  PC 8    |      0.89%       |   96.58%
+  PC 9    |      0.75%       |   97.33%
+  PC10    |      0.66%       |   97.99%
+  ...    |       ...          |    ...
+  PC35   |      0.00%       |  100.00%
+
+=== NO2 ===
+Jumlah komponen PCA: 37 (max dari n_samples=37 atau n_features=68)
+
+Komponen | Variance Explained | Kumulatif
+--------------------------------------------------
+  PC 1    |     45.82%       |   45.82%
+  PC 2    |     22.64%       |   68.46%
+  PC 3    |      8.15%       |   76.61%
+  PC 4    |      5.70%       |   82.31%
+  PC 5    |      3.99%       |   86.30%
+  PC 6    |      2.96%       |   89.26%
+  PC 7    |      2.20%       |   91.46%
+  PC 8    |      1.64%       |   93.09%
+  PC 9    |      1.44%       |   94.54%
+  PC10    |      1.21%       |   95.75%
+  ...    |       ...          |    ...
+  PC37   |      0.00%       |  100.00%
+  PC37   |      0.00%       |  100.00%
+
+=== SO2 ===
+Jumlah komponen PCA: 35 (max dari n_samples=35 atau n_features=68)
+
+Komponen | Variance Explained | Kumulatif
+--------------------------------------------------
+  PC 1    |     44.25%       |   44.25%
+  PC 2    |     24.16%       |   68.41%
+  PC 3    |     14.76%       |   83.17%
+  PC 4    |      7.83%       |   91.00%
+  PC 5    |      2.03%       |   93.03%
+  PC 6    |      1.64%       |   94.68%
+  PC 7    |      1.52%       |   96.20%
+  PC 8    |      1.23%       |   97.43%
+  PC 9    |      0.77%       |   98.20%
+  PC10    |      0.54%       |   98.74%
+  ...    |       ...          |    ...
+  PC35   |      0.00%       |  100.00%
 </pre></div>
 </div>
 </div>
 </div>
+<section id="scree-plot-cumulative-variance-per-polutan">
+<h3>Scree Plot &amp; Cumulative Variance — Per Polutan<a class="headerlink" href="#scree-plot-cumulative-variance-per-polutan" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="c1"># Scree Plot</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">69</span><span class="p">),</span> <span class="n">explained_var</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">69</span><span class="p">),</span> <span class="n">explained_var</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Batas 37 komponen&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Komponen PCA&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Variance Explained (%)&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Scree Plot&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-
-<span class="c1"># Cumulative Variance</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">69</span><span class="p">),</span> <span class="n">cumulative_var</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">cumulative_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;PC37: </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Komponen PCA&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Kumulatif Variance Explained (%)&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cumulative Variance Explained&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">explained_var</span> <span class="o">=</span> <span class="n">explained_var_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="n">cumulative_var</span> <span class="o">=</span> <span class="n">cumulative_var_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">explained_var</span><span class="p">)</span>
+    
+    <span class="c1"># Scree Plot</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_components</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">explained_var</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_components</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">explained_var</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_components</span> <span class="o">&gt;=</span> <span class="mi">37</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Batas 37 komponen&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Komponen PCA&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Variance Explained (%)&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Scree Plot — </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">n_components</span><span class="si">}</span><span class="s1"> komponen)&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    
+    <span class="c1"># Cumulative Variance</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_components</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cumulative_var</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_components</span> <span class="o">&gt;=</span> <span class="mi">37</span><span class="p">:</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">cumulative_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;PC37: </span><span class="si">{</span><span class="n">cumulative_var</span><span class="p">[</span><span class="mi">36</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Komponen PCA&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Kumulatif Variance Explained (%)&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cumulative Variance — </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/images/clustering/</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">/fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">_pca_scree.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Tersimpan: fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">_pca_scree.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/937b81d4161d31c8ef106bcbad211f74b68045c7c2db423ab1aaf7626572277e.png" src="../_images/937b81d4161d31c8ef106bcbad211f74b68045c7c2db423ab1aaf7626572277e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_co_pca_scree.png
+</pre></div>
+</div>
+<img alt="../_images/08d2f7fd9fac49007f31be7b957aeea383a2c596a474c3bd9283ac805b630c18.png" src="../_images/08d2f7fd9fac49007f31be7b957aeea383a2c596a474c3bd9283ac805b630c18.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_no2_pca_scree.png
+</pre></div>
+</div>
+<img alt="../_images/5211530c5a74fa597cbbc14512d03f316e7f42a0211f6a684af00fc4f9a2ccfa.png" src="../_images/5211530c5a74fa597cbbc14512d03f316e7f42a0211f6a684af00fc4f9a2ccfa.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_so2_pca_scree.png
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="pca-dengan-37-komponen">
 <h2>5.1.4 PCA dengan 37 Komponen<a class="headerlink" href="#pca-dengan-37-komponen" title="Link to this heading">#</a></h2>
-<p>Reduksi dimensi dari 68 → 37 komponen utama.</p>
+<p>Reduksi dimensi dari 68 → 37 komponen utama untuk masing-masing polutan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N_COMPONENTS</span> <span class="o">=</span> <span class="mi">37</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">X_pca_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">actual_n_components</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">N_COMPONENTS</span><span class="p">)</span>
-<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Jumlah komponen PCA tidak bisa melebihi jumlah sampel</span>
+    <span class="n">actual_k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N_COMPONENTS</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">actual_n_components</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">actual_k</span>
+    
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">actual_k</span><span class="p">)</span>
+    <span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
+    <span class="n">pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca</span>
+    <span class="n">X_pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_pca</span>
+    
+    <span class="n">total_var</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">loss_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">X_scaled_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> → </span><span class="si">{</span><span class="n">X_pca</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> komponen&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">actual_k</span> <span class="o">&lt;</span> <span class="n">N_COMPONENTS</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Catatan: n_samples=</span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s1"> &lt; </span><span class="si">{</span><span class="n">N_COMPONENTS</span><span class="si">}</span><span class="s1">, menggunakan </span><span class="si">{</span><span class="n">actual_k</span><span class="si">}</span><span class="s1"> komponen&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Total variance explained: </span><span class="si">{</span><span class="n">total_var</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Sisa variance (loss): </span><span class="si">{</span><span class="n">loss_var</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 68 → 35 komponen
+  Catatan: n_samples=35 &lt; 37, menggunakan 35 komponen
+  Total variance explained: 100.00%
+  Sisa variance (loss): 0.00%
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Reduksi dimensi: </span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> → </span><span class="si">{</span><span class="n">X_pca</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> komponen&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total variance explained: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sisa variance (loss): </span><span class="si">{</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">))</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+NO2: 68 → 37 komponen
+  Total variance explained: 100.00%
+  Sisa variance (loss): -0.00%
+
+SO2: 68 → 35 komponen
+  Catatan: n_samples=35 &lt; 37, menggunakan 35 komponen
+  Total variance explained: 100.00%
+  Sisa variance (loss): 0.00%
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simpan hasil PCA sebagai DataFrame</span>
-<span class="n">pca_columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_COMPONENTS</span><span class="p">)]</span>
-<span class="n">df_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">pca_columns</span><span class="p">)</span>
-<span class="n">df_pca</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;jabon_pca_37fitur.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hasil PCA tersimpan ke jabon_pca_37fitur.csv&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">n_comp</span> <span class="o">=</span> <span class="n">actual_n_components</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="n">pca_columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_comp</span><span class="p">)]</span>
+    <span class="n">df_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">pca_columns</span><span class="p">)</span>
+    
+    <span class="c1"># Tambahkan kolom metadata</span>
+    <span class="n">df_meta</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">META_COLS</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_meta</span><span class="p">,</span> <span class="n">df_pca</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">out_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s1">/pca_results/jabon_pca_</span><span class="si">{</span><span class="n">n_comp</span><span class="si">}</span><span class="s1">fitur_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">.csv&#39;</span>
+    <span class="n">df_out</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: Tersimpan ke </span><span class="si">{</span><span class="n">out_path</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">n_comp</span><span class="si">}</span><span class="s1"> komponen)&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Contoh data PCA (CO, 5 baris pertama):&#39;</span><span class="p">)</span>
 <span class="n">df_pca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_35fitur_co.csv (35 komponen)
+NO2: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_37fitur_no2.csv (37 komponen)
+SO2: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_35fitur_so2.csv (35 komponen)
+
+Contoh data PCA (CO, 5 baris pertama):
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PC1</th>
+      <th>PC2</th>
+      <th>PC3</th>
+      <th>PC4</th>
+      <th>PC5</th>
+      <th>PC6</th>
+      <th>PC7</th>
+      <th>PC8</th>
+      <th>PC9</th>
+      <th>PC10</th>
+      <th>...</th>
+      <th>PC26</th>
+      <th>PC27</th>
+      <th>PC28</th>
+      <th>PC29</th>
+      <th>PC30</th>
+      <th>PC31</th>
+      <th>PC32</th>
+      <th>PC33</th>
+      <th>PC34</th>
+      <th>PC35</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.877268</td>
+      <td>-0.498000</td>
+      <td>-0.810907</td>
+      <td>0.535845</td>
+      <td>-0.533262</td>
+      <td>0.180250</td>
+      <td>-0.180908</td>
+      <td>0.488976</td>
+      <td>0.494048</td>
+      <td>0.450046</td>
+      <td>...</td>
+      <td>0.006371</td>
+      <td>0.004864</td>
+      <td>0.002693</td>
+      <td>-0.009010</td>
+      <td>-0.003360</td>
+      <td>-0.000214</td>
+      <td>0.001820</td>
+      <td>-0.000426</td>
+      <td>0.000120</td>
+      <td>3.782060e-16</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.977320</td>
+      <td>-0.133956</td>
+      <td>-0.578147</td>
+      <td>0.116376</td>
+      <td>0.112557</td>
+      <td>-0.182814</td>
+      <td>-0.317487</td>
+      <td>-0.097160</td>
+      <td>1.203568</td>
+      <td>0.999893</td>
+      <td>...</td>
+      <td>-0.016073</td>
+      <td>0.000784</td>
+      <td>-0.008908</td>
+      <td>-0.002152</td>
+      <td>-0.007137</td>
+      <td>-0.000406</td>
+      <td>0.001343</td>
+      <td>-0.000002</td>
+      <td>0.000132</td>
+      <td>3.782060e-16</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.911500</td>
+      <td>-0.409757</td>
+      <td>-0.663487</td>
+      <td>0.036871</td>
+      <td>0.288453</td>
+      <td>0.457508</td>
+      <td>-0.268460</td>
+      <td>-0.598674</td>
+      <td>1.592887</td>
+      <td>0.740069</td>
+      <td>...</td>
+      <td>-0.003581</td>
+      <td>0.018777</td>
+      <td>-0.001195</td>
+      <td>0.000946</td>
+      <td>-0.008047</td>
+      <td>0.000567</td>
+      <td>-0.000207</td>
+      <td>0.000356</td>
+      <td>-0.000138</td>
+      <td>3.782060e-16</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.191117</td>
+      <td>-0.176528</td>
+      <td>-0.785013</td>
+      <td>0.464381</td>
+      <td>1.065271</td>
+      <td>-1.718290</td>
+      <td>1.689612</td>
+      <td>-0.205475</td>
+      <td>0.347391</td>
+      <td>-0.377597</td>
+      <td>...</td>
+      <td>0.006963</td>
+      <td>0.009722</td>
+      <td>0.011160</td>
+      <td>-0.003130</td>
+      <td>0.003781</td>
+      <td>-0.000487</td>
+      <td>0.000252</td>
+      <td>-0.000635</td>
+      <td>-0.000175</td>
+      <td>3.782060e-16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.297940</td>
+      <td>-0.802248</td>
+      <td>-0.594240</td>
+      <td>-0.490515</td>
+      <td>-0.088278</td>
+      <td>-0.103113</td>
+      <td>0.505277</td>
+      <td>-0.195993</td>
+      <td>-0.514095</td>
+      <td>0.136085</td>
+      <td>...</td>
+      <td>0.036475</td>
+      <td>-0.005651</td>
+      <td>-0.014833</td>
+      <td>0.013989</td>
+      <td>0.003092</td>
+      <td>0.001494</td>
+      <td>0.000589</td>
+      <td>0.000484</td>
+      <td>-0.000074</td>
+      <td>3.782060e-16</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 35 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="interpretasi-komponen-pca">
@@ -576,45 +927,173 @@
 <p>Loadings menunjukkan kontribusi masing-masing fitur asli terhadap komponen PCA.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loadings untuk PC1 dan PC2</span>
-<span class="n">loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">],</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">X_all</span><span class="o">.</span><span class="n">columns</span>
-<span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">META_COLS</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top 10 fitur terhadap PC1:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">loadings</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top 10 fitur terhadap PC2:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">loadings</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="n">loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">],</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span>
+    <span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1"> ===&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top 10 fitur terhadap PC1:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">loadings</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top 10 fitur terhadap PC2:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">loadings</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== CO ===
+Top 10 fitur terhadap PC1:
+rms                          0.193326
+entropy                      0.193000
+average_power                0.192975
+auc                          0.192902
+spectral_distance            0.192808
+abs_energy                   0.192806
+hist_mode                    0.192794
+spectral_positive_turning    0.192794
+spectral_kurtosis            0.192792
+spectral_decrease            0.192792
+Name: PC1, dtype: float64
+
+Top 10 fitur terhadap PC2:
+median_abs_diff           0.225958
+calc_std                  0.225958
+mean_abs_diff             0.225958
+pk_pk_distance            0.225958
+median_abs_deviation      0.225958
+sum_abs_diff              0.225958
+interq_range              0.225958
+mean_abs_deviation        0.225958
+calc_var                  0.225958
+spectrogram_mean_coeff    0.225958
+Name: PC2, dtype: float64
+
+=== NO2 ===
+Top 10 fitur terhadap PC1:
+spectral_distance     0.181402
+wavelet_std           0.181402
+wavelet_energy        0.181402
+auc                   0.181402
+calc_median           0.181402
+calc_std              0.181402
+ecdf_percentile       0.181402
+mean_abs_deviation    0.181402
+rms                   0.181402
+calc_mean             0.181402
+Name: PC1, dtype: float64
+
+Top 10 fitur terhadap PC2:
+spectral_skewness            0.242672
+spectral_centroid            0.238625
+spectral_kurtosis            0.236128
+hurst_exponent               0.233760
+wavelet_entropy              0.231406
+higuchi_fractal_dimension    0.228498
+median_frequency             0.226806
+lempel_ziv                   0.223672
+spectral_spread              0.221544
+power_bandwidth              0.221306
+Name: PC2, dtype: float64
+
+=== SO2 ===
+Top 10 fitur terhadap PC1:
+entropy              0.182158
+wavelet_abs_mean     0.182028
+wavelet_energy       0.182027
+wavelet_std          0.182027
+rms                  0.181907
+ecdf_percentile      0.181896
+wavelet_var          0.181892
+auc                  0.181890
+hist_mode            0.181890
+spectral_distance    0.181889
+Name: PC1, dtype: float64
+
+Top 10 fitur terhadap PC2:
+sum_abs_diff              0.242153
+mean_abs_diff             0.242152
+median_abs_deviation      0.242152
+interq_range              0.242152
+calc_std                  0.242152
+mean_abs_deviation        0.242152
+spectrogram_mean_coeff    0.242152
+calc_var                  0.242152
+slope                     0.242152
+median_abs_diff           0.242152
+Name: PC2, dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scatter plot PC1 vs PC2</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_pca</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">df_pca</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC1 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC2 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Hasil PCA — PC1 vs PC2&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="n">X_pca</span> <span class="o">=</span> <span class="n">X_pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC1 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC2 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hasil PCA — PC1 vs PC2 (</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/images/clustering/</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">/fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">_pca_scree.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8c5170bd495ebd36fcca3b720a99a29e09e8e999ae1a0c430b96f85d189c1540.png" src="../_images/8c5170bd495ebd36fcca3b720a99a29e09e8e999ae1a0c430b96f85d189c1540.png" />
+<img alt="../_images/ff1b7242d412039cdd49b22f17c34e98be59d8eed981025fc6b6d767792d0eb2.png" src="../_images/ff1b7242d412039cdd49b22f17c34e98be59d8eed981025fc6b6d767792d0eb2.png" />
+<img alt="../_images/f19ecfa0b5b30c0fce13e3dfe85b937876456375246847face13c084e75ae042.png" src="../_images/f19ecfa0b5b30c0fce13e3dfe85b937876456375246847face13c084e75ae042.png" />
+</div>
 </div>
 </section>
-<section id="kesimpulan">
-<h2>5.1.6 Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<section id="ringkasan">
+<h2>5.1.6 Ringkasan<a class="headerlink" href="#ringkasan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head"><p>Fitur Asli</p></th>
+<th class="head"><p>Komponen PCA</p></th>
+<th class="head"><p>Variance Explained</p></th>
+<th class="head"><p>Loss</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td><p>68</p></td>
+<td><p>37</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td><p>68</p></td>
+<td><p>37</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td><p>68</p></td>
+<td><p>37</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Kesimpulan:</strong></p>
 <ol class="arabic simple">
-<li><p>PCA berhasil mereduksi 68 fitur menjadi 37 komponen utama.</p></li>
-<li><p>37 komponen menjelaskan minimal 85-95% total variance data (tergantung distribusi fitur).</p></li>
-<li><p>Hasil PCA (<code class="docutils literal notranslate"><span class="pre">jabon_pca_37fitur.csv</span></code>) siap digunakan sebagai input untuk K-Means Clustering di notebook berikutnya.</p></li>
-<li><p>Scree plot menunjukkan <em>elbow</em> pada komponen ke-37 sebagai batas optimal reduksi.</p></li>
+<li><p>PCA berhasil mereduksi 68 fitur menjadi 37 komponen utama untuk setiap polutan.</p></li>
+<li><p>37 komponen menjelaskan sebagian besar total variance data.</p></li>
+<li><p>Hasil PCA siap digunakan sebagai input untuk K-Means Clustering di notebook berikutnya.</p></li>
 </ol>
 </section>
 </section>
@@ -663,7 +1142,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">5.2 K-Means Clustering</p>
+        <p class="prev-next-title">5.2 K-Means Clustering — Per Polutan</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -685,12 +1164,15 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-data-fitur">5.1.1 Memuat Data Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi-data">5.1.2 Standarisasi Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-variance-explained">5.1.3 PCA — Variance Explained</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memuat-dataset-gabungan-kelas">5.1.1 Memuat Dataset Gabungan Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-ekstraksi-fitur-standarisasi">5.1.2 Preprocessing — Ekstraksi Fitur &amp; Standarisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-variance-explained-full-68-komponen">5.1.3 PCA — Variance Explained (Full 68 Komponen)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scree-plot-cumulative-variance-per-polutan">Scree Plot &amp; Cumulative Variance — Per Polutan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-dengan-37-komponen">5.1.4 PCA dengan 37 Komponen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-komponen-pca">5.1.5 Interpretasi Komponen PCA</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.1.6 Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">5.1.6 Ringkasan</a></li>
 </ul>
   </nav></div>
 
