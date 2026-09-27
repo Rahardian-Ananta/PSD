@@ -428,7 +428,7 @@
 <p><strong>Output:</strong> 37 komponen PCA per polutan</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -454,7 +454,7 @@
 <p>Dataset gabungan kelas berisi 35 data mahasiswa dengan 68 fitur TSFEL per polutan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
     <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s1">/ekstraksi_fitur_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">.csv&#39;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -467,7 +467,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 35 baris × 71 kolom
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 37 baris × 71 kolom
   Kolom metadata: [&#39;id&#39;, &#39;nama&#39;, &#39;daerah&#39;]
   Kolom fitur: 68 fitur
 
@@ -475,7 +475,7 @@ NO2: 37 baris × 71 kolom
   Kolom metadata: [&#39;id&#39;, &#39;nama&#39;, &#39;daerah&#39;]
   Kolom fitur: 68 fitur
 
-SO2: 35 baris × 71 kolom
+SO2: 37 baris × 71 kolom
   Kolom metadata: [&#39;id&#39;, &#39;nama&#39;, &#39;daerah&#39;]
   Kolom fitur: 68 fitur
 </pre></div>
@@ -488,7 +488,7 @@ SO2: 35 baris × 71 kolom
 <p>Drop kolom metadata (id, nama, daerah), lalu standarisasi Z-Score agar setiap fitur memiliki mean=0 dan std=1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">X_scaled_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">scaler_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">imputer_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -517,11 +517,9 @@ SO2: 35 baris × 71 kolom
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Ditemukan 24 nilai NaN, melakukan imputasi median...
-CO: shape=(35, 68), mean=0.0000, std=0.9777
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: shape=(37, 68), mean=0.0000, std=0.9777
 NO2: shape=(37, 68), mean=-0.0000, std=0.9852
-SO2: Ditemukan 24 nilai NaN, melakukan imputasi median...
-SO2: shape=(35, 68), mean=-0.0000, std=0.9926
+SO2: shape=(37, 68), mean=-0.0000, std=0.9852
 </pre></div>
 </div>
 </div>
@@ -532,7 +530,7 @@ SO2: shape=(35, 68), mean=-0.0000, std=0.9926
 <p>Jalankan PCA dengan jumlah komponen penuh (68) untuk melihat berapa banyak variansi yang dijelaskan oleh masing-masing komponen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_full_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca_full_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">explained_var_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">cumulative_var_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -563,22 +561,23 @@ SO2: shape=(35, 68), mean=-0.0000, std=0.9926
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== CO ===
-Jumlah komponen PCA: 35 (max dari n_samples=35 atau n_features=68)
+Jumlah komponen PCA: 37 (max dari n_samples=37 atau n_features=68)
 
 Komponen | Variance Explained | Kumulatif
 --------------------------------------------------
-  PC 1    |     40.81%       |   40.81%
-  PC 2    |     29.90%       |   70.71%
-  PC 3    |     12.99%       |   83.70%
-  PC 4    |      5.72%       |   89.42%
-  PC 5    |      3.29%       |   92.71%
-  PC 6    |      1.87%       |   94.58%
-  PC 7    |      1.10%       |   95.69%
-  PC 8    |      0.89%       |   96.58%
-  PC 9    |      0.75%       |   97.33%
-  PC10    |      0.66%       |   97.99%
+  PC 1    |     53.95%       |   53.95%
+  PC 2    |     23.67%       |   77.63%
+  PC 3    |      6.06%       |   83.69%
+  PC 4    |      3.85%       |   87.54%
+  PC 5    |      2.93%       |   90.47%
+  PC 6    |      1.88%       |   92.34%
+  PC 7    |      1.66%       |   94.00%
+  PC 8    |      1.18%       |   95.18%
+  PC 9    |      1.05%       |   96.23%
+  PC10    |      0.80%       |   97.03%
   ...    |       ...          |    ...
-  PC35   |      0.00%       |  100.00%
+  PC37   |      0.00%       |  100.00%
+  PC37   |      0.00%       |  100.00%
 
 === NO2 ===
 Jumlah komponen PCA: 37 (max dari n_samples=37 atau n_features=68)
@@ -586,36 +585,37 @@ Jumlah komponen PCA: 37 (max dari n_samples=37 atau n_features=68)
 Komponen | Variance Explained | Kumulatif
 --------------------------------------------------
   PC 1    |     45.82%       |   45.82%
-  PC 2    |     22.64%       |   68.46%
-  PC 3    |      8.15%       |   76.61%
-  PC 4    |      5.70%       |   82.31%
-  PC 5    |      3.99%       |   86.30%
-  PC 6    |      2.96%       |   89.26%
-  PC 7    |      2.20%       |   91.46%
-  PC 8    |      1.64%       |   93.09%
-  PC 9    |      1.44%       |   94.54%
-  PC10    |      1.21%       |   95.75%
+  PC 2    |     22.76%       |   68.58%
+  PC 3    |      8.10%       |   76.68%
+  PC 4    |      5.70%       |   82.38%
+  PC 5    |      3.90%       |   86.29%
+  PC 6    |      3.03%       |   89.32%
+  PC 7    |      1.93%       |   91.25%
+  PC 8    |      1.67%       |   92.92%
+  PC 9    |      1.49%       |   94.40%
+  PC10    |      1.25%       |   95.66%
   ...    |       ...          |    ...
   PC37   |      0.00%       |  100.00%
   PC37   |      0.00%       |  100.00%
 
 === SO2 ===
-Jumlah komponen PCA: 35 (max dari n_samples=35 atau n_features=68)
+Jumlah komponen PCA: 37 (max dari n_samples=37 atau n_features=68)
 
 Komponen | Variance Explained | Kumulatif
 --------------------------------------------------
-  PC 1    |     44.25%       |   44.25%
-  PC 2    |     24.16%       |   68.41%
-  PC 3    |     14.76%       |   83.17%
-  PC 4    |      7.83%       |   91.00%
-  PC 5    |      2.03%       |   93.03%
-  PC 6    |      1.64%       |   94.68%
-  PC 7    |      1.52%       |   96.20%
-  PC 8    |      1.23%       |   97.43%
-  PC 9    |      0.77%       |   98.20%
-  PC10    |      0.54%       |   98.74%
+  PC 1    |     53.05%       |   53.05%
+  PC 2    |     24.41%       |   77.46%
+  PC 3    |      6.21%       |   83.67%
+  PC 4    |      5.06%       |   88.73%
+  PC 5    |      2.68%       |   91.40%
+  PC 6    |      1.67%       |   93.07%
+  PC 7    |      1.54%       |   94.61%
+  PC 8    |      1.33%       |   95.93%
+  PC 9    |      1.17%       |   97.10%
+  PC10    |      0.58%       |   97.67%
   ...    |       ...          |    ...
-  PC35   |      0.00%       |  100.00%
+  PC37   |      0.00%       |  100.00%
+  PC37   |      0.00%       |  100.00%
 </pre></div>
 </div>
 </div>
@@ -624,7 +624,7 @@ Komponen | Variance Explained | Kumulatif
 <h3>Scree Plot &amp; Cumulative Variance — Per Polutan<a class="headerlink" href="#scree-plot-cumulative-variance-per-polutan" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
     <span class="n">explained_var</span> <span class="o">=</span> <span class="n">explained_var_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
     <span class="n">cumulative_var</span> <span class="o">=</span> <span class="n">cumulative_var_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
@@ -661,15 +661,15 @@ Komponen | Variance Explained | Kumulatif
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/937b81d4161d31c8ef106bcbad211f74b68045c7c2db423ab1aaf7626572277e.png" src="../_images/937b81d4161d31c8ef106bcbad211f74b68045c7c2db423ab1aaf7626572277e.png" />
+<img alt="../_images/eedaa8a5b9ef7f71dd0f239aa66a9de798796ac25605639acf1582130d47ca0d.png" src="../_images/eedaa8a5b9ef7f71dd0f239aa66a9de798796ac25605639acf1582130d47ca0d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_co_pca_scree.png
 </pre></div>
 </div>
-<img alt="../_images/08d2f7fd9fac49007f31be7b957aeea383a2c596a474c3bd9283ac805b630c18.png" src="../_images/08d2f7fd9fac49007f31be7b957aeea383a2c596a474c3bd9283ac805b630c18.png" />
+<img alt="../_images/b85e69b5dba21ab44fd6e0b67a96a12774361bdaaf2a34fca85c4c4471bd7e23.png" src="../_images/b85e69b5dba21ab44fd6e0b67a96a12774361bdaaf2a34fca85c4c4471bd7e23.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_no2_pca_scree.png
 </pre></div>
 </div>
-<img alt="../_images/5211530c5a74fa597cbbc14512d03f316e7f42a0211f6a684af00fc4f9a2ccfa.png" src="../_images/5211530c5a74fa597cbbc14512d03f316e7f42a0211f6a684af00fc4f9a2ccfa.png" />
+<img alt="../_images/e4845fc0215410b8253a3b289cce84c579ea0dbd47cc17989ab1c1f087053400.png" src="../_images/e4845fc0215410b8253a3b289cce84c579ea0dbd47cc17989ab1c1f087053400.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_so2_pca_scree.png
 </pre></div>
 </div>
@@ -682,7 +682,7 @@ Komponen | Variance Explained | Kumulatif
 <p>Reduksi dimensi dari 68 → 37 komponen utama untuk masing-masing polutan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">X_pca_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">actual_n_components</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -709,17 +709,15 @@ Komponen | Variance Explained | Kumulatif
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 68 → 35 komponen
-  Catatan: n_samples=35 &lt; 37, menggunakan 35 komponen
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 68 → 37 komponen
   Total variance explained: 100.00%
   Sisa variance (loss): 0.00%
 
 NO2: 68 → 37 komponen
   Total variance explained: 100.00%
-  Sisa variance (loss): -0.00%
+  Sisa variance (loss): 0.00%
 
-SO2: 68 → 35 komponen
-  Catatan: n_samples=35 &lt; 37, menggunakan 35 komponen
+SO2: 68 → 37 komponen
   Total variance explained: 100.00%
   Sisa variance (loss): 0.00%
 </pre></div>
@@ -728,7 +726,7 @@ SO2: 68 → 35 komponen
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
     <span class="n">n_comp</span> <span class="o">=</span> <span class="n">actual_n_components</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
     <span class="n">pca_columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_comp</span><span class="p">)]</span>
     <span class="n">df_pca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">pca_columns</span><span class="p">)</span>
@@ -747,9 +745,9 @@ SO2: 68 → 35 komponen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_35fitur_co.csv (35 komponen)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_37fitur_co.csv (37 komponen)
 NO2: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_37fitur_no2.csv (37 komponen)
-SO2: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_35fitur_so2.csv (35 komponen)
+SO2: Tersimpan ke ../data/downloads/ekstraksi fitur/pca_results/jabon_pca_37fitur_so2.csv (37 komponen)
 
 Contoh data PCA (CO, 5 baris pertama):
 </pre></div>
@@ -783,8 +781,6 @@ Contoh data PCA (CO, 5 baris pertama):
       <th>PC9</th>
       <th>PC10</th>
       <th>...</th>
-      <th>PC26</th>
-      <th>PC27</th>
       <th>PC28</th>
       <th>PC29</th>
       <th>PC30</th>
@@ -793,132 +789,134 @@ Contoh data PCA (CO, 5 baris pertama):
       <th>PC33</th>
       <th>PC34</th>
       <th>PC35</th>
+      <th>PC36</th>
+      <th>PC37</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.877268</td>
-      <td>-0.498000</td>
-      <td>-0.810907</td>
-      <td>0.535845</td>
-      <td>-0.533262</td>
-      <td>0.180250</td>
-      <td>-0.180908</td>
-      <td>0.488976</td>
-      <td>0.494048</td>
-      <td>0.450046</td>
+      <td>1.042522</td>
+      <td>0.010212</td>
+      <td>0.778696</td>
+      <td>-0.626924</td>
+      <td>0.127375</td>
+      <td>-0.018255</td>
+      <td>0.792946</td>
+      <td>-0.078238</td>
+      <td>-0.089001</td>
+      <td>-0.104770</td>
       <td>...</td>
-      <td>0.006371</td>
-      <td>0.004864</td>
-      <td>0.002693</td>
-      <td>-0.009010</td>
-      <td>-0.003360</td>
-      <td>-0.000214</td>
-      <td>0.001820</td>
-      <td>-0.000426</td>
-      <td>0.000120</td>
-      <td>3.782060e-16</td>
+      <td>0.068669</td>
+      <td>-0.033010</td>
+      <td>0.009330</td>
+      <td>0.015056</td>
+      <td>0.017787</td>
+      <td>0.009071</td>
+      <td>0.007044</td>
+      <td>0.002137</td>
+      <td>0.005090</td>
+      <td>4.792731e-16</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.977320</td>
-      <td>-0.133956</td>
-      <td>-0.578147</td>
-      <td>0.116376</td>
-      <td>0.112557</td>
-      <td>-0.182814</td>
-      <td>-0.317487</td>
-      <td>-0.097160</td>
-      <td>1.203568</td>
-      <td>0.999893</td>
+      <td>0.999456</td>
+      <td>0.755785</td>
+      <td>0.229173</td>
+      <td>0.481567</td>
+      <td>-0.197470</td>
+      <td>0.189756</td>
+      <td>-0.201170</td>
+      <td>1.564125</td>
+      <td>0.738902</td>
+      <td>0.201339</td>
       <td>...</td>
-      <td>-0.016073</td>
-      <td>0.000784</td>
-      <td>-0.008908</td>
-      <td>-0.002152</td>
-      <td>-0.007137</td>
-      <td>-0.000406</td>
-      <td>0.001343</td>
-      <td>-0.000002</td>
-      <td>0.000132</td>
-      <td>3.782060e-16</td>
+      <td>-0.064144</td>
+      <td>-0.012397</td>
+      <td>0.007751</td>
+      <td>0.043901</td>
+      <td>0.011311</td>
+      <td>0.006958</td>
+      <td>0.011001</td>
+      <td>0.002075</td>
+      <td>0.000916</td>
+      <td>4.792731e-16</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.911500</td>
-      <td>-0.409757</td>
-      <td>-0.663487</td>
-      <td>0.036871</td>
-      <td>0.288453</td>
-      <td>0.457508</td>
-      <td>-0.268460</td>
-      <td>-0.598674</td>
-      <td>1.592887</td>
-      <td>0.740069</td>
+      <td>1.376052</td>
+      <td>0.741869</td>
+      <td>-0.058922</td>
+      <td>-0.073342</td>
+      <td>0.000623</td>
+      <td>0.616845</td>
+      <td>0.489246</td>
+      <td>1.206154</td>
+      <td>1.082961</td>
+      <td>0.381838</td>
       <td>...</td>
-      <td>-0.003581</td>
-      <td>0.018777</td>
-      <td>-0.001195</td>
-      <td>0.000946</td>
-      <td>-0.008047</td>
-      <td>0.000567</td>
-      <td>-0.000207</td>
-      <td>0.000356</td>
-      <td>-0.000138</td>
-      <td>3.782060e-16</td>
+      <td>0.017674</td>
+      <td>-0.051871</td>
+      <td>0.047017</td>
+      <td>0.006075</td>
+      <td>-0.026238</td>
+      <td>0.015418</td>
+      <td>-0.005763</td>
+      <td>-0.004471</td>
+      <td>-0.003109</td>
+      <td>4.792731e-16</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1.191117</td>
-      <td>-0.176528</td>
-      <td>-0.785013</td>
-      <td>0.464381</td>
-      <td>1.065271</td>
-      <td>-1.718290</td>
-      <td>1.689612</td>
-      <td>-0.205475</td>
-      <td>0.347391</td>
-      <td>-0.377597</td>
+      <td>0.946873</td>
+      <td>0.093639</td>
+      <td>0.509414</td>
+      <td>-0.988218</td>
+      <td>0.837895</td>
+      <td>-0.165737</td>
+      <td>-1.599372</td>
+      <td>0.504171</td>
+      <td>-1.745072</td>
+      <td>-0.229972</td>
       <td>...</td>
-      <td>0.006963</td>
-      <td>0.009722</td>
-      <td>0.011160</td>
-      <td>-0.003130</td>
-      <td>0.003781</td>
-      <td>-0.000487</td>
-      <td>0.000252</td>
-      <td>-0.000635</td>
-      <td>-0.000175</td>
-      <td>3.782060e-16</td>
+      <td>-0.003562</td>
+      <td>-0.017123</td>
+      <td>0.064225</td>
+      <td>-0.049721</td>
+      <td>0.022597</td>
+      <td>0.016385</td>
+      <td>-0.014826</td>
+      <td>0.001439</td>
+      <td>-0.002567</td>
+      <td>4.792731e-16</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.297940</td>
-      <td>-0.802248</td>
-      <td>-0.594240</td>
-      <td>-0.490515</td>
-      <td>-0.088278</td>
-      <td>-0.103113</td>
-      <td>0.505277</td>
-      <td>-0.195993</td>
-      <td>-0.514095</td>
-      <td>0.136085</td>
+      <td>1.543359</td>
+      <td>0.786452</td>
+      <td>-0.240324</td>
+      <td>-0.805334</td>
+      <td>0.281572</td>
+      <td>-0.140923</td>
+      <td>-0.071972</td>
+      <td>-0.957756</td>
+      <td>-0.219409</td>
+      <td>0.329053</td>
       <td>...</td>
-      <td>0.036475</td>
-      <td>-0.005651</td>
-      <td>-0.014833</td>
-      <td>0.013989</td>
-      <td>0.003092</td>
-      <td>0.001494</td>
-      <td>0.000589</td>
-      <td>0.000484</td>
-      <td>-0.000074</td>
-      <td>3.782060e-16</td>
+      <td>-0.094072</td>
+      <td>0.034309</td>
+      <td>-0.038329</td>
+      <td>-0.082405</td>
+      <td>-0.005179</td>
+      <td>-0.001381</td>
+      <td>0.005678</td>
+      <td>-0.004297</td>
+      <td>-0.003839</td>
+      <td>4.792731e-16</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 35 columns</p>
+<p>5 rows × 37 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -927,7 +925,7 @@ Contoh data PCA (CO, 5 baris pertama):
 <p>Loadings menunjukkan kontribusi masing-masing fitur asli terhadap komponen PCA.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">META_COLS</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">META_COLS</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
     <span class="n">pca</span> <span class="o">=</span> <span class="n">pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
@@ -949,83 +947,83 @@ Contoh data PCA (CO, 5 baris pertama):
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== CO ===
 Top 10 fitur terhadap PC1:
-rms                          0.193326
-entropy                      0.193000
-average_power                0.192975
-auc                          0.192902
-spectral_distance            0.192808
-abs_energy                   0.192806
-hist_mode                    0.192794
-spectral_positive_turning    0.192794
-spectral_kurtosis            0.192792
-spectral_decrease            0.192792
+wavelet_abs_mean        0.167197
+median_abs_diff         0.167196
+mean_abs_diff           0.167196
+wavelet_energy          0.167196
+wavelet_std             0.167196
+sum_abs_diff            0.167196
+interq_range            0.167196
+median_abs_deviation    0.167196
+mean_abs_deviation      0.167196
+pk_pk_distance          0.167196
 Name: PC1, dtype: float64
 
 Top 10 fitur terhadap PC2:
-median_abs_diff           0.225958
-calc_std                  0.225958
-mean_abs_diff             0.225958
-pk_pk_distance            0.225958
-median_abs_deviation      0.225958
-sum_abs_diff              0.225958
-interq_range              0.225958
-mean_abs_deviation        0.225958
-calc_var                  0.225958
-spectrogram_mean_coeff    0.225958
+lempel_ziv                   0.247242
+power_bandwidth              0.233847
+max_power_spectrum           0.225920
+ecdf_percentile_count        0.222137
+calc_centroid                0.222037
+spectral_positive_turning    0.221352
+ecdf                         0.219698
+spectral_slope               0.215839
+wavelet_entropy              0.206910
+autocorr                     0.206896
 Name: PC2, dtype: float64
 
 === NO2 ===
 Top 10 fitur terhadap PC1:
-spectral_distance     0.181402
-wavelet_std           0.181402
-wavelet_energy        0.181402
-auc                   0.181402
-calc_median           0.181402
-calc_std              0.181402
-ecdf_percentile       0.181402
-mean_abs_deviation    0.181402
-rms                   0.181402
-calc_mean             0.181402
+spectral_distance    0.181496
+hist_mode            0.181496
+wavelet_std          0.181496
+wavelet_energy       0.181496
+auc                  0.181496
+wavelet_abs_mean     0.181496
+calc_median          0.181496
+ecdf_percentile      0.181496
+calc_std             0.181496
+calc_mean            0.181496
 Name: PC1, dtype: float64
 
 Top 10 fitur terhadap PC2:
-spectral_skewness            0.242672
-spectral_centroid            0.238625
-spectral_kurtosis            0.236128
-hurst_exponent               0.233760
-wavelet_entropy              0.231406
-higuchi_fractal_dimension    0.228498
-median_frequency             0.226806
-lempel_ziv                   0.223672
-spectral_spread              0.221544
-power_bandwidth              0.221306
+spectral_skewness            0.242133
+spectral_centroid            0.238450
+spectral_kurtosis            0.235916
+hurst_exponent               0.231693
+wavelet_entropy              0.229562
+power_bandwidth              0.227710
+median_frequency             0.227578
+higuchi_fractal_dimension    0.226899
+spectral_spread              0.224673
+lempel_ziv                   0.222572
 Name: PC2, dtype: float64
 
 === SO2 ===
 Top 10 fitur terhadap PC1:
-entropy              0.182158
-wavelet_abs_mean     0.182028
-wavelet_energy       0.182027
-wavelet_std          0.182027
-rms                  0.181907
-ecdf_percentile      0.181896
-wavelet_var          0.181892
-auc                  0.181890
-hist_mode            0.181890
-spectral_distance    0.181889
+spectral_distance       0.161825
+auc                     0.161463
+wavelet_std             0.161459
+wavelet_energy          0.161459
+pk_pk_distance          0.161459
+calc_max                0.161459
+mean_abs_deviation      0.161459
+calc_std                0.161459
+interq_range            0.161459
+median_abs_deviation    0.161459
 Name: PC1, dtype: float64
 
 Top 10 fitur terhadap PC2:
-sum_abs_diff              0.242153
-mean_abs_diff             0.242152
-median_abs_deviation      0.242152
-interq_range              0.242152
-calc_std                  0.242152
-mean_abs_deviation        0.242152
-spectrogram_mean_coeff    0.242152
-calc_var                  0.242152
-slope                     0.242152
-median_abs_diff           0.242152
+lempel_ziv                     0.221505
+negative_turning               0.219368
+positive_turning               0.217627
+wavelet_entropy                0.215490
+ecdf_percentile_count          0.212084
+max_power_spectrum             0.211745
+spectral_positive_turning      0.211532
+calc_centroid                  0.210885
+petrosian_fractal_dimension    0.207271
+power_bandwidth                0.205252
 Name: PC2, dtype: float64
 </pre></div>
 </div>
@@ -1033,7 +1031,7 @@ Name: PC2, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="n">pca</span> <span class="o">=</span> <span class="n">pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
     <span class="n">X_pca</span> <span class="o">=</span> <span class="n">X_pca_dict</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
@@ -1050,9 +1048,9 @@ Name: PC2, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8c5170bd495ebd36fcca3b720a99a29e09e8e999ae1a0c430b96f85d189c1540.png" src="../_images/8c5170bd495ebd36fcca3b720a99a29e09e8e999ae1a0c430b96f85d189c1540.png" />
-<img alt="../_images/ff1b7242d412039cdd49b22f17c34e98be59d8eed981025fc6b6d767792d0eb2.png" src="../_images/ff1b7242d412039cdd49b22f17c34e98be59d8eed981025fc6b6d767792d0eb2.png" />
-<img alt="../_images/f19ecfa0b5b30c0fce13e3dfe85b937876456375246847face13c084e75ae042.png" src="../_images/f19ecfa0b5b30c0fce13e3dfe85b937876456375246847face13c084e75ae042.png" />
+<img alt="../_images/c78c064d61ce5b36787e5819645d2f8990eda9e6bf519a26171aa3ec9e50cee4.png" src="../_images/c78c064d61ce5b36787e5819645d2f8990eda9e6bf519a26171aa3ec9e50cee4.png" />
+<img alt="../_images/e5fe650f60b7b990324e4413a4529623fd93443dc64f3480d21d92be972ba911.png" src="../_images/e5fe650f60b7b990324e4413a4529623fd93443dc64f3480d21d92be972ba911.png" />
+<img alt="../_images/768e1ac51c70280f87254408b5e9ca46d7d17e57eebf6185162019bdb3fff433.png" src="../_images/768e1ac51c70280f87254408b5e9ca46d7d17e57eebf6185162019bdb3fff433.png" />
 </div>
 </div>
 </section>

@@ -404,20 +404,16 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-workflow">5.4.1 Overview Workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-per-node">5.4.2 Rincian Per Node</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-database-connector-postgresql">Node 1: Database Connector (PostgreSQL)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-db-table-selector">Node 2: DB Table Selector</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-db-reader-query">Node 3: DB Reader (Query)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-column-filter">Node 4: Column Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-normalizer-z-score">Node 5: Normalizer (Z-Score)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-pca-principal-component-analysis">Node 6: PCA (Principal Component Analysis)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-7-k-means-clustering">Node 7: K-Means Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-8-scorer-silhouette-coefficient">Node 8: Scorer (Silhouette Coefficient)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-9-statistics">Node 9: Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-csv-reader">Node 1: CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-column-filter">Node 2: Column Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-normalizer-z-score">Node 3: Normalizer (Z-Score)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-pca-principal-component-analysis-skenario-2">Node 4: PCA (Principal Component Analysis) — <em>Skenario 2</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-k-means-clustering">Node 5: K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-scorer-silhouette-coefficient">Node 6: Scorer (Silhouette Coefficient)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-lengkap-flow">5.4.3 Alur Kerja Lengkap (Flow)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-parameter-penting">5.4.4 Konfigurasi Parameter Penting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#screenshot-workflow-placeholder">5.4.5 Screenshot Workflow (Placeholder)</a></li>
 </ul>
             </nav>
         </div>
@@ -435,83 +431,93 @@
 <hr class="docutils" />
 <section id="overview-workflow">
 <h2>5.4.1 Overview Workflow<a class="headerlink" href="#overview-workflow" title="Link to this heading">#</a></h2>
-<p><img alt="Workflow KNIME Overview" src="05_clustering/fig_knime_workflow_overview.png" /></p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/fig_knime_workflow_overview.png"><img alt="Overview Workflow KNIME" src="../_images/fig_knime_workflow_overview.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Overview Workflow KNIME</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Deskripsi Umum:</strong>
-Workflow KNIME melakukan analisis clustering pada dataset gabungan kelas (35 mahasiswa × 68 fitur) untuk setiap polutan secara terpisah. Alur kerja mencakup tahap:</p>
+Workflow KNIME melakukan analisis clustering pada dataset gabungan kelas (file CSV fitur hasil ekstraksi TSFEL) untuk setiap polutan secara terpisah. Alur kerja mencakup tahap:</p>
 <ol class="arabic simple">
-<li><p><strong>Setup / Konfigurasi</strong> — Load data dari PostgreSQL (Aiven Cloud)</p></li>
-<li><p><strong>Preprocessing</strong> — Normalisasi fitur</p></li>
-<li><p><strong>Dimensionality Reduction</strong> — PCA (opsional, untuk Skenario 2)</p></li>
-<li><p><strong>Clustering</strong> — K-Means dengan berbagai nilai K</p></li>
+<li><p><strong>Setup / Data Ingestion</strong> — Load data dari file CSV gabungan polutan (CO, NO₂, atau SO₂)</p></li>
+<li><p><strong>Preprocessing</strong> — Kolom filtering dan normalisasi fitur (Z-Score)</p></li>
+<li><p><strong>Dimensionality Reduction</strong> — PCA (opsional, untuk Skenario 2 menyusutkan 68 fitur menjadi 37 fitur)</p></li>
+<li><p><strong>Clustering</strong> — K-Means dengan berbagai variasi nilai K</p></li>
 <li><p><strong>Evaluasi</strong> — Silhouette Coefficient &amp; Scoring</p></li>
 </ol>
 </section>
 <hr class="docutils" />
 <section id="rincian-per-node">
 <h2>5.4.2 Rincian Per Node<a class="headerlink" href="#rincian-per-node" title="Link to this heading">#</a></h2>
-<section id="node-1-database-connector-postgresql">
-<h3>Node 1: Database Connector (PostgreSQL)<a class="headerlink" href="#node-1-database-connector-postgresql" title="Link to this heading">#</a></h3>
-<p><img alt="Database Connector Config" src="05_clustering/fig_knime_db_connector_config.png" /></p>
-<p><strong>Fungsi:</strong> Menghubungkan KNIME ke database PostgreSQL di Aiven Cloud yang berisi dataset fitur hasil ekstraksi TSFEL.</p>
+<hr class="docutils" />
+<section id="node-1-csv-reader">
+<h3>Node 1: CSV Reader<a class="headerlink" href="#node-1-csv-reader" title="Link to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Membaca file CSV gabungan fitur ekstraksi TSFEL untuk polutan tertentu (<code class="docutils literal notranslate"><span class="pre">co.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">no2.csv</span></code>, atau <code class="docutils literal notranslate"><span class="pre">so2.csv</span></code>).</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/fig_knime_csv_reader_config_1.png"><img alt="CSV Reader config 1" src="../_images/fig_knime_csv_reader_config_1.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">CSV Reader — konfigurasi 1</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/fig_knime_csv_reader_config_2.png"><img alt="CSV Reader config 2" src="../_images/fig_knime_csv_reader_config_2.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">CSV Reader — konfigurasi 2</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/fig_knime_csv_reader_config_3.png"><img alt="CSV Reader config 3" src="../_images/fig_knime_csv_reader_config_3.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">CSV Reader — konfigurasi 3</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Konfigurasi:</strong></p>
 <ul class="simple">
-<li><p><strong>Database Type:</strong> PostgreSQL</p></li>
-<li><p><strong>Host:</strong> (sesuai konfigurasi Aiven)</p></li>
-<li><p><strong>Port:</strong> 5432</p></li>
-<li><p><strong>Database:</strong> (nama database)</p></li>
-<li><p><strong>Username / Password:</strong> (credentials dari Aiven dashboard)</p></li>
+<li><p><strong>Mode:</strong> File</p></li>
+<li><p><strong>Source:</strong> Direktori penyimpanan file CSV gabungan kelas (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>)</p></li>
+<li><p><strong>Row delimiter:</strong> Line break</p></li>
+<li><p><strong>Column delimiter:</strong> Comma (<code class="docutils literal notranslate"><span class="pre">,</span></code>)</p></li>
+<li><p><strong>First row contains column names:</strong> Checked (Dicentang)</p></li>
+<li><p><strong>Decimal separator:</strong> Titik (<code class="docutils literal notranslate"><span class="pre">.</span></code>)</p></li>
+<li><p><strong>Replace empty quoted string by missing values:</strong> Checked (Dicentang)</p></li>
+<li><p><strong>Output:</strong> Tabel dataset yang berisi baris data mahasiswa dan kolom fitur numerik beserta metadata.</p></li>
 </ul>
 <p><strong>Penjelasan:</strong>
-Node ini membangun koneksi JDBC ke database cloud. Dataset yang tersimpan di PostgreSQL merupakan hasil import dari file CSV ekstraksi fitur (35 data mahasiswa × 68 fitur per polutan).</p>
+Node ini berfungsi sebagai gerbang masuk data utama dalam alur kerja KNIME. Data yang dibaca merupakan hasil kompilasi (<em>merge</em>) dari seluruh file ekstraksi fitur milik anggota kelas untuk polutan yang sedang dianalisis. Pengaturan <em>Decimal separator</em> menggunakan titik dan penanganan <em>missing value</em> diaktifkan agar format data numerik terbaca dengan sempurna oleh node berikutnya.</p>
 </section>
 <hr class="docutils" />
-<section id="node-2-db-table-selector">
-<h3>Node 2: DB Table Selector<a class="headerlink" href="#node-2-db-table-selector" title="Link to this heading">#</a></h3>
-<p><img alt="DB Table Selector Config" src="05_clustering/fig_knime_db_table_selector_config.png" /></p>
-<p><strong>Fungsi:</strong> Memilih tabel spesifik dari database yang akan diproses.</p>
+<section id="node-2-column-filter">
+<h3>Node 2: Column Filter<a class="headerlink" href="#node-2-column-filter" title="Link to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Memfilter kolom — memisahkan kolom metadata (seperti nama, id, atau daerah) dari kolom fitur numerik hasil ekstraksi.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/fig_knime_column_filter_config.png"><img alt="Column Filter config" src="../_images/fig_knime_column_filter_config.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Column Filter — konfigurasi</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Konfigurasi:</strong></p>
 <ul class="simple">
-<li><p><strong>Schema:</strong> public</p></li>
-<li><p><strong>Table:</strong> ekstraksi_fitur_co / ekstraksi_fitur_no2 / ekstraksi_fitur_so2</p></li>
+<li><p><strong>Include:</strong> 68 kolom fitur numerik TSFEL (contoh: <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code>, <code class="docutils literal notranslate"><span class="pre">auc</span></code>, <code class="docutils literal notranslate"><span class="pre">autocorr</span></code>, …, <code class="docutils literal notranslate"><span class="pre">zero_cross</span></code>)</p></li>
+<li><p><strong>Exclude:</strong> Kolom identitas non-numerik (id, nama, daerah)</p></li>
 </ul>
 <p><strong>Penjelasan:</strong>
-Node ini memungkinkan pemilihan tabel berdasarkan polutan yang sedang dianalisis. Untuk setiap eksekusi workflow, pilih salah satu tabel polutan.</p>
+Hanya kolom fitur numerik yang akan dilibatkan ke dalam perhitungan matematis klastering dan PCA. Kolom metadata dikecualikan agar tidak mendistorsi jarak Euclidean, namun disimpan secara terpisah untuk keperluan analisis spasial/karakteristik di akhir.</p>
 </section>
 <hr class="docutils" />
-<section id="node-3-db-reader-query">
-<h3>Node 3: DB Reader (Query)<a class="headerlink" href="#node-3-db-reader-query" title="Link to this heading">#</a></h3>
-<p><img alt="DB Reader Config" src="05_clustering/fig_knime_db_reader_config.png" /></p>
-<p><strong>Fungsi:</strong> Membaca data dari database dan mengubahnya menjadi tabel KNIME.</p>
-<p><strong>Konfigurasi:</strong></p>
-<ul class="simple">
-<li><p><strong>SQL Query:</strong> <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">ekstraksi_fitur_{pollutant}</span></code></p></li>
-<li><p><strong>Output:</strong> Tabel dengan 35 baris × 71 kolom (3 metadata + 68 fitur)</p></li>
-</ul>
-<p><strong>Penjelasan:</strong>
-Node ini mengeksekusi SQL query untuk mengekstrak seluruh data dari tabel yang dipilih. Hasilnya adalah tabel KNIME yang siap diproses lebih lanjut.</p>
-</section>
-<hr class="docutils" />
-<section id="node-4-column-filter">
-<h3>Node 4: Column Filter<a class="headerlink" href="#node-4-column-filter" title="Link to this heading">#</a></h3>
-<p><img alt="Column Filter Config" src="05_clustering/fig_knime_column_filter_config.png" /></p>
-<p><strong>Fungsi:</strong> Memfilter kolom — memisahkan kolom metadata dari kolom fitur.</p>
-<p><strong>Konfigurasi:</strong></p>
-<ul class="simple">
-<li><p><strong>Include:</strong> 68 kolom fitur (abs_energy, auc, autocorr, …, zero_cross)</p></li>
-<li><p><strong>Exclude:</strong> id, nama, daerah</p></li>
-</ul>
-<p><strong>Penjelasan:</strong>
-Hanya kolom fitur numerik yang digunakan untuk clustering. Kolom metadata (id, nama, daerah) disimpan terpisah untuk keperluan interpretasi hasil.</p>
-</section>
-<hr class="docutils" />
-<section id="node-5-normalizer-z-score">
-<h3>Node 5: Normalizer (Z-Score)<a class="headerlink" href="#node-5-normalizer-z-score" title="Link to this heading">#</a></h3>
-<p><img alt="Normalizer Config" src="05_clustering/fig_knime_normalizer_config.png" /></p>
-<p><strong>Fungsi:</strong> Standarisasi fitur menggunakan metode Z-Score agar setiap fitur memiliki mean=0 dan standard deviation=1.</p>
+<section id="node-3-normalizer-z-score">
+<h3>Node 3: Normalizer (Z-Score)<a class="headerlink" href="#node-3-normalizer-z-score" title="Link to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Standarisasi fitur menggunakan metode Z-Score agar setiap fitur memiliki rata-rata (<span class="math notranslate nohighlight">\(\mu = 0\)</span>) dan deviasi standar (<span class="math notranslate nohighlight">\(\sigma = 1\)</span>).</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/fig_knime_normalizer_config.png"><img alt="Normalizer config" src="../_images/fig_knime_normalizer_config.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Normalizer (Z-Score) — konfigurasi</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Konfigurasi:</strong></p>
 <ul class="simple">
 <li><p><strong>Method:</strong> Z-Score (Standardization)</p></li>
-<li><p><strong>Apply to:</strong> Semua kolom fitur</p></li>
+<li><p><strong>Apply to:</strong> Semua kolom fitur numerik terpilih</p></li>
 </ul>
 <p><strong>Penjelasan Matematis:</strong></p>
 <p>Z-Score transformasi dilakukan dengan rumus:</p>
@@ -525,133 +531,107 @@ Hanya kolom fitur numerik yang digunakan untuk clustering. Kolom metadata (id, n
 </ul>
 <p><strong>Mengapa Normalisasi Diperlukan?</strong></p>
 <ul class="simple">
-<li><p>K-Means menggunakan jarak Euclidean, sehingga sangat sensitif terhadap skala fitur</p></li>
-<li><p>PCA juga membutuhkan data yang sudah distandarisasi agar komponen utama tidak bias ke fitur dengan skala besar</p></li>
-<li><p>Tanpa normalisasi, fitur dengan satuan besar (misal: <code class="docutils literal notranslate"><span class="pre">abs_energy</span></code>) akan mendominasi perhitungan jarak</p></li>
+<li><p>K-Means menggunakan perhitungan jarak Euclidean, sehingga sangat sensitif terhadap perbedaan skala antar fitur.</p></li>
+<li><p>PCA membutuhkan data yang sudah distandarisasi agar komponen utamanya tidak bias terhadap fitur dengan rentang nilai yang sangat besar.</p></li>
 </ul>
 </section>
 <hr class="docutils" />
-<section id="node-6-pca-principal-component-analysis">
-<h3>Node 6: PCA (Principal Component Analysis)<a class="headerlink" href="#node-6-pca-principal-component-analysis" title="Link to this heading">#</a></h3>
-<p><img alt="PCA Config" src="05_clustering/fig_knime_pca_config.png" /></p>
-<p><strong>Fungsi:</strong> Reduksi dimensi dari 68 fitur menjadi 37 komponen utama (untuk Skenario 2).</p>
+<section id="node-4-pca-principal-component-analysis-skenario-2">
+<h3>Node 4: PCA (Principal Component Analysis) — <em>Skenario 2</em><a class="headerlink" href="#node-4-pca-principal-component-analysis-skenario-2" title="Link to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Reduksi dimensi dari 68 fitur menjadi 37 komponen utama esensial untuk Skenario 2.</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/fig_knime_pca_config.png"><img alt="PCA config" src="../_images/fig_knime_pca_config.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">PCA — konfigurasi</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Konfigurasi:</strong></p>
 <ul class="simple">
 <li><p><strong>Number of components:</strong> 37</p></li>
 <li><p><strong>Method:</strong> SVD (Singular Value Decomposition)</p></li>
-<li><p><strong>Scaling:</strong> Tidak dilakukan lagi (sudah dinormalisasi di Node 5)</p></li>
+<li><p><strong>Scaling:</strong> Tidak dicentang ulang (karena data sudah dinormalisasi pada node sebelumnya).</p></li>
 </ul>
 <p><strong>Penjelasan Matematis:</strong></p>
-<p>PCA bekerja dengan langkah-langkah berikut:</p>
+<p>PCA bekerja melalui tahapan berikut:</p>
 <ol class="arabic simple">
-<li><p><strong>Matriks Covariance:</strong>
-$<span class="math notranslate nohighlight">\(C = \frac{1}{n-1} X^T X\)</span>$</p></li>
-<li><p><strong>Eigenvalue Decomposition:</strong>
-$<span class="math notranslate nohighlight">\(C v = \lambda v\)</span>$</p></li>
+<li><p><strong>Matriks Covariance:</strong> <span class="math notranslate nohighlight">\(C = \frac{1}{n-1} X^T X\)</span></p></li>
+<li><p><strong>Eigenvalue Decomposition:</strong> <span class="math notranslate nohighlight">\(C v = \lambda v\)</span> (mencari eigenvector <span class="math notranslate nohighlight">\(v\)</span> dan eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>).</p></li>
+<li><p><strong>Proyeksi:</strong> Mereduksi dimensi dengan mengambil 37 komponen utama ber-eigenvalue terbesar (<span class="math notranslate nohighlight">\(X_{PCA} = X \cdot V_k\)</span>).</p></li>
 </ol>
-<p>dimana <span class="math notranslate nohighlight">\(v\)</span> adalah eigenvector (komponen utama) dan <span class="math notranslate nohighlight">\(\lambda\)</span> adalah eigenvalue (variance yang dijelaskan).</p>
-<ol class="arabic simple" start="3">
-<li><p><strong>Proyeksi:</strong>
-$<span class="math notranslate nohighlight">\(X_{PCA} = X \cdot V_k\)</span>$</p></li>
-</ol>
-<p>dimana <span class="math notranslate nohighlight">\(V_k\)</span> adalah matriks eigenvector terpilih (37 komponen dengan eigenvalue terbesar).</p>
-<p><strong>Output:</strong> Tabel dengan 35 baris × 37 kolom PCA.</p>
+<p><strong>Output:</strong> Tabel baru dengan dimensi tereduksi menjadi 37 kolom komponen utama.</p>
 </section>
 <hr class="docutils" />
-<section id="node-7-k-means-clustering">
-<h3>Node 7: K-Means Clustering<a class="headerlink" href="#node-7-k-means-clustering" title="Link to this heading">#</a></h3>
-<p><img alt="K-Means Config" src="05_clustering/fig_knime_kmeans_config.png" /></p>
-<p><strong>Fungsi:</strong> Melakukan clustering menggunakan algoritma K-Means.</p>
+<section id="node-5-k-means-clustering">
+<h3>Node 5: K-Means Clustering<a class="headerlink" href="#node-5-k-means-clustering" title="Link to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Mengelompokkan data ke dalam <span class="math notranslate nohighlight">\(K\)</span> klaster menggunakan algoritma K-Means.</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="../_images/fig_knime_kmeans_config_1.png"><img alt="K-Means config 1" src="../_images/fig_knime_kmeans_config_1.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">K-Means — konfigurasi 1</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/fig_knime_kmeans_config_2.png"><img alt="K-Means config 2" src="../_images/fig_knime_kmeans_config_2.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">K-Means — konfigurasi 2</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Konfigurasi:</strong></p>
 <ul class="simple">
-<li><p><strong>Number of clusters (K):</strong> 2, 3, 4, 5, 6, 7, 8, 9, 10 (dijalankan untuk setiap K)</p></li>
+<li><p><strong>Number of clusters (K):</strong> Dijalankan secara iteratif (misal: <span class="math notranslate nohighlight">\(K = 2\)</span> sampai <span class="math notranslate nohighlight">\(10\)</span>) untuk mencari titik optimal.</p></li>
 <li><p><strong>Max iterations:</strong> 300</p></li>
 <li><p><strong>Number of runs:</strong> 10</p></li>
-<li><p><strong>Random seed:</strong> 42 (untuk reproducibility)</p></li>
-<li><p><strong>Distance measure:</strong> Euclidean</p></li>
+<li><p><strong>Random seed:</strong> 42 (untuk memastikan hasil dapat direproduksi / <em>reproducibility</em>)</p></li>
+<li><p><strong>Distance measure:</strong> Euclidean Distance</p></li>
 </ul>
-<p><strong>Penjelasan Matematis:</strong></p>
-<p>K-Means bekerja dengan algoritma berikut:</p>
-<ol class="arabic simple">
-<li><p><strong>Inisialisasi:</strong> Pilih K titik pusat (centroids) secara acak</p></li>
-<li><p><strong>Assignment:</strong> Setiap titik data ditugkan ke centroid terdekat berdasarkan jarak Euclidean:
-$<span class="math notranslate nohighlight">\(d(x_i, c_j) = \sqrt{\sum_{k=1}^{p} (x_{ik} - c_{jk})^2}\)</span>$</p></li>
-<li><p><strong>Update:</strong> Hitung ulang centroid sebagai rata-rata titik-titik dalam cluster:
-$<span class="math notranslate nohighlight">\(c_j = \frac{1}{|S_j|} \sum_{x_i \in S_j} x_i\)</span>$</p></li>
-<li><p><strong>Iterasi:</strong> Ulangi langkah 2-3 sampai konvergen (centroid tidak berubah signifikan)</p></li>
-</ol>
-<p><strong>Objective Function (Inertia/WCSS):</strong>
-$<span class="math notranslate nohighlight">\(J = \sum_{j=1}^{K} \sum_{x_i \in S_j} \|x_i - c_j\|^2\)</span>$</p>
-<p>Inertia yang lebih rendah menunjukkan cluster yang lebih compact.</p>
+<p><strong>Penjelasan Matematis:</strong>
+Algoritma meminimalkan <em>Objective Function</em> (Inertia / Within-Cluster Sum of Squares):
+$<span class="math notranslate nohighlight">\(J = \sum_{j=1}^{K} \sum_{x_i \in S_j} \Vert{}x_i - c_j\Vert{}^2\)</span><span class="math notranslate nohighlight">\(
+dimana \)</span>c_j<span class="math notranslate nohighlight">\( adalah titik pusat (*centroid*) dari klaster \)</span>S_j$.</p>
 </section>
 <hr class="docutils" />
-<section id="node-8-scorer-silhouette-coefficient">
-<h3>Node 8: Scorer (Silhouette Coefficient)<a class="headerlink" href="#node-8-scorer-silhouette-coefficient" title="Link to this heading">#</a></h3>
-<p><img alt="Scorer Config" src="05_clustering/fig_knime_scorer_config.png" /></p>
-<p><strong>Fungsi:</strong> Mengevaluasi kualitas cluster menggunakan Silhouette Coefficient.</p>
+<section id="node-6-scorer-silhouette-coefficient">
+<h3>Node 6: Scorer (Silhouette Coefficient)<a class="headerlink" href="#node-6-scorer-silhouette-coefficient" title="Link to this heading">#</a></h3>
+<p><strong>Fungsi:</strong> Mengevaluasi seberapa baik pemisahan antar klaster terbentuk menggunakan <em>Silhouette Coefficient</em>.</p>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../_images/fig_knime_scorer_config.png"><img alt="Scorer config" src="../_images/fig_knime_scorer_config.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Scorer (Silhouette Coefficient) — konfigurasi</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p><strong>Konfigurasi:</strong></p>
 <ul class="simple">
-<li><p><strong>Column:</strong> Label cluster dari K-Means</p></li>
-<li><p><strong>Distance measure:</strong> Euclidean</p></li>
+<li><p><strong>Category column:</strong> Label klaster hasil output K-Means</p></li>
+<li><p><strong>Measure:</strong> Euclidean</p></li>
 </ul>
-<p><strong>Penjelasan Matematis:</strong></p>
-<p>Silhouette Coefficient untuk setiap titik <span class="math notranslate nohighlight">\(i\)</span> dihitung dengan:</p>
-<div class="math notranslate nohighlight">
-\[s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}\]</div>
-<p>dimana:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(a(i)\)</span> = rata-rata jarak titik <span class="math notranslate nohighlight">\(i\)</span> ke semua titik lain dalam cluster yang sama (intra-cluster distance)</p></li>
-<li><p><span class="math notranslate nohighlight">\(b(i)\)</span> = rata-rata jarak minimum titik <span class="math notranslate nohighlight">\(i\)</span> ke semua titik di cluster terdekat yang berbeda (nearest-cluster distance)</p></li>
-</ul>
-<p><strong>Interpretasi:</strong></p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(s(i) \approx 1\)</span> → Titik berada jauh dari cluster tetangga (cluster yang baik)</p></li>
-<li><p><span class="math notranslate nohighlight">\(s(i) \approx 0\)</span> → Titik berada di batas antara dua cluster</p></li>
-<li><p><span class="math notranslate nohighlight">\(s(i) \approx -1\)</span> → Titik mungkin berada di cluster yang salah</p></li>
-</ul>
-<p><strong>Silhouette Score Rata-rata:</strong>
-$<span class="math notranslate nohighlight">\(\bar{s} = \frac{1}{n} \sum_{i=1}^{n} s(i)\)</span>$</p>
-<p>Skor rata-rata mendekati 1 menunjukkan clustering yang berkualitas tinggi.</p>
-</section>
-<hr class="docutils" />
-<section id="node-9-statistics">
-<h3>Node 9: Statistics<a class="headerlink" href="#node-9-statistics" title="Link to this heading">#</a></h3>
-<p><img alt="Statistics Config" src="05_clustering/fig_knime_statistics_node_config.png" /></p>
-<p><strong>Fungsi:</strong> Menampilkan statistik deskriptif dari hasil clustering.</p>
-<p><strong>Output:</strong></p>
-<ul class="simple">
-<li><p>Mean, median, std dev untuk setiap fitur per cluster</p></li>
-<li><p>Distribusi jumlah data per cluster</p></li>
-</ul>
+<p><strong>Penjelasan Matematis:</strong>
+Silhouette Score untuk setiap titik <span class="math notranslate nohighlight">\(i\)</span> dihitung berdasarkan perbandingan jarak intra-klaster <span class="math notranslate nohighlight">\(a(i)\)</span> dan jarak inter-klaster terdekat <span class="math notranslate nohighlight">\(b(i)\)</span>:
+$<span class="math notranslate nohighlight">\(s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}}\)</span><span class="math notranslate nohighlight">\(
+Nilai rata-rata \)</span>\bar{s}$ mendekati 1 mengindikasikan struktur klaster yang sangat baik dan terdefinisi dengan jelas.</p>
 </section>
 </section>
 <hr class="docutils" />
 <section id="alur-kerja-lengkap-flow">
 <h2>5.4.3 Alur Kerja Lengkap (Flow)<a class="headerlink" href="#alur-kerja-lengkap-flow" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CSV Reader / DB Reader
-        |
-        v
-  Column Filter (drop metadata)
-        |
-        v
-    Normalizer (Z-Score)
-        |
-        v
-  ┌─────────────────┐
-  │  Skenario 1:    │    Skenario 2:
-  │  Tanpa PCA      │    PCA (68 → 37)
-  └────────┬────────┘         |
-           |                  v
-           |          PCA (n_components=37)
-           |                  |
-           v                  v
-      K-Means (K=2..10)
-           |
-           v
-    Silhouette Coefficient
-           |
-           v
-    Evaluasi &amp; Perbandingan
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+CSV Reader (Data Gabungan Polutan)
+│
+▼
+Column Filter (Drop Metadata)
+│
+▼
+Normalizer (Z-Score)
+│
+├──────────────────────────────┐
+▼ (Skenario 1: Full Features)  ▼ (Skenario 2: Reduksi Dimensi)
+K-Means (K=2..10)                PCA (68 → 37 Fitur)
+│                              │
+▼                              ▼
+Silhouette Evaluation             K-Means (K=2..10)
+│                              │
+└──────────────┬───────────────┘
+▼
+Evaluasi &amp; Komparasi Model
 </pre></div>
 </div>
 </section>
@@ -666,80 +646,29 @@ $<span class="math notranslate nohighlight">\(\bar{s} = \frac{1}{n} \sum_{i=1}^{
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>K (jumlah cluster)</p></td>
+<tr class="row-even"><td><p>Sumber Data</p></td>
+<td><p>File CSV (<code class="docutils literal notranslate"><span class="pre">co.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">no2.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">so2.csv</span></code>)</p></td>
+<td><p>Data gabungan kelas per polutan</p></td>
+</tr>
+<tr class="row-odd"><td><p>K (jumlah cluster)</p></td>
 <td><p>2 - 10</p></td>
-<td><p>Dicari K optimal dengan Elbow &amp; Silhouette</p></td>
+<td><p>Variasi pengujian mencari K terbaik</p></td>
 </tr>
-<tr class="row-odd"><td><p>Max iterations</p></td>
+<tr class="row-even"><td><p>Max iterations</p></td>
 <td><p>300</p></td>
-<td><p>Batas iterasi maksimum K-Means</p></td>
-</tr>
-<tr class="row-even"><td><p>Number of runs</p></td>
-<td><p>10</p></td>
-<td><p>Jumlah inisialisasi acak</p></td>
+<td><p>Batas iterasi maksimum algoritma K-Means</p></td>
 </tr>
 <tr class="row-odd"><td><p>Random seed</p></td>
 <td><p>42</p></td>
-<td><p>Untuk reproducibility</p></td>
+<td><p>Menjaga konsistensi hasil acak</p></td>
 </tr>
 <tr class="row-even"><td><p>PCA components</p></td>
 <td><p>37</p></td>
-<td><p>Jumlah komponen utama yang dipertahankan</p></td>
+<td><p>Target reduksi dimensi (Skenario 2)</p></td>
 </tr>
-<tr class="row-odd"><td><p>Normalization</p></td>
+<tr class="row-odd"><td><p>Normalisasi</p></td>
 <td><p>Z-Score</p></td>
-<td><p>Standarisasi (mean=0, std=1)</p></td>
-</tr>
-<tr class="row-even"><td><p>Distance measure</p></td>
-<td><p>Euclidean</p></td>
-<td><p>Untuk K-Means dan Silhouette</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<hr class="docutils" />
-<section id="screenshot-workflow-placeholder">
-<h2>5.4.5 Screenshot Workflow (Placeholder)<a class="headerlink" href="#screenshot-workflow-placeholder" title="Link to this heading">#</a></h2>
-<blockquote>
-<div><p><strong>Catatan:</strong> Ganti placeholder di bawah dengan screenshot asli dari KNIME Analytics Platform.</p>
-</div></blockquote>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Tahapan</p></th>
-<th class="head"><p>Screenshot</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Overview Workflow</p></td>
-<td><p><img alt="Workflow Overview" src="05_clustering/fig_knime_workflow_overview.png" /></p></td>
-</tr>
-<tr class="row-odd"><td><p>Database Connector</p></td>
-<td><p><img alt="DB Connector" src="05_clustering/fig_knime_db_connector_config.png" /></p></td>
-</tr>
-<tr class="row-even"><td><p>DB Table Selector</p></td>
-<td><p><img alt="Table Selector" src="05_clustering/fig_knime_db_table_selector_config.png" /></p></td>
-</tr>
-<tr class="row-odd"><td><p>DB Reader</p></td>
-<td><p><img alt="DB Reader" src="05_clustering/fig_knime_db_reader_config.png" /></p></td>
-</tr>
-<tr class="row-even"><td><p>Column Filter</p></td>
-<td><p><img alt="Column Filter" src="05_clustering/fig_knime_column_filter_config.png" /></p></td>
-</tr>
-<tr class="row-odd"><td><p>Normalizer</p></td>
-<td><p><img alt="Normalizer" src="05_clustering/fig_knime_normalizer_config.png" /></p></td>
-</tr>
-<tr class="row-even"><td><p>PCA</p></td>
-<td><p><img alt="PCA" src="05_clustering/fig_knime_pca_config.png" /></p></td>
-</tr>
-<tr class="row-odd"><td><p>K-Means</p></td>
-<td><p><img alt="K-Means" src="05_clustering/fig_knime_kmeans_config.png" /></p></td>
-</tr>
-<tr class="row-even"><td><p>Scorer</p></td>
-<td><p><img alt="Scorer" src="05_clustering/fig_knime_scorer_config.png" /></p></td>
-</tr>
-<tr class="row-odd"><td><p>Statistics</p></td>
-<td><p><img alt="Statistics" src="05_clustering/fig_knime_statistics_node_config.png" /></p></td>
+<td><p>Menyamakan skala varians fitur</p></td>
 </tr>
 </tbody>
 </table>
@@ -815,20 +744,16 @@ $<span class="math notranslate nohighlight">\(\bar{s} = \frac{1}{n} \sum_{i=1}^{
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-workflow">5.4.1 Overview Workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-per-node">5.4.2 Rincian Per Node</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-database-connector-postgresql">Node 1: Database Connector (PostgreSQL)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-db-table-selector">Node 2: DB Table Selector</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-db-reader-query">Node 3: DB Reader (Query)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-column-filter">Node 4: Column Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-normalizer-z-score">Node 5: Normalizer (Z-Score)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-pca-principal-component-analysis">Node 6: PCA (Principal Component Analysis)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-7-k-means-clustering">Node 7: K-Means Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-8-scorer-silhouette-coefficient">Node 8: Scorer (Silhouette Coefficient)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-9-statistics">Node 9: Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-csv-reader">Node 1: CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-column-filter">Node 2: Column Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-normalizer-z-score">Node 3: Normalizer (Z-Score)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-pca-principal-component-analysis-skenario-2">Node 4: PCA (Principal Component Analysis) — <em>Skenario 2</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-k-means-clustering">Node 5: K-Means Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-scorer-silhouette-coefficient">Node 6: Scorer (Silhouette Coefficient)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-lengkap-flow">5.4.3 Alur Kerja Lengkap (Flow)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-parameter-penting">5.4.4 Konfigurasi Parameter Penting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#screenshot-workflow-placeholder">5.4.5 Screenshot Workflow (Placeholder)</a></li>
 </ul>
   </nav></div>
 
