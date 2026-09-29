@@ -1,0 +1,38 @@
+no,daerah,kabupaten_kota_tafsir,ada_CO,ada_NO2,ada_SO2,file_geojson,status
+1,"Asemrowo, Surabaya",Surabaya,YA,YA,YA,,BELUM ADA — perlu diunduh
+2,"Bandung, Jogoroto, Jombang",Jombang,YA,YA,YA,data/spasial/Jogoroto/Jogoroto.geojson,OK
+3,"Bangkalan Kota,Bangkalan",Bangkalan,TIDAK,YA,TIDAK,data/spasial/Bangkalan/Bangkalan.geojson,OK (hanya di NO2)
+4,"Banyu Ajuh, Perumnas, Kamal",Bangkalan,YA,YA,YA,data/spasial/Banyuajuh/Banyuajuh.geojson,OK (level desa)
+5,"Baron Nganjuk",Nganjuk,YA,YA,YA,data/spasial/Baron/Baron.geojson,OK
+6,"Cerme, Gresik",Gresik,YA,YA,YA,data/spasial/Cerme/Cerme.geojson,OK
+7,"Dukun, Gresik",Gresik,YA,YA,YA,data/spasial/Dukun_2/Dukun_2.geojson,OK (Dukun tanpa _2 = Magelang — jangan dipakai)
+8,"Gresik Kota, Gresik",Gresik,YA,YA,YA,data/spasial/Gresik/Gresik.geojson,OK
+9,"Kamal, Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Kamal/Kamal.geojson,OK
+10,"Kamal, Banyuajuh",Bangkalan,YA,YA,YA,data/spasial/Banyuajuh/Banyuajuh.geojson,OK (level desa)
+11,"Kec. Bangkalan, Kab. Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Bangkalan/Bangkalan.geojson,OK
+12,"Kec. Kalianget, Sumenep",Sumenep,YA,YA,YA,data/spasial/Kalianget/Kalianget.geojson,OK
+13,"Kecamatan Bangkalan,Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Bangkalan/Bangkalan.geojson,OK
+14,"Kedungpring Lamongan",Lamongan,YA,YA,YA,data/spasial/Kedungpring/Kedungpring.geojson,OK
+15,"Kerek, Tuban",Tuban,YA,YA,YA,data/spasial/Kerek/Kerek.geojson,OK
+16,"Kertosono, Ngajuk",Nganjuk,YA,YA,YA,data/spasial/Kertosono/Kertosono.geojson,OK
+17,"Kota Sumenep, Sumenep",Sumenep,YA,YA,YA,data/spasial/Kota_Sumenep/Kota_Sumenep.geojson,OK
+18,"Kwanyar, Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Kwanyar/Kwanyar.geojson,OK
+19,"Labang, Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Labang/Labang.geojson,OK
+20,"Manyar",Gresik (tafsir: Manyar Gresik),TIDAK,YA,TIDAK,data/spasial/Manyar/Manyar.geojson,OK (hanya di NO2)
+21,"Manyar, Gresik",Gresik,YA,TIDAK,YA,data/spasial/Manyar/Manyar.geojson,OK (tidak ada di NO2)
+22,"Menganti Gresik",Gresik,YA,YA,YA,data/spasial/Menganti/Menganti.geojson,OK
+23,"Nunukan",Nunukan (luar Jatim),YA,YA,YA,data/spasial/Nunukan/Nunukan.geojson,OK
+24,"Paciran, Lamongan",Lamongan,YA,YA,YA,data/spasial/Paciran/Paciran.geojson,OK
+25,"Pilangkenceng, Madiun",Madiun,YA,YA,YA,data/spasial/Pilangkenceng/Pilangkenceng.geojson,OK
+26,"Socah, Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Socah/Socah.geojson,OK
+27,"Sreseh, Sampang",Sampang,YA,YA,YA,data/spasial/Sreseh/Sreseh.geojson,OK
+28,"Tanah Merah, Bangkalan",Bangkalan,YA,YA,YA,data/spasial/Tanah_Merah_2/Tanah_Merah_2.geojson,OK (Tanah_Merah tanpa _2 = Riau — jangan dipakai)
+29,"Tikala, Manado",Manado (luar Jatim),YA,YA,YA,data/spasial/Tikala/Tikala.geojson,OK (Tikala_2 = Toraja Utara — jangan dipakai)
+30,"Waru, Pamekasan",Pamekasan,YA,YA,YA,data/spasial/Waru_2/Waru_2.geojson,OK (Waru tanpa _2 = Sidoarjo; Waru_3 = Kaltim — jangan dipakai)
+31,"Warudoyong, Kota Sukabumi",Sukabumi (luar Jatim),YA,YA,YA,data/spasial/Warudoyong/Warudoyong.geojson,OK
+32,"Widang, Tuban",Tuban,YA,YA,YA,data/spasial/Widang/Widang.geojson,OK
+33,"Widodaren, Ngawi",Ngawi,YA,YA,YA,data/spasial/Widodaren/Widodaren.geojson,OK
+34,"Wonoayu",Sidoarjo (tafsir),YA,YA,YA,data/spasial/Wonoayu/Wonoayu.geojson,OK
+35,"Wonokromo, Surabaya",Surabaya,YA,YA,YA,data/spasial/Wonokromo/Wonokromo.geojson,OK
+36,"jabon , Sidoarjo",Sidoarjo,YA,YA,YA,data/spasial/Jabon/Jabon.geojson,OK
+37,"sambeng lamongan",Lamongan,YA,YA,YA,data/spasial/Sambeng/Sambeng.geojson,OK

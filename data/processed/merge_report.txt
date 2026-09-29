@@ -1,0 +1,6 @@
+baris_total=37
+baris_lengkap=33
+fitur=204
+seed=42
+agregasi=mean per daerah untuk observasi ganda (Kamal,Kwanyar per polutan)
+drop_karena_tak_lengkap=Bangkalan Kota,Bangkalan;Kecamatan Bangkalan,Bangkalan;Manyar;Manyar, Gresik
