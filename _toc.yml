@@ -63,6 +63,9 @@ parts:
         title: 5.1 Reduksi Dimensi PCA
       - file: 05_clustering/5.2_kmeans_clustering
         title: 5.2 K-Means Clustering
+      - file: 05_clustering/5.2b_clustering_silhouette_daerah
+        title: 5.2 K-Means Clustering B
+
       - file: 05_clustering/5.3_komparasi_dan_kesimpulan
         title: 5.3 Komparasi dan Kesimpulan
       - file: 05_clustering/5.4_knime_workflow_documentation
