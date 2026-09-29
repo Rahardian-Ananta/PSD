@@ -1,6 +1,9 @@
 CHECKLIST MANUAL — hal yang HANYA bisa dikerjakan user (QGIS / manual / data)
 Proyek: PSD Jabon (clustering polutan) + Klasifikasi sawah Kamal (Sentinel-2A)
-Status 2026-09-29: JALUR CLUSTERING SELESAI PENUH oleh AI (5.6 + 5.7, hasil aktual).
+Status 2026-09-29: JALUR CLUSTERING SELESAI PENUH oleh AI (5.6 ladder 204→37 +
+saring multi-cluster + 5.7 peta, hasil aktual). Pemenang: dimensi 37, k=3,
+silhouette 0.8375 (aturan: tertinggi dengan k>=3). Best config di
+data/processed/best_config.json, dibaca 5.7.
 [2] SELESAI oleh user (s2_kamal.tif 6 band 875x865). [3] Asemrowo di-SKIP (tanpa data).
 Tersisa menunggu user: HANYA [1] sampel sawah (menunda training 6.1).
 

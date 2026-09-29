@@ -1,0 +1,8 @@
+{
+  "dimensi": 37,
+  "k": 3,
+  "silhouette": 0.8374830421451878,
+  "inertia": 61.59614114035185,
+  "seed": 42,
+  "aturan": "silhouette tertinggi dengan k>=3 (struktur multi-cluster)"
+}

@@ -13,8 +13,9 @@ parts:
     chapters:
       - file: 02_data_understanding/2.1_data_collection
         title: 2.1 Data Collection
-      - file: 02_data_understanding/2.1b_data_collection_sentinel2a
-        title: 2.1b Data Collection Sentinel-2A Kamal
+        sections:
+          - file: 02_data_understanding/2.1b_data_collection_sentinel2a
+            title: 2.1b Data Collection Sentinel-2A Kamal
       - file: 02_data_understanding/2.2_deskripsi_dataset
         title: 2.2 Deskripsi Dataset
       - file: 02_data_understanding/2.3_exploratory_data_analysis
