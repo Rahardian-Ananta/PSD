@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '02_data_understanding/2.1_data_collection';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2 Deskripsi Dataset" href="2.2_deskripsi_dataset.html" />
+    <link rel="next" title="2.1b Data Collection — Citra Sentinel-2A Kecamatan Kamal (versi perbaikan)" href="2.1b_data_collection_sentinel2a.html" />
     <link rel="prev" title="BAB 1 — BUSINESS UNDERSTANDING" href="../01_business_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -174,7 +174,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.1 Data Collection</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2.1 Data Collection</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A Kamal</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
@@ -198,13 +201,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur &amp; Perhitungan Manual vs TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA (68 → 37)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.2b_clustering_silhouette_daerah.html">5.2 K-Means Clustering B</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Persiapan Klasifikasi Sawah</a></li>
 </ul>
 
     </div>
@@ -1274,6 +1287,8 @@ Semua file CSV berhasil di-ZIP ke: jabon_pollutants_data.zip
 <p>Analisis ini menunjukkan bahwa citra satelit Sentinel-5P dapat memberi gambaran kualitas udara Kecamatan Jabon selama satu tahun penuh tanpa perlu stasiun pemantauan tambahan. Dari alur business understanding hingga visualisasi, kita berhasil mengubah ribuan pengamatan satelit menjadi lima kurva tren yang mudah dibaca.</p>
 <p>Langkah lanjutan yang bisa dilakukan antara lain: membandingkan dengan tahun-tahun sebelumnya, menguji korelasi antar polutan (misalnya apakah O₃ naik saat NO₂ turun), atau memetakan distribusi spasial di dalam kabupaten untuk menemukan titik-titik sumber emisi. Data yang sudah tersimpan dalam ZIP siap dipakai untuk analisis lanjutan tersebut.</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1316,11 +1331,11 @@ Semua file CSV berhasil di-ZIP ke: jabon_pollutants_data.zip
       </div>
     </a>
     <a class="right-next"
-       href="2.2_deskripsi_dataset.html"
+       href="2.1b_data_collection_sentinel2a.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2.2 Deskripsi Dataset</p>
+        <p class="prev-next-title">2.1b Data Collection — Citra Sentinel-2A Kecamatan Kamal (versi perbaikan)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
