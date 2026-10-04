@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '05_clustering/5.5_narasi_bab5';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.6 Eksperimen Bertahap Gabungan 204 Fitur" href="5.6_eksperimen_gabungan_204.html" />
+    <link rel="next" title="5.6 Eksperimen Gabungan 204 Fitur — Apa Isinya" href="5.6_eksperimen_gabungan_204.html" />
     <link rel="prev" title="5.4 Dokumentasi KNIME Workflow — Clustering Polutan" href="5.4_knime_workflow_documentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,18 +172,23 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A Kamal</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02_data_understanding/2.1a_data_collection_sentinel5p.html">2.1a Data Collection Sentinel-5P</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
 <ul class="nav bd-sidenav">
@@ -207,13 +212,20 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.2b_clustering_silhouette_daerah.html">5.2 K-Means Clustering B</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="5.2_clustering.html">5.2 Clustering per Polutan</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="5.2a_kmeans_per_polutan.html">5.2a K-Means per Polutan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.2b_kmeans_silhouette_daerah.html">5.2b K-Means Silhouette &amp; Kemiripan Daerah</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5.5 Analisis Clustering Polutan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="5.6a_eksperimen_linear_204.html">5.6a Varian Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.6b_eksperimen_polynomial_204.html">5.6b Varian Polynomial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
 <ul class="nav bd-sidenav">
@@ -448,6 +460,12 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.5.8 Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembaruan-eksperimen-gabungan-204-fitur-menggantikan-angka-5-5-35-5-6">5.5.9 Pembaruan: eksperimen gabungan 204 fitur (menggantikan angka 5.5.3–5.5.6)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-pemangkasan-bertahap">Tahap pemangkasan bertahap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-54-konfigurasi-dan-penyaringan">Grid 54 konfigurasi dan penyaringan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profil-pemenang">Profil pemenang</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -862,6 +880,35 @@ Hanya 1 wilayah yang menunjukkan karakteristik berbeda, yang memerlukan investig
 <li><p><strong>Analisis spasial</strong> menunjukkan bahwa mayoritas wilayah (34-36 dari 35 data) berada dalam Cluster 0 (karakteristik polutan normal), dengan hanya 1 wilayah sebagai outlier yang memerlukan investigasi lebih lanjut.</p></li>
 <li><p><strong>Rekomendasi:</strong> Skenario 2 (35 PCA) direkomendasikan untuk implementasi production karena efisiensi komputasi yang lebih baik dengan kualitas clustering yang sama.</p></li>
 </ol>
+</section>
+<section id="pembaruan-eksperimen-gabungan-204-fitur-menggantikan-angka-5-5-35-5-6">
+<h2>5.5.9 Pembaruan: eksperimen gabungan 204 fitur (menggantikan angka 5.5.3–5.5.6)<a class="headerlink" href="#pembaruan-eksperimen-gabungan-204-fitur-menggantikan-angka-5-5-35-5-6" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Bagian 5.5.3–5.5.6 di atas adalah analisis awal per polutan terpisah. Hasil final
+proyek ini adalah <strong>eksperimen gabungan 204 fitur</strong> di notebook <strong>5.6</strong> (33 daerah ×
+204 fitur, merge berbasis kunci daerah, bukan posisi baris) yang diteruskan ke
+<strong>peta 5.7</strong>. Kolom memakai prefix standar kelas (<code class="docutils literal notranslate"><span class="pre">NO2_…</span></code>, <code class="docutils literal notranslate"><span class="pre">SO2_…</span></code>, <code class="docutils literal notranslate"><span class="pre">CO_…</span></code>, sesuai
+<code class="docutils literal notranslate"><span class="pre">your_job.txt</span></code>); studi interpolasi 5.6 membandingkan time-linear, polinomial (d=3),
+dan regresi linier. Angka di bawah adalah hasil aktual notebook 5.6.</p>
+</div></blockquote>
+<section id="tahap-pemangkasan-bertahap">
+<h3>Tahap pemangkasan bertahap<a class="headerlink" href="#tahap-pemangkasan-bertahap" title="Link to this heading">#</a></h3>
+<p>Matriks 204 fitur dipangkas 204 → 150 → 100 → 74 → 50 → 37 (peringkat variansi):</p>
+<p><img alt="Hasil tiap pemangkasan bertahap" src="../_images/fig_ladder_var.png" /></p>
+</section>
+<section id="grid-54-konfigurasi-dan-penyaringan">
+<h3>Grid 54 konfigurasi dan penyaringan<a class="headerlink" href="#grid-54-konfigurasi-dan-penyaringan" title="Link to this heading">#</a></h3>
+<p>Heatmap silhouette (tahap × k) + kurva elbow per tahap. Seluruh 54 konfigurasi
+mengandung 1 singleton outlier struktural, sehingga pemenang dipilih dengan aturan
+<strong>silhouette tertinggi dengan k≥3</strong>:</p>
+<p><img alt="Heatmap silhouette dan elbow" src="../_images/fig_heatmap_elbow.png" /></p>
+<p><strong>Pemenang: dimensi 37, k=3, silhouette 0.8375</strong> (komposisi 31;1;1), tersimpan di
+<code class="docutils literal notranslate"><span class="pre">data/processed/best_config.json</span></code> dan dipakai notebook 5.7 untuk peta.</p>
+</section>
+<section id="profil-pemenang">
+<h3>Profil pemenang<a class="headerlink" href="#profil-pemenang" title="Link to this heading">#</a></h3>
+<p><img alt="Silhouette per daerah" src="../_images/fig_silhouette_samples.png" /></p>
+<p><img alt="Sebaran cluster di PCA-2D" src="../_images/fig_cluster_pca2d.png" /></p>
 <hr class="docutils" />
 <p><strong>Referensi:</strong></p>
 <ul class="simple">
@@ -869,6 +916,7 @@ Hanya 1 wilayah yang menunjukkan karakteristik berbeda, yang memerlukan investig
 <li><p>Maklin, C. (2022). TSFEL: Time Series Feature Extraction Library. <em>GitHub Repository</em>.</p></li>
 <li><p>KNIME Analytics Platform Documentation. (2024). <a class="reference external" href="https://docs.knime.com/">https://docs.knime.com/</a></p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -916,7 +964,7 @@ Hanya 1 wilayah yang menunjukkan karakteristik berbeda, yang memerlukan investig
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">5.6 Eksperimen Bertahap Gabungan 204 Fitur</p>
+        <p class="prev-next-title">5.6 Eksperimen Gabungan 204 Fitur — Apa Isinya</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -976,6 +1024,12 @@ Hanya 1 wilayah yang menunjukkan karakteristik berbeda, yang memerlukan investig
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.5.8 Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembaruan-eksperimen-gabungan-204-fitur-menggantikan-angka-5-5-35-5-6">5.5.9 Pembaruan: eksperimen gabungan 204 fitur (menggantikan angka 5.5.3–5.5.6)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-pemangkasan-bertahap">Tahap pemangkasan bertahap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-54-konfigurasi-dan-penyaringan">Grid 54 konfigurasi dan penyaringan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#profil-pemenang">Profil pemenang</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

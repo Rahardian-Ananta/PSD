@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.2b Clustering Silhouette &amp; Kemiripan Daerah — Per Polutan &#8212; My sample book</title>
+    <title>5.2a K-Means Clustering — Per Polutan &#8212; My sample book</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05_clustering/5.2b_clustering_silhouette_daerah';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_clustering/5.2a_kmeans_per_polutan';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.3 Komparasi dan Kesimpulan" href="5.3_komparasi_dan_kesimpulan.html" />
-    <link rel="prev" title="5.2 K-Means Clustering — Per Polutan" href="5.2_kmeans_clustering.html" />
+    <link rel="next" title="5.2b K-Means Silhouette &amp; Kemiripan Daerah — Per Polutan" href="5.2b_kmeans_silhouette_daerah.html" />
+    <link rel="prev" title="5.2 Clustering per Polutan — Apa Isinya" href="5.2_clustering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,18 +170,23 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A Kamal</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02_data_understanding/2.1a_data_collection_sentinel5p.html">2.1a Data Collection Sentinel-5P</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
 <ul class="nav bd-sidenav">
@@ -205,13 +210,20 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5.2 K-Means Clustering B</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="5.2_clustering.html">5.2 Clustering per Polutan</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.2a K-Means per Polutan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.2b_kmeans_silhouette_daerah.html">5.2b K-Means Silhouette &amp; Kemiripan Daerah</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="5.6a_eksperimen_linear_204.html">5.6a Varian Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.6b_eksperimen_polynomial_204.html">5.6b Varian Polynomial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
 <ul class="nav bd-sidenav">
@@ -292,7 +304,7 @@
       
       
       
-      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F05_clustering/5.2b_clustering_silhouette_daerah.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F05_clustering/5.2a_kmeans_per_polutan.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,7 +334,7 @@
       
       
       
-      <li><a href="../_sources/05_clustering/5.2b_clustering_silhouette_daerah.ipynb" target="_blank"
+      <li><a href="../_sources/05_clustering/5.2a_kmeans_per_polutan.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -398,7 +410,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>5.2b Clustering Silhouette & Kemiripan Daerah — Per Polutan</h1>
+    <h1>5.2a K-Means Clustering — Per Polutan</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -425,8 +437,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jarak-ke-centroid-sebaran-fitur-pembeda">5.2.9 Jarak ke Centroid &amp; Sebaran Fitur Pembeda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-metrik-per-polutan">5.2.10 Ringkasan Metrik per Polutan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-sensitivitas-k-means-tanpa-outlier">5.2.11 Analisis Sensitivitas: K-Means Tanpa Outlier</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kemiripan-antar-daerah-daerah-mana-yang-kondisinya-sama-mirip">5.2.13 Kemiripan Antar Daerah: Daerah Mana yang Kondisinya Sama/Mirip?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.2.14 Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.2.12 Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -438,13 +449,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="b-clustering-silhouette-kemiripan-daerah-per-polutan">
-<h1>5.2b Clustering Silhouette &amp; Kemiripan Daerah — Per Polutan<a class="headerlink" href="#b-clustering-silhouette-kemiripan-daerah-per-polutan" title="Link to this heading">#</a></h1>
-<p>Notebook ini adalah <strong>clone dari 5.2 K-Means Clustering</strong> dengan dua fokus utama:</p>
-<ol class="arabic simple">
-<li><p><strong>Menentukan jumlah cluster terbaik (K) dengan <em>silhouette coefficient</em></strong> — K dengan rata-rata silhouette tertinggi dinyatakan optimal (Elbow Method sebagai pembanding).</p></li>
-<li><p><strong>Grafik kemiripan daerah</strong> — dendrogram + matriks jarak profil tiap daerah serta pemetaan daerah → cluster, untuk melihat <strong>daerah mana yang kondisinya sama/mirip</strong>.</p></li>
-</ol>
+  <section class="tex2jax_ignore mathjax_ignore" id="a-k-means-clustering-per-polutan">
+<h1>5.2a K-Means Clustering — Per Polutan<a class="headerlink" href="#a-k-means-clustering-per-polutan" title="Link to this heading">#</a></h1>
 <p>Notebook ini menjalankan <strong>K-Means Clustering</strong> untuk masing-masing polutan (CO, NO₂, SO₂) pada dua skenario:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -475,8 +481,6 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">silhouette_score</span><span class="p">,</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">davies_bouldin_score</span><span class="p">,</span> <span class="n">calinski_harabasz_score</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linkage</span><span class="p">,</span> <span class="n">dendrogram</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
@@ -631,44 +635,46 @@ SO2 PCA: 37 data x 37 fitur
   CO K=3: inertia=660.21, silhouette=0.6970
   CO K=4: inertia=509.37, silhouette=0.3425
   CO K=5: inertia=413.89, silhouette=0.1845
-  CO K=6: inertia=361.35, silhouette=0.1538
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO K=7: inertia=315.87, silhouette=0.1613
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO K=6: inertia=361.35, silhouette=0.1538
+  CO K=7: inertia=315.87, silhouette=0.1613
   CO K=8: inertia=272.85, silhouette=0.1425
-  CO K=9: inertia=239.32, silhouette=0.1501
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO K=9: inertia=239.32, silhouette=0.1501
   CO K=10: inertia=221.04, silhouette=0.1455
 &gt;&gt;&gt; K terbaik: K=2, silhouette=0.7955
 
 === SKENARIO 1: NO2 — 68 Fitur ===
   NO2 K=2: inertia=1326.58, silhouette=0.7455
   NO2 K=3: inertia=1001.28, silhouette=0.1907
+  NO2 K=4: inertia=811.80, silhouette=0.2045
+  NO2 K=5: inertia=655.79, silhouette=0.2166
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=4: inertia=811.80, silhouette=0.2045
-  NO2 K=5: inertia=655.79, silhouette=0.2166
-  NO2 K=6: inertia=578.31, silhouette=0.1856
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=6: inertia=578.31, silhouette=0.1856
   NO2 K=7: inertia=504.99, silhouette=0.1619
   NO2 K=8: inertia=458.60, silhouette=0.1669
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=9: inertia=424.66, silhouette=0.1516
+  NO2 K=9: inertia=424.66, silhouette=0.1516
   NO2 K=10: inertia=373.03, silhouette=0.1721
 &gt;&gt;&gt; K terbaik: K=2, silhouette=0.7455
 
 === SKENARIO 1: SO2 — 68 Fitur ===
-  SO2 K=2: inertia=1210.46, silhouette=0.7894
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=2: inertia=1210.46, silhouette=0.7894
   SO2 K=3: inertia=691.64, silhouette=0.7085
   SO2 K=4: inertia=525.29, silhouette=0.3921
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=5: inertia=413.68, silhouette=0.4061
+  SO2 K=5: inertia=413.68, silhouette=0.4061
   SO2 K=6: inertia=335.56, silhouette=0.1359
-  SO2 K=7: inertia=301.06, silhouette=0.1268
-  SO2 K=8: inertia=267.42, silhouette=0.0996
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=9: inertia=239.82, silhouette=0.1208
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=7: inertia=301.06, silhouette=0.1268
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=8: inertia=267.42, silhouette=0.0996
+  SO2 K=9: inertia=239.82, silhouette=0.1208
   SO2 K=10: inertia=230.17, silhouette=0.0924
 &gt;&gt;&gt; K terbaik: K=2, silhouette=0.7894
 </pre></div>
@@ -697,13 +703,15 @@ SO2 PCA: 37 data x 37 fitur
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== SKENARIO 2: CO — 37 PCA ===
   CO K=2: inertia=1123.80, silhouette=0.7955
+  CO K=3: inertia=660.21, silhouette=0.6970
+  CO K=4: inertia=509.37, silhouette=0.3425
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO K=3: inertia=660.21, silhouette=0.6970
-  CO K=4: inertia=509.37, silhouette=0.3425
-  CO K=5: inertia=413.89, silhouette=0.1845
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO K=5: inertia=413.89, silhouette=0.1845
   CO K=6: inertia=361.35, silhouette=0.1538
-  CO K=7: inertia=315.87, silhouette=0.1613
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO K=7: inertia=315.87, silhouette=0.1613
   CO K=8: inertia=272.85, silhouette=0.1425
 </pre></div>
 </div>
@@ -713,32 +721,38 @@ SO2 PCA: 37 data x 37 fitur
 
 === SKENARIO 2: NO2 — 37 PCA ===
   NO2 K=2: inertia=1326.58, silhouette=0.7455
-  NO2 K=3: inertia=1001.28, silhouette=0.1907
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=3: inertia=1001.28, silhouette=0.1907
   NO2 K=4: inertia=811.80, silhouette=0.2045
   NO2 K=5: inertia=655.79, silhouette=0.2166
   NO2 K=6: inertia=578.31, silhouette=0.1856
-  NO2 K=7: inertia=504.99, silhouette=0.1619
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=8: inertia=458.60, silhouette=0.1669
-  NO2 K=9: inertia=424.66, silhouette=0.1516
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=7: inertia=504.99, silhouette=0.1619
+  NO2 K=8: inertia=458.60, silhouette=0.1669
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2 K=9: inertia=424.66, silhouette=0.1516
   NO2 K=10: inertia=373.03, silhouette=0.1721
 &gt;&gt;&gt; K terbaik: K=2, silhouette=0.7455
 
 === SKENARIO 2: SO2 — 37 PCA ===
-  SO2 K=2: inertia=1210.46, silhouette=0.7894
-  SO2 K=3: inertia=691.64, silhouette=0.7085
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=4: inertia=525.29, silhouette=0.3921
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=2: inertia=1210.46, silhouette=0.7894
+  SO2 K=3: inertia=691.64, silhouette=0.7085
+  SO2 K=4: inertia=525.29, silhouette=0.3921
   SO2 K=5: inertia=413.68, silhouette=0.4061
-  SO2 K=6: inertia=335.56, silhouette=0.1359
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=6: inertia=335.56, silhouette=0.1359
   SO2 K=7: inertia=301.06, silhouette=0.1268
   SO2 K=8: inertia=267.42, silhouette=0.0996
-  SO2 K=9: inertia=239.82, silhouette=0.1208
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=10: inertia=230.17, silhouette=0.0924
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2 K=9: inertia=239.82, silhouette=0.1208
+  SO2 K=10: inertia=230.17, silhouette=0.0924
 &gt;&gt;&gt; K terbaik: K=2, silhouette=0.7894
 </pre></div>
 </div>
@@ -841,8 +855,9 @@ Skenario 1 (68 fitur, K=2):
 Skenario 2 (37 PCA, K=2):
   Cluster 0: 36 data
   Cluster 1: 1 data
-
-=== NO2 ===
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== NO2 ===
 Skenario 1 (68 fitur, K=2):
   Cluster 0: 36 data
   Cluster 1: 1 data
@@ -1085,7 +1100,9 @@ Tersimpan: fig_co_cluster_sizes.png
 </div>
 <img alt="../_images/846e7d826ed4e6aec4f5e203df5aa9245b6ce5c9afa43950804c599760f9cebe.png" src="../_images/846e7d826ed4e6aec4f5e203df5aa9245b6ce5c9afa43950804c599760f9cebe.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- NO2 crosstab cluster vs daerah ---
-col_0                           0  1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>col_0                           0  1
 daerah                              
 Asemrowo, Surabaya              1  0
 Bandung, Jogoroto, Jombang      1  0
@@ -1503,37 +1520,41 @@ Tersimpan: fig_so2_centroid_profile.png
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO outlier: index=36, nama=Dewi Geizya, daerah=Kamal, Banyuajuh
 --- CO tanpa outlier: 36 data x 68 fitur ---
-  CO-noOut K=2: inertia=1542.72, silhouette=0.6737
-  CO-noOut K=3: inertia=1232.57, silhouette=0.1868
-  CO-noOut K=4: inertia=1045.07, silhouette=0.2236
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=2: inertia=1542.72, silhouette=0.6737
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=3: inertia=1232.57, silhouette=0.1868
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=4: inertia=1045.07, silhouette=0.2236
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=5: inertia=933.51, silhouette=0.1404
-  CO-noOut K=6: inertia=798.35, silhouette=0.1390
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=7: inertia=660.89, silhouette=0.1494
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=6: inertia=798.35, silhouette=0.1390
+  CO-noOut K=7: inertia=660.89, silhouette=0.1494
   CO-noOut K=8: inertia=589.16, silhouette=0.1413
-  CO-noOut K=9: inertia=531.27, silhouette=0.1432
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  CO-noOut K=9: inertia=531.27, silhouette=0.1432
   CO-noOut K=10: inertia=491.91, silhouette=0.1337
 &gt;&gt;&gt; CO tanpa outlier: K=2, silhouette=0.6737
 NO2 outlier: index=36, nama=Dewi Geizya, daerah=Kamal, Banyuajuh
 --- NO2 tanpa outlier: 36 data x 68 fitur ---
+  NO2-noOut K=2: inertia=1767.79, silhouette=0.3992
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2-noOut K=2: inertia=1767.79, silhouette=0.3992
-  NO2-noOut K=3: inertia=1414.89, silhouette=0.1794
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2-noOut K=4: inertia=1227.44, silhouette=0.1583
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2-noOut K=3: inertia=1414.89, silhouette=0.1794
+  NO2-noOut K=4: inertia=1227.44, silhouette=0.1583
   NO2-noOut K=5: inertia=1077.06, silhouette=0.1631
-  NO2-noOut K=6: inertia=990.35, silhouette=0.1288
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2-noOut K=7: inertia=858.71, silhouette=0.1306
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2-noOut K=8: inertia=717.30, silhouette=0.1642
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  NO2-noOut K=6: inertia=990.35, silhouette=0.1288
+  NO2-noOut K=7: inertia=858.71, silhouette=0.1306
+  NO2-noOut K=8: inertia=717.30, silhouette=0.1642
   NO2-noOut K=9: inertia=630.97, silhouette=0.1505
 </pre></div>
 </div>
@@ -1541,15 +1562,17 @@ NO2 outlier: index=36, nama=Dewi Geizya, daerah=Kamal, Banyuajuh
 &gt;&gt;&gt; NO2 tanpa outlier: K=2, silhouette=0.3992
 SO2 outlier: index=36, nama=Dewi Geizya, daerah=Kamal, Banyuajuh
 --- SO2 tanpa outlier: 36 data x 68 fitur ---
-  SO2-noOut K=2: inertia=1655.31, silhouette=0.6501
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2-noOut K=3: inertia=1203.34, silhouette=0.2248
-  SO2-noOut K=4: inertia=965.43, silhouette=0.2641
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2-noOut K=2: inertia=1655.31, silhouette=0.6501
+  SO2-noOut K=3: inertia=1203.34, silhouette=0.2248
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2-noOut K=5: inertia=860.13, silhouette=0.2199
-  SO2-noOut K=6: inertia=726.03, silhouette=0.1404
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2-noOut K=4: inertia=965.43, silhouette=0.2641
+  SO2-noOut K=5: inertia=860.13, silhouette=0.2199
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  SO2-noOut K=6: inertia=726.03, silhouette=0.1404
   SO2-noOut K=7: inertia=654.08, silhouette=0.1274
   SO2-noOut K=8: inertia=556.84, silhouette=0.1239
 </pre></div>
@@ -1721,129 +1744,8 @@ SO2 outlier: index=36, nama=Dewi Geizya, daerah=Kamal, Banyuajuh
 </div></div></div>
 </div>
 </section>
-<section id="kemiripan-antar-daerah-daerah-mana-yang-kondisinya-sama-mirip">
-<h2>5.2.13 Kemiripan Antar Daerah: Daerah Mana yang Kondisinya Sama/Mirip?<a class="headerlink" href="#kemiripan-antar-daerah-daerah-mana-yang-kondisinya-sama-mirip" title="Link to this heading">#</a></h2>
-<p>Setiap sampel berasal dari suatu <strong>daerah</strong>. Untuk menjawab daerah mana yang kondisinya mirip, profil tiap daerah dihitung sebagai <strong>rata-rata 68 fitur terstandarisasi</strong> dari sampel-sampelnya, lalu:</p>
-<p>(a) <strong>Dendrogram (hierarchical clustering, metode Ward)</strong> — daerah yang bercabang berdekatan berarti profil kondisinya mirip; warna cabang menunjukkan grup pada ambang jarak default.
-(b) <strong>Matriks jarak Euclidean antar daerah</strong> — sel gelap = sangat mirip, sel terang = sangat berbeda.
-(c) <strong>Pemetaan daerah → cluster K-Means</strong> — daerah dalam satu cluster dinyatakan memiliki kondisi yang sama; dilengkapi grafik jumlah daerah per cluster.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
-    <span class="n">df_p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s1">/ekstraksi_fitur_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">)</span>
-    <span class="n">feat</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_p</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">META_COLS</span><span class="p">]</span>
-    <span class="n">Xp</span> <span class="o">=</span> <span class="n">df_p</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">Xp</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">Xp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">Xp</span><span class="p">)</span>
-    <span class="n">Xs</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">Xp</span><span class="p">)</span>
-    
-    <span class="c1"># Profil tiap daerah = rata-rata fitur terstandarisasi anggotanya</span>
-    <span class="n">prof</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feat</span><span class="p">)</span>
-    <span class="n">prof</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_p</span><span class="p">[</span><span class="s1">&#39;daerah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;daerah&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">daerah_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-    <span class="n">Xd</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">values</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">daerah_names</span><span class="p">)</span><span class="si">}</span><span class="s1"> daerah unik dari </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_p</span><span class="p">)</span><span class="si">}</span><span class="s1"> sampel&#39;</span><span class="p">)</span>
-    
-    <span class="n">Z</span> <span class="o">=</span> <span class="n">linkage</span><span class="p">(</span><span class="n">Xd</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">)</span>
-    
-    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
-    
-    <span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">daerah_names</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">leaf_rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">leaf_font_size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dendrogram Kemiripan Daerah — </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1"> (Ward)&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Jarak Ward&#39;</span><span class="p">)</span>
-    
-    <span class="n">D</span> <span class="o">=</span> <span class="n">squareform</span><span class="p">(</span><span class="n">pdist</span><span class="p">(</span><span class="n">Xd</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">))</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis_r&#39;</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">daerah_names</span><span class="p">)))</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">daerah_names</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">daerah_names</span><span class="p">)))</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">daerah_names</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Matriks Jarak Antar Daerah — </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jarak Euclidean (gelap = mirip)&#39;</span><span class="p">)</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/images/clustering/</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">/fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">_dendrogram_daerah.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tersimpan: fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">_dendrogram_daerah.png&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CO: 35 daerah unik dari 37 sampel
-</pre></div>
-</div>
-<img alt="../_images/0832c9d7692ae42079a3d62b98b55ed99d0336784bf3bdee0a24a35191db7242.png" src="../_images/0832c9d7692ae42079a3d62b98b55ed99d0336784bf3bdee0a24a35191db7242.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_co_dendrogram_daerah.png
-NO2: 35 daerah unik dari 37 sampel
-</pre></div>
-</div>
-<img alt="../_images/4533ce101d9efc995c332bd8a59d920f0c26abae1988c7c2727bd19c3d03d58d.png" src="../_images/4533ce101d9efc995c332bd8a59d920f0c26abae1988c7c2727bd19c3d03d58d.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_no2_dendrogram_daerah.png
-SO2: 35 daerah unik dari 37 sampel
-</pre></div>
-</div>
-<img alt="../_images/266382949cb18b8f1dfe821e884eb2969b5592873c0031cd22f6a5603f05dd0d.png" src="../_images/266382949cb18b8f1dfe821e884eb2969b5592873c0031cd22f6a5603f05dd0d.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_so2_dendrogram_daerah.png
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">POLLUTANTS</span><span class="p">:</span>
-    <span class="n">df_map</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s1">/ekstraksi_fitur_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">META_COLS</span><span class="p">)</span>
-    <span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels_dict</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;labels_68&#39;</span><span class="p">]</span>
-    <span class="c1"># Cluster dominan tiap daerah (mayoritas sampelnya)</span>
-    <span class="n">dom</span> <span class="o">=</span> <span class="n">df_map</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;daerah&#39;</span><span class="p">)[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;--- </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">: daerah per cluster (kondisi sama) ---&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df_map</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
-        <span class="n">ds</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dom</span><span class="p">[</span><span class="n">dom</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="si">}</span><span class="s1"> daerah): &#39;</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
-    
-    <span class="n">cnt</span> <span class="o">=</span> <span class="n">dom</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cnt</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">cnt</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah daerah&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Jumlah Daerah per Cluster — </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/images/clustering/</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">/fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">_daerah_per_cluster.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tersimpan: fig_</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">_daerah_per_cluster.png&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- CO: daerah per cluster (kondisi sama) ---
-Cluster 0 (34 daerah): Asemrowo, Surabaya; Bandung, Jogoroto, Jombang; Banyu Ajuh, Perumnas, Kamal; Baron Nganjuk; Cerme, Gresik; Dukun, Gresik; Gresik Kota, Gresik; Kamal, Bangkalan; Kec. Bangkalan, Kab. Bangkalan; Kec. Kalianget, Sumenep; Kecamatan Bangkalan,Bangkalan; Kedungpring Lamongan; Kerek, Tuban; Kertosono, Ngajuk; Kota Sumenep, Sumenep; Kwanyar, Bangkalan; Labang, Bangkalan; Manyar, Gresik; Menganti Gresik; Nunukan; Paciran, Lamongan; Pilangkenceng, Madiun; Socah, Bangkalan; Sreseh, Sampang; Tanah Merah, Bangkalan; Tikala, Manado; Waru, Pamekasan; Warudoyong, Kota Sukabumi; Widang, Tuban; Widodaren, Ngawi; Wonoayu; Wonokromo, Surabaya; jabon , Sidoarjo; sambeng lamongan
-Cluster 1 (1 daerah): Kamal, Banyuajuh
-</pre></div>
-</div>
-<img alt="../_images/018cf5d61b55c68b062e4409480c9619bb1a55bf1f68e717b45e2dbc72e11809.png" src="../_images/018cf5d61b55c68b062e4409480c9619bb1a55bf1f68e717b45e2dbc72e11809.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_co_daerah_per_cluster.png
---- NO2: daerah per cluster (kondisi sama) ---
-Cluster 0 (34 daerah): Asemrowo, Surabaya; Bandung, Jogoroto, Jombang; Bangkalan Kota,Bangkalan; Banyu Ajuh, Perumnas, Kamal; Baron Nganjuk; Cerme, Gresik; Dukun, Gresik; Gresik Kota, Gresik; Kamal, Bangkalan; Kec. Bangkalan, Kab. Bangkalan; Kec. Kalianget, Sumenep; Kedungpring Lamongan; Kerek, Tuban; Kertosono, Ngajuk; Kota Sumenep, Sumenep; Kwanyar, Bangkalan; Labang, Bangkalan; Manyar; Menganti Gresik; Nunukan; Paciran, Lamongan; Pilangkenceng, Madiun; Socah, Bangkalan; Sreseh, Sampang; Tanah Merah, Bangkalan; Tikala, Manado; Waru, Pamekasan; Warudoyong, Kota Sukabumi; Widang, Tuban; Widodaren, Ngawi; Wonoayu; Wonokromo, Surabaya; jabon , Sidoarjo; sambeng lamongan
-Cluster 1 (1 daerah): Kamal, Banyuajuh
-</pre></div>
-</div>
-<img alt="../_images/5e2c821cace8b22559739466f0c80f7121a61c015e23b4f9ec1ae5bccef49146.png" src="../_images/5e2c821cace8b22559739466f0c80f7121a61c015e23b4f9ec1ae5bccef49146.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_no2_daerah_per_cluster.png
---- SO2: daerah per cluster (kondisi sama) ---
-Cluster 0 (34 daerah): Asemrowo, Surabaya; Bandung, Jogoroto, Jombang; Banyu Ajuh, Perumnas, Kamal; Baron Nganjuk; Cerme, Gresik; Dukun, Gresik; Gresik Kota, Gresik; Kamal, Bangkalan; Kec. Bangkalan, Kab. Bangkalan; Kec. Kalianget, Sumenep; Kecamatan Bangkalan,Bangkalan; Kedungpring Lamongan; Kerek, Tuban; Kertosono, Ngajuk; Kota Sumenep, Sumenep; Kwanyar, Bangkalan; Labang, Bangkalan; Manyar, Gresik; Menganti Gresik; Nunukan; Paciran, Lamongan; Pilangkenceng, Madiun; Socah, Bangkalan; Sreseh, Sampang; Tanah Merah, Bangkalan; Tikala, Manado; Waru, Pamekasan; Warudoyong, Kota Sukabumi; Widang, Tuban; Widodaren, Ngawi; Wonoayu; Wonokromo, Surabaya; jabon , Sidoarjo; sambeng lamongan
-Cluster 1 (1 daerah): Kamal, Banyuajuh
-</pre></div>
-</div>
-<img alt="../_images/10008b27b76aa82dca8fb7ef78ac3e688a63300409bb115704e421a1f255fa6e.png" src="../_images/10008b27b76aa82dca8fb7ef78ac3e688a63300409bb115704e421a1f255fa6e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tersimpan: fig_so2_daerah_per_cluster.png
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="kesimpulan">
-<h2>5.2.14 Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<h2>5.2.12 Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Silhouette Score</strong> yang lebih tinggi menunjukkan cluster yang lebih terpisah dan compact.</p></li>
 <li><p>Diagram silhouette per sampel (5.2.6) + histogram jarak (5.2.9) menunjukkan K=2 beranggotakan 36-vs-1: skor tinggi didorong satu outlier jauh, bukan dua kelompok seimbang — perlu kehati-hatian interpretasi.</p></li>
@@ -1852,7 +1754,6 @@ Cluster 1 (1 daerah): Kamal, Banyuajuh
 <li><p>Jika Skenario 2 (PCA) menghasilkan silhouette yang lebih baik atau setara → PCA efektif mereduksi noise.</p></li>
 <li><p>Jika Skenario 1 lebih baik → fitur asli masih lebih informatif.</p></li>
 <li><p>Analisis sensitivitas (5.2.11): setelah outlier (Dewi Geizya, Kamal Banyuajuh) dikeluarkan, K optimal tetap 2 namun silhouette turun — CO 0.7955→0.6737, NO₂ 0.7455→0.3992, SO₂ 0.7894→0.6501 — menegaskan skor tinggi sebelumnya didorong outlier, terutama pada NO₂.</p></li>
-<li><p>Kemiripan daerah (5.2.13): 34 dari 35 daerah jatuh dalam satu cluster (kondisi sama) pada ketiga polutan; hanya <code class="docutils literal notranslate"><span class="pre">Kamal,</span> <span class="pre">Banyuajuh</span></code> yang selalu menyendiri. Pasangan daerah paling mirip: CO = Gresik Kota ↔ Socah Bangkalan; NO₂ = Paciran Lamongan ↔ Pilangkenceng Madiun; SO₂ = Sreseh Sampang ↔ Kwanyar Bangkalan.</p></li>
 <li><p>Komparasi lengkap ada di notebook 5.3.</p></li>
 </ol>
 </section>
@@ -1889,20 +1790,20 @@ Cluster 1 (1 daerah): Kamal, Banyuajuh
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="5.2_kmeans_clustering.html"
+       href="5.2_clustering.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">5.2 K-Means Clustering — Per Polutan</p>
+        <p class="prev-next-title">5.2 Clustering per Polutan — Apa Isinya</p>
       </div>
     </a>
     <a class="right-next"
-       href="5.3_komparasi_dan_kesimpulan.html"
+       href="5.2b_kmeans_silhouette_daerah.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">5.3 Komparasi dan Kesimpulan</p>
+        <p class="prev-next-title">5.2b K-Means Silhouette &amp; Kemiripan Daerah — Per Polutan</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1941,8 +1842,7 @@ Cluster 1 (1 daerah): Kamal, Banyuajuh
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jarak-ke-centroid-sebaran-fitur-pembeda">5.2.9 Jarak ke Centroid &amp; Sebaran Fitur Pembeda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-metrik-per-polutan">5.2.10 Ringkasan Metrik per Polutan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-sensitivitas-k-means-tanpa-outlier">5.2.11 Analisis Sensitivitas: K-Means Tanpa Outlier</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kemiripan-antar-daerah-daerah-mana-yang-kondisinya-sama-mirip">5.2.13 Kemiripan Antar Daerah: Daerah Mana yang Kondisinya Sama/Mirip?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.2.14 Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">5.2.12 Kesimpulan</a></li>
 </ul>
   </nav></div>
 

@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2.2 Deskripsi Dataset" href="2.2_deskripsi_dataset.html" />
-    <link rel="prev" title="2.1 Data Collection" href="2.1_data_collection.html" />
+    <link rel="prev" title="2.1a Data Collection — Deret Waktu Sentinel-5P Kecamatan Jabon" href="2.1a_data_collection_sentinel5p.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,18 +170,23 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="2.1_data_collection.html">2.1 Data Collection</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.1b Data Collection Sentinel-2A Kamal</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="2.1_data_collection.html">2.1 Data Collection</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2.1a_data_collection_sentinel5p.html">2.1a Data Collection Sentinel-5P</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1b Data Collection Sentinel-2A</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2.7_analisis_no2_aiven_knime.html">2.7 Praktikum Analisis Aiven &amp; KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
 <ul class="nav bd-sidenav">
@@ -205,13 +210,20 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.2_kmeans_clustering.html">5.2 K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.2b_clustering_silhouette_daerah.html">5.2 K-Means Clustering B</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05_clustering/5.2_clustering.html">5.2 Clustering per Polutan</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05_clustering/5.2a_kmeans_per_polutan.html">5.2a K-Means per Polutan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_clustering/5.2b_kmeans_silhouette_daerah.html">5.2b K-Means Silhouette &amp; Kemiripan Daerah</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05_clustering/5.6a_eksperimen_linear_204.html">5.6a Varian Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05_clustering/5.6b_eksperimen_polynomial_204.html">5.6b Varian Polynomial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
 <ul class="nav bd-sidenav">
@@ -852,12 +864,12 @@ Metadata disimpan ke s2_kamal_metadata.json
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2.1_data_collection.html"
+       href="2.1a_data_collection_sentinel5p.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2.1 Data Collection</p>
+        <p class="prev-next-title">2.1a Data Collection — Deret Waktu Sentinel-5P Kecamatan Jabon</p>
       </div>
     </a>
     <a class="right-next"
