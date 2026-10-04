@@ -1,0 +1,10 @@
+{
+  "varian": "poly",
+  "dimensi": 204,
+  "k": 2,
+  "silhouette": 0.5287610677419752,
+  "inertia": 4895.841526509352,
+  "seed": 42,
+  "ukuran_cluster": "32;2",
+  "aturan": "silhouette tertinggi dengan min_size>=2 (tanpa singleton)"
+}

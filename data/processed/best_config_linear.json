@@ -1,0 +1,10 @@
+{
+  "varian": "linear",
+  "dimensi": 37,
+  "k": 2,
+  "silhouette": 0.49705392202004184,
+  "inertia": 977.0989919200006,
+  "seed": 42,
+  "ukuran_cluster": "2;32",
+  "aturan": "silhouette tertinggi dengan min_size>=2 (tanpa singleton)"
+}
