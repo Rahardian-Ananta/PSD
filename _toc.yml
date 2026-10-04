@@ -6,20 +6,26 @@ root: intro
 parts:
   - caption: BAB 1 — BUSINESS UNDERSTANDING
     chapters:
-      - file: 01_business_understanding
-        title: Business Understanding
+      - file: 01_business_understanding/1.1_latar_belakang
+        title: 1.1 Latar Belakang
+      - file: 01_business_understanding/1.2_tujuan
+        title: 1.2 Tujuan
+      - file: 01_business_understanding/1.3_pertanyaan_analisis
+        title: 1.3 Pertanyaan Analisis
 
   - caption: BAB 2 — DATA UNDERSTANDING
     chapters:
       - file: 02_data_understanding/2.1_data_collection
         title: 2.1 Data Collection
         sections:
+          - file: 02_data_understanding/2.1a_data_collection_sentinel5p
+            title: 2.1a Data Collection Sentinel-5P
           - file: 02_data_understanding/2.1b_data_collection_sentinel2a
-            title: 2.1b Data Collection Sentinel-2A Kamal
+            title: 2.1b Data Collection Sentinel-2A
       - file: 02_data_understanding/2.2_deskripsi_dataset
         title: 2.2 Deskripsi Dataset
       - file: 02_data_understanding/2.3_exploratory_data_analysis
-        title: 2.3 Exploratory Data Analysis (EDA)
+        title: 2.3 Exploratory Data Analysis
       - file: 02_data_understanding/2.4_identifikasi_missing_value
         title: 2.4 Identifikasi Missing Value
       - file: 02_data_understanding/2.5_identifikasi_outlier
@@ -27,7 +33,7 @@ parts:
       - file: 02_data_understanding/2.6_kesimpulan_data_understanding
         title: 2.6 Kesimpulan Data Understanding
       - file: 02_data_understanding/2.7_analisis_no2_aiven_knime
-        title: 2.7 Praktikum Analisis Aiven & KNIME
+        title: 2.7 Analisis Aiven & KNIME
 
 
   - caption: BAB 3 — DATA PREPROCESSING
@@ -64,10 +70,13 @@ parts:
     chapters:
       - file: 05_clustering/5.1_reduksi_dimensi_pca
         title: 5.1 Reduksi Dimensi PCA
-      - file: 05_clustering/5.2_kmeans_clustering
-        title: 5.2 K-Means Clustering
-      - file: 05_clustering/5.2b_clustering_silhouette_daerah
-        title: 5.2 K-Means Clustering B
+      - file: 05_clustering/5.2_clustering
+        title: 5.2 Clustering per Polutan
+        sections:
+          - file: 05_clustering/5.2a_kmeans_per_polutan
+            title: 5.2a K-Means per Polutan
+          - file: 05_clustering/5.2b_kmeans_silhouette_daerah
+            title: 5.2b K-Means Silhouette & Kemiripan Daerah
 
       - file: 05_clustering/5.3_komparasi_dan_kesimpulan
         title: 5.3 Komparasi dan Kesimpulan
@@ -77,8 +86,13 @@ parts:
         title: 5.5 Analisis Clustering Polutan
       - file: 05_clustering/5.6_eksperimen_gabungan_204
         title: 5.6 Eksperimen Gabungan 204 Fitur
+        sections:
+          - file: 05_clustering/5.6a_eksperimen_linear_204
+            title: 5.6a Varian Linear
+          - file: 05_clustering/5.6b_eksperimen_polynomial_204
+            title: 5.6b Varian Polynomial
       - file: 05_clustering/5.7_peta_clustering_folium
-        title: 5.7 Peta Clustering Folium
+        title: 5.7 Peta Clustering Folium (k 2–5, 2 varian)
 
   - caption: BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A
     chapters:

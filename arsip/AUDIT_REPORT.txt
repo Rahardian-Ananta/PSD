@@ -1,0 +1,177 @@
+# AUDIT REPORT — Proyek PSD (Jupyter Book, Kecamatan Jabon)
+
+Audit READ-ONLY. Tidak ada file proyek diubah saat audit. Semua angka dari isi file aktual, bukan asumsi.
+Tanggal audit: 2026-09-29. Lokasi: C:\Users\ASUS\OneDrive\ドキュメント\PSD
+
+## 1. Struktur Jupyter Book
+
+_toc.yml valid: root `intro` + 5 part / 27 chapter. Verifikasi: seluruh 27 file yang
+dirujuk di _toc.yml ADA (.md/.ipynb sesuai). Tidak ada file hilang, tidak ada referensi rusak.
+
+Catatan struktur:
+- Orphan (ada di disk, tidak terdaftar di _toc): 02_data_understanding.ipynb (root),
+  02_data_understanding/jabon.geojson, 02_data_understanding/peta_jabon.html,
+  02_data_understanding/jabon_pollutants_data.zip, ingest_aiven_jabon.py,
+  run_all_jabon.py, run_all_jabon_co_so2.py, jabon.geojson (root),
+  data/downloads/*, Kuliah PSD/* (16 file catatan kuliah, bukan bagian buku).
+- fig_knime_*.png yang dirujuk 5.4 tidak ada di 05_clustering/ dengan nama persis
+  seperti di narasi; gambar data/images/analisis_no2/01-09.png yang dirujuk 2.7 juga
+  bernama berbeda di disk (01-aiven-postgres-dashboard.png, dst. — 8 file, ada tapi
+  nama tidak cocok).
+
+## 2. Daftar Markdown
+
+Terdaftar & terbaca: intro.md, 01_business_understanding.md, 5 file Bab 2
+(2.2, 2.4, 2.5, 2.6, 2.7), 4 file Bab 3 (3.1–3.4), 7 file Bab 4 (4.1, 4.3–4.8),
+2 file Bab 5 (5.4, 5.5).
+
+## 3. Daftar Notebook
+
+Terdaftar & ada: 2.1_data_collection.ipynb (28 cell, openEO Sentinel-5P → 6 CSV),
+2.3_eda.ipynb (21 cell, EDA mentah), 4.2_ekstraksi_fitur_tsfel.ipynb (13 cell,
+TSFEL 68 fitur), 5.1_pca.ipynb (17 cell), 5.2_kmeans.ipynb (32 cell),
+5.2b_silhouette_daerah.ipynb (35 cell, superset 5.2 + dendrogram), 5.3_komparasi.ipynb
+(13 cell). Semua memiliki output tersimpan.
+
+## 4. Daftar Dataset Excel
+
+Hanya 1 file: `data/downloads/ekstraksi fitur/pembagian fitur ekstraksi.xlsx`,
+1 sheet `Pembagian Fitur`, 69 baris (header + 68 fitur). Isi aktual: tabel pembagian
+tugas 68 fungsi TSFEL ke mahasiswa (tiap mahasiswa 2 fitur, mis. Rahardian Ananta →
+calc_mean/calc_median). Bukan dataset observasi; tidak ada sheet data polutan/sawah.
+
+## 5. Dataset Dependency Map (aktual, terverifikasi dari kode)
+
+jabon.geojson (1 poligon Kec. Jabon)
+  ↓ 2.1 openEO SENTINEL_5P_L2, 2025-08-31 s.d. 2026-08-31
+jabon_{NO2,CO,HCHO,SO2,O3,CH4}.csv (366x3: date,feature_index,value)
+  ↓
+jabon_pollutants.csv (366x7) + rolling30 + clean/*_clean.csv (366, 0 NaN)
+  ↓ 4.2 (IQR→NaN→interpolate time+ffill/bfill→TSFEL fs=1/hari)
+*_Jabon_TSFEL.csv (1x68 per polutan) + ALL_Jabon_TSFEL.csv (3x69)
+  ╳ TERPUTUS: pembuat ekstraksi_fitur_{co,no2,so2}.csv (37x71: id,nama,daerah+68 fitur)
+     tidak ada di notebook yang diaudit (37 daerah kelas gabungan, bukan Jabon saja)
+  ↓ 5.1 StandardScaler→PCA(37)
+jabon_pca_37fitur_*.csv (37x40) [juga ada file 35fitur misterius, 35x38]
+  ↓ 5.2/5.2b K-Means K=2..10 → 5.3 komparasi → 5.4 KNIME replika + 5.5 narasi
+
+## 6. Dataset Tiga Polutan
+
+Downstream (Bab 4–5) hanya memakai CO, NO2, SO2. HCHO, O3, CH4 dikumpulkan di 2.1
+tapi tidak dipakai lagi. Per-file mentah (verifikasi langsung): CO 44 missing,
+NO2 48, SO2 40, HCHO 95, O3 5, CH4 312 — dari 366 baris.
+
+## 7. Status 68 Fitur per Polutan
+
+Terkonfirmasi: tiap polutan tepat 68 fitur (*_Jabon_TSFEL.csv 1x68;
+ekstraksi_fitur_*.csv 37x71 = 3 ID + 68). Komposisi kanonis di 4.2/4.3/4.4/4.5/4.8:
+Statistical 21 + Temporal 21 + Spectral 26 = 68. Konflik: 4.6 menulis 20+15+33=68
+dengan daftar nama kolom berbeda dari CSV aktual.
+
+## 8. Status Dataset Gabungan
+
+Tidak ada dataset gabungan 204 fitur (68+68+68) di proyek ini. ALL_Jabon_TSFEL.csv
+adalah 3 baris x 68 fitur (satu baris per polutan), bukan 1 baris x 204. Tidak ada
+merge key wilayah+waktu antar-polutan; tidak ada file gabungan 204 kolom.
+Asumsi Tugas.txt §7–8 tidak terbukti di file aktual.
+
+## 9. Status Interpolasi
+
+Hanya interpolasi linear/time yang terbukti: 4.2 clean_series
+interpolate(method='time')+ffill/bfill setelah IQR-nulling; 4.1/3.3 linear juga.
+Non-linear dan polinomial tidak ada di kode/notebook manapun. Bab 5 memakai
+SimpleImputer median, bukan interpolasi.
+
+## 10. Status Reduksi Dimensi
+
+5.1: StandardScaler → PCA(n=37), 37 = min(n_samples=37, n_features=68) →
+full-rank, variance 100%, loss 0% (trivial, bukan reduksi informatif).
+PC1 ≈ 46–54%, PC1+PC2 ≈ 69–78%. File pca_35fitur ada di disk (35 baris) tapi tidak
+dihasilkan notebook yang diaudit. Angka 203 dan 74 tidak ada di proyek mana pun;
+37 ada, 35 hanya di narasi/file misterius.
+
+## 11. Status Clustering
+
+5.2/5.2b: K-Means K=2..10, seed=42, n_init=10, max_iter=300, dua skenario
+(68F vs PCA37) hasilnya identik persis (dijelaskan: PCA full-rank mempertahankan
+jarak Euclidean). K terbaik = K=2 untuk semua polutan/skenario, komposisi 36-vs-1
+(outlier Kamal, Banyuajuh). 5.2b = superset 5.2 (+ dendrogram Ward, matriks jarak
+daerah, mode daerah→cluster).
+
+## 12. Status Silhouette Evaluation
+
+Hasil aktual notebook (identik 68 vs PCA37): CO 0.7955, NO2 0.7455, SO2 0.7894
+(K=2; inertia 1123.80/1326.58/1210.46). Sensitivitas tanpa outlier: turun ke
+0.6737/0.3992/0.6501 — skor tinggi didorong 1 outlier. Konflik: narasi 5.5 menulis
+0.7667/0.7450/0.7744 + "35 PCA" + "34-vs-1" — belum sinkron dengan notebook.
+
+## 13. Status Data Geografis
+
+jabon.geojson (root + 2 duplikat): 1 Feature Polygon, name=Jabon, admin_level=6.
+Ada juga sidoarjo.geojson. Tidak ada shapefile/GeoPackage. Data clustering 37 daerah
+memakai kolom teks `daerah` (duplikat: Kamal, Bangkalan x2; Kwanyar, Bangkalan x2;
+35 unik dari 37 baris; campur Jabon + luar-Jawa: Nunukan, Tikala Manado, Sukabumi)
+— tanpa geometry. Tidak ada spatial join cluster+geometry; tidak ada GeoJSON output
+clustering; Folium clustering tidak ada (satu-satunya Folium ada di 2.1: peta batas
+Jabon → peta_jabon.html).
+
+## 14. Status Sentinel-2A
+
+Tidak ada. Seluruh proyek memakai Sentinel-5P TROPOMI L2 via openEO. Tidak ada file
+raster optik, band spektral, atau metadata Sentinel-2.
+
+## 15. Status Shapefile Digitasi
+
+Tidak ada. Tidak ditemukan .shp, .tif*, file digitasi, atau folder Kamal/sawah
+(pencarian nama kamal|sawah|sentinel-2|digitasi|qgis hanya menemukan string "Kamal"
+sebagai label baris di CSV clustering, bukan file).
+
+## 16. Status Klasifikasi
+
+Tidak ada. Tidak ada notebook/kode training/testing sawah vs non-sawah, confusion
+matrix, accuracy/precision/recall/F1. Bagian B Tugas.txt (Kamal, 50+50 sampel)
+belum tersedia dalam bentuk apapun — sesuai aturan: belum tersedia.
+
+## 17. Kode yang Sudah Tersedia
+
+Ingest openEO (2.1), EDA (2.3), TSFEL 68 fitur + interpolasi time (4.2), PCA-37 (5.1),
+K-Means + silhouette + sensitivitas (5.2), + dendrogram daerah (5.2b), komparasi (5.3),
+dokumentasi KNIME + narasi (5.4/5.5), skrip ingest_aiven_jabon.py, run_all_jabon*.py,
+Clustering_Data.knwf.
+
+## 18. Bagian yang Belum Selesai
+
+Sinkronisasi 5.5 (angka 35/34-vs-1/0.76 vs aktual 37/36-vs-1/0.79); tabel variance
+5.1.6 kosong (-/-); bug savefig scree ditimpa scatter; davies_bouldin/calinski
+diimpor tak dipakai; label cluster tidak disimpan ke CSV; tidak ada peta Folium
+clustering; Bab 3–4 hanya contoh NO2 tanpa loop 6 polutan; HCHO/O3/CH4/rolling30
+tidak dianalisis.
+
+## 19. Masalah / Ketidaksesuaian
+
+1. Tugas.txt vs proyek aktual: Tugas mengasumsikan (a) merge 3 polutan → 204 fitur →
+   PCA 203/74/37 → Folium clustering, (b) klasifikasi sawah Sentinel-2A Kamal.
+   Proyek aktual: (a) time-series 6 polutan 1 wilayah + clustering 37 daerah x 68 fitur,
+   PCA-37 trivial; (b) tidak ada Sentinel-2A/sawah/Kamal. Keputusan metodologi
+   Bagian B tidak dapat ditentukan dari file.
+2. Inkonsistensi missing NO2: per-file 48 vs jabon_pollutants.csv kolom NO2 126
+   (nilai valid sama persis di irisan 240 baris — file gabungan dari vintage berbeda;
+   CO gabungan 157 vs per-file 44; SO2 gabungan 104 vs per-file 40). Klaim markdown
+   48/102/126 saling bertentangan.
+3. Statistik deskriptif bertentangan: Min NO2 +3.4e-06 vs −1.25e-06; Max 9.58e-05 vs
+   9.97e-05; mean/skew/kurt/kuartil beda antara 2.5 vs 2.7 vs 3.4.
+4. SO2 mentah negatif (min −6.1e-04) melanggar klaim 3.4 "x>0 LULUS".
+5. Outlier: 2.5 sarankan capping/pertahankan vs 3.2/4.2 null-kan via IQR.
+6. Duplikat daerah (Kamal x2, Kwanyar x2) + file pca_35fitur tanpa provenansi +
+   daftar daerah 35- vs 37-baris tidak konsisten.
+7. Taksonomi fitur 4.6 (20/15/33) vs kanonis (21/21/26).
+8. Rujukan gambar 2.7/5.4 tidak cocok dengan nama file di disk.
+
+## 20. Rencana Perubahan (menunggu instruksi — belum dikerjakan)
+
+Opsi A: selaraskan narasi 5.5/angka dengan output notebook aktual + perbaiki bug kecil
++ putuskan nasib file 35fitur/duplikat. Opsi B: evaluasi apakah eksperimen 203/74/37 +
+gabungan 204 fitur + peta Folium clustering + klasifikasi Sentinel-2A Kamal memang
+diminta sebagai pekerjaan baru (karena tidak ada di proyek saat ini) — butuh
+konfirmasi metodologi, terutama definisi "interpolasi non-linear" vs "polinomial" dan
+asal angka 203/74/37. Berhenti di sini sesuai instruksi §32 Tugas.txt; menunggu arahan.

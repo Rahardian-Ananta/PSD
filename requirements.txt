@@ -1,3 +1,18 @@
+# Kebutuhan Python proyek PSD (Jupyter Book + notebook Bab 2-6)
+# Dibuat dari inventarisasi import aktual notebook/skrip (2026-09-30).
+# Catatan: 'google.colab' hanya untuk Colab, tidak dicantumkan.
 jupyter-book
 matplotlib
 numpy
+pandas
+scikit-learn
+scipy
+folium
+geopandas
+shapely
+rasterio
+openeo
+tsfel
+sqlalchemy
+joblib
+ipython
