@@ -1,0 +1,28 @@
+{
+  "koleksi": "SENTINEL2_L2A",
+  "tanggal_target": "2026-08-15",
+  "temporal_extent": [
+    "2026-08-05",
+    "2026-08-26"
+  ],
+  "komposit": "median",
+  "bands": [
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "B11",
+    "B12"
+  ],
+  "max_cloud_cover_pct": 20,
+  "bbox": {
+    "west": 112.7036116,
+    "south": -7.5774563,
+    "east": 112.8800251,
+    "north": -7.4926832,
+    "crs": "EPSG:4326"
+  },
+  "aoi_file": "jabon.geojson",
+  "output": "s2_kamal.tif",
+  "job_id": "j-26100500360540e6a769cc045de401f3"
+}

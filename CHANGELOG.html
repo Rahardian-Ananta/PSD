@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -227,7 +227,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Persiapan Klasifikasi Sawah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
 </ul>
 
     </div>
@@ -426,6 +426,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dampak-hasil-apa-yang-berubah">4. Dampak hasil (apa yang BERUBAH)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yang-belum-diperbaiki-terbuka">5. Yang BELUM diperbaiki (terbuka)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addendum-alias-wonoayu-peta-menampilkan-pasangan-jabon">7. Addendum — alias Wonoayu (peta menampilkan pasangan Jabon)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrasi-bab-6-ke-jabon-2-1b-klasifikasi-sawah">8. Migrasi Bab 6 ke Jabon (2.1b + klasifikasi sawah)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-revert">6. Cara revert</a></li>
 </ul>
             </nav>
@@ -538,6 +539,26 @@ ditambahkan <strong>alias manual terdokumentasi</strong> <code class="docutils l
 Alias lain yang tersisa (Bandung-Jogoroto, Bangkalan Kota, Banyuajuh Kamal, Kertosono)
 sengaja TIDAK dipaksakan (tidak terverifikasi) dan tetap dilaporkan sebagai NA.</p>
 </section>
+<section id="migrasi-bab-6-ke-jabon-2-1b-klasifikasi-sawah">
+<h2>8. Migrasi Bab 6 ke Jabon (2.1b + klasifikasi sawah)<a class="headerlink" href="#migrasi-bab-6-ke-jabon-2-1b-klasifikasi-sawah" title="Link to this heading">#</a></h2>
+<p>2.1b: kode sejak awal sudah berjalan di Jabon (<code class="docutils literal notranslate"><span class="pre">jabon.geojson</span></code> → <code class="docutils literal notranslate"><span class="pre">s2_jabon.tif</span></code>,
+bbox W112.70 E112.88); yang diperbaiki hanya teks tersisa “Kamal” (judul, Input/Output,
+nama job, <code class="docutils literal notranslate"><span class="pre">s2_kamal_metadata.json</span></code> → <code class="docutils literal notranslate"><span class="pre">s2_jabon_metadata.json</span></code>, kotak unduh) + tabel induk
+2.1 + copy <code class="docutils literal notranslate"><span class="pre">build.bat</span></code>. Satu output basi (<code class="docutils literal notranslate"><span class="pre">Selesai:</span> <span class="pre">s2_kamal.tif</span></code>) dibiarkan apa adanya —
+ia milik eksekusi lama dan refresh saat notebook dijalankan ulang.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/klasifikasi_jabon.py</span></code> (adaptasi Kamal): K-Means 8 klaster pada 11 fitur
+(6 band + NDVI/NDWI/NDBI + 2 tekstur), pelabelan analis dari profil spektral Jabon
+(sawah = klaster 0/NDVI 0,36 + klaster 4/NDVI 0,28 hamparan terluas; cek ragam absolut NIR
+identik ~0,029), lolos guard NDVI ±0,05. Hasil: peta 4-kelas (sawah 26,0% / veg 44,8% /
+terbangun 2,7% / air 26,6%) + 100 sampel (50/25/25) → <code class="docutils literal notranslate"><span class="pre">data/spasial/jabon_sawah.shp</span></code>
+(S001..S050/N001..N050, EPSG:32749).</p>
+<p>6.1 ditulis ulang penuh untuk Jabon (arsip Kamal:
+<code class="docutils literal notranslate"><span class="pre">arsip/6.1_persiapan_klasifikasi_KAMAL.ipynb</span></code>): tabel inventaris data, definisi 4→2 kelas,
+dokumentasi 7 fitur (6 band + NDVI diagnostik), RF 300 pohon (test 20: F1 1,0 sirkular;
+CV5 mean 0,99; importance B12&gt;B11&gt;B08), peta <code class="docutils literal notranslate"><span class="pre">jabon_classified.tif</span></code> (fraksi sawah 0,547 vs
+acuan 26,0% — over-prediksi ~29 poin karena tambak tak disampel), 13 gambar di
+<code class="docutils literal notranslate"><span class="pre">data/images/eksperimenjabon/</span></code>, kotak unduh 7 berkas.</p>
+</section>
 <section id="cara-revert">
 <h2>6. Cara revert<a class="headerlink" href="#cara-revert" title="Link to this heading">#</a></h2>
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Copy-Item</span> <span class="n">arsip</span><span class="p">/</span><span class="n">ekstraksi_fitur_linear_SEBELUM_fix_jabon</span><span class="p">.</span><span class="n">csv</span> <span class="n">data</span><span class="p">/</span><span class="n">ekstraksi_fitur_linear</span><span class="p">.</span><span class="n">csv</span> <span class="n">-Force</span>
@@ -605,6 +626,7 @@ Skrip perbaikan: <code class="docutils literal notranslate"><span class="pre">fi
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dampak-hasil-apa-yang-berubah">4. Dampak hasil (apa yang BERUBAH)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yang-belum-diperbaiki-terbuka">5. Yang BELUM diperbaiki (terbuka)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addendum-alias-wonoayu-peta-menampilkan-pasangan-jabon">7. Addendum — alias Wonoayu (peta menampilkan pasangan Jabon)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrasi-bab-6-ke-jabon-2-1b-klasifikasi-sawah">8. Migrasi Bab 6 ke Jabon (2.1b + klasifikasi sawah)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-revert">6. Cara revert</a></li>
 </ul>
   </nav></div>

@@ -57,6 +57,16 @@ Sesuai dengan kurikulum mata kuliah, proyek ini mengikuti kerangka kerja standar
 
 ---
 
+## Model 3D Kampus
+
+Sebagai konteks spasial, berikut model 3D kampus Universitas Trunojoyo Madura (±650 × 660 m, 326 mesh gedung + terrain mesh + jalan/kontur) — **interaktif**: seret untuk memutar, scroll untuk zoom:
+
+<iframe src="data/3d_model/kampus_3d.html" style="width:100%;height:540px;border:1px solid #ccc;border-radius:8px;" title="Model 3D kampus interaktif" loading="lazy"></iframe>
+
+> Sumber model: topoexport.com — Gedung/jalan/air/hutan: Overture Maps Foundation 2026 (ODbL); Tajuk: Meta & WRI GCHM v2 2026 (CC BY 4.0); Terrain: DEMNAS 2016 (CC BY 4.0).
+
+---
+
 ## Tim Pengembang
 
 | Nama | NIM |

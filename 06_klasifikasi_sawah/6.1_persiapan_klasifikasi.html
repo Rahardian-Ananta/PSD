@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Kamal) &#8212; My sample book</title>
+    <title>6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Jabon) &#8212; My sample book</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -226,7 +226,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6.1 Persiapan Klasifikasi Sawah</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
 </ul>
 
     </div>
@@ -409,7 +409,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Kamal)</h1>
+    <h1>6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Jabon)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -419,7 +419,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-data-manual-checklist-txt-butir-1">Spesifikasi data (MANUAL_CHECKLIST.txt butir [1])</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-yang-dipakai-inventaris-lengkap">Data yang dipakai (inventaris lengkap)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas-4-detail-2-biner">Definisi kelas (4 detail → 2 biner)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumentasi-fitur-7-kolom-per-poligon">Dokumentasi fitur (7 kolom per poligon)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-training-evaluasi">Split, training, evaluasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">Peta hasil klasifikasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-prediksi-pratinjau">Peta prediksi (pratinjau)</a></li>
@@ -433,8 +435,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#galeri-evaluasi-dan-peta">Galeri evaluasi dan peta</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-akhir-6-1-selesai-level-kandidat-2026-10-03">Status akhir 6.1 — SELESAI (level kandidat, 2026-10-03)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-berkas-klasifikasi-sawah">Unduh Berkas Klasifikasi Sawah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-berkas-klasifikasi-sawah-jabon">Unduh Berkas Klasifikasi Sawah Jabon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-akhir-6-1-selesai-jabon">Status akhir 6.1 — SELESAI (Jabon)</a></li>
 </ul>
             </nav>
         </div>
@@ -446,10 +448,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-sawah-vs-non-sawah-sentinel-2a-kamal">
-<h1>6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Kamal)<a class="headerlink" href="#klasifikasi-sawah-vs-non-sawah-sentinel-2a-kamal" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-sawah-vs-non-sawah-sentinel-2a-jabon">
+<h1>6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Jabon)<a class="headerlink" href="#klasifikasi-sawah-vs-non-sawah-sentinel-2a-jabon" title="Link to this heading">#</a></h1>
 <p><strong>Supervised learning</strong> (berbeda dari clustering Bab 5 yang unsupervised): model belajar dari label sampel.</p>
-<p><strong>Status 2026-10-03: SELESAI (level kandidat).</strong> Training memakai <code class="docutils literal notranslate"><span class="pre">data/spasial/kamal_sawah.shp</span></code> (100 poligon: 50 <code class="docutils literal notranslate"><span class="pre">sawah</span></code> + 50 <code class="docutils literal notranslate"><span class="pre">non_sawah</span></code>, CRS EPSG:32749) — turunan yang dinormalisasi dari <code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/sample_polygon_100_kamal.shp</span></code>. PROVENANSI JUJUR: sampel ini kandidat semi-otomatis (K-Means + interpretasi visual analis, lihat <code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/klasifikasi_kamal.py</span></code>), BUKAN digitasi manual QGIS + survei lapangan. Skor sempurna pada test set mencerminkan sirkularitas itu, bukan akurasi lapangan.</p>
+<p><strong>Data &amp; wilayah: Kecamatan Jabon</strong> (bukan Kamal). Training memakai <code class="docutils literal notranslate"><span class="pre">data/spasial/jabon_sawah.shp</span></code> (100 poligon: 50 <code class="docutils literal notranslate"><span class="pre">sawah</span></code> + 50 <code class="docutils literal notranslate"><span class="pre">non_sawah</span></code>, CRS EPSG:32749) — turunan yang dinormalisasi dari <code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/sample_polygon_100_jabon.shp</span></code> (skema id <code class="docutils literal notranslate"><span class="pre">S001..S050</span></code>/<code class="docutils literal notranslate"><span class="pre">N001..N050</span></code>).</p>
+<p><strong>PROVENANSI JUJUR:</strong> sampel ini kandidat semi-otomatis (K-Means 8 klaster pada 11 fitur band+indeks+tekstur, lalu pelabelan klaster oleh analis dari profil spektral — lihat <code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/klasifikasi_jabon.py</span></code>), BUKAN digitasi manual QGIS + survei lapangan. Skor tinggi pada test set mencerminkan sirkularitas itu, bukan akurasi lapangan. Air/tambak (26,6% area peta 4-kelas) TIDAK disampel sehingga peta biner tidak dapat dipercaya pada area tersebut.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -457,10 +460,12 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">SEED</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">SHP</span> <span class="o">=</span> <span class="s2">&quot;../data/spasial/kamal_sawah.shp&quot;</span>
-<span class="n">RASTER</span> <span class="o">=</span> <span class="s2">&quot;../data/spasial/s2_kamal.tif&quot;</span>
+<span class="n">SHP</span> <span class="o">=</span> <span class="s2">&quot;../data/spasial/jabon_sawah.shp&quot;</span>
+<span class="n">RASTER</span> <span class="o">=</span> <span class="s2">&quot;../data/spasial/s2_jabon.tif&quot;</span>
 <span class="n">OUT</span> <span class="o">=</span> <span class="s2">&quot;../data/processed&quot;</span>
+<span class="n">IMG</span> <span class="o">=</span> <span class="s2">&quot;../data/images/eksperimenjabon/&quot;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">OUT</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">IMG</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">DATA_OK</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">SHP</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">RASTER</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shapefile:&quot;</span><span class="p">,</span> <span class="s2">&quot;ADA&quot;</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">SHP</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;BELUM TERSEDIA&quot;</span><span class="p">)</span>
@@ -475,14 +480,131 @@ raster: ADA
 </div>
 </div>
 </div>
-<section id="spesifikasi-data-manual-checklist-txt-butir-1">
-<h2>Spesifikasi data (MANUAL_CHECKLIST.txt butir [1])<a class="headerlink" href="#spesifikasi-data-manual-checklist-txt-butir-1" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Shapefile: <code class="docutils literal notranslate"><span class="pre">data/spasial/kamal_sawah.shp</span></code> — 100 poligon (50 <code class="docutils literal notranslate"><span class="pre">sawah</span></code> + 50 <code class="docutils literal notranslate"><span class="pre">non_sawah</span></code>), kolom <code class="docutils literal notranslate"><span class="pre">id</span></code> unik (<code class="docutils literal notranslate"><span class="pre">S001..S050</span></code>, <code class="docutils literal notranslate"><span class="pre">N001..N050</span></code>) + <code class="docutils literal notranslate"><span class="pre">kelas</span></code> (+<code class="docutils literal notranslate"><span class="pre">luas</span></code>). CRS EPSG:32749, sama dengan raster (tanpa reproyeksi).</p></li>
-<li><p>Sumber geometri: <code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/sample_polygon_100_kamal.shp</span></code> (CRS sama); label Sawah/Non-Sawah dinormalisasi menjadi sawah/non_sawah; id integer menjadi kode S/N. Sel ekstraksi juga menormalisasi ulang saat baca (tahan varian kapital/strip) agar rerun aman.</p></li>
-<li><p>Raster: <code class="docutils literal notranslate"><span class="pre">data/spasial/s2_kamal.tif</span></code> (komposit median 2026-08-05 s.d. 2026-08-26, 6 band B02/B03/B04/B08/B11/B12, 875x865, EPSG:32749, int16, nodata -32768).</p></li>
-<li><p>Fitur per poligon = <strong>mean tiap band</strong> di dalam poligon (piksel nodata dikecualikan).</p></li>
-</ul>
+<section id="data-yang-dipakai-inventaris-lengkap">
+<h2>Data yang dipakai (inventaris lengkap)<a class="headerlink" href="#data-yang-dipakai-inventaris-lengkap" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Berkas</p></th>
+<th class="head text-left"><p>Isi</p></th>
+<th class="head text-left"><p>Peran</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data/spasial/s2_jabon.tif</span></code></p></td>
+<td class="text-left"><p>Komposit median Sentinel-2 L2A 5–26 Agu 2026, 6 band (B02/B03/B04/B08/B11/B12), 1947x939 piksel &#64;10 m, EPSG:32749, int16, nodata -32768 (8,3 MB)</p></td>
+<td class="text-left"><p>Sumber piksel citra + sumber fitur</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data/spasial/jabon_sawah.shp</span></code> (+ sidecar)</p></td>
+<td class="text-left"><p>100 poligon sampel (50 sawah + 50 non_sawah), kolom <code class="docutils literal notranslate"><span class="pre">id</span></code> unik + <code class="docutils literal notranslate"><span class="pre">kelas</span></code> + <code class="docutils literal notranslate"><span class="pre">luas</span></code> (m²), EPSG:32749</p></td>
+<td class="text-left"><p>Label training</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/klasifikasi_jabon.tif</span></code></p></td>
+<td class="text-left"><p>Peta acuan 4-kelas (0=nodata, 1=sawah, 2=vegetasi, 3=terbangun, 4=air)</p></td>
+<td class="text-left"><p>Pembanding peta biner</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/sample_polygon_100_jabon.shp</span></code></p></td>
+<td class="text-left"><p>Induk sampel sebelum normalisasi id</p></td>
+<td class="text-left"><p>Provenansi</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/klasifikasi_jabon.py</span></code></p></td>
+<td class="text-left"><p>Skrip K-Means → pelabelan analis → sampling (seed 42)</p></td>
+<td class="text-left"><p>Reproduktibilitas sampel</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="definisi-kelas-4-detail-2-biner">
+<h2>Definisi kelas (4 detail → 2 biner)<a class="headerlink" href="#definisi-kelas-4-detail-2-biner" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Kode</p></th>
+<th class="head text-left"><p>Nama detail</p></th>
+<th class="head text-center"><p>Nasib biner</p></th>
+<th class="head text-center"><p>Kuota sampel</p></th>
+<th class="head text-left"><p>Ciri spektral acuan (NDVI)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p>Sawah (hamparan bera + tegalan halus)</p></td>
+<td class="text-center"><p><strong>sawah</strong></p></td>
+<td class="text-center"><p>50</p></td>
+<td class="text-left"><p>0,28–0,36, NIR halus</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p>Pohon/Kebun/Vegetasi lain</p></td>
+<td class="text-center"><p>non-sawah</p></td>
+<td class="text-center"><p>25</p></td>
+<td class="text-left"><p>0,45–0,79</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p>Terbangun/Lahan terbuka</p></td>
+<td class="text-center"><p>non-sawah</p></td>
+<td class="text-center"><p>25</p></td>
+<td class="text-left"><p>terang, NDVI ≈ 0–0,13</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p>Air/Tergenang (tambak/laut, 26,6% area!)</p></td>
+<td class="text-center"><p><strong>tidak disampel</strong></p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-left"><p>NDVI &lt; 0, NDWI &gt; 0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Konsekuensi jujur: model tidak pernah melihat air/tambak saat training — piksel tambak/laut pada peta biner adalah tebakan liar model, abaikan.</p>
+</section>
+<section id="dokumentasi-fitur-7-kolom-per-poligon">
+<h2>Dokumentasi fitur (7 kolom per poligon)<a class="headerlink" href="#dokumentasi-fitur-7-kolom-per-poligon" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Fitur</p></th>
+<th class="head text-left"><p>Band Sentinel-2</p></th>
+<th class="head text-left"><p>Panjang gelombang / resolusi</p></th>
+<th class="head text-left"><p>Makna fisik untuk padi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">band_1</span></code> (B02)</p></td>
+<td class="text-left"><p>Biru</p></td>
+<td class="text-left"><p>490 nm / 10 m</p></td>
+<td class="text-left"><p>Hamburan atmosfer; latar air petakan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">band_2</span></code> (B03)</p></td>
+<td class="text-left"><p>Hijau</p></td>
+<td class="text-left"><p>560 nm / 10 m</p></td>
+<td class="text-left"><p>Puncak vigor vegetasi</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">band_3</span></code> (B04)</p></td>
+<td class="text-left"><p>Merah</p></td>
+<td class="text-left"><p>665 nm / 10 m</p></td>
+<td class="text-left"><p>Serapan klorofil (daun aktif = gelap)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">band_4</span></code> (B08)</p></td>
+<td class="text-left"><p>NIR</p></td>
+<td class="text-left"><p>842 nm / 10 m</p></td>
+<td class="text-left"><p>Struktur sel/biomassa — pembeda utama sawah</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">band_5</span></code> (B11)</p></td>
+<td class="text-left"><p>SWIR1</p></td>
+<td class="text-left"><p>1610 nm / 20 m→10 m</p></td>
+<td class="text-left"><p>Kelembapan tanah/tanaman; terbangun</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">band_6</span></code> (B12)</p></td>
+<td class="text-left"><p>SWIR2</p></td>
+<td class="text-left"><p>2190 nm / 20 m→10 m</p></td>
+<td class="text-left"><p>Kelembapan + tanah terbuka</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>NDVI (turunan)</p></td>
+<td class="text-left"><p>(B08−B04)/(B08+B04)</p></td>
+<td class="text-left"><p>—</p></td>
+<td class="text-left"><p>Kehijauan; dipakai di EDA + peta NDVI (bukan fitur latih)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ekstraksi: <strong>mean tiap band di dalam poligon</strong> (DN int16 → float; piksel nodata dikecualikan). Model latih memakai <code class="docutils literal notranslate"><span class="pre">band_1..band_6</span></code> saja; NDVI hanya alat diagnostik.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
@@ -490,7 +612,7 @@ raster: ADA
 <span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.mask</span><span class="w"> </span><span class="kn">import</span> <span class="n">mask</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">DATA_OK</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STATUS: BELUM TERSEDIA — pipeline dilewati. Isi sel ini akan aktif saat data tiba.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STATUS: BELUM TERSEDIA — pipeline dilewati.&quot;</span><span class="p">)</span>
     <span class="n">df_feat</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">shp</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">SHP</span><span class="p">)</span>
@@ -498,7 +620,7 @@ raster: ADA
     <span class="n">_vals</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">shp</span><span class="p">[</span><span class="s2">&quot;kelas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
     <span class="k">assert</span> <span class="n">_vals</span> <span class="o">&lt;=</span> <span class="p">{</span><span class="s2">&quot;sawah&quot;</span><span class="p">,</span> <span class="s2">&quot;non_sawah&quot;</span><span class="p">},</span> <span class="s2">&quot;nilai kelas tak valid&quot;</span>
     <span class="k">assert</span> <span class="n">shp</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="p">,</span> <span class="s2">&quot;kolom id tidak unik!&quot;</span>
-    <span class="k">assert</span> <span class="n">shp</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_valid</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="p">(</span><span class="o">~</span><span class="n">shp</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_empty</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">&quot;ada geometry invalid/kosong!&quot;</span>
+    <span class="k">assert</span> <span class="n">shp</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_valid</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="p">(</span><span class="o">~</span><span class="n">shp</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_empty</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
     <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">RASTER</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">shp</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">):</span>
         <span class="n">shp</span> <span class="o">=</span> <span class="n">shp</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
@@ -510,17 +632,30 @@ raster: ADA
         <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">img</span><span class="p">[</span><span class="n">img</span> <span class="o">==</span> <span class="n">nodata</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="n">means</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="n">b</span><span class="p">]))</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">count</span><span class="p">)]</span>
-        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;kelas&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;kelas&quot;</span><span class="p">],</span> <span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s2">&quot;band_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">means</span><span class="p">)}})</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="s2">&quot;kelas&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;kelas&quot;</span><span class="p">],</span>
+                     <span class="o">**</span><span class="p">{</span><span class="s2">&quot;band_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">means</span><span class="p">)}})</span>
     <span class="n">df_feat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df_feat</span><span class="p">[</span><span class="s2">&quot;kelas&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="s2">&quot;sampel:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_feat</span><span class="p">))</span>
-    <span class="n">df_feat</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s2">/sawah_features.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tersimpan: data/processed/sawah_features.csv&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;matriks latih: </span><span class="si">{}</span><span class="s2"> baris x </span><span class="si">{}</span><span class="s2"> kolom (id + kelas + 6 band)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">df_feat</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;missing total:&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">df_feat</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="s2">&quot;| id unik:&quot;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">df_feat</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rata-rata band per kelas (DN):&quot;</span><span class="p">)</span>
+    <span class="n">_bc</span> <span class="o">=</span> <span class="n">df_feat</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s2">&quot;band_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_feat</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;kelas&quot;</span><span class="p">)[</span><span class="n">_bc</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+    <span class="n">df_feat</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUT</span> <span class="o">+</span> <span class="s2">&quot;/jabon_features.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tersimpan: data/processed/jabon_features.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;non_sawah&#39;: 50, &#39;sawah&#39;: 50} sampel: 100
-tersimpan: data/processed/sawah_features.csv
+matriks latih: 100 baris x 8 kolom (id + kelas + 6 band)
+missing total: 0 | id unik: True
+rata-rata band per kelas (DN):
+           band_1  band_2  band_3  band_4  band_5  band_6
+kelas                                                    
+non_sawah  1149.4  1379.1  1426.4  2637.4  2299.0  1839.7
+sawah       397.4   593.7   546.5  1080.3   937.5   717.7
+tersimpan: data/processed/jabon_features.csv
 </pre></div>
 </div>
 </div>
@@ -528,8 +663,7 @@ tersimpan: data/processed/sawah_features.csv
 </section>
 <section id="split-training-evaluasi">
 <h2>Split, training, evaluasi<a class="headerlink" href="#split-training-evaluasi" title="Link to this heading">#</a></h2>
-<p>Split stratified 80/20 dengan seed tetap. Model: RandomForest (300 pohon, seed 42). Metrik: confusion matrix, accuracy, precision, recall, F1 + CV 5-fold.</p>
-<p><strong>Keterbatasan jujur (wajib dibaca):</strong> (1) Label training adalah kandidat semi-otomatis turunan K-Means pada raster yang sama sehingga skor mendekati sempurna karena sirkular — bukan bukti akurasi lapangan. (2) Training set hanya berisi sawah/pohon-kebun/terbangun (kuota 50/25/25; kelas air/tambak kode 4 TIDAK disampel) sehingga peta biner tidak dapat dipercaya pada area air/tambak. (3) Train/test bisa berdekatan spasial — idealnya split blok spasial bila sampel bertambah. Validasi lapangan/citra resolusi tinggi tetap diperlukan sebelum dipakai.</p>
+<p>Split stratified 80/20 (seed 42). Model: RandomForest (300 pohon, seed 42). Metrik: confusion matrix, accuracy, precision, recall, F1 + CV 5-fold. Keterbatasan: label kandidat sirkular (skor bagus ≠ akurasi lapangan), tanpa sampel air/tambak, tetangga spasial train/test bisa berdekatan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
@@ -542,6 +676,10 @@ tersimpan: data/processed/sawah_features.csv
     <span class="n">X</span> <span class="o">=</span> <span class="n">df_feat</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s2">&quot;band_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_feat</span><span class="p">[</span><span class="s2">&quot;kelas&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;sawah&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">Xtr</span><span class="p">,</span> <span class="n">Xte</span><span class="p">,</span> <span class="n">ytr</span><span class="p">,</span> <span class="n">yte</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data latih: X_train&quot;</span><span class="p">,</span> <span class="n">Xtr</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;+ X_test&quot;</span><span class="p">,</span> <span class="n">Xte</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;(0=non_sawah, 1=sawah)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sebaran train:&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ytr</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sebaran test :&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">yte</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;model: RandomForestClassifier(n_estimators=300, random_state=42)&quot;</span><span class="p">)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">ytr</span><span class="p">)</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xte</span><span class="p">)</span>
@@ -558,14 +696,20 @@ tersimpan: data/processed/sawah_features.csv
     <span class="n">s</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cv5 accuracy:&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">&quot;mean:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="mi">4</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;feature importance (band_1..6 = B02,B03,B04,B08,B11,B12):&quot;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">metrics</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s2">/sawah_metrics.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">metrics</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUT</span> <span class="o">+</span> <span class="s2">&quot;/jabon_metrics.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
-    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s2">/sawah_rf.joblib&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tersimpan: sawah_metrics.csv + sawah_rf.joblib&quot;</span><span class="p">)</span>
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">OUT</span> <span class="o">+</span> <span class="s2">&quot;/jabon_rf.joblib&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tersimpan: jabon_metrics.csv + jabon_rf.joblib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data latih: X_train (80, 6) + X_test (20, 6) (0=non_sawah, 1=sawah)
+sebaran train: {0: 40, 1: 40}
+sebaran test : {0: 10, 1: 10}
+model: RandomForestClassifier(n_estimators=300, random_state=42)
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>confusion matrix (baris=aktual, kolom=prediksi [non_sawah, sawah]):
 [[10  0]
  [ 0 10]]
@@ -579,9 +723,13 @@ tersimpan: data/processed/sawah_features.csv
 weighted avg       1.00      1.00      1.00        20
 
 {&#39;accuracy&#39;: 1.0, &#39;precision_sawah&#39;: 1.0, &#39;recall_sawah&#39;: 1.0, &#39;f1_sawah&#39;: 1.0}
-cv5 accuracy: [1.0, 1.0, 1.0, 1.0, 1.0] mean: 1.0
-feature importance (band_1..6 = B02,B03,B04,B08,B11,B12): [0.218, 0.165, 0.205, 0.151, 0.085, 0.175]
-tersimpan: sawah_metrics.csv + sawah_rf.joblib
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cv5 accuracy: [1.0, 1.0, 1.0, 1.0, 0.95] mean: 0.99
+feature importance (band_1..6 = B02,B03,B04,B08,B11,B12): [0.122, 0.135, 0.106, 0.201, 0.209, 0.226]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tersimpan: jabon_metrics.csv + jabon_rf.joblib
 </pre></div>
 </div>
 </div>
@@ -589,7 +737,7 @@ tersimpan: sawah_metrics.csv + sawah_rf.joblib
 </section>
 <section id="peta-hasil-klasifikasi">
 <h2>Peta hasil klasifikasi<a class="headerlink" href="#peta-hasil-klasifikasi" title="Link to this heading">#</a></h2>
-<p>Raster Sentinel-2 ke fitur per piksel ke prediksi model ke raster terklasifikasi (<code class="docutils literal notranslate"><span class="pre">sawah_classified.tif</span></code>, 1 = sawah, 0 = non-sawah, 255 = nodata) + pratinjau PNG. Ini <strong>peta prediksi biner</strong>, berbeda dari peta clustering Bab 5 (kelompok unsupervised) dan dari peta 4-kelas <code class="docutils literal notranslate"><span class="pre">data/digitasi_kamal/klasifikasi_kamal.tif</span></code> (sawah/vegetasi/terbangun/air). Karena kelas air/tambak tak terwakili di training, area tambak/air pada peta biner tidak dapat dipercaya.</p>
+<p>Raster Sentinel-2 → fitur per piksel → prediksi model → <code class="docutils literal notranslate"><span class="pre">jabon_classified.tif</span></code> (1 = sawah, 0 = non-sawah, 255 = nodata) + pratinjau PNG. Ini <strong>peta prediksi biner</strong>, berbeda dari peta 4-kelas <code class="docutils literal notranslate"><span class="pre">klasifikasi_jabon.tif</span></code> (sawah/vegetasi/terbangun/air).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
@@ -600,7 +748,7 @@ tersimpan: sawah_metrics.csv + sawah_rf.joblib
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STATUS: BELUM TERSEDIA — peta dilewati.&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s2">/sawah_rf.joblib&quot;</span><span class="p">)</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">OUT</span> <span class="o">+</span> <span class="s1">&#39;/jabon_rf.joblib&#39;</span><span class="p">)</span>
     <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">RASTER</span><span class="p">)</span>
     <span class="n">arr</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">nodata</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span>
@@ -609,36 +757,38 @@ tersimpan: sawah_metrics.csv + sawah_rf.joblib
     <span class="n">ok</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">flat</span> <span class="o">==</span> <span class="n">nodata</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">flat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">255</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
     <span class="n">out</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">flat</span><span class="p">[</span><span class="n">ok</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;piksel valid: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">ok</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2"> dari </span><span class="si">{</span><span class="n">flat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">; fraksi sawah (valid): </span><span class="si">{</span><span class="nb">float</span><span class="p">((</span><span class="n">out</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;piksel valid: </span><span class="si">{}</span><span class="s2"> dari </span><span class="si">{}</span><span class="s2">; fraksi sawah (valid): </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ok</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="n">flat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">float</span><span class="p">((</span><span class="n">out</span><span class="p">[</span><span class="n">ok</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())))</span>
     <span class="n">meta</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s2">/sawah_classified.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
-        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">OUT</span> <span class="o">+</span> <span class="s2">&quot;/jabon_classified.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="mi">255</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Prediksi sawah (1) / non-sawah (0) — Kec. Kamal&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Prediksi sawah (1) / non-sawah (0) — Kec. Jabon&quot;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../data/images/eksperimen204/fig_sawah_preview.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tersimpan: sawah_classified.tif + fig_sawah_preview.png&quot;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_preview.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tersimpan: jabon_classified.tif + fig_jabon_preview.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>piksel valid: 455377 dari 756875; fraksi sawah (valid): 0.479
-tersimpan: sawah_classified.tif + fig_sawah_preview.png
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>piksel valid: 840049 dari 1828233; fraksi sawah (valid): 0.547
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tersimpan: jabon_classified.tif + fig_jabon_preview.png
 </pre></div>
 </div>
 </div>
 </div>
 <section id="peta-prediksi-pratinjau">
 <h3>Peta prediksi (pratinjau)<a class="headerlink" href="#peta-prediksi-pratinjau" title="Link to this heading">#</a></h3>
-<p><img alt="Peta prediksi sawah" src="../_images/fig_sawah_preview.png" /></p>
+<p><img alt="Peta prediksi sawah" src="../_images/fig_jabon_preview.png" /></p>
 </section>
 </section>
 <section id="visualisasi-eda-fitur-6-gambar">
 <h2>Visualisasi EDA fitur (6 gambar)<a class="headerlink" href="#visualisasi-eda-fitur-6-gambar" title="Link to this heading">#</a></h2>
-<p>Karakteristik 6 band Sentinel-2 pada 100 poligon sampel: boxplot per band per kelas, tanda tangan spektral rata-rata +- std, histogram per band, matriks korelasi antar band, PCA 2D, dan sebaran NDVI per kelas. File: <code class="docutils literal notranslate"><span class="pre">fig_sawah_boxplot.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_spektral.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_hist.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_korelasi.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_pca.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_ndvi_violin.png</span></code> di <code class="docutils literal notranslate"><span class="pre">data/images/eksperimen204/</span></code>.</p>
+<p>Boxplot per band per kelas, tanda tangan spektral mean±std, histogram, korelasi antar band, PCA 2D, dan sebaran NDVI per kelas. File <code class="docutils literal notranslate"><span class="pre">fig_jabon_boxplot.png</span></code> s.d. <code class="docutils literal notranslate"><span class="pre">fig_jabon_ndvi_violin.png</span></code> di <code class="docutils literal notranslate"><span class="pre">data/images/eksperimenjabon/</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
@@ -649,7 +799,6 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
 
 <span class="n">BANDS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;B02&#39;</span><span class="p">,</span> <span class="s1">&#39;B03&#39;</span><span class="p">,</span> <span class="s1">&#39;B04&#39;</span><span class="p">,</span> <span class="s1">&#39;B08&#39;</span><span class="p">,</span> <span class="s1">&#39;B11&#39;</span><span class="p">,</span> <span class="s1">&#39;B12&#39;</span><span class="p">]</span>
 <span class="n">BCOLS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;band_1&#39;</span><span class="p">,</span> <span class="s1">&#39;band_2&#39;</span><span class="p">,</span> <span class="s1">&#39;band_3&#39;</span><span class="p">,</span> <span class="s1">&#39;band_4&#39;</span><span class="p">,</span> <span class="s1">&#39;band_5&#39;</span><span class="p">,</span> <span class="s1">&#39;band_6&#39;</span><span class="p">]</span>
-<span class="n">IMG</span> <span class="o">=</span> <span class="s1">&#39;../data/images/eksperimen204/&#39;</span>
 
 <span class="k">if</span> <span class="n">df_feat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;STATUS: BELUM TERSEDIA — visualisasi EDA dilewati.&#39;</span><span class="p">)</span>
@@ -663,7 +812,7 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">nama</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Sebaran nilai band per kelas (rata-rata poligon, DN Sentinel-2)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_boxplot.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_boxplot.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">mk</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">sw</span><span class="p">,</span> <span class="s1">&#39;sawah&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="s1">&#39;non_sawah&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)]:</span>
@@ -674,7 +823,7 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;DN rata-rata poligon&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_spektral.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_spektral.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">BCOLS</span><span class="p">,</span> <span class="n">BANDS</span><span class="p">):</span>
@@ -684,7 +833,7 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
     <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Histogram nilai band per kelas&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_hist.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_hist.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">corr</span> <span class="o">=</span> <span class="n">df_feat</span><span class="p">[</span><span class="n">BCOLS</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -693,11 +842,11 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">BANDS</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">corr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">corr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Korelasi antar band (semua sampel)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_korelasi.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_korelasi.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">Xs</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_feat</span><span class="p">[</span><span class="n">BCOLS</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
@@ -711,7 +860,7 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;PCA 2D fitur band per poligon&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_pca.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_pca.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">ndvi_sw</span> <span class="o">=</span> <span class="p">(</span><span class="n">sw</span><span class="p">[</span><span class="s1">&#39;band_4&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">sw</span><span class="p">[</span><span class="s1">&#39;band_3&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">sw</span><span class="p">[</span><span class="s1">&#39;band_4&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sw</span><span class="p">[</span><span class="s1">&#39;band_3&#39;</span><span class="p">])</span>
     <span class="n">ndvi_ns</span> <span class="o">=</span> <span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="s1">&#39;band_4&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">ns</span><span class="p">[</span><span class="s1">&#39;band_3&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="s1">&#39;band_4&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ns</span><span class="p">[</span><span class="s1">&#39;band_3&#39;</span><span class="p">])</span>
@@ -720,32 +869,34 @@ tersimpan: sawah_classified.tif + fig_sawah_preview.png
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;non_sawah&#39;</span><span class="p">,</span> <span class="s1">&#39;sawah&#39;</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Sebaran NDVI per kelas (dari rata-rata poligon)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_ndvi_violin.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_ndvi_violin.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tersimpan: 6 gambar EDA jabon&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PCA explained variance: [0.904, 0.069]
-tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PCA explained variance: [0.859, 0.113]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tersimpan: 6 gambar EDA jabon
 </pre></div>
 </div>
 </div>
 </div>
 <section id="galeri-eda-fitur">
 <h3>Galeri EDA fitur<a class="headerlink" href="#galeri-eda-fitur" title="Link to this heading">#</a></h3>
-<p><img alt="Boxplot band per kelas" src="../_images/fig_sawah_boxplot.png" /></p>
-<p><img alt="Tanda tangan spektral" src="../_images/fig_sawah_spektral.png" /></p>
-<p><img alt="Histogram band" src="../_images/fig_sawah_hist.png" /></p>
-<p><img alt="Korelasi band" src="../_images/fig_sawah_korelasi.png" /></p>
-<p><img alt="PCA 2D" src="../_images/fig_sawah_pca.png" /></p>
-<p><img alt="NDVI per kelas" src="../_images/fig_sawah_ndvi_violin.png" /></p>
+<p><img alt="Boxplot band per kelas" src="../_images/fig_jabon_boxplot.png" /></p>
+<p><img alt="Tanda tangan spektral" src="../_images/fig_jabon_spektral.png" /></p>
+<p><img alt="Histogram band" src="../_images/fig_jabon_hist.png" /></p>
+<p><img alt="Korelasi band" src="../_images/fig_jabon_korelasi.png" /></p>
+<p><img alt="PCA 2D" src="../_images/fig_jabon_pca.png" /></p>
+<p><img alt="NDVI per kelas" src="../_images/fig_jabon_ndvi_violin.png" /></p>
 </section>
 </section>
 <section id="visualisasi-evaluasi-dan-peta-6-gambar">
 <h2>Visualisasi evaluasi dan peta (6 gambar)<a class="headerlink" href="#visualisasi-evaluasi-dan-peta-6-gambar" title="Link to this heading">#</a></h2>
-<p>Heatmap confusion matrix, feature importance RandomForest, komposit RGB + overlay 100 poligon sampel, peta probabilitas sawah, perbandingan peta sumber 4-kelas vs prediksi biner, dan peta NDVI Kamal. File: <code class="docutils literal notranslate"><span class="pre">fig_sawah_cm.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_importance.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_rgb_sampel.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_prob.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_banding.png</span></code>, <code class="docutils literal notranslate"><span class="pre">fig_sawah_ndvi_peta.png</span></code> di <code class="docutils literal notranslate"><span class="pre">data/images/eksperimen204/</span></code>.</p>
+<p>Confusion matrix, feature importance, komposit RGB + overlay 100 poligon sampel, peta probabilitas sawah, banding peta 4-kelas vs prediksi biner, dan peta NDVI Jabon.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
@@ -761,7 +912,7 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;STATUS: BELUM TERSEDIA — visualisasi evaluasi/peta dilewati.&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
-    <span class="n">clf2</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s1">/sawah_rf.joblib&#39;</span><span class="p">)</span>
+    <span class="n">clf2</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">OUT</span> <span class="o">+</span> <span class="s1">&#39;/jabon_rf.joblib&#39;</span><span class="p">)</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">df_feat</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;band_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_feat</span><span class="p">[</span><span class="s1">&#39;kelas&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;sawah&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">Xte</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">yte</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
@@ -777,7 +928,7 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Confusion matrix (test 20 sampel)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_cm.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_cm.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">imp</span> <span class="o">=</span> <span class="n">clf2</span><span class="o">.</span><span class="n">feature_importances_</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -785,9 +936,9 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;importance&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Feature importance RandomForest&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imp</span><span class="p">):</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39; </span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_importance.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_importance.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">RASTER</span><span class="p">)</span>
     <span class="n">arr6</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -804,7 +955,7 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Komposit RGB (B04/B03/B02) + 100 poligon sampel&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_rgb_sampel.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_rgb_sampel.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">flat</span> <span class="o">=</span> <span class="n">arr6</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
     <span class="n">okf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">flat</span> <span class="o">==</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
@@ -815,23 +966,23 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Probabilitas sawah (RandomForest)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;P(sawah)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_prob.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_prob.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">src</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">k4</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/digitasi_kamal/klasifikasi_kamal.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">binmap</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s1">/sawah_classified.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/digitasi_kamal/klasifikasi_jabon.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">binmap</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">OUT</span> <span class="o">+</span> <span class="s1">&#39;/jabon_classified.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="n">cmap4</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;darkgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">k4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap4</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Sumber 4-kelas (0=nodata,1=sawah,2=veg,3=bangun,4=air)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Acuan 4-kelas (0=nodata,1=sawah,2=veg,3=bangun,4=air)&#39;</span><span class="p">)</span>
     <span class="n">binm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">binmap</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
     <span class="n">cmap_bin</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">cmap_bin</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">binm</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_bin</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Prediksi biner RF (1=sawah, 0=non-sawah)&#39;</span><span class="p">)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Banding peta sumber vs prediksi&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Banding peta acuan vs prediksi&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_banding.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_banding.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
     <span class="n">b04</span> <span class="o">=</span> <span class="n">arr6</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">b08</span> <span class="o">=</span> <span class="n">arr6</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
@@ -840,64 +991,57 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
     <span class="n">ndvi_map</span><span class="p">[</span><span class="o">~</span><span class="n">ok6</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndvi_map</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;NDVI Kamal (dari B08/B04)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;NDVI Jabon (dari B08/B04)&#39;</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_sawah_ndvi_peta.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">IMG</span> <span class="o">+</span> <span class="s1">&#39;fig_jabon_ndvi_peta.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tersimpan: cm, importance, rgb_sampel, prob, banding, ndvi_peta&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tersimpan: 6 gambar evaluasi/peta jabon&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tersimpan: cm, importance, rgb_sampel, prob, banding, ndvi_peta
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tersimpan: 6 gambar evaluasi/peta jabon
 </pre></div>
 </div>
 </div>
 </div>
 <section id="galeri-evaluasi-dan-peta">
 <h3>Galeri evaluasi dan peta<a class="headerlink" href="#galeri-evaluasi-dan-peta" title="Link to this heading">#</a></h3>
-<p><img alt="Confusion matrix" src="../_images/fig_sawah_cm.png" /></p>
-<p><img alt="Feature importance" src="../_images/fig_sawah_importance.png" /></p>
-<p><img alt="RGB + sampel" src="../_images/fig_sawah_rgb_sampel.png" /></p>
-<p><img alt="Probabilitas sawah" src="../_images/fig_sawah_prob.png" /></p>
-<p><img alt="Banding sumber vs prediksi" src="../_images/fig_sawah_banding.png" /></p>
-<p><img alt="Peta NDVI" src="../_images/fig_sawah_ndvi_peta.png" /></p>
+<p><img alt="Confusion matrix" src="../_images/fig_jabon_cm.png" /></p>
+<p><img alt="Feature importance" src="../_images/fig_jabon_importance.png" /></p>
+<p><img alt="RGB + sampel" src="../_images/fig_jabon_rgb_sampel.png" /></p>
+<p><img alt="Probabilitas sawah" src="../_images/fig_jabon_prob.png" /></p>
+<p><img alt="Banding acuan vs prediksi" src="../_images/fig_jabon_banding.png" /></p>
+<p><img alt="Peta NDVI" src="../_images/fig_jabon_ndvi_peta.png" /></p>
 </section>
 </section>
-<section id="status-akhir-6-1-selesai-level-kandidat-2026-10-03">
-<h2>Status akhir 6.1 — SELESAI (level kandidat, 2026-10-03)<a class="headerlink" href="#status-akhir-6-1-selesai-level-kandidat-2026-10-03" title="Link to this heading">#</a></h2>
+<section id="unduh-berkas-klasifikasi-sawah-jabon">
+<h2>Unduh Berkas Klasifikasi Sawah Jabon<a class="headerlink" href="#unduh-berkas-klasifikasi-sawah-jabon" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Training: 100 poligon (50 sawah + 50 non_sawah); test 20 sampel (10+10) dengan confusion matrix [[10, 0], [0, 10]], accuracy/precision/recall/F1 = 1.0, CV 5-fold mean 1.0. Nilai sempurna ini SIRCULAR (label kandidat dari raster yang sama) — jangan diklaim sebagai akurasi lapangan.</p></li>
-<li><p>Peta: <code class="docutils literal notranslate"><span class="pre">data/processed/sawah_classified.tif</span></code> (1 = sawah, 0 = non-sawah, 255 = nodata); 455.377 piksel valid, fraksi sawah 0,479. Pembanding sumber 4-kelas (<code class="docutils literal notranslate"><span class="pre">klasifikasi_kamal.tif</span></code>): sawah 37,5 persen area valid — model biner over-prediksi sawah sekitar 10 poin, konsisten dengan tidak adanya sampel air/tambak di training.</p></li>
-<li><p>File: <code class="docutils literal notranslate"><span class="pre">sawah_features.csv</span></code> (100 baris), <code class="docutils literal notranslate"><span class="pre">sawah_metrics.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">sawah_rf.joblib</span></code>, <code class="docutils literal notranslate"><span class="pre">sawah_classified.tif</span></code>, <code class="docutils literal notranslate"><span class="pre">data/images/eksperimen204/fig_sawah_preview.png</span></code> + 12 PNG visualisasi EDA dan evaluasi/peta (boxplot, spektral, hist, korelasi, pca, ndvi_violin, cm, importance, rgb_sampel, prob, banding, ndvi_peta), total 13 gambar.</p></li>
-<li><p>Arti FP/FN: false positive = non-sawah diprediksi sawah (luas sawah over-estimasi); false negative = sawah tak terdeteksi (under-estimasi).</p></li>
-<li><p>Syarat pakai serius: validasi lapangan/citra resolusi tinggi + tambah sampel air/tambak + split blok spasial, lalu latih ulang.</p></li>
+<li><p><strong>jabon_features.csv</strong> — Fitur mean 6 band 100 poligon (50 sawah + 50 non-sawah):<br />
+<a href="../data/processed/jabon_features.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh jabon_features.csv</a></p></li>
+<li><p><strong>jabon_metrics.csv</strong> — Metrik evaluasi (accuracy/precision/recall/F1):<br />
+<a href="../data/processed/jabon_metrics.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh jabon_metrics.csv</a></p></li>
+<li><p><strong>jabon_classified.tif</strong> — Raster biner (1=sawah, 0=non-sawah, 255=nodata):<br />
+<a href="../data/processed/jabon_classified.tif" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh jabon_classified.tif</a></p></li>
+<li><p><strong>jabon_rf.joblib</strong> — Model RandomForest terlatih (300 pohon):<br />
+<a href="../data/processed/jabon_rf.joblib" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh jabon_rf.joblib</a></p></li>
+<li><p><strong>jabon_sawah.shp</strong> — 100 poligon sampel (+ sidecar .dbf/.shx/.prj/.cpg):<br />
+<a href="../data/spasial/jabon_sawah.shp" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh jabon_sawah.shp</a></p></li>
+<li><p><strong>s2_jabon.tif</strong> — Komposit Sentinel-2 L2A Jabon 6 band (8,3 MB):<br />
+<a href="../data/spasial/s2_jabon.tif" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh s2_jabon.tif</a></p></li>
 </ul>
 </section>
-<section id="unduh-berkas-klasifikasi-sawah">
-<h2>Unduh Berkas Klasifikasi Sawah<a class="headerlink" href="#unduh-berkas-klasifikasi-sawah" title="Link to this heading">#</a></h2>
+<section id="status-akhir-6-1-selesai-jabon">
+<h2>Status akhir 6.1 — SELESAI (Jabon)<a class="headerlink" href="#status-akhir-6-1-selesai-jabon" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>sawah_features.csv</strong> — Fitur mean band 100 poligon (50 sawah + 50 non-sawah):<br />
-<a href="../data/processed/sawah_features.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#2e7d32;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh sawah_features.csv</a></p></li>
-<li><p><strong>sawah_metrics.csv</strong> — Metrik evaluasi model:<br />
-<a href="../data/processed/sawah_metrics.csv" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh sawah_metrics.csv</a></p></li>
-<li><p><strong>sawah_classified.tif</strong> — Raster terklasifikasi (1=sawah, 0=non-sawah):<br />
-<a href="../data/processed/sawah_classified.tif" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh sawah_classified.tif</a></p></li>
-<li><p><strong>sawah_rf.joblib</strong> — Model RandomForest terlatih:<br />
-<a href="../data/processed/sawah_rf.joblib" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh sawah_rf.joblib</a></p></li>
-<li><p><strong>kamal_sawah.shp</strong> — Shapefile sampel (.shp — unduh bersama 4 sidecar di bawahnya):<br />
-<a href="../data/spasial/kamal_sawah.shp" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh kamal_sawah.shp</a></p></li>
-<li><p><strong>kamal_sawah.dbf</strong> — Sidecar .dbf:<br />
-<a href="../data/spasial/kamal_sawah.dbf" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh kamal_sawah.dbf</a></p></li>
-<li><p><strong>kamal_sawah.shx</strong> — Sidecar .shx:<br />
-<a href="../data/spasial/kamal_sawah.shx" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh kamal_sawah.shx</a></p></li>
-<li><p><strong>kamal_sawah.prj</strong> — Sidecar .prj:<br />
-<a href="../data/spasial/kamal_sawah.prj" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh kamal_sawah.prj</a></p></li>
-<li><p><strong>kamal_sawah.cpg</strong> — Sidecar .cpg:<br />
-<a href="../data/spasial/kamal_sawah.cpg" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh kamal_sawah.cpg</a></p></li>
-<li><p><strong>s2_kamal.tif</strong> — Citra Sentinel-2 Kamal (3,3 MB):<br />
-<a href="../data/spasial/s2_kamal.tif" download style="display:inline-block;padding:8px 18px;margin:4px 6px 4px 0;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">Unduh s2_kamal.tif</a></p></li>
+<li><p>Training: 100 poligon (50 sawah + 50 non_sawah; non = pohon/kebun 25 + terbangun 25); test 20 sampel (10+10): confusion matrix [[10, 0], [0, 10]], accuracy/precision/recall/F1 = 1.0; CV 5-fold [1.0, 1.0, 1.0, 1.0, 0.95] mean 0.99. Nilai tinggi ini SIRCULAR (label kandidat dari raster yang sama) — satu fold yang tidak sempurna (0.95) justru lebih jujur daripada skor mutlak.</p></li>
+<li><p>Feature importance: B12 (0.226) &gt; B11 (0.209) &gt; B08 (0.201) &gt; B03 &gt; B02 &gt; B04 — SWIR+NIR dominan, masuk akal fisis untuk memisahkan lahan bera/vegetasi/terbangun.</p></li>
+<li><p>Peta: <code class="docutils literal notranslate"><span class="pre">data/processed/jabon_classified.tif</span></code> (1 = sawah, 0 = non-sawah, 255 = nodata); 840.049 piksel valid (45,9%), fraksi sawah 0,547. Pembanding acuan 4-kelas (<code class="docutils literal notranslate"><span class="pre">klasifikasi_jabon.tif</span></code>): sawah 26,0% — model biner OVER-prediksi sawah ~29 poin karena air/tambak (26,6% area, tak disampel) ikut terlabel sawah. Jangan pakai angka luas biner ini tanpa koreksi.</p></li>
+<li><p>File: <code class="docutils literal notranslate"><span class="pre">jabon_features.csv</span></code> (100 baris), <code class="docutils literal notranslate"><span class="pre">jabon_metrics.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">jabon_rf.joblib</span></code>, <code class="docutils literal notranslate"><span class="pre">jabon_classified.tif</span></code>, <code class="docutils literal notranslate"><span class="pre">data/spasial/jabon_sawah.shp</span></code>, 13 PNG (<code class="docutils literal notranslate"><span class="pre">fig_jabon_preview.png</span></code> + 12 EDA/evaluasi).</p></li>
+<li><p>Arti FP/FN: false positive = non-sawah diprediksi sawah (over-estimasi luas); false negative = sawah tak terdeteksi (under-estimasi).</p></li>
+<li><p>Syarat pakai serius: validasi lapangan/citra resolusi tinggi (khususnya bedakan tambak vs sawah) + tambah sampel air/tambak + split blok spasial, lalu latih ulang.</p></li>
 </ul>
 </section>
 </section>
@@ -959,7 +1103,9 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-data-manual-checklist-txt-butir-1">Spesifikasi data (MANUAL_CHECKLIST.txt butir [1])</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-yang-dipakai-inventaris-lengkap">Data yang dipakai (inventaris lengkap)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas-4-detail-2-biner">Definisi kelas (4 detail → 2 biner)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumentasi-fitur-7-kolom-per-poligon">Dokumentasi fitur (7 kolom per poligon)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-training-evaluasi">Split, training, evaluasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">Peta hasil klasifikasi</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-prediksi-pratinjau">Peta prediksi (pratinjau)</a></li>
@@ -973,8 +1119,8 @@ tersimpan: boxplot, spektral, hist, korelasi, pca, ndvi_violin
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#galeri-evaluasi-dan-peta">Galeri evaluasi dan peta</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-akhir-6-1-selesai-level-kandidat-2026-10-03">Status akhir 6.1 — SELESAI (level kandidat, 2026-10-03)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-berkas-klasifikasi-sawah">Unduh Berkas Klasifikasi Sawah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unduh-berkas-klasifikasi-sawah-jabon">Unduh Berkas Klasifikasi Sawah Jabon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-akhir-6-1-selesai-jabon">Status akhir 6.1 — SELESAI (Jabon)</a></li>
 </ul>
   </nav></div>
 
