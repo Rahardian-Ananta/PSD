@@ -16,13 +16,13 @@
   ],
   "max_cloud_cover_pct": 20,
   "bbox": {
-    "west": 112.6912660590001,
-    "south": -7.175705445999938,
-    "east": 112.770364201,
-    "north": -7.097482846999981,
+    "west": 112.7036116,
+    "south": -7.5774563,
+    "east": 112.8800251,
+    "north": -7.4926832,
     "crs": "EPSG:4326"
   },
-  "aoi_file": "kamal.geojson",
+  "aoi_file": "jabon.geojson",
   "output": "s2_kamal.tif",
-  "job_id": "j-2609290843204d78b240b22b4d690463"
+  "job_id": "j-26100500360540e6a769cc045de401f3"
 }

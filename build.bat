@@ -48,9 +48,9 @@ copy "data\downloads\jabon.geojson" "_build\html\data\downloads\" >nul
 REM === File sefolder 02_data_understanding (tombol 2.1b/2.2/2.7) ===
 copy "02_data_understanding\jabon.geojson" "_build\html\02_data_understanding\" >nul
 copy "02_data_understanding\jabon_pollutants_data.zip" "_build\html\02_data_understanding\" >nul
-copy "02_data_understanding\kamal.geojson" "_build\html\02_data_understanding\" >nul
-copy "02_data_understanding\s2_kamal.tif" "_build\html\02_data_understanding\" >nul
-copy "02_data_understanding\s2_kamal_metadata.json" "_build\html\02_data_understanding\" >nul
+copy "02_data_understanding\jabon.geojson" "_build\html\02_data_understanding\" >nul
+copy "02_data_understanding\s2_jabon.tif" "_build\html\02_data_understanding\" >nul
+copy "02_data_understanding\s2_jabon_metadata.json" "_build\html\02_data_understanding\" >nul
 copy "02_data_understanding\ingest_aiven_jabon.py" "_build\html\02_data_understanding\" >nul
 
 REM === File sefolder 04_feature_extraction (tombol 4.2/4.6) ===
@@ -108,6 +108,20 @@ copy "data\spasial\kamal_sawah.shx" "_build\html\data\spasial\" >nul
 copy "data\spasial\kamal_sawah.prj" "_build\html\data\spasial\" >nul
 copy "data\spasial\kamal_sawah.cpg" "_build\html\data\spasial\" >nul
 
+REM === Hasil klasifikasi sawah Jabon Bab 6 (tombol 6.1) ===
+mkdir "_build\html\data\processed" 2>nul
+mkdir "_build\html\data\spasial" 2>nul
+copy "data\processed\jabon_features.csv" "_build\html\data\processed\" >nul
+copy "data\processed\jabon_metrics.csv" "_build\html\data\processed\" >nul
+copy "data\processed\jabon_classified.tif" "_build\html\data\processed\" >nul
+copy "data\processed\jabon_rf.joblib" "_build\html\data\processed\" >nul
+copy "data\spasial\jabon_sawah.shp" "_build\html\data\spasial\" >nul
+copy "data\spasial\jabon_sawah.dbf" "_build\html\data\spasial\" >nul
+copy "data\spasial\jabon_sawah.shx" "_build\html\data\spasial\" >nul
+copy "data\spasial\jabon_sawah.prj" "_build\html\data\spasial\" >nul
+copy "data\spasial\jabon_sawah.cpg" "_build\html\data\spasial\" >nul
+copy "data\spasial\s2_jabon.tif" "_build\html\data\spasial\" >nul
+
 REM === Hasil PCA per polutan (tombol 5.1) ===
 mkdir "_build\html\data\downloads\ekstraksi fitur\pca_results" 2>nul
 copy "data\downloads\ekstraksi fitur\pca_results\jabon_pca_35fitur_co.csv" "_build\html\data\downloads\ekstraksi fitur\pca_results\" >nul
@@ -118,6 +132,14 @@ copy "data\downloads\ekstraksi fitur\pca_results\jabon_pca_37fitur_so2.csv" "_bu
 
 REM === Workflow KNIME (tombol 5.4) ===
 copy "data\downloads\Clustering_Data.knwf" "_build\html\data\downloads\" >nul
+
+REM === Model 3D kampus (viewer intro: 1 HTML mandiri + three.js lokal) ===
+mkdir "_build\html\data\3d_model" 2>nul
+mkdir "_build\html\data\3d_model\vendor" 2>nul
+copy "data\3d_model\kampus_3d.html" "_build\html\data\3d_model\" >nul
+copy "data\3d_model\vendor\three.min.js" "_build\html\data\3d_model\vendor\" >nul
+copy "data\3d_model\vendor\OrbitControls.js" "_build\html\data\3d_model\vendor\" >nul
+copy "data\3d_model\vendor\GLTFLoader.js" "_build\html\data\3d_model\vendor\" >nul
 
 echo.
 echo ============================================

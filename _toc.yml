@@ -97,5 +97,5 @@ parts:
   - caption: BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A
     chapters:
       - file: 06_klasifikasi_sawah/6.1_persiapan_klasifikasi
-        title: 6.1 Persiapan Klasifikasi Sawah
+        title: 6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)
 

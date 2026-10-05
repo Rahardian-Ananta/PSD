@@ -77,6 +77,28 @@ ditambahkan **alias manual terdokumentasi** `sidoarjo wonoayu → wonoayu` di `r
 Alias lain yang tersisa (Bandung-Jogoroto, Bangkalan Kota, Banyuajuh Kamal, Kertosono)
 sengaja TIDAK dipaksakan (tidak terverifikasi) dan tetap dilaporkan sebagai NA.
 
+## 8. Migrasi Bab 6 ke Jabon (2.1b + klasifikasi sawah)
+
+2.1b: kode sejak awal sudah berjalan di Jabon (`jabon.geojson` → `s2_jabon.tif`,
+bbox W112.70 E112.88); yang diperbaiki hanya teks tersisa "Kamal" (judul, Input/Output,
+nama job, `s2_kamal_metadata.json` → `s2_jabon_metadata.json`, kotak unduh) + tabel induk
+2.1 + copy `build.bat`. Satu output basi (`Selesai: s2_kamal.tif`) dibiarkan apa adanya —
+ia milik eksekusi lama dan refresh saat notebook dijalankan ulang.
+
+`data/digitasi_kamal/klasifikasi_jabon.py` (adaptasi Kamal): K-Means 8 klaster pada 11 fitur
+(6 band + NDVI/NDWI/NDBI + 2 tekstur), pelabelan analis dari profil spektral Jabon
+(sawah = klaster 0/NDVI 0,36 + klaster 4/NDVI 0,28 hamparan terluas; cek ragam absolut NIR
+identik ~0,029), lolos guard NDVI ±0,05. Hasil: peta 4-kelas (sawah 26,0% / veg 44,8% /
+terbangun 2,7% / air 26,6%) + 100 sampel (50/25/25) → `data/spasial/jabon_sawah.shp`
+(S001..S050/N001..N050, EPSG:32749).
+
+6.1 ditulis ulang penuh untuk Jabon (arsip Kamal:
+`arsip/6.1_persiapan_klasifikasi_KAMAL.ipynb`): tabel inventaris data, definisi 4→2 kelas,
+dokumentasi 7 fitur (6 band + NDVI diagnostik), RF 300 pohon (test 20: F1 1,0 sirkular;
+CV5 mean 0,99; importance B12>B11>B08), peta `jabon_classified.tif` (fraksi sawah 0,547 vs
+acuan 26,0% — over-prediksi ~29 poin karena tambak tak disampel), 13 gambar di
+`data/images/eksperimenjabon/`, kotak unduh 7 berkas.
+
 ## 6. Cara revert
 
 ```powershell
