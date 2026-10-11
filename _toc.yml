@@ -99,3 +99,20 @@ parts:
       - file: 06_klasifikasi_sawah/6.1_persiapan_klasifikasi
         title: 6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)
 
+
+  - caption: BAB 7 — KLASIFIKASI LAHAN JAWA TIMUR
+    chapters:
+      - file: 07_klasifikasi_lahan_jatim/notebooks/01_business_understanding
+        title: 7.1 Business Understanding
+      - file: 07_klasifikasi_lahan_jatim/notebooks/02_data_understanding
+        title: 7.2 Data Understanding
+      - file: 07_klasifikasi_lahan_jatim/notebooks/03_data_preprocessing
+        title: 7.3 Data Preprocessing
+      - file: 07_klasifikasi_lahan_jatim/notebooks/04_modeling
+        title: 7.4 Modeling
+      - file: 07_klasifikasi_lahan_jatim/notebooks/05_evaluation
+        title: 7.5 Evaluation
+      - file: 07_klasifikasi_lahan_jatim/notebooks/06_webgis
+        title: 7.6 WebGIS
+      - file: 07_klasifikasi_lahan_jatim/deployment
+        title: 7.7 Deployment

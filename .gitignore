@@ -24,3 +24,21 @@ private/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Proyek lahan jatim — hanya file besar (>100 MB, batas keras GitHub) yang dikecualikan.
+# File pendukung app.py (CSV/JSON/PNG, model kecil, geojson, GeoTIFF 42 MB) tetap ikut.
+07_klasifikasi_lahan_jatim/data/s2_jatim.tif
+07_klasifikasi_lahan_jatim/data/geoboundaries_IDN_ADM1.geojson
+07_klasifikasi_lahan_jatim/outputs/models/pixel_et.pkl
+07_klasifikasi_lahan_jatim/outputs/models/pixel_rf.pkl
+07_klasifikasi_lahan_jatim/outputs/models/random_forest_best.pkl
+07_klasifikasi_lahan_jatim/outputs/tables/*.pkl
+07_klasifikasi_lahan_jatim/outputs/tables/*.npz
+07_klasifikasi_lahan_jatim/.venv/
+# Folder sementara (salinan berkas, tidak untuk diunggah)
+02_data_understanding/temp/
+
+# Internal
+prompt/
+update_web.bat
+panduan_deploy_github.md
