@@ -42,3 +42,7 @@ desktop.ini
 prompt/
 update_web.bat
 panduan_deploy_github.md
+
+# Skrip push manual (tidak untuk diunggah)
+push_bab7.ps1
+push_bab7.bat
