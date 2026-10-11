@@ -1,0 +1,1139 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BAB 3 — Data Preprocessing &#8212; Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07_klasifikasi_lahan_jatim/notebooks/03_data_preprocessing';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="BAB 4 — Modeling" href="04_modeling.html" />
+    <link rel="prev" title="BAB 2 — Data Understanding" href="02_data_understanding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Proyek Sains Data IF2231
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../02_data_understanding/2.1a_data_collection_sentinel5p.html">2.1a Data Collection Sentinel-5P</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../05_clustering/5.2_clustering.html">5.2 Clustering per Polutan</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.2a_kmeans_per_polutan.html">5.2a K-Means per Polutan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.2b_kmeans_silhouette_daerah.html">5.2b K-Means Silhouette &amp; Kemiripan Daerah</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.6a_eksperimen_linear_204.html">5.6a Varian Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.6b_eksperimen_polynomial_204.html">5.6b Varian Polynomial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 7 — KLASIFIKASI LAHAN JAWA TIMUR</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_business_understanding.html">7.1 Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding.html">7.2 Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7.3 Data Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_modeling.html">7.4 Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_evaluation.html">7.5 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_webgis.html">7.6 WebGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">7.7 Deployment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F07_klasifikasi_lahan_jatim/notebooks/03_data_preprocessing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/07_klasifikasi_lahan_jatim/notebooks/03_data_preprocessing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BAB 3 — Data Preprocessing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dari-polygon-mentah-menjadi-dataset-ml">Dari polygon mentah menjadi dataset ML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-dan-pemilihan-polygon">3.1 Validasi dan pemilihan polygon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-pixel-capping-500">3.2 Ekstraksi pixel + capping 500</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split-per-polygon">3.3 Train/test split per polygon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-pixel-based">3.4 Dataset pixel-based</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-polygon-mean">3.5 Dataset polygon-mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">3.6 Feature engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-perantara-tersimpan">3.7 Hasil perantara tersimpan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-tahap-3">Checkpoint Tahap 3</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bab-3-data-preprocessing">
+<h1>BAB 3 — Data Preprocessing<a class="headerlink" href="#bab-3-data-preprocessing" title="Link to this heading">#</a></h1>
+<section id="dari-polygon-mentah-menjadi-dataset-ml">
+<h2>Dari polygon mentah menjadi dataset ML<a class="headerlink" href="#dari-polygon-mentah-menjadi-dataset-ml" title="Link to this heading">#</a></h2>
+</section>
+<section id="validasi-dan-pemilihan-polygon">
+<h2>3.1 Validasi dan pemilihan polygon<a class="headerlink" href="#validasi-dan-pemilihan-polygon" title="Link to this heading">#</a></h2>
+<p><strong>Pertanyaan:</strong> dari 2823 polygon mentah, mana yang valid, berapa yang terbuang per kode, dan 50 per kelas mana yang terpilih?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.1a V1-V4 + V6 dari file mentah, V5 dari artefak Bab 2 (aturan sama).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">explain_validity</span>
+
+<span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">N_PER_CLASS</span><span class="p">,</span> <span class="n">MIN_VALID_PIXELS</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">EXPECTED</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Sawah&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Bangunan / Permukiman&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Mangrove&quot;</span><span class="p">,</span>
+            <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Lahan hijau&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Laut&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Danau&quot;</span><span class="p">}</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;../outputs/tables&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/training_samples_jawa_timur.geojson&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: n_mentah = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;VALID&quot;</span>
+<span class="n">g</span><span class="p">[</span><span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">|</span> <span class="n">g</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_empty</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V1&quot;</span><span class="p">;</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;geometri null/kosong&quot;</span>
+<span class="n">dup</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dup</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V1&quot;</span><span class="p">;</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dup</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fid duplikat&quot;</span>
+<span class="n">ok</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geom_type</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ok</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">t</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Polygon&quot;</span><span class="p">,</span> <span class="s2">&quot;MultiPolygon&quot;</span><span class="p">]),</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V2&quot;</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;V2&quot;</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tipe bukan Polygon/MultiPolygon&quot;</span>
+<span class="n">ok</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span>
+<span class="n">vg</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_valid</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">ok</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">vg</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">m3</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V3&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">m3</span><span class="p">]:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">explain_validity</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]))[:</span><span class="mi">120</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;invalid (alasan tidak terbaca)&quot;</span>
+<span class="n">ok</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span>
+<span class="n">kons</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;class_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">EXPECTED</span><span class="p">))</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ok</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">kons</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V4&quot;</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;V4&quot;</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;label tidak lengkap/konsisten&quot;</span>
+<span class="n">gm</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gm</span> <span class="o">=</span> <span class="n">gm</span><span class="p">[</span><span class="n">gm</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">gm</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">is_empty</span><span class="p">]</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:32749&quot;</span><span class="p">)</span>
+<span class="n">gm</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span>
+<span class="n">geom_of</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gm</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">],</span> <span class="n">gm</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]))</span>
+<span class="n">area_of</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gm</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">],</span> <span class="n">gm</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]))</span>
+<span class="n">v6</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gm</span><span class="p">):</span>
+    <span class="n">cand</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="n">gm</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">lsuffix</span><span class="o">=</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="n">rsuffix</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">cand</span> <span class="o">=</span> <span class="n">cand</span><span class="p">[(</span><span class="n">cand</span><span class="p">[</span><span class="s2">&quot;fid_l&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cand</span><span class="p">[</span><span class="s2">&quot;fid_r&quot;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cand</span><span class="p">[</span><span class="s2">&quot;class_id_l&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cand</span><span class="p">[</span><span class="s2">&quot;class_id_r&quot;</span><span class="p">])]</span>
+    <span class="k">for</span> <span class="n">fl</span><span class="p">,</span> <span class="n">fr</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cand</span><span class="p">[</span><span class="s2">&quot;fid_l&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">cand</span><span class="p">[</span><span class="s2">&quot;fid_r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">geom_of</span><span class="p">[</span><span class="n">fl</span><span class="p">]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">geom_of</span><span class="p">[</span><span class="n">fr</span><span class="p">])</span><span class="o">.</span><span class="n">area</span> <span class="o">&gt;</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">area_of</span><span class="p">[</span><span class="n">fl</span><span class="p">]):</span>
+            <span class="n">v6</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fl</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: V6 = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">v6</span><span class="p">)</span><span class="si">}</span><span class="s2"> (logika sama, pencarian via dict agar cepat)&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">v6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span><span class="p">),</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V6&quot;</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;V6&quot;</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;overlap lintas kelas &gt; 0.05&quot;</span>
+<span class="n">stat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_pixel_stats.csv&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">stat</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&quot;one_to_one&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: V1=</span><span class="si">{</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;V1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> V2=</span><span class="si">{</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;V2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> &quot;</span> <span class="o">+</span>
+      <span class="sa">f</span><span class="s2">&quot;V3=</span><span class="si">{</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;V3&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> V4=</span><span class="si">{</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;V4&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> V6=</span><span class="si">{</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;V6&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># V5 final: kode VALID tetapi &lt; MIN_VALID_PIXELS pixel (termasuk 107 gagal-baca di luar extent).</span>
+<span class="n">mask_v5</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;n_valid&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">MIN_VALID_PIXELS</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_v5</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;V5&quot;</span>
+<span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_v5</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&lt;1 pixel valid (&quot;</span> <span class="o">+</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask_v5</span><span class="p">,</span> <span class="s2">&quot;status_v5&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: V5 = </span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">g</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;V5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2"> (arti: n_valid&lt;1 atau gagal baca)&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/validity_final.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: n_mentah = 2823
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: V6 = 47 (logika sama, pencarian via dict agar cepat)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: V1=0 V2=0 V3=0 V4=0 V6=47
+DATA AKTUAL PROJECT: V5 = 2008 (arti: n_valid&lt;1 atau gagal baca)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.1b tabel sebelum|dibuang|pool|terpilih|kuota + seleksi acak 50/kelas.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/validity_final.pkl&quot;</span><span class="p">)</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">g</span><span class="p">[(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;VALID&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;n_valid&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">sel_parts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">cid</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cid</span><span class="p">]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">(((</span><span class="n">sub</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;V1&quot;</span><span class="p">,</span> <span class="s2">&quot;V2&quot;</span><span class="p">,</span> <span class="s2">&quot;V3&quot;</span><span class="p">,</span> <span class="s2">&quot;V4&quot;</span><span class="p">,</span> <span class="s2">&quot;V5&quot;</span><span class="p">,</span> <span class="s2">&quot;V6&quot;</span><span class="p">]}</span>
+    <span class="n">pv</span> <span class="o">=</span> <span class="n">pool</span><span class="p">[</span><span class="n">pool</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cid</span><span class="p">]</span>
+    <span class="n">n_ambil</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N_PER_CLASS</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pv</span><span class="p">))</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_ambil</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_ambil</span> <span class="k">else</span> <span class="n">pv</span>
+    <span class="n">sel_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;class_id&quot;</span><span class="p">:</span> <span class="n">cid</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">:</span> <span class="n">sub</span><span class="p">[</span><span class="s2">&quot;class_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;sebelum&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">),</span>
+                 <span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s2">&quot;buang_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">},</span> <span class="s2">&quot;pool_valid&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">pv</span><span class="p">),</span>
+                 <span class="s2">&quot;terpilih&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="s2">&quot;valid_tidak_terpilih_kuota&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">pv</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)})</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: sebelum | dibuang per kode | pool | terpilih | kuota =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">sel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">sel_parts</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: total_terpilih = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span><span class="si">}</span><span class="s2"> (target 300 bila semua kelas &gt;= 50)&quot;</span><span class="p">)</span>
+<span class="n">sel_geo</span> <span class="o">=</span> <span class="n">sel</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">g</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span>
+<span class="n">gusel</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sel</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gusel</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_selected.geojson&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
+<span class="n">sel</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;n_valid&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_selected.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">exc_inv</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="o">~</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sel</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;VALID&quot;</span><span class="p">)][[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">exc_inv</span><span class="p">[</span><span class="s2">&quot;kategori&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tidak valid&quot;</span>
+<span class="n">exc_kuota</span> <span class="o">=</span> <span class="n">pool</span><span class="p">[</span><span class="o">~</span><span class="n">pool</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">sel</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">])][[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">exc_kuota</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;KUOTA&quot;</span>
+<span class="n">exc_kuota</span><span class="p">[</span><span class="s2">&quot;alasan&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;valid tetapi tidak terambil acak 50/kelas&quot;</span>
+<span class="n">exc_kuota</span><span class="p">[</span><span class="s2">&quot;kategori&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;valid tidak terpilih (kuota)&quot;</span>
+<span class="n">exc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">exc_inv</span><span class="p">,</span> <span class="n">exc_kuota</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span>
+<span class="n">exc</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;kategori&quot;</span><span class="p">,</span> <span class="s2">&quot;kode&quot;</span><span class="p">,</span> <span class="s2">&quot;alasan&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_excluded.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: excluded tidak_valid=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">exc_inv</span><span class="p">)</span><span class="si">}</span><span class="s2">, kuota=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">exc_kuota</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">r367</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">367</span><span class="p">]</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r367</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">r367</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="s2">&quot;TERPILIH&quot;</span> <span class="k">if</span> <span class="mi">367</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">sel</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">])</span> <span class="k">else</span> <span class="p">(</span><span class="s2">&quot;tidak valid: &quot;</span> <span class="o">+</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;kode&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;VALID&quot;</span> <span class="k">else</span> <span class="s2">&quot;valid tetapi tidak terambil kuota&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: FID 367 class </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_id&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> kode=</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;kode&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> n_valid=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;n_valid&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">st</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: FID 367 tidak tersedia di file&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: sebelum | dibuang per kode | pool | terpilih | kuota =
+ class_id            class_name  sebelum  buang_V1  buang_V2  buang_V3  buang_V4  buang_V5  buang_V6  pool_valid  terpilih  valid_tidak_terpilih_kuota
+        1                 Sawah      500         0         0         0         0       407         5          88        50                          38
+        2 Bangunan / Permukiman      500         0         0         0         0       246         2         252        50                         202
+        3              Mangrove      500         0         0         0         0       357        35         108        50                          58
+        4           Lahan hijau      500         0         0         0         0       394         5         101        50                          51
+        5                  Laut      500         0         0         0         0       494         0           6         6                           0
+        6                 Danau      323         0         0         0         0       110         0         213        50                         163
+DATA AKTUAL PROJECT: total_terpilih = 256 (target 300 bila semua kelas &gt;= 50)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: excluded tidak_valid=2055, kuota=512
+DATA AKTUAL PROJECT: FID 367 class 1 Sawah kode=VALID n_valid=40 -&gt; TERPILIH
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi 3.1:</strong> pembuang utama adalah V5 = 2008 polygon (71%): 1901 tanpa pixel valid + 107 gagal baca di luar extent (rekonsiliasi dengan Bab 2: 1901 + 107 = 2008). V1–V4 nihil, V6 = 47. Terpilih 256 polygon (50 × 5 kelas + 6 Laut); 512 polygon valid terbuang kuota; FID 367 TERPILIH (Sawah, 40 pixel). Target 300 tidak tercapai karena Laut — dilaporkan, bukan diisi data baru.</p>
+</section>
+<section id="ekstraksi-pixel-capping-500">
+<h2>3.2 Ekstraksi pixel + capping 500<a class="headerlink" href="#ekstraksi-pixel-capping-500" title="Link to this heading">#</a></h2>
+<p><strong>Pertanyaan:</strong> berapa pixel per polygon sebelum/sesudah cap, berapa polygon terkena cap, dan bagaimana indeks dihitung?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.2 ekstraksi centroid + cap 500 + indeks (nodata &amp; 0-denom ditangani).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometry_mask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">from_bounds</span>
+
+<span class="n">MAXP</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">BANDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_selected.geojson&quot;</span><span class="p">)</span>
+<span class="n">stat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_pixel_stats.csv&quot;</span><span class="p">)</span>
+<span class="n">nmap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">stat</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">],</span> <span class="n">stat</span><span class="p">[</span><span class="s2">&quot;n_valid&quot;</span><span class="p">]))</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">recs</span><span class="p">,</span> <span class="n">pix</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+<span class="n">n_capped</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../data/s2_jatim.tif&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">nd</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="n">gu</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">gu</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">fid</span><span class="p">,</span> <span class="n">cid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">])</span>
+        <span class="n">geom</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">from_bounds</span><span class="p">(</span><span class="o">*</span><span class="n">geom</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">boundless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">nd</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">geometry_mask</span><span class="p">([</span><span class="n">geom</span><span class="p">],</span> <span class="n">out_shape</span><span class="o">=</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                            <span class="n">transform</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">window_transform</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">all_touched</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[:,</span> <span class="n">m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">arr</span> <span class="o">!=</span> <span class="n">nd</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">n_before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+        <span class="n">capped</span> <span class="o">=</span> <span class="n">n_before</span> <span class="o">&gt;</span> <span class="n">MAXP</span>
+        <span class="k">if</span> <span class="n">capped</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_before</span><span class="p">,</span> <span class="n">MAXP</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+            <span class="n">n_capped</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">pix</span><span class="p">[</span><span class="n">fid</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span>
+        <span class="n">recs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">fid</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;class_name&quot;</span><span class="p">],</span> <span class="n">n_before</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="nb">bool</span><span class="p">(</span><span class="n">capped</span><span class="p">)))</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">recs</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;n_sebelum&quot;</span><span class="p">,</span> <span class="s2">&quot;n_sesudah&quot;</span><span class="p">,</span> <span class="s2">&quot;terkena_cap&quot;</span><span class="p">])</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/pixel_cap_stats.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: polygon_terkena_cap = </span><span class="si">{</span><span class="n">n_capped</span><span class="si">}</span><span class="s2"> dari </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cap</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: pixel sebelum = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cap</span><span class="p">[</span><span class="s1">&#39;n_sebelum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">, sesudah = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">cap</span><span class="p">[</span><span class="s1">&#39;n_sesudah&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Indeks pada sampel sesudah-cap; penyebut nol -&gt; NaN (dihitung).</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">fid</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">pix</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">BANDS</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="n">fid</span><span class="p">)</span>
+    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">px</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">den_v</span> <span class="o">=</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">]</span>
+<span class="n">den_w</span> <span class="o">=</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B03&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span>
+<span class="n">den_b</span> <span class="o">=</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B11&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span>
+<span class="n">px</span><span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">den_v</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">den_v</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">den_v</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">px</span><span class="p">[</span><span class="s2">&quot;NDWI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">den_w</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="s2">&quot;B03&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">den_w</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">den_w</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">px</span><span class="p">[</span><span class="s2">&quot;NDBI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">den_b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="s2">&quot;B11&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">px</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">den_b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">den_b</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: pixel_total = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">px</span><span class="p">)</span><span class="si">}</span><span class="s2">, NDVI_NaN = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="s1">&#39;NDVI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span>
+      <span class="sa">f</span><span class="s2">&quot;NDWI_NaN = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="s1">&#39;NDWI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">, NDBI_NaN = </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="s1">&#39;NDBI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">px</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/pixels_selected.pkl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: polygon_terkena_cap = 62 dari 256
+DATA AKTUAL PROJECT: pixel sebelum = 345893, sesudah = 51508
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: pixel_total = 51508, NDVI_NaN = 0, NDWI_NaN = 0, NDBI_NaN = 0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi 3.2:</strong> 62 dari 256 polygon (&gt;500 pixel) terkena cap; total 345.893 → 51.508 pixel (±15% dipertahankan). Penyebut nol pada indeks: 0 pixel terdampak — semua NDVI/NDWI/NDBI terdefinisi.</p>
+</section>
+<section id="train-test-split-per-polygon">
+<h2>3.3 Train/test split per polygon<a class="headerlink" href="#train-test-split-per-polygon" title="Link to this heading">#</a></h2>
+<p><strong>Mengapa per polygon, bukan per pixel (CONTOH ILUSTRASI — bukan data project):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BENAR:   Polygon A (50 pixel) -&gt; SEMUA ke TRAIN;  Polygon B (40 pixel) -&gt; SEMUA ke TEST
+DILARANG: Polygon A -&gt; 40 pixel train + 10 pixel test (pixel bertetangga sangat mirip
+         -&gt; spatial/data leakage -&gt; metrik terlalu optimistis)
+</pre></div>
+</div>
+<p>Split 80/20 polygon, <code class="docutils literal notranslate"><span class="pre">random_state=42</span></code>, stratified per kelas. Jujur: split per polygon belum menjamin bebas autokorelasi spasial antar polygon bertetangga — jarak train–test dilaporkan sebagai informasi, bukan untuk mengubah split.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.3 split stratified + bukti irisan kosong + jarak sebagai informasi.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">sel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_selected.csv&quot;</span><span class="p">)</span>
+<span class="n">tr</span><span class="p">,</span> <span class="n">te</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">sel</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">sel</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">])</span>
+<span class="n">tr</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">],</span> <span class="n">te</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tr</span><span class="p">,</span> <span class="n">te</span><span class="p">])</span>
+<span class="n">sp</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_split.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: polygon train = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span><span class="si">}</span><span class="s2">, test = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">te</span><span class="p">)</span><span class="si">}</span><span class="s2"> (total </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sel</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: class_id | class_name | training_polygon | testing_polygon =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tab</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: irisan FID train-test = </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nb">set</span><span class="p">(</span><span class="n">te</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2"> (kosong=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nb">set</span><span class="p">(</span><span class="n">te</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: contoh FID|class|split (367 bila terpilih, +1 per kelas) =&quot;</span><span class="p">)</span>
+<span class="n">shown</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">if</span> <span class="mi">367</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">sel</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sp</span><span class="p">[</span><span class="n">sp</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">367</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  FID 367 | </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_id&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">shown</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">cid</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">cid</span> <span class="ow">in</span> <span class="n">shown</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sp</span><span class="p">[</span><span class="n">sp</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cid</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  FID </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">cid</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Jarak train-test sebagai INFORMASI (metric CRS, centroid).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="n">gsel</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_selected.geojson&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:32749&quot;</span><span class="p">)</span>
+<span class="n">gsel</span> <span class="o">=</span> <span class="n">gsel</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sp</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span>
+<span class="n">ctr_tr</span> <span class="o">=</span> <span class="n">gsel</span><span class="p">[</span><span class="n">gsel</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">gsel</span><span class="p">[</span><span class="n">gsel</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">dmin</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ctr_tr</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: test FID </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> class </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_id&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> jarak_ke_train_terdekat_m = </span><span class="si">{</span><span class="n">dmin</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: polygon train = 204, test = 52 (total 256)
+DATA AKTUAL PROJECT: class_id | class_name | training_polygon | testing_polygon =
+split                           test  train
+class_id class_name                        
+1        Sawah                    10     40
+2        Bangunan / Permukiman    10     40
+3        Mangrove                 10     40
+4        Lahan hijau              10     40
+5        Laut                      2      4
+6        Danau                    10     40
+DATA AKTUAL PROJECT: irisan FID train-test = [] (kosong=True)
+DATA AKTUAL PROJECT: contoh FID|class|split (367 bila terpilih, +1 per kelas) =
+  FID 367 | 1 Sawah | train
+  FID 698 | 2 Bangunan / Permukiman | train
+  FID 1440 | 3 Mangrove | train
+  FID 1887 | 4 Lahan hijau | train
+  FID 2044 | 5 Laut | train
+  FID 2616 | 6 Danau | train
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: test FID 72 class 1 jarak_ke_train_terdekat_m = 4387
+DATA AKTUAL PROJECT: test FID 99 class 1 jarak_ke_train_terdekat_m = 3841
+DATA AKTUAL PROJECT: test FID 154 class 1 jarak_ke_train_terdekat_m = 11603
+DATA AKTUAL PROJECT: test FID 176 class 1 jarak_ke_train_terdekat_m = 4202
+DATA AKTUAL PROJECT: test FID 183 class 1 jarak_ke_train_terdekat_m = 11306
+DATA AKTUAL PROJECT: test FID 189 class 1 jarak_ke_train_terdekat_m = 14659
+DATA AKTUAL PROJECT: test FID 310 class 1 jarak_ke_train_terdekat_m = 6268
+DATA AKTUAL PROJECT: test FID 345 class 1 jarak_ke_train_terdekat_m = 1774
+DATA AKTUAL PROJECT: test FID 348 class 1 jarak_ke_train_terdekat_m = 288
+DATA AKTUAL PROJECT: test FID 393 class 1 jarak_ke_train_terdekat_m = 5000
+DATA AKTUAL PROJECT: test FID 530 class 2 jarak_ke_train_terdekat_m = 4605
+DATA AKTUAL PROJECT: test FID 537 class 2 jarak_ke_train_terdekat_m = 766
+DATA AKTUAL PROJECT: test FID 544 class 2 jarak_ke_train_terdekat_m = 5972
+DATA AKTUAL PROJECT: test FID 633 class 2 jarak_ke_train_terdekat_m = 306
+DATA AKTUAL PROJECT: test FID 659 class 2 jarak_ke_train_terdekat_m = 12406
+DATA AKTUAL PROJECT: test FID 828 class 2 jarak_ke_train_terdekat_m = 1172
+DATA AKTUAL PROJECT: test FID 843 class 2 jarak_ke_train_terdekat_m = 1428
+DATA AKTUAL PROJECT: test FID 860 class 2 jarak_ke_train_terdekat_m = 1631
+DATA AKTUAL PROJECT: test FID 901 class 2 jarak_ke_train_terdekat_m = 1244
+DATA AKTUAL PROJECT: test FID 930 class 2 jarak_ke_train_terdekat_m = 3206
+DATA AKTUAL PROJECT: test FID 1037 class 3 jarak_ke_train_terdekat_m = 2494
+DATA AKTUAL PROJECT: test FID 1042 class 3 jarak_ke_train_terdekat_m = 786
+DATA AKTUAL PROJECT: test FID 1047 class 3 jarak_ke_train_terdekat_m = 1686
+DATA AKTUAL PROJECT: test FID 1057 class 3 jarak_ke_train_terdekat_m = 1575
+DATA AKTUAL PROJECT: test FID 1099 class 3 jarak_ke_train_terdekat_m = 10735
+DATA AKTUAL PROJECT: test FID 1228 class 3 jarak_ke_train_terdekat_m = 5435
+DATA AKTUAL PROJECT: test FID 1270 class 3 jarak_ke_train_terdekat_m = 6927
+DATA AKTUAL PROJECT: test FID 1361 class 3 jarak_ke_train_terdekat_m = 1344
+DATA AKTUAL PROJECT: test FID 1369 class 3 jarak_ke_train_terdekat_m = 2454
+DATA AKTUAL PROJECT: test FID 1370 class 3 jarak_ke_train_terdekat_m = 1824
+DATA AKTUAL PROJECT: test FID 1559 class 4 jarak_ke_train_terdekat_m = 1005
+DATA AKTUAL PROJECT: test FID 1619 class 4 jarak_ke_train_terdekat_m = 3559
+DATA AKTUAL PROJECT: test FID 1688 class 4 jarak_ke_train_terdekat_m = 4946
+DATA AKTUAL PROJECT: test FID 1760 class 4 jarak_ke_train_terdekat_m = 7935
+DATA AKTUAL PROJECT: test FID 1782 class 4 jarak_ke_train_terdekat_m = 2471
+DATA AKTUAL PROJECT: test FID 1918 class 4 jarak_ke_train_terdekat_m = 4621
+DATA AKTUAL PROJECT: test FID 1954 class 4 jarak_ke_train_terdekat_m = 1784
+DATA AKTUAL PROJECT: test FID 1964 class 4 jarak_ke_train_terdekat_m = 7238
+DATA AKTUAL PROJECT: test FID 1968 class 4 jarak_ke_train_terdekat_m = 4436
+DATA AKTUAL PROJECT: test FID 1972 class 4 jarak_ke_train_terdekat_m = 7512
+DATA AKTUAL PROJECT: test FID 2025 class 5 jarak_ke_train_terdekat_m = 23888
+DATA AKTUAL PROJECT: test FID 2265 class 5 jarak_ke_train_terdekat_m = 7194
+DATA AKTUAL PROJECT: test FID 2567 class 6 jarak_ke_train_terdekat_m = 173
+DATA AKTUAL PROJECT: test FID 2578 class 6 jarak_ke_train_terdekat_m = 352
+DATA AKTUAL PROJECT: test FID 2591 class 6 jarak_ke_train_terdekat_m = 881
+DATA AKTUAL PROJECT: test FID 2630 class 6 jarak_ke_train_terdekat_m = 206
+DATA AKTUAL PROJECT: test FID 2654 class 6 jarak_ke_train_terdekat_m = 236
+DATA AKTUAL PROJECT: test FID 2688 class 6 jarak_ke_train_terdekat_m = 297
+DATA AKTUAL PROJECT: test FID 2715 class 6 jarak_ke_train_terdekat_m = 860
+DATA AKTUAL PROJECT: test FID 2747 class 6 jarak_ke_train_terdekat_m = 312
+DATA AKTUAL PROJECT: test FID 2767 class 6 jarak_ke_train_terdekat_m = 352
+DATA AKTUAL PROJECT: test FID 2776 class 6 jarak_ke_train_terdekat_m = 611
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi 3.3:</strong> train 204 / test 52 polygon; irisan FID terbukti kosong (<code class="docutils literal notranslate"><span class="pre">[]</span></code>). Stratifikasi terjaga (10 per kelas; Laut 2 test / 4 train). FID 367 di train. Jarak test–train terdekat ada yang &lt;500 m (mis. Danau 173 m, Sawah 288 m): split per polygon tidak menghilangkan autokorelasi spasial antar tetangga — dicatat sebagai informasi; ketidakpastian dilaporkan di Bab 5.</p>
+</section>
+<section id="dataset-pixel-based">
+<h2>3.4 Dataset pixel-based<a class="headerlink" href="#dataset-pixel-based" title="Link to this heading">#</a></h2>
+<p><strong>Pertanyaan:</strong> berapa baris train/test per kelas, dan mengapa berbeda walau polygon-nya sama-sama 50 (atau kurang)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.4 training_pixel / testing_pixel (FID sebagai group).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">px</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/pixels_selected.pkl&quot;</span><span class="p">)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_split.csv&quot;</span><span class="p">)</span>
+<span class="n">px</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sp</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&quot;many_to_one&quot;</span><span class="p">)</span>
+<span class="n">FEATS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">,</span> <span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDBI&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">s_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">]:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">px</span><span class="p">[</span><span class="n">px</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s_</span><span class="p">][[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">FEATS</span><span class="p">]</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../outputs/tables/</span><span class="si">{</span><span class="s1">&#39;training&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">s_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;testing&#39;</span><span class="si">}</span><span class="s2">_pixel.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">polygon_count</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;nunique&quot;</span><span class="p">),</span> <span class="n">pixel_count</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">))</span>
+    <span class="n">t</span><span class="p">[</span><span class="s2">&quot;mean_pixel_per_polygon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">&quot;pixel_count&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;polygon_count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: </span><span class="si">{</span><span class="s1">&#39;training&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">s_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;testing&#39;</span><span class="si">}</span><span class="s2">_pixel =&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: irisan FID pixel train-test kosong = &quot;</span> <span class="o">+</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="n">px</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nb">set</span><span class="p">(</span><span class="n">px</span><span class="p">[</span><span class="n">px</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;fid&#39;</span><span class="p">]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: class_weight TIDAK dibenamkan di data; diputuskan setara di Bab 4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: training_pixel =
+                                polygon_count  pixel_count  mean_pixel_per_polygon
+class_id class_name                                                               
+1        Sawah                             40        12309                   307.7
+2        Bangunan / Permukiman             40         7742                   193.6
+3        Mangrove                          40         7179                   179.5
+4        Lahan hijau                       40         9588                   239.7
+5        Laut                               4         1196                   299.0
+6        Danau                             40         2062                    51.6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: testing_pixel =
+                                polygon_count  pixel_count  mean_pixel_per_polygon
+class_id class_name                                                               
+1        Sawah                             10         3172                   317.2
+2        Bangunan / Permukiman             10         2279                   227.9
+3        Mangrove                          10         1532                   153.2
+4        Lahan hijau                       10         2770                   277.0
+5        Laut                               2          879                   439.5
+6        Danau                             10          800                    80.0
+DATA AKTUAL PROJECT: irisan FID pixel train-test kosong = True
+DATA AKTUAL PROJECT: class_weight TIDAK dibenamkan di data; diputuskan setara di Bab 4
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi 3.4:</strong> train 40.076 vs test 11.432 baris. Walau lima kelas sama-sama 50 polygon, pixel berbeda jauh (train Sawah 12.309 vs Danau 2.062) karena ukuran polygon; capping meredam tetapi tidak menyamakan. Imbalance ini TIDAK dikoreksi di data — penanganan (mis. class_weight) diputuskan setara untuk kedua metode di Bab 4.</p>
+</section>
+<section id="dataset-polygon-mean">
+<h2>3.5 Dataset polygon-mean<a class="headerlink" href="#dataset-polygon-mean" title="Link to this heading">#</a></h2>
+<p><strong>Pertanyaan:</strong> berapa baris train/test, dan bagaimana ukurannya dibanding pixel-based (tanpa memilih pemenang)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.5 mean dari SEMUA pixel valid (tanpa cap) + indeks dari mean band.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometry_mask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">from_bounds</span>
+
+<span class="n">BANDS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_selected.geojson&quot;</span><span class="p">)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_split.csv&quot;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../data/s2_jatim.tif&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">nd</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">fid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">])</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">from_bounds</span><span class="p">(</span><span class="o">*</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">boundless</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">nd</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">geometry_mask</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]],</span> <span class="n">out_shape</span><span class="o">=</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                            <span class="n">transform</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">window_transform</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">all_touched</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[:,</span> <span class="n">m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">arr</span> <span class="o">!=</span> <span class="n">nd</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">BANDS</span><span class="p">,</span> <span class="n">mu</span><span class="p">))</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">fid</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]),</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;class_name&quot;</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="o">*</span><span class="n">mu</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B03&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B03&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B03&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B11&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B11&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;B11&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;B08&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;n_pixels&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mean_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">BANDS</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDBI&quot;</span><span class="p">]</span>
+<span class="n">mn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">sp</span><span class="p">[[</span><span class="s2">&quot;fid&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;fid&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">]:</span>
+    <span class="n">mn</span><span class="p">[</span><span class="n">mn</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s_</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../outputs/tables/</span><span class="si">{</span><span class="s1">&#39;training&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">s_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;testing&#39;</span><span class="si">}</span><span class="s2">_mean.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">mn</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: class_id | class_name | training_polygon | testing_polygon =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: contoh aktual FID|class|mean =&quot;</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">mn</span><span class="p">[</span><span class="n">mn</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">367</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="mi">367</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">mn</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">])</span> <span class="k">else</span> <span class="n">mn</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  FID </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;class_id&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">e</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mean_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">BANDS</span><span class="p">]))</span>
+<span class="n">px_tr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/training_pixel.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: ukuran train pixel-based = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">px_tr</span><span class="p">)</span><span class="si">}</span><span class="s2"> baris vs polygon-mean = </span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">mn</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2"> baris&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: class_id | class_name | training_polygon | testing_polygon =
+split                           test  train
+class_id class_name                        
+1        Sawah                    10     40
+2        Bangunan / Permukiman    10     40
+3        Mangrove                 10     40
+4        Lahan hijau              10     40
+5        Laut                      2      4
+6        Danau                    10     40
+DATA AKTUAL PROJECT: contoh aktual FID|class|mean =
+  FID 367 | 1 Sawah | mean_B02=359.0 mean_B03=579.9 mean_B04=502.2 mean_B08=2560.1 mean_B11=1846.4 mean_B12=1128.2
+DATA AKTUAL PROJECT: ukuran train pixel-based = 40076 baris vs polygon-mean = 204 baris
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi 3.5:</strong> train pixel-based 40.076 baris vs polygon-mean 204 baris (±196:1). Mean FID 367 identik dengan Bab 2 (40 pixel, tanpa cap) — konsisten. Tanpa memilih pemenang: perbandingan dijawab Bab 4–5.</p>
+</section>
+<section id="feature-engineering">
+<h2>3.6 Feature engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h2>
+<p>Sembilan feature dipakai SAMA oleh semua model (Bab 4): 6 band + 3 indeks. Band = nilai reflektansi skala 0–10000 (L2A, dari data 2.3); indeks tak berdimensi (-1…1). Yang tidak dipakai tidak ditulis di sini.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.6 contoh hitung langkah-demi-langkah dari data nyata.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">tr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/training_pixel.csv&quot;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: contoh pixel nyata FID </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span>
+      <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">b</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">]))</span>
+<span class="n">b02</span><span class="p">,</span> <span class="n">b03</span><span class="p">,</span> <span class="n">b04</span><span class="p">,</span> <span class="n">b08</span><span class="p">,</span> <span class="n">b11</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">b</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  NDVI = (</span><span class="si">{</span><span class="n">b08</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">b04</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">)/(</span><span class="si">{</span><span class="n">b08</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">b04</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="p">(</span><span class="n">b08</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b04</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">b08</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b04</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (tersimpan </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;NDVI&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">); positif-&gt;vegetasi&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  NDWI = (</span><span class="si">{</span><span class="n">b03</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">b08</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">)/(</span><span class="si">{</span><span class="n">b03</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">b08</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="p">(</span><span class="n">b03</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b08</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">b03</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b08</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (tersimpan </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;NDWI&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">); positif-&gt;air&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  NDBI = (</span><span class="si">{</span><span class="n">b11</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">b08</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">)/(</span><span class="si">{</span><span class="n">b11</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">b08</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="p">(</span><span class="n">b11</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b08</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">b11</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b08</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (tersimpan </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;NDBI&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">); positif-&gt;terbangun&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: contoh pixel nyata FID 0 Sawah: B02=276 B03=501 B04=366 B08=2341 B11=1824 B12=1117
+  NDVI = (2341-366)/(2341+366) = 0.730 (tersimpan 0.730); positif-&gt;vegetasi
+  NDWI = (501-2341)/(501+2341) = -0.647 (tersimpan -0.647); positif-&gt;air
+  NDBI = (1824-2341)/(1824+2341) = -0.124 (tersimpan -0.124); positif-&gt;terbangun
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hasil-perantara-tersimpan">
+<h2>3.7 Hasil perantara tersimpan<a class="headerlink" href="#hasil-perantara-tersimpan" title="Link to this heading">#</a></h2>
+<p><strong>Pertanyaan:</strong> file apa saja yang dihasilkan tahap ini?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 3.7 verifikasi artefak + konfigurasi tercatat.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;RANDOM_STATE&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s2">&quot;TEST_SIZE&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span> <span class="s2">&quot;N_PER_CLASS&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">&quot;MAX_PIXELS_PER_POLYGON&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+       <span class="s2">&quot;MIN_VALID_PIXELS&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;pixel_rule&quot;</span><span class="p">:</span> <span class="s2">&quot;centroid (all_touched=False)&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;cap_rng&quot;</span><span class="p">:</span> <span class="s2">&quot;RandomState(42) urut fid&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_index_def&quot;</span><span class="p">:</span> <span class="s2">&quot;indeks dari mean band&quot;</span><span class="p">,</span> <span class="s2">&quot;split&quot;</span><span class="p">:</span> <span class="s2">&quot;per polygon stratified&quot;</span><span class="p">}</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/preprocessing_config.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polygon_selected.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;polygon_selected.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;polygon_excluded.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;polygon_split.csv&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;pixel_cap_stats.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;training_pixel.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;testing_pixel.csv&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;training_mean.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;testing_mean.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;preprocessing_config.json&quot;</span><span class="p">]:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../outputs/tables&quot;</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;baris=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.csv&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;ada&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: </span><span class="si">{</span><span class="n">fn</span><span class="si">}</span><span class="s2"> ada=</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">info</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: polygon_selected.geojson ada=True ada
+DATA AKTUAL PROJECT: polygon_selected.csv ada=True baris=256
+DATA AKTUAL PROJECT: polygon_excluded.csv ada=True baris=2567
+DATA AKTUAL PROJECT: polygon_split.csv ada=True baris=256
+DATA AKTUAL PROJECT: pixel_cap_stats.csv ada=True baris=256
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: training_pixel.csv ada=True baris=40076
+DATA AKTUAL PROJECT: testing_pixel.csv ada=True baris=11432
+DATA AKTUAL PROJECT: training_mean.csv ada=True baris=204
+DATA AKTUAL PROJECT: testing_mean.csv ada=True baris=52
+DATA AKTUAL PROJECT: preprocessing_config.json ada=True ada
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checkpoint-tahap-3">
+<h2>Checkpoint Tahap 3<a class="headerlink" href="#checkpoint-tahap-3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tabel pengecualian lengkap: <code class="docutils literal notranslate"><span class="pre">polygon_excluded.csv</span></code> 2.567 baris (2.055 tidak valid + 512 kuota).</p></li>
+<li><p>Maksimum 50 terpilih per kelas (Laut: 6 yang valid-berpixel, dilaporkan).</p></li>
+<li><p>Irisan FID train/test terbukti kosong (<code class="docutils literal notranslate"><span class="pre">[]</span></code>, kedua metode memakai FID yang sama).</p></li>
+<li><p>10 artefak tersimpan dan terverifikasi di <code class="docutils literal notranslate"><span class="pre">outputs/tables/</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./07_klasifikasi_lahan_jatim\notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_data_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">BAB 2 — Data Understanding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_modeling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BAB 4 — Modeling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dari-polygon-mentah-menjadi-dataset-ml">Dari polygon mentah menjadi dataset ML</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-dan-pemilihan-polygon">3.1 Validasi dan pemilihan polygon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-pixel-capping-500">3.2 Ekstraksi pixel + capping 500</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split-per-polygon">3.3 Train/test split per polygon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-pixel-based">3.4 Dataset pixel-based</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-polygon-mean">3.5 Dataset polygon-mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">3.6 Feature engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-perantara-tersimpan">3.7 Hasil perantara tersimpan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-tahap-3">Checkpoint Tahap 3</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

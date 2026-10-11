@@ -1,114 +1,45 @@
----
-title: "Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kecamatan Jabon Berdasarkan Citra Satelit Sentinel-5P"
----
+% Proyek Sains Data IF2231
 
-# Introduction
+# Proyek Sains Data IF2231
 
-## Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kecamatan Jabon Berdasarkan Citra Satelit Sentinel-5P
+## Analitik Citra Satelit untuk Pemantauan Lingkungan: Klasterisasi Polutan Udara dan Klasifikasi Tutupan Lahan
 
-> **"From Raw Satellite Data to Actionable Air Quality Insights"**
-
-Selamat datang di dokumentasi interaktif proyek sains data kami. Halaman ini berfungsi sebagai **Living Document** (dokumen hidup) yang mencatat seluruh siklus pengembangan solusi berbasis data untuk mata kuliah **Proyek Sains Data (IF2231)** di Program Studi Teknik Informatika, Universitas Trunojoyo Madura.
-
-Dokumentasi ini disusun menggunakan **Jupyter Book** untuk memastikan transparansi proses, reproduktibilitas kode, dan kemudahan dalam menelusuri alur analisis dari tahap awal perolehan data mentah hingga ekstraksi fitur deret waktu.
+Buku ini menyajikan dua kajian sains data yang dibangun di atas data penginderaan jauh multispektral dan diterapkan pada dua persoalan lingkungan yang berbeda di Jawa Timur. Kedua kajian dikerjakan secara terpisah dengan kerangka kerja **CRISP-DM** (Cross-Industry Standard Process for Data Mining), namun dihimpun dalam satu dokumentasi agar mudah ditelusuri dari pertanyaan bisnis, data, metode, hingga evaluasi dan penyajian hasil.
 
 ---
 
-## Latar Belakang & Wilayah Studi
+## Dua Kajian dalam Satu Dokumentasi
 
-### Permasalahan Utama di Kecamatan Jabon
+### Proyek 1 — Klasterisasi Polutan Udara Kawasan Jabon (Bab 1–6)
 
-Kualitas udara merupakan salah satu penentu kesehatan lingkungan dan masyarakat. **Kecamatan Jabon**, yang terletak di perbatasan selatan Kabupaten Sidoarjo dengan Kabupaten Pasuruan, merupakan wilayah strategis dengan lalu lintas logistik industri yang padat serta kedekatannya dengan kawasan terdampak lingkungan luapan lumpur Lapindo. Namun, stasiun pemantauan terestrial di darat memiliki keterbatasan jumlah dan tidak menjangkau wilayah Kecamatan Jabon secara langsung.
+Kajian ini memantau dinamika kualitas udara di **Kecamatan Jabon, Kabupaten Sidoarjo** dari deret waktu **Sentinel-5P TROPOMI**. Ketiadaan stasiun pemantauan terestrial di wilayah pinggiran industri Sidoarjo–Pasuruan menjadikan citra satelit sebagai sumber data utama. Enam parameter polutan dianalisis — **NO₂, CO, HCHO, SO₂, O₃, dan CH₄** — melalui tahapan pembersihan data, ekstraksi **68 fitur deret waktu (TSFEL)**, reduksi dimensi, hingga klasterisasi dan analisis komparatif antar daerah. Bab 6 melengkapi kajian ini dengan klasifikasi sawah *versus* non-sawah pada citra Sentinel-2A di kawasan Jabon.
 
-**Bagaimana cara memantau, menganalisis, dan mengekstraksi karakteristik polutan udara di seluruh wilayah Kecamatan Jabon secara komprehensif tanpa bergantung pada stasiun darat?**
+### Proyek 2 — Klasifikasi Tutupan Lahan Jawa Timur (Bab 7)
 
-### Solusi Penginderaan Jauh Satelit
-
-Kami memanfaatkan data satelit **Sentinel-5P TROPOMI** dari *Copernicus Data Space Ecosystem* menggunakan batas poligon Area of Interest (AOI) `jabon.geojson`. Pendekatan ini memungkinkan:
-
-1. Pemantauan kualitas udara secara spasial di seluruh wilayah Kecamatan Jabon ($\approx 82\text{ km}^2$).
-2. Analisis deret waktu harian untuk 6 polutan utama ($\text{NO}_2, \text{CO}, \text{HCHO}, \text{SO}_2, \text{O}_3, \text{CH}_4$) selama periode **31 Agustus 2025 hingga 31 Agustus 2026** (366 hari observasi).
-3. Pembersihan, penanganan nilai hilang berbasis **Interpolasi Linear**, serta ekstraksi **68 fitur deret waktu** (*TSFEL*) untuk pemodelan prediktif lanjutan.
+Kajian ini melakukan **klasifikasi tutupan lahan enam kelas** untuk wilayah Provinsi Jawa Timur menggunakan komposit median **Sentinel-2 L2A**. Sembilan fitur spektral (enam band ditambah indeks **NDVI, NDWI, dan NDBI**) dilatihkan pada sepuluh kombinasi model machine learning dengan validasi silang berbasis poligon. Hasil klasifikasi disajikan sebagai peta interaktif (WebGIS) beserta aplikasi web untuk penelusuran metrik, peta, dan berkas keluaran.
 
 ---
 
-## Metodologi: CRISP-DM
+## Ruang Lingkup dan Kerangka Kerja
 
-Sesuai dengan kurikulum mata kuliah, proyek ini mengikuti kerangka kerja standar industri **CRISP-DM** (*Cross-Industry Standard Process for Data Mining*). Struktur Jupyter Book ini dirancang mengikuti tahapan utama:
+Setiap kajian mengikuti alur CRISP-DM yang sama, sehingga pembaca dapat membandingkan penanganan masalah, kualitas data, dan pilihan metode pada dua domain yang berbeda.
 
-| Tahapan Bab | Fokus Aktivitas & Luaran |
-| :--- | :--- |
-| **BAB 1 — Business Understanding** | Definisi masalah kualitas udara di Kecamatan Jabon, tujuan proyek, dan perumusan pertanyaan analisis. |
-| **BAB 2 — Data Understanding** | Pengumpulan data satelit Sentinel-5P via openEO (`jabon.geojson`), deskripsi dataset, EDA, analisis skema PostgreSQL Aiven & KNIME, identifikasi 102 missing value, dan analisis pencilan (*outliers*). |
-| **BAB 3 — Data Preprocessing** | Pembersihan indeks waktu, strategi penanganan pencilan, imputasi missing value (**3.3.1 Interpolasi Linear**), dan validasi integritas data bersih 366 hari. |
-| **BAB 4 — Feature Extraction** | Penyiapan sinyal kontinu, konfigurasi pustaka TSFEL, ekstraksi domain statistik, domain temporal, domain spektral, dan tabulasi matriks 68 fitur. |
-
----
-
-## Tech Stack & Tools
-
-*   **Bahasa Pemrograman:** Python 3.x
-*   **Pengambilan Data:** openEO (*Copernicus Data Space Ecosystem*)
-*   **Basis Data Cloud:** PostgreSQL Aiven (SSL Mode, Float 53-bit)
-*   **Workflow Analitik Visual:** KNIME Analytics Platform
-*   **Library Analisis:** Pandas, NumPy, GeoPandas, SQLAlchemy, TSFEL
-*   **Dokumentasi:** Jupyter Book & MyST Markdown
-*   **Version Control:** GitHub ([github.com/Rahardian-Ananta/PSD](https://github.com/Rahardian-Ananta/PSD))
+| Bab | Tahapan | Proyek 1 — Polutan Jabon | Proyek 2 — Tutupan Lahan Jawa Timur |
+| :-- | :-- | :-- | :-- |
+| 1 | Business Understanding | Latar belakang lingkungan Jabon dan kebutuhan data satelit | Tujuan klasifikasi tutupan lahan dan definisi enam kelas |
+| 2 | Data Understanding | Akuisisi Sentinel-5P, EDA, integrasi Aiven, alur KNIME | Profil raster Sentinel-2, inventaris poligon label, EDA |
+| 3 | Data Preprocessing | Deteksi outlier IQR, imputasi interpolasi linear | Validasi poligon (V1–V6), seleksi sampel, split per poligon |
+| 4 | Feature Extraction / Modeling | Ekstraksi 68 fitur TSFEL | Pelatihan 10 kombinasi model dan validasi silang |
+| 5 | Evaluation / Clustering | Klasterisasi dan analisis komparatif antar daerah | Evaluasi sekali pada data uji, interval kepercayaan bootstrap |
+| 6 | Deployment / WebGIS | Klasifikasi sawah Jabon pada Sentinel-2A | Peta klasifikasi interaktif dan aplikasi web |
+| 7 | Deployment | — | Inferensi seluruh raster, penyajian, dan aplikasi Streamlit |
 
 ---
 
-## Model 3D Kampus
+## Tautan
 
-Sebagai konteks spasial, berikut model 3D kampus Universitas Trunojoyo Madura (±650 × 660 m, 326 mesh gedung + terrain mesh + jalan/kontur) — **interaktif**: seret untuk memutar, scroll untuk zoom:
+- Dokumentasi daring: <https://rahardian-ananta.github.io/PSD/>
+- Repositori sumber: <https://github.com/Rahardian-Ananta/PSD>
+- Aplikasi web interaktif (Proyek 2): <https://rahardian-ananta-psd-klasifikasi-lahan-app-bs77za.streamlit.app/>
 
-<iframe src="data/3d_model/kampus_3d.html" style="width:100%;height:540px;border:1px solid #ccc;border-radius:8px;" title="Model 3D kampus interaktif" loading="lazy"></iframe>
-
-> Sumber model: topoexport.com — Gedung/jalan/air/hutan: Overture Maps Foundation 2026 (ODbL); Tajuk: Meta & WRI GCHM v2 2026 (CC BY 4.0); Terrain: DEMNAS 2016 (CC BY 4.0).
-
----
-
-## Tim Pengembang
-
-| Nama | NIM |
-| :--- | :--- |
-| **Rahardian Ananta** | 240411100071 |
-
-**Dosen Pengampu:** MULA'AB, S.Si., M.Kom  
-*Program Studi Teknik Informatika, Fakultas Teknik, Universitas Trunojoyo Madura*
-
----
-
-## Navigasi Dokumen
-
-Gunakan menu navigasi di sebelah kiri untuk menelusuri setiap bagian:
-
-1. **BAB 1 — BUSINESS UNDERSTANDING**:
-   - 1.1 Latar Belakang / Permasalahan
-   - 1.2 Tujuan
-   - 1.3 Pertanyaan / Kebutuhan Analisis
-2. **BAB 2 — DATA UNDERSTANDING**:
-   - 2.1 Data Collection (openEO & Sentinel-5P)
-   - 2.2 Deskripsi Dataset (6 Polutan & Unduh Data)
-   - 2.3 Exploratory Data Analysis (Struktur DB, Kalkulasi Statistik, Aiven & KNIME)
-   - 2.4 Identifikasi Missing Value (Analisis 102 Data Kosong)
-   - 2.5 Identifikasi Outlier (Deteksi Batas IQR & Z-Score)
-   - 2.6 Kesimpulan Data Understanding
-3. **BAB 3 — DATA PREPROCESSING**:
-   - 3.1 Pembersihan Data
-   - 3.2 Penanganan Outlier
-   - 3.3 Imputasi Missing Value (3.3.1 Interpolasi Linear)
-   - 3.4 Validasi Data Bersih
-4. **BAB 4 — FEATURE EXTRACTION**:
-   - 4.1 Persiapan Data untuk Ekstraksi
-   - 4.2 Ekstraksi Fitur Menggunakan TSFEL
-   - 4.3 Fitur Domain Statistical
-   - 4.4 Fitur Domain Temporal
-   - 4.5 Fitur Domain Spectral
-   - 4.6 Hasil Ekstraksi 68 Fitur
-   - 4.7 Analisis dan Karakteristik Fitur
-   - 4.8 Bedah 68 Fitur & Perhitungan Manual vs TSFEL
-
----
-
-```{tableofcontents}
-```
+*Mata kuliah Proyek Sains Data (IF2231), Program Studi Teknik Informatika, Universitas Trunojoyo Madura.*

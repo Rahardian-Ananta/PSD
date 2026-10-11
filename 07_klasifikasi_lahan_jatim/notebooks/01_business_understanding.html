@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BAB 1 — Business Understanding &#8212; Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07_klasifikasi_lahan_jatim/notebooks/01_business_understanding';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="BAB 2 — Data Understanding" href="02_data_understanding.html" />
+    <link rel="prev" title="6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Jabon)" href="../../06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Proyek Sains Data IF2231
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../02_data_understanding/2.1a_data_collection_sentinel5p.html">2.1a Data Collection Sentinel-5P</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../05_clustering/5.2_clustering.html">5.2 Clustering per Polutan</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.2a_kmeans_per_polutan.html">5.2a K-Means per Polutan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.2b_kmeans_silhouette_daerah.html">5.2b K-Means Silhouette &amp; Kemiripan Daerah</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.6a_eksperimen_linear_204.html">5.6a Varian Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.6b_eksperimen_polynomial_204.html">5.6b Varian Polynomial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 7 — KLASIFIKASI LAHAN JAWA TIMUR</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7.1 Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding.html">7.2 Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing.html">7.3 Data Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_modeling.html">7.4 Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_evaluation.html">7.5 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_webgis.html">7.6 WebGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">7.7 Deployment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F07_klasifikasi_lahan_jatim/notebooks/01_business_understanding.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/07_klasifikasi_lahan_jatim/notebooks/01_business_understanding.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BAB 1 — Business Understanding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-penggunaan-penutupan-lahan-jawa-timur-dari-sentinel-2">Klasifikasi penggunaan/penutupan lahan Jawa Timur dari Sentinel-2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">1.2 Tujuan analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-analisis">1.3 Pertanyaan analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas-operasional">1.4 Definisi kelas operasional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-indonesia">1.5 Acuan klasifikasi lahan Indonesia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-1-sni-7645-klasifikasi-penutup-lahan-bsn">Acuan 1 — SNI 7645 (klasifikasi penutup lahan, BSN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-2-klasifikasi-penutup-lahan-klhk-direktorat-ipsdh-ditjen-planologi-kehutanan">Acuan 2 — Klasifikasi penutup lahan KLHK (Direktorat IPSDH / Ditjen Planologi Kehutanan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemetaan-6-kelas">Pemetaan 6 kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-yang-diprediksi-model">1.6 Apa yang diprediksi model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-target-akhir">1.7 Alur target akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lampiran-a-bukti-file-project-data-aktual-project">Lampiran A — Bukti file project (DATA AKTUAL PROJECT)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bab-1-business-understanding">
+<h1>BAB 1 — Business Understanding<a class="headerlink" href="#bab-1-business-understanding" title="Link to this heading">#</a></h1>
+<section id="klasifikasi-penggunaan-penutupan-lahan-jawa-timur-dari-sentinel-2">
+<h2>Klasifikasi penggunaan/penutupan lahan Jawa Timur dari Sentinel-2<a class="headerlink" href="#klasifikasi-penggunaan-penutupan-lahan-jawa-timur-dari-sentinel-2" title="Link to this heading">#</a></h2>
+</section>
+<section id="latar-belakang">
+<h2>1.1 Latar belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p><strong>Land use vs land cover.</strong> <em>Land cover</em> = tutupan fisik permukaan bumi yang dapat diamati (mis. air, vegetasi, bangunan). <em>Land use</em> = fungsi/pemanfaatan oleh manusia (mis. sawah sebagai lahan produksi pangan, permukiman sebagai tempat tinggal). Keduanya berhubungan tetapi tidak identik: satu tutupan fisik bisa punya fungsi berbeda, dan satu fungsi bisa menempati tutupan berbeda.</p>
+<p><strong>Posisi 6 kelas project di antara keduanya:</strong></p>
+<ul class="simple">
+<li><p>Lebih dekat ke <em>land cover</em>: Laut, Danau (tubuh air sebagai tutupan fisik).</p></li>
+<li><p>Lebih dekat ke <em>land use</em> (tutupan yang didefinisikan oleh pemanfaatan/budidaya): Sawah, Bangunan / Permukiman.</p></li>
+<li><p>Campuran keduanya: Mangrove (tutupan vegetasi pesisir yang juga menjadi objek pengelolaan pesisir) dan Lahan hijau (kelas operasional agregat berisi banyak tutupan vegetasi budidaya maupun semi-alami — lihat 1.5; kecenderungan mencampur ini dibahas sebagai keterbatasan, bukan keunggulan).</p></li>
+</ul>
+<p><strong>Mengapa informasi spasial.</strong> Peta menunjukkan <em>di mana</em> setiap kelas berada sehingga luas per kelas dapat dihitung dari hasil klasifikasi dan dapat dibandingkan antar wilayah. Tanpa dimensi spasial, statistik tabular tidak dapat dipakai untuk tata ruang.</p>
+<p><strong>Hubungan dengan tata ruang dan kebijakan.</strong> Informasi penggunaan/penutupan lahan cenderung dipakai sebagai salah satu bahan pertimbangan penataan ruang dan kebijakan sektoral (mis. perlindungan lahan pertanian, pengendalian permukiman, pengelolaan pesisir/mangrove dan perairan). Peta project BUKAN produk rencana tata ruang resmi dan TIDAK dapat dipakai untuk klaim kausal kebijakan.</p>
+<p><strong>Mengapa Jawa Timur.</strong> Jawa Timur mencakup daratan dengan variasi tinggi (kawasan urban, pertanian intensif, hutan/perkebunan, pesisir dan pulau) plus wilayah laut di sekitarnya, sehingga keenam kelas project semuanya relevan dalam satu area studi. Batas area studi dibuktikan dari isi data pada Lampiran A3 (bukan dari nama file).</p>
+<p><strong>Mengapa Sentinel-2 (spesifikasi umum sensor — bukan data project).</strong> Sentinel-2 (misi Copernicus/ESA, akses data terbuka) membawa sensor MSI multispektral dengan kanal tampak, near-infrared (NIR) dan shortwave-infrared (SWIR); konstelasi dua satelit cenderung memberi revisit sekitar 5 hari di ekuator. Kombinasi ini cenderung membantu membedakan vegetasi, air, dan lahan terbangun: NIR cenderung sensitif terhadap vegetasi hidup, SWIR cenderung sensitif terhadap kadar air/struktur permukaan, sedangkan kanal tampak memberi kecerahan dasar. Project ini memakai enam band sesuai metadata (B02, B03, B04, B08, B11, B12 — diverifikasi dari isi <code class="docutils literal notranslate"><span class="pre">s2_jatim_metadata.json</span></code> pada Lampiran A2). Sumber spesifikasi umum: ESA Sentinel-2 MSI overview (<a class="reference external" href="https://scihub.copernicus.eu">https://scihub.copernicus.eu</a> / <a class="reference external" href="https://sentinels.copernicus.eu">https://sentinels.copernicus.eu</a>).</p>
+</section>
+<section id="tujuan-analisis">
+<h2>1.2 Tujuan analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
+<p>Membangun sistem klasifikasi penggunaan/penutupan lahan Jawa Timur dari citra Sentinel-2 dan machine learning, dengan keluaran:</p>
+<ol class="arabic simple">
+<li><p>Model terbaik yang dipilih berdasarkan <strong>CV (GroupKFold) pada data training</strong> (group = polygon/FID), bukan dari test set.</p></li>
+<li><p>Peta klasifikasi seluruh raster (<code class="docutils literal notranslate"><span class="pre">klasifikasi_jawa_timur.tif</span></code>) dari model terbaik.</p></li>
+<li><p>Evaluasi jujur satu kali pada test set di akhir (Bab 5), termasuk luas per kelas.</p></li>
+<li><p>Hasil ditampilkan di <strong>WebGIS di dalam Jupyter notebook</strong> (karena web statis project = Jupyter Book), dengan <strong>Streamlit (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>) sebagai pelengkap</strong>.</p></li>
+</ol>
+<p>Label training berasal dari sumber sekunder yang dibentuk sendiri (bukan survei lapangan) — didokumentasikan jujur di Bab 2. Maka metrik mengukur <strong>kesesuaian dengan label sumber ini</strong>, bukan akurasi terhadap kondisi lapangan.</p>
+</section>
+<section id="pertanyaan-analisis">
+<h2>1.3 Pertanyaan analisis<a class="headerlink" href="#pertanyaan-analisis" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Pertanyaan</p></th>
+<th class="head"><p>Dijawab di</p></th>
+<th class="head"><p>Cara menjawab</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Q1</p></td>
+<td><p>Bagaimana karakteristik citra Sentinel-2 project?</p></td>
+<td><p>Bab 2</p></td>
+<td><p>Baca s2_jatim.tif + s2_jatim_metadata.json dari data (bukan asumsi)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Q2</p></td>
+<td><p>Bagaimana karakteristik training polygon?</p></td>
+<td><p>Bab 2</p></td>
+<td><p>Saring validitas V1–V6, catat per alasan; pilih maks 50 valid per kelas</p></td>
+</tr>
+<tr class="row-even"><td><p>Q3</p></td>
+<td><p>Bagaimana polygon menjadi data ML?</p></td>
+<td><p>Bab 3</p></td>
+<td><p>Ekstraksi pixel per polygon (aturan centroid), capping 500, polygon-mean; split per polygon (FID)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Q4</p></td>
+<td><p>Apakah pixel-based atau polygon-mean menghasilkan model lebih baik?</p></td>
+<td><p>Bab 4–5</p></td>
+<td><p>Bandingkan lewat CV pada training; jawab hanya dari hasil, tanpa bias awal</p></td>
+</tr>
+<tr class="row-even"><td><p>Q5</p></td>
+<td><p>Model mana performanya terbaik?</p></td>
+<td><p>Bab 4–5</p></td>
+<td><p>Pilih via CV training (lapor std antar fold + ketidakpastian); test dipakai sekali di akhir</p></td>
+</tr>
+<tr class="row-odd"><td><p>Q6</p></td>
+<td><p>Bagaimana model dipakai membuat peta Jatim?</p></td>
+<td><p>Bab 5–6</p></td>
+<td><p>Klasifikasi seluruh raster per window/blok → klasifikasi_jawa_timur.tif → WebGIS</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Q4 dan Q5 <strong>belum dijawab</strong> di notebook ini — menjawabnya sekarang berarti mengarang.</p>
+</section>
+<section id="definisi-kelas-operasional">
+<h2>1.4 Definisi kelas operasional<a class="headerlink" href="#definisi-kelas-operasional" title="Link to this heading">#</a></h2>
+<p>Enam kelas berikut adalah <strong>keputusan eksperimen (boleh hardcode nama/path)</strong>. Tidak ada kelas ketujuh. Kecocokannya dengan isi file diverifikasi pada sel kode sesudah tabel (DATA AKTUAL PROJECT).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>class_id</p></th>
+<th class="head"><p>class_name</p></th>
+<th class="head"><p>Catatan operasional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Sawah</p></td>
+<td><p>Lahan budidaya basah (sawah/bera/panen ikut dinamika snapshot citra)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Bangunan / Permukiman</p></td>
+<td><p>Lahan terbangun permukiman dan campurannya</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Mangrove</p></td>
+<td><p>Vegetasi pesisir/payau</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Lahan hijau</p></td>
+<td><p>KELAS AGREGAT: kebun, tegalan, hutan, semak, padang rumput, dsb. (ambigu — lihat 1.5)</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Laut</p></td>
+<td><p>Perairan laut dalam area studi</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Danau</p></td>
+<td><p>Danau alami + waduk/embung buatan (kolom source_class dirinci di Bab 2)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — verifikasi pemetaan class_id -&gt; class_name dari isi file training.</span>
+<span class="c1"># Bukan hardcode: unik dihitung dari file. (Distribusi jumlah per kelas dikerjakan di Bab 2.)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+
+<span class="n">TRAIN_GEOJSON</span> <span class="o">=</span> <span class="s2">&quot;../data/training_samples_jawa_timur.geojson&quot;</span>
+<span class="n">EXPECTED</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Sawah&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Bangunan / Permukiman&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Mangrove&quot;</span><span class="p">,</span>
+            <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Lahan hijau&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Laut&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Danau&quot;</span><span class="p">}</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">]</span>
+<span class="n">gdf_classes</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">TRAIN_GEOJSON</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">cols</span><span class="p">]</span>
+<span class="n">pairs</span> <span class="o">=</span> <span class="n">gdf_classes</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;class_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: pasangan unik class_id/class_name di file = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">pairs</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">cocok</span> <span class="o">=</span> <span class="s2">&quot;COCOK&quot;</span> <span class="k">if</span> <span class="n">EXPECTED</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_id&#39;</span><span class="p">]))</span> <span class="o">==</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;TIDAK COCOK&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  class_id=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_id&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> class_name=&#39;</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; -&gt; </span><span class="si">{</span><span class="n">cocok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: class_id di file = </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span><span class="si">}</span><span class="s2">; ekspektasi = </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">EXPECTED</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: kolom provenance tersedia = </span><span class="si">{</span><span class="p">[</span><span class="n">c</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;source_class&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">TRAIN_GEOJSON</span><span class="p">,</span><span class="w"> </span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span><span class="si">}</span><span class="s2"> (dirinci di Bab 2)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: pasangan unik class_id/class_name di file = 6
+  class_id=1 class_name=&#39;Sawah&#39; -&gt; COCOK
+  class_id=2 class_name=&#39;Bangunan / Permukiman&#39; -&gt; COCOK
+  class_id=3 class_name=&#39;Mangrove&#39; -&gt; COCOK
+  class_id=4 class_name=&#39;Lahan hijau&#39; -&gt; COCOK
+  class_id=5 class_name=&#39;Laut&#39; -&gt; COCOK
+  class_id=6 class_name=&#39;Danau&#39; -&gt; COCOK
+DATA AKTUAL PROJECT: class_id di file = [1, 2, 3, 4, 5, 6]; ekspektasi = [1, 2, 3, 4, 5, 6]
+DATA AKTUAL PROJECT: kolom provenance tersedia = [&#39;source&#39;, &#39;source_class&#39;] (dirinci di Bab 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi:</strong> pasangan unik <code class="docutils literal notranslate"><span class="pre">class_id</span></code>/<code class="docutils literal notranslate"><span class="pre">class_name</span></code> di file dicocokkan dengan tabel 1.4. Bila semua berstatus COCOK dan himpunan id sama dengan ekspektasi, maka definisi 6 kelas pada notebook ini konsisten dengan isi file. Bila ada TIDAK COCOK, maka itu temuan Bab 2 (kriteria V4) dan dilaporkan beserta jumlahnya. Rincian kolom provenance (<code class="docutils literal notranslate"><span class="pre">source</span></code>, <code class="docutils literal notranslate"><span class="pre">source_class</span></code>) ditabulasikan di Bab 2.</p>
+</section>
+<section id="acuan-klasifikasi-lahan-indonesia">
+<h2>1.5 Acuan klasifikasi lahan Indonesia<a class="headerlink" href="#acuan-klasifikasi-lahan-indonesia" title="Link to this heading">#</a></h2>
+<section id="acuan-1-sni-7645-klasifikasi-penutup-lahan-bsn">
+<h3>Acuan 1 — SNI 7645 (klasifikasi penutup lahan, BSN)<a class="headerlink" href="#acuan-1-sni-7645-klasifikasi-penutup-lahan-bsn" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dokumen terverifikasi:</strong> SNI 7645:2010 <em>Klasifikasi penutup lahan</em> (BSN; berkas PDF diunduh dari portal BIG), direvisi menjadi <strong>SNI 7645-1:2014</strong> <em>Klasifikasi penutup lahan — Bagian 1: Skala kecil dan menengah</em> (Komite Teknis 07-01 Informasi Geografi/Geomatika; status Berlaku; dikonfirmasi 2020 tanpa perubahan substansi). Hierarki skala: 1:1.000.000 (kecil), 1:250.000 / 1:50.000 / 1:25.000 (menengah). Disusun mengacu <strong>LCCS UN-FAO</strong> dan <strong>ISO 19144-1</strong>.</p></li>
+<li><p><strong>Sumber:</strong></p>
+<ul>
+<li><p>(1) <a class="reference external" href="https://big.go.id/assets/download/sni/SNI/15.%20SNI%207645-2010%20Klasifikasi%20penutup%20lahan.pdf">https://big.go.id/assets/download/sni/SNI/15. SNI 7645-2010 Klasifikasi penutup lahan.pdf</a>.</p></li>
+<li><p>(2) <a class="reference external" href="https://pesta.bsn.go.id/produk/detail/10269-sni7645-12014">https://pesta.bsn.go.id/produk/detail/10269-sni7645-12014</a> (halaman produk BSN SNI 7645-1:2014).</p></li>
+<li><p>(3) salinan PDF SNI 7645-1:2014 (Konfirmasi 2020) via BBPSIK-Jogja <a class="reference external" href="https://jogja.bsilhk.menlhk.go.id/wp-content/uploads/2023/09/5.-SNI-7645-1_2014-_Klasifikasi-penutup-lahan-bag-1-skala-kecil-dan-menengah.pdf">https://jogja.bsilhk.menlhk.go.id/wp-content/uploads/2023/09/5.-SNI-7645-1_2014-_Klasifikasi-penutup-lahan-bag-1-skala-kecil-dan-menengah.pdf</a> (diakses 2026-10-07).</p></li>
+</ul>
+</li>
+<li><p><strong>Struktur umum terverifikasi:</strong> dua cabang besar — <em>area dominan bukan-vegetasi</em> (tubuh air, lahan terbuka, bangunan) dan <em>area dominan vegetasi</em> (hutan, perkebunan, sawah, semak, herba/rumput). Skala 1:50.000/1:25.000 mulai memasukkan unsur penggunaan lahan (<em>land use</em>).</p></li>
+</ul>
+</section>
+<section id="acuan-2-klasifikasi-penutup-lahan-klhk-direktorat-ipsdh-ditjen-planologi-kehutanan">
+<h3>Acuan 2 — Klasifikasi penutup lahan KLHK (Direktorat IPSDH / Ditjen Planologi Kehutanan)<a class="headerlink" href="#acuan-2-klasifikasi-penutup-lahan-klhk-direktorat-ipsdh-ditjen-planologi-kehutanan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dokumen terverifikasi:</strong> Juknis Penafsiran Citra Satelit Resolusi Menengah untuk Pemutakhiran Penutupan Lahan Nasional (SK Dirjen Planologi Kehutanan No. 17), <strong>Lampiran 3: Sistem Klasifikasi dan Monogram Data Penutupan Lahan</strong> — memuat <strong>23 kelas</strong> penutupan lahan nasional, diproduksi sejak 1990 lewat interpretasi visual citra resolusi menengah.</p></li>
+<li><p><strong>Sumber:</strong> <a class="reference external" href="https://sigap.kehutanan.go.id/sigap-admin-2026/files/download/sk-dirjen-planologi-kehutanan-no-17-tentang-juknis-penafsiran-csrm-untuk-pemutakhiran-pl-nasional.pdf">https://sigap.kehutanan.go.id/sigap-admin-2026/files/download/sk-dirjen-planologi-kehutanan-no-17-tentang-juknis-penafsiran-csrm-untuk-pemutakhiran-pl-nasional.pdf</a> ; penjelasan metode: <a class="reference external" href="https://www.indonesia-geospasial.com/2021/04/petunjuk-pembuatan-shapefile-penutupan.html">https://www.indonesia-geospasial.com/2021/04/petunjuk-pembuatan-shapefile-penutupan.html</a> (memuat urutan logika prioritas: primer = penutupan/biofisik, sekunder = penggunaan/aktivitas manusia). Diakses 2026-10-07.</p></li>
+<li><p><strong>Daftar nama 23 kelas terverifikasi dari Lampiran 3:</strong> Hutan Lahan Kering Primer; Hutan Lahan Kering Sekunder; Hutan Mangrove Primer; Hutan Mangrove Sekunder; Hutan Rawa Primer; Hutan Rawa Sekunder; Hutan Tanaman; Semak Belukar; Semak Belukar Rawa; Pertanian Lahan Kering; Pertanian Lahan Kering Campur; Sawah; Tambak; Transmigrasi; Perkebunan; Permukiman; Bandara/Pelabuhan; Lahan Terbuka; Pertambangan; Tubuh Air; Rawa; Savana/Padang Rumput; Awan. <strong>Kode numerik tiap kelas: tidak terverifikasi</strong> (fragmen kode yang beredar tidak memuat pemetaan lengkap yang dapat dikutip andal), sehingga tidak ditulis di sini.</p></li>
+</ul>
+</section>
+<section id="pemetaan-6-kelas">
+<h3>Pemetaan 6 kelas<a class="headerlink" href="#pemetaan-6-kelas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas project</p></th>
+<th class="head"><p>Padanan SNI 7645-1:2014 (nama + kode bila terverifikasi)</p></th>
+<th class="head"><p>Padanan KLHK 23 kelas (nama; kode: tidak terverifikasi)</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 Sawah</p></td>
+<td><p>Tanaman semusim lahan basah (sawah): 2.2.1.6.1 Sawah dengan padi terus menerus; 2.2.1.6.2 Sawah dengan padi diselingi tanaman lain/bera</p></td>
+<td><p>Sawah</p></td>
+<td><p>Operasional ≈ acuan (dinamika bera/panen pada snapshot dibahas di Bab 2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2 Bangunan / Permukiman</p></td>
+<td><p>1.2.3.1.1 Bangunan permukiman kota; 1.2.3.1.2 Bangunan permukiman desa (berasosiasi vegetasi pekarangan)</p></td>
+<td><p>Permukiman (+ Transmigrasi bila relevan)</p></td>
+<td><p>Operasional ≈ acuan</p></td>
+</tr>
+<tr class="row-even"><td><p>3 Mangrove</p></td>
+<td><p>Hutan mangrove primer/sekunder per kerapatan (kode rinci: tidak terverifikasi — penomoran berbeda antar edisi 2010 vs 2014)</p></td>
+<td><p>Hutan Mangrove Primer / Hutan Mangrove Sekunder</p></td>
+<td><p>Operasional ≈ acuan</p></td>
+</tr>
+<tr class="row-odd"><td><p>4 Lahan hijau</p></td>
+<td><p>AGREGAT dari banyak kelas SNI: hutan (jati, pinus, dsb.), perkebunan, kebun campuran (2.2.1.4.x), ladang/tegalan, semak belukar (2.1.1.7.x), padang rumput/alang-alang (2.1.1.8.x)</p></td>
+<td><p>AGREGAT: Hutan Lahan Kering (Primer/Sekunder), Hutan Tanaman, Perkebunan, Pertanian Lahan Kering (Campur), Semak Belukar, Savana/Padang Rumput</p></td>
+<td><p>Agregasi operasional — BUKAN kelas resmi tunggal</p></td>
+</tr>
+<tr class="row-even"><td><p>5 Laut</p></td>
+<td><p>1.1.1.1 Perairan laut (1.1.1.1.1 dangkal / 1.1.1.1.2 dalam)</p></td>
+<td><p>Tubuh Air (bagian laut)</p></td>
+<td><p>Operasional ≈ acuan (lengkapnya di Bab 2: buffer pantai NE 10m)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6 Danau</p></td>
+<td><p>1.1.1.2 Danau/telaga alami; 1.2.1.1 Waduk dan danau buatan (1.2.1.1.1–1.2.1.1.5)</p></td>
+<td><p>Tubuh Air (bagian danau/waduk)</p></td>
+<td><p>Operasional ≈ acuan (termasuk waduk/embung buatan)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Apa yang TIDAK tertangkap 6 kelas ini (keterbatasan desain):</strong> pertanian lahan kering/tegalan non-sawah, tambak (asin/payau), hutan primer vs sekunder vs tanaman, semak vs belukar vs alang-alang, lahan terbuka/pertambangan, sungai/rawa, awan/bayangan awan — semuanya tercampur ke dalam agregat (terutama “Lahan hijau”) atau tidak dimodelkan. Kelas awan tidak ada sehingga sisa awan pada citra (diperiksa di Bab 2) cenderung menjadi sumber kesalahan yang harus dilaporkan.</p>
+</section>
+</section>
+<section id="apa-yang-diprediksi-model">
+<h2>1.6 Apa yang diprediksi model<a class="headerlink" href="#apa-yang-diprediksi-model" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Istilah</p></th>
+<th class="head"><p>File project</p></th>
+<th class="head"><p>Isi / peran</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Raster input</strong></p></td>
+<td><p>data/s2_jatim.tif (+ data/s2_jatim_metadata.json)</p></td>
+<td><p>Citra Sentinel-2 komposit (band B02, B03, B04, B08, B11, B12). Setiap pixel menyimpan nilai reflektansi per band. Dibaca/diproses <strong>per window/blok</strong> (raster besar).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Training data</strong></p></td>
+<td><p>data/training_samples_jawa_timur.geojson / .gpkg → (Bab 3) outputs/tables/training_pixel.csv, training_mean.csv, polygon_split.csv</p></td>
+<td><p>Polygon berlabel (maks 50 valid per kelas) yang diekstraksi menjadi fitur ML. Split <strong>per polygon (FID)</strong>, tuning via GroupKFold pada training saja.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Testing data</strong></p></td>
+<td><p>(Bab 3) outputs/tables/testing_pixel.csv, testing_mean.csv</p></td>
+<td><p>Polygon terpilih yang ditahan; dipakai <strong>sekali di akhir</strong> (Bab 5). Bukan dasar pemilihan model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Classification result</strong></p></td>
+<td><p>outputs/raster/klasifikasi_jawa_timur.tif</p></td>
+<td><p>Peta hasil: tiap pixel menyimpan <strong>class_id prediksi (1–6)</strong> dari model terbaik. Ditampilkan di WebGIS (notebook 06) + Streamlit.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Yang sebenarnya diprediksi model:</strong> untuk tiap pixel, model menerima vektor fitur (nilai band / indeks spektral hasil ekstraksi Bab 3) dan mengeluarkan satu <code class="docutils literal notranslate"><span class="pre">class_id</span></code> (1–6). CONTOH ILUSTRASI — bukan data project: mis. pixel dengan NIR tinggi dan SWIR rendah <em>cenderung</em> diarahkan model ke kelas vegetasi — ilustrasi cara membaca fitur, bukan aturan keputusan dan bukan angka project.</p>
+</section>
+<section id="alur-target-akhir">
+<h2>1.7 Alur target akhir<a class="headerlink" href="#alur-target-akhir" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sentinel-2 (s2_jatim.tif + metadata)
+        +
+Training polygon (training_samples_jawa_timur.*)
+        |
+        v
+Ekstraksi fitur per polygon (Bab 3: pixel-based + polygon-mean)
+        |
+        v
+ML + pemilihan via CV GroupKFold pada training (Bab 4)
+        |
+        v
+Evaluasi sekali pada test + luas per kelas (Bab 5)
+        |
+        v
+Model terbaik -&gt; klasifikasi seluruh raster per window -&gt; klasifikasi_jawa_timur.tif
+        |
+        +----------------------+----------------------+
+        v                      v
+WebGIS di notebook 06        Streamlit app.py (pelengkap)
+</pre></div>
+</div>
+<p>Pemilihan model berdasarkan CV training; test hanya konfirmasi akhir. Detail tiap panah dikerjakan di Bab 2–6.</p>
+</section>
+<section id="lampiran-a-bukti-file-project-data-aktual-project">
+<h2>Lampiran A — Bukti file project (DATA AKTUAL PROJECT)<a class="headerlink" href="#lampiran-a-bukti-file-project-data-aktual-project" title="Link to this heading">#</a></h2>
+<p>Seluruh angka di bawah dicetak dari variabel hasil perhitungan (f-string)..</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — A1 inventaris file input (ukuran dibaca dari disk).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s2">&quot;../data&quot;</span>
+<span class="n">FILES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;boundary_jatim.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;s2_jatim.tif&quot;</span><span class="p">,</span> <span class="s2">&quot;s2_jatim_metadata.json&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;training_samples_jawa_timur.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;training_samples_jawa_timur.gpkg&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: inventaris 5 file input (0.3)&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">FILES</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+    <span class="n">ada</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">ukuran</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">if</span> <span class="n">ada</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">fn</span><span class="si">}</span><span class="s2">: ada=</span><span class="si">{</span><span class="n">ada</span><span class="si">}</span><span class="s2">, ukuran_byte=</span><span class="si">{</span><span class="n">ukuran</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: geoboundaries_IDN_ADM1.geojson -&gt; TIDAK TERPAKAI (tidak dibaca)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: inventaris 5 file input (0.3)
+  boundary_jatim.geojson: ada=True, ukuran_byte=151929
+  s2_jatim.tif: ada=True, ukuran_byte=1564425175
+  s2_jatim_metadata.json: ada=True, ukuran_byte=543
+  training_samples_jawa_timur.geojson: ada=True, ukuran_byte=11045852
+  training_samples_jawa_timur.gpkg: ada=True, ukuran_byte=4788224
+DATA AKTUAL PROJECT: geoboundaries_IDN_ADM1.geojson -&gt; TIDAK TERPAKAI (tidak dibaca)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi A1:</strong> kelima file input harus berstatus <code class="docutils literal notranslate"><span class="pre">ada=True</span></code>. Ukuran byte sekadar bukti keberadaan (raster terbesar). Bila ada yang <code class="docutils literal notranslate"><span class="pre">False</span></code>, pipeline berhenti — Bab berikutnya tidak dapat dikerjakan tanpa mengarang data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — A2 isi aktual metadata openEO vs pernyataan prompt 0.5.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/s2_jatim_metadata.json&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: isi s2_jatim_metadata.json =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1"># Perbandingan dengan blok 0.5 (nilai ekspektasi ditulis sebagai pembanding, bukan hasil):</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: koleksi tercatat = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;koleksi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: bands tercatat = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bands&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: temporal_extent tercatat = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;temporal_extent&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: komposit/reducer tercatat = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;komposit&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: max_cloud_cover_pct tercatat = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_cloud_cover_pct&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: bbox tercatat = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bbox&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;scale_factor_reflectance&quot;</span><span class="p">,</span> <span class="s2">&quot;resampling&quot;</span><span class="p">,</span> <span class="s2">&quot;cloud_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;collection_L1C_L2A_detail&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tidak tercatat di metadata&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: isi s2_jatim_metadata.json =
+{
+  &quot;koleksi&quot;: &quot;SENTINEL2_L2A&quot;,
+  &quot;tanggal_mulai&quot;: &quot;2025-09-01&quot;,
+  &quot;tanggal_akhir&quot;: &quot;2025-09-02&quot;,
+  &quot;temporal_extent&quot;: [
+    &quot;2025-09-01&quot;,
+    &quot;2025-09-03&quot;
+  ],
+  &quot;komposit&quot;: &quot;median&quot;,
+  &quot;bands&quot;: [
+    &quot;B02&quot;,
+    &quot;B03&quot;,
+    &quot;B04&quot;,
+    &quot;B08&quot;,
+    &quot;B11&quot;,
+    &quot;B12&quot;
+  ],
+  &quot;max_cloud_cover_pct&quot;: 20,
+  &quot;bbox&quot;: {
+    &quot;west&quot;: 110.8988,
+    &quot;south&quot;: -8.7804,
+    &quot;east&quot;: 116.2701,
+    &quot;north&quot;: -5.0489,
+    &quot;crs&quot;: &quot;EPSG:4326&quot;
+  },
+  &quot;aoi_file&quot;: &quot;boundary_jatim.geojson&quot;,
+  &quot;output&quot;: &quot;s2_jatim.tif&quot;,
+  &quot;job_id&quot;: &quot;j-26100607452343a2be0930a04fc04519&quot;
+}
+
+DATA AKTUAL PROJECT: koleksi tercatat = SENTINEL2_L2A
+DATA AKTUAL PROJECT: bands tercatat = [&#39;B02&#39;, &#39;B03&#39;, &#39;B04&#39;, &#39;B08&#39;, &#39;B11&#39;, &#39;B12&#39;]
+DATA AKTUAL PROJECT: temporal_extent tercatat = [&#39;2025-09-01&#39;, &#39;2025-09-03&#39;]
+DATA AKTUAL PROJECT: komposit/reducer tercatat = median
+DATA AKTUAL PROJECT: max_cloud_cover_pct tercatat = 20
+DATA AKTUAL PROJECT: bbox tercatat = {&#39;west&#39;: 110.8988, &#39;south&#39;: -8.7804, &#39;east&#39;: 116.2701, &#39;north&#39;: -5.0489, &#39;crs&#39;: &#39;EPSG:4326&#39;}
+DATA AKTUAL PROJECT: scale_factor_reflectance = tidak tercatat di metadata
+DATA AKTUAL PROJECT: resampling = tidak tercatat di metadata
+DATA AKTUAL PROJECT: cloud_mask = tidak tercatat di metadata
+DATA AKTUAL PROJECT: collection_L1C_L2A_detail = tidak tercatat di metadata
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi A2:</strong> bandingkan isi aktual dengan blok 0.5 (<code class="docutils literal notranslate"><span class="pre">tanggal_mulai</span> <span class="pre">2025-09-01</span></code>, <code class="docutils literal notranslate"><span class="pre">tanggal_akhir</span> <span class="pre">2025-09-02</span></code>, <code class="docutils literal notranslate"><span class="pre">temporal_extent</span> <span class="pre">[2025-09-01,</span> <span class="pre">2025-09-03]</span></code>). Bila sama, nyatakan sama; bila beda, tampilkan keduanya dan jelaskan perbedaannya dari isi file. <code class="docutils literal notranslate"><span class="pre">koleksi</span></code> menunjukkan L1C/L2A bila tercatat. Batas akhir <code class="docutils literal notranslate"><span class="pre">temporal_extent</span></code> pada konvensi openEO umumnya eksklusif (perlu verifikasi dari perilaku, bukan asumsi) — implikasinya dibahas di Bab 2 bersama pemeriksaan celah/nodata, sisa awan, dan garis mosaik (rentang sangat pendek sehingga risiko tersebut wajib diperiksa dari data). Yang tidak tercatat ditulis “tidak tercatat di metadata”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — A3 bukti boundary dari ISI geometri</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">shape</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/boundary_jatim.geojson&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">bj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">feats</span> <span class="o">=</span> <span class="n">bj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;features&quot;</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">geoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape</span><span class="p">(</span><span class="n">ft</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">ft</span> <span class="ow">in</span> <span class="n">feats</span> <span class="k">if</span> <span class="n">ft</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;geometry&quot;</span><span class="p">)]</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">bounds</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">geoms</span><span class="p">]</span>  <span class="c1"># (minx, miny, maxx, maxy) = (lon min, lat min, lon maks, lat maks)</span>
+<span class="n">minx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">)</span>
+<span class="n">miny</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">)</span>
+<span class="n">maxx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">)</span>
+<span class="n">maxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: tipe koleksi = </span><span class="si">{</span><span class="n">bj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">, n_features = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: tipe geometri = </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">feats</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: bbox geometri lon [</span><span class="si">{</span><span class="n">minx</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">maxx</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">], lat [</span><span class="si">{</span><span class="n">miny</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">maxy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: dalam rentang Jawa Timur (lon ~111-115, lat ~-8.8 s.d. -5)? &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mf">110.0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">minx</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">112.0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="mf">114.0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">maxx</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">117.0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">-</span><span class="mf">9.5</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">miny</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">7.0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">-</span><span class="mf">6.0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">maxy</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mf">4.5</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: tipe koleksi = FeatureCollection, n_features = 1
+DATA AKTUAL PROJECT: tipe geometri = [&#39;MultiPolygon&#39;]
+DATA AKTUAL PROJECT: bbox geometri lon [110.8988, 116.2701], lat [-8.7804, -5.0489]
+DATA AKTUAL PROJECT: dalam rentang Jawa Timur (lon ~111-115, lat ~-8.8 s.d. -5)? True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi A3:</strong> bila bbox geometri berada pada rentang bujur/lintang Jawa Timur dan terdiri dari satu/lebih poligon darat-plus-pesisir, maka file tersebut terbukti memuat boundary Jawa Timur dari isinya. Sifat detail (apakah mencakup area laut 25 km, dsb.) diperiksa terhadap raster di Bab 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — A4 profil raster (header saja; raster besar TIDAK dimuat sekaligus).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../data/s2_jatim.tif&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: count = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">count</span><span class="si">}</span><span class="s2">, dtype = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, crs = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: width = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="si">}</span><span class="s2">, height = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: bounds = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">bounds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: band names/descriptions = </span><span class="si">{</span><span class="p">[</span><span class="n">src</span><span class="o">.</span><span class="n">descriptions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nb">range</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">count</span><span class="p">)]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: nodata = </span><span class="si">{</span><span class="n">src</span><span class="o">.</span><span class="n">nodata</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: count = 6, dtype = int16, crs = EPSG:32749
+DATA AKTUAL PROJECT: width = 59412, height = 41323
+DATA AKTUAL PROJECT: bounds = BoundingBox(left=488850.0, bottom=9027590.0, right=1082970.0, top=9440820.0)
+DATA AKTUAL PROJECT: band names/descriptions = [&#39;B02&#39;, &#39;B03&#39;, &#39;B04&#39;, &#39;B08&#39;, &#39;B11&#39;, &#39;B12&#39;]
+DATA AKTUAL PROJECT: nodata = -32768.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi A4:</strong> jumlah band pada header dicocokkan dengan enam band metadata (B02, B03, B04, B08, B11, B12). CRS, ukuran, dan bounds menunjukkan cakupan raster aktual. Nilai pixel, statistik, dan pemeriksaan nodata/awan/mosaik dikerjakan per window di Bab 2 — tidak di sini.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — A5 kolom aktual file training (nama kolom diperiksa dulu, tidak diasumsikan).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+
+<span class="n">g1</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/training_samples_jawa_timur.geojson&quot;</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: kolom geojson = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">g1</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/training_samples_jawa_timur.gpkg&quot;</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: kolom gpkg = </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: kolom geometri geojson = </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geom_type</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: kolom geojson = [&#39;fid&#39;, &#39;class_id&#39;, &#39;class_name&#39;, &#39;source&#39;, &#39;source_class&#39;, &#39;geometry&#39;]
+DATA AKTUAL PROJECT: kolom gpkg = [&#39;class_id&#39;, &#39;class_name&#39;, &#39;source&#39;, &#39;source_class&#39;, &#39;geometry&#39;]
+DATA AKTUAL PROJECT: kolom geometri geojson = [&#39;Polygon&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi A5:</strong> nama kolom aktual menentukan kode Bab 3 (tidak mengasumsikan nama kolom). Kolom provenance (<code class="docutils literal notranslate"><span class="pre">source</span></code>, <code class="docutils literal notranslate"><span class="pre">source_class</span></code>) dan tipe geometri yang terlihat di sini dirinci dan disaring di Bab 2 (kriteria V1–V6). File <code class="docutils literal notranslate"><span class="pre">.geojson</span></code> dan <code class="docutils literal notranslate"><span class="pre">.gpkg</span></code> diharapkan memuat informasi yang setara; bila berbeda, Bab 2 mencatat perbedaannya dan memilih satu sebagai acuan.
+Terkonfirmasi di Bab 2: kedua file berisi 2823 fitur dengan komposisi atribut identik; kolom <code class="docutils literal notranslate"><span class="pre">fid</span></code> hanya ada di GeoJSON.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./07_klasifikasi_lahan_jatim\notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">6.1 Klasifikasi Sawah vs Non-Sawah (Sentinel-2A Jabon)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_data_understanding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BAB 2 — Data Understanding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-penggunaan-penutupan-lahan-jawa-timur-dari-sentinel-2">Klasifikasi penggunaan/penutupan lahan Jawa Timur dari Sentinel-2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">1.2 Tujuan analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-analisis">1.3 Pertanyaan analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-kelas-operasional">1.4 Definisi kelas operasional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-indonesia">1.5 Acuan klasifikasi lahan Indonesia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-1-sni-7645-klasifikasi-penutup-lahan-bsn">Acuan 1 — SNI 7645 (klasifikasi penutup lahan, BSN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-2-klasifikasi-penutup-lahan-klhk-direktorat-ipsdh-ditjen-planologi-kehutanan">Acuan 2 — Klasifikasi penutup lahan KLHK (Direktorat IPSDH / Ditjen Planologi Kehutanan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemetaan-6-kelas">Pemetaan 6 kelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-yang-diprediksi-model">1.6 Apa yang diprediksi model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-target-akhir">1.7 Alur target akhir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lampiran-a-bukti-file-project-data-aktual-project">Lampiran A — Bukti file project (DATA AKTUAL PROJECT)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

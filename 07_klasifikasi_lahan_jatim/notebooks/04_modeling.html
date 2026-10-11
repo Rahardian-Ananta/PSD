@@ -1,0 +1,1859 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BAB 4 — Modeling &#8212; Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07_klasifikasi_lahan_jatim/notebooks/04_modeling';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="BAB 5 — Evaluation" href="05_evaluation.html" />
+    <link rel="prev" title="BAB 3 — Data Preprocessing" href="03_data_preprocessing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Proyek Sains Data IF2231
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../02_data_understanding/2.1a_data_collection_sentinel5p.html">2.1a Data Collection Sentinel-5P</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_data_understanding/2.1b_data_collection_sentinel2a.html">2.1b Data Collection Sentinel-2A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../05_clustering/5.2_clustering.html">5.2 Clustering per Polutan</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.2a_kmeans_per_polutan.html">5.2a K-Means per Polutan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.2b_kmeans_silhouette_daerah.html">5.2b K-Means Silhouette &amp; Kemiripan Daerah</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.6a_eksperimen_linear_204.html">5.6a Varian Linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_clustering/5.6b_eksperimen_polynomial_204.html">5.6b Varian Polynomial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 7 — KLASIFIKASI LAHAN JAWA TIMUR</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_business_understanding.html">7.1 Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_understanding.html">7.2 Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing.html">7.3 Data Preprocessing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7.4 Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_evaluation.html">7.5 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_webgis.html">7.6 WebGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">7.7 Deployment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Rahardian-Ananta/PSD/issues/new?title=Issue%20on%20page%20%2F07_klasifikasi_lahan_jatim/notebooks/04_modeling.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/07_klasifikasi_lahan_jatim/notebooks/04_modeling.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BAB 4 — Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-pixel-based-vs-polygon-mean">Eksperimen pixel-based vs polygon-mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mulai-dari-hasil-tahap-3">4.1 Mulai dari hasil Tahap 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-model-penjelasan-dulu-baru-kode">4.2 Konsep model (penjelasan dulu, baru kode)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kartu-model-netral-kelebihan-kekurangan-singkat">Kartu model (netral; kelebihan/kekurangan singkat)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-eksperimen-perlakuan-setara">4.3 Matriks eksperimen (perlakuan setara)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-cv-cross-validation-ditetapkan-sebelum-melihat-hasil">4.4 Ukuran CV(Cross Validation) — ditetapkan SEBELUM melihat hasil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-cv-pemenang-dari-angka-bukan-opini">Hasil CV (pemenang dari angka, bukan opini)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-setiap-gambar-dibaca-apa-yang-terlihat">4.5 Visualisasi (setiap gambar dibaca: apa yang terlihat)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpan-model-terbaik-metadata">4.6 Simpan model terbaik + metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-tahap-4">Checkpoint Tahap 4</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bab-4-modeling">
+<h1>BAB 4 — Modeling<a class="headerlink" href="#bab-4-modeling" title="Link to this heading">#</a></h1>
+<section id="eksperimen-pixel-based-vs-polygon-mean">
+<h2>Eksperimen pixel-based vs polygon-mean<a class="headerlink" href="#eksperimen-pixel-based-vs-polygon-mean" title="Link to this heading">#</a></h2>
+</section>
+<section id="mulai-dari-hasil-tahap-3">
+<h2>4.1 Mulai dari hasil Tahap 3<a class="headerlink" href="#mulai-dari-hasil-tahap-3" title="Link to this heading">#</a></h2>
+<p><strong>Pertanyaan:</strong> apa yang masuk ke eksperimen (polygon, pixel, feature, yang dibuang)? CSV dibaca, bukan dihitung ulang.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 4.1 muat artefak Tahap 3 + verifikasi integritas.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">FEATS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">,</span> <span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDBI&quot;</span><span class="p">]</span>
+<span class="n">MEANMAP</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;mean_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">]}</span>
+<span class="n">trp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/training_pixel.csv&quot;</span><span class="p">)</span>
+<span class="n">tep</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/testing_pixel.csv&quot;</span><span class="p">)</span>
+<span class="n">trm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/training_mean.csv&quot;</span><span class="p">)</span>
+<span class="n">tem</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/testing_mean.csv&quot;</span><span class="p">)</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_split.csv&quot;</span><span class="p">)</span>
+<span class="n">exc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/polygon_excluded.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: train_pixel=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">trp</span><span class="p">)</span><span class="si">}</span><span class="s2"> test_pixel=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tep</span><span class="p">)</span><span class="si">}</span><span class="s2"> train_mean=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">trm</span><span class="p">)</span><span class="si">}</span><span class="s2"> test_mean=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tem</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: polygon train=</span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">sp</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2"> test=</span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">sp</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: NaN train_pixel=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">trp</span><span class="p">[</span><span class="n">FEATS</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2"> (terbuang bila &gt;0)&quot;</span><span class="p">)</span>
+<span class="n">trp</span> <span class="o">=</span> <span class="n">trp</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">FEATS</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: feature_urut = </span><span class="si">{</span><span class="n">FEATS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: dibuang total=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span><span class="si">}</span><span class="s2"> (tidak_valid=</span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">exc</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;tidak valid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">, kuota=</span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">exc</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;tidak valid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: irisan FID train-test = </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">sp</span><span class="p">[</span><span class="n">sp</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;fid&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nb">set</span><span class="p">(</span><span class="n">sp</span><span class="p">[</span><span class="n">sp</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;fid&#39;</span><span class="p">]))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: train_pixel=40076 test_pixel=11432 train_mean=204 test_mean=52
+DATA AKTUAL PROJECT: polygon train=204 test=52
+DATA AKTUAL PROJECT: NaN train_pixel=0 (terbuang bila &gt;0)
+DATA AKTUAL PROJECT: feature_urut = [&#39;B02&#39;, &#39;B03&#39;, &#39;B04&#39;, &#39;B08&#39;, &#39;B11&#39;, &#39;B12&#39;, &#39;NDVI&#39;, &#39;NDWI&#39;, &#39;NDBI&#39;]
+DATA AKTUAL PROJECT: dibuang total=2567 (tidak_valid=2055, kuota=512)
+DATA AKTUAL PROJECT: irisan FID train-test = []
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi 4.1:</strong> masuk eksperimen: train 40.076 pixel / 204 mean; test 11.432 / 52; 204/52 polygon; NaN 0; 2.567 polygon dibuang; irisan FID train-test kosong — syarat perlakuan setara terpenuhi.</p>
+</section>
+<section id="konsep-model-penjelasan-dulu-baru-kode">
+<h2>4.2 Konsep model (penjelasan dulu, baru kode)<a class="headerlink" href="#konsep-model-penjelasan-dulu-baru-kode" title="Link to this heading">#</a></h2>
+<p><strong>Alur:</strong> vektor feature 9 angka → satu decision tree (aturan ambang berurutan, mis. NIR tinggi + merah rendah cenderung vegetasi) → banyak tree dari bootstrap + subset fitur acak (bagging) → voting mayoritas → satu <code class="docutils literal notranslate"><span class="pre">class_id</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CONTOH ILUSTRASI KONSEP (data mainan, bukan data project):
+pixel -&gt; [tree1: Sawah] [tree2: Sawah] [tree3: Lahan hijau] -&gt; voting 2-1 -&gt; Sawah
+</pre></div>
+</div>
+<p>Ilustrasi di atas hanya konsep 3 tree; contoh nyata di sel berikutnya memakai 5 tree dan kelima suara jatuh ke kelas 1.</p>
+<section id="kartu-model-netral-kelebihan-kekurangan-singkat">
+<h3>Kartu model (netral; kelebihan/kekurangan singkat)<a class="headerlink" href="#kartu-model-netral-kelebihan-kekurangan-singkat" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Cara kerja</p></th>
+<th class="head"><p>Cenderung kuat saat</p></th>
+<th class="head"><p>Keterbatasan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Random Forest (RF)</p></td>
+<td><p>Bagging tree + subset fitur, voting</p></td>
+<td><p>Fitur heterogen, tahan noise</p></td>
+<td><p>Ratusan tree bisa lambat; dominasi kelas besar</p></td>
+</tr>
+<tr class="row-odd"><td><p>ExtraTrees (ET)</p></td>
+<td><p>Seperti RF, ambang split lebih acak</p></td>
+<td><p>Biasanya lebih cepat, variansi rendah</p></td>
+<td><p>Bisa bias tinggi bila terlalu acak</p></td>
+</tr>
+<tr class="row-even"><td><p>LightGBM</p></td>
+<td><p>Boosting histogram leaf-wise</p></td>
+<td><p>Cepat, data sedang-besar</p></td>
+<td><p>Sensitif pada data sangat kecil ( dipakai dengan daun terbatas)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SVM RBF</p></td>
+<td><p>Batas non-linear margin-maksimum</p></td>
+<td><p>Dimensi sedang, perlu scaling</p></td>
+<td><p>Mahal pada puluhan ribu sample → subsample training</p></td>
+</tr>
+<tr class="row-even"><td><p>Logistic Regression</p></td>
+<td><p>Linear + softmax (baseline)</p></td>
+<td><p>Cepat, tolok ukur</p></td>
+<td><p>Batas linear saja</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CONTOH ILUSTRASI — bukan data project: voting RF pada 12 baris mainan.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">Xtoy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">ytoy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># 1/2/3 = label mainan</span>
+<span class="n">toy</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtoy</span><span class="p">,</span> <span class="n">ytoy</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">toy</span><span class="o">.</span><span class="n">estimators_</span><span class="p">]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">toy</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">)])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">raw</span><span class="p">]</span>  <span class="c1"># tree mengembalikan kode internal; dipetakan ke label</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CONTOH ILUSTRASI: suara tree = </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> -&gt; prediksi = </span><span class="si">{</span><span class="n">toy</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> (aturan mainan, bukan project)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CONTOH ILUSTRASI: suara tree = [1, 1, 1, 1, 1] -&gt; prediksi = 1 (aturan mainan, bukan project)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="matriks-eksperimen-perlakuan-setara">
+<h2>4.3 Matriks eksperimen (perlakuan setara)<a class="headerlink" href="#matriks-eksperimen-perlakuan-setara" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metode</p></th>
+<th class="head"><p>Model</p></th>
+<th class="head"><p>Split/Fitur</p></th>
+<th class="head"><p>Tuning</p></th>
+<th class="head"><p>Catatan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pixel-based</p></td>
+<td><p>RF, ExtraTrees, LightGBM, SVM-RBF, LogReg</p></td>
+<td><p>FID train sama, 9 feature sama</p></td>
+<td><p>StratifiedGroupKFold(5), group=FID</p></td>
+<td><p>SVM/LogReg via pipeline scaler fit-per-fold; SVM train subsample 8.861</p></td>
+</tr>
+<tr class="row-odd"><td><p>polygon-mean</p></td>
+<td><p>RF, ExtraTrees, LightGBM, SVM-RBF, LogReg</p></td>
+<td><p>FID train sama, 9 feature sama</p></td>
+<td><p>StratifiedGroupKFold(4), group=FID (Laut hanya 4 train polygon)</p></td>
+<td><p>SVM tanpa subsample (204 baris); scaler sama</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ruang grid kecil dan sebanding (4/4/4/2/2 kombinasi). Subsample HANYA training, stratified seed 42, dilaporkan. Waktu training dicatat per model.</p>
+</section>
+<section id="ukuran-cv-cross-validation-ditetapkan-sebelum-melihat-hasil">
+<h2>4.4 Ukuran CV(Cross Validation) — ditetapkan SEBELUM melihat hasil<a class="headerlink" href="#ukuran-cv-cross-validation-ditetapkan-sebelum-melihat-hasil" title="Link to this heading">#</a></h2>
+<p><strong>Metrik pemilihan utama: macro-F1 level polygon dari CV.</strong> Pixel-based: prediksi pixel divoting mayoritas per FID (seri → <code class="docutils literal notranslate"><span class="pre">class_id</span></code> terkecil, deterministik), lalu F1-macro antar polygon. Polygon-mean: langsung dari 1 baris per polygon. Pixel-F1 dilaporkan sebagai tambahan. Dilaporkan mean ± std antar fold. Fold kecil (204 polygon train / 5 → ±40 polygon per validasi) — selisih kecil tidak diklaim bermakna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mesin CV bersama (dipakai kedua metode; agregasi polygon didokumentasikan di 4.4).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedGroupKFold</span>
+
+<span class="n">N_SPLITS</span> <span class="o">=</span> <span class="mi">5</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">polygon_vote_f1</span><span class="p">(</span><span class="n">y_true_px</span><span class="p">,</span> <span class="n">y_pred_px</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;g&quot;</span><span class="p">:</span> <span class="n">groups</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="n">y_true_px</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="n">y_pred_px</span><span class="p">})</span>
+    <span class="n">yt</span><span class="p">,</span> <span class="n">yp</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">):</span>
+        <span class="n">yt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">yp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cnt</span><span class="p">)]))</span>  <span class="c1"># seri -&gt; class_id terkecil (np.unique terurut)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">yp</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_cv</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">param_list</span><span class="p">,</span> <span class="n">use_groups</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedGroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">N_SPLITS</span><span class="p">)</span>
+    <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">pi</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_list</span><span class="p">):</span>
+        <span class="n">fpix</span><span class="p">,</span> <span class="n">fpol</span><span class="p">,</span> <span class="n">oof_pairs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">tri</span><span class="p">,</span> <span class="n">vai</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)):</span>
+            <span class="n">est</span> <span class="o">=</span> <span class="n">builder</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">tri</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">tri</span><span class="p">])</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+            <span class="n">pv</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">vai</span><span class="p">])</span>
+            <span class="n">fpix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">vai</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+            <span class="n">f1p</span><span class="p">,</span> <span class="n">pairs</span> <span class="o">=</span> <span class="n">polygon_vote_f1</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">vai</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">groups</span><span class="p">[</span><span class="n">vai</span><span class="p">])</span>
+            <span class="n">fpol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1p</span><span class="p">)</span>
+            <span class="n">oof_pairs</span> <span class="o">+=</span> <span class="p">[(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+            <span class="n">recs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">),</span> <span class="s2">&quot;fold&quot;</span><span class="p">:</span> <span class="n">fold</span><span class="p">,</span> <span class="s2">&quot;pixel_f1&quot;</span><span class="p">:</span> <span class="n">fpix</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;polygon_f1&quot;</span><span class="p">:</span> <span class="n">fpol</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;fit_s&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="mi">1</span><span class="p">)})</span>
+        <span class="n">oof</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">params</span><span class="p">,</span> <span class="s2">&quot;mean_polygon_f1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fpol</span><span class="p">)),</span> <span class="s2">&quot;std_polygon_f1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fpol</span><span class="p">)),</span>
+                     <span class="s2">&quot;mean_pixel_f1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fpix</span><span class="p">)),</span> <span class="s2">&quot;pairs&quot;</span><span class="p">:</span> <span class="n">oof_pairs</span><span class="p">}</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">oof</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">oof</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;mean_polygon_f1&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span><span class="p">,</span> <span class="n">best</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 4.3a eksperimen pixel-based (40.076 baris train).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtraTreesClassifier</span><span class="p">,</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># KONFIGURASI</span>
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;../outputs/models&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;../outputs/tables&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># DATA</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">trp</span><span class="p">[</span><span class="n">FEATS</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">trp</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">gr</span> <span class="o">=</span> <span class="n">trp</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: pixel train n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> fitur=</span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> groups=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">gr</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># SUBSAMPLE SVM (training saja, stratified, seed 42)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">idx8k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+    <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">c</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+               <span class="n">size</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">8000</span> <span class="o">//</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">200</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">y</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+               <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">idx8k</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: subsample SVM </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">idx8k</span><span class="p">)</span><span class="si">}</span><span class="s2"> (aturan: stratified per kelas, seed 42)&quot;</span><span class="p">)</span>
+
+<span class="c1"># DEFINISI MODEL</span>
+<span class="n">MODELS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;rf&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">[(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;et&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">[(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;lgbm&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">LGBMClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_leaves</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">[(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">63</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">63</span><span class="p">)],</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;svm&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span>
+            <span class="n">StandardScaler</span><span class="p">(),</span>
+            <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)),</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;logreg&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">make_pipeline</span><span class="p">(</span>
+            <span class="n">StandardScaler</span><span class="p">(),</span>
+            <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)),</span>
+        <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># JALANKAN CV + REFIT</span>
+<span class="n">RES</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="ow">in</span> <span class="n">MODELS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;svm&quot;</span><span class="p">:</span>
+        <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span><span class="p">,</span> <span class="n">best</span> <span class="o">=</span> <span class="n">run_cv</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">idx8k</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">idx8k</span><span class="p">],</span> <span class="n">gr</span><span class="p">[</span><span class="n">idx8k</span><span class="p">],</span>
+                                 <span class="p">[{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">c</span><span class="p">}</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">])</span>
+        <span class="n">X_fit</span><span class="p">,</span> <span class="n">y_fit</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">idx8k</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">idx8k</span><span class="p">]</span>
+        <span class="n">best_params</span> <span class="o">=</span> <span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s2">&quot;params&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;logreg&quot;</span><span class="p">:</span>
+        <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span><span class="p">,</span> <span class="n">best</span> <span class="o">=</span> <span class="n">run_cv</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gr</span><span class="p">,</span>
+                                 <span class="p">[{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">c</span><span class="p">}</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">])</span>
+        <span class="n">X_fit</span><span class="p">,</span> <span class="n">y_fit</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+        <span class="n">best_params</span> <span class="o">=</span> <span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s2">&quot;params&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span><span class="p">,</span> <span class="n">best</span> <span class="o">=</span> <span class="n">run_cv</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">gr</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
+        <span class="n">X_fit</span><span class="p">,</span> <span class="n">y_fit</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+        <span class="n">best_params</span> <span class="o">=</span> <span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s2">&quot;params&quot;</span><span class="p">]</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;svm&quot;</span><span class="p">,</span> <span class="s2">&quot;logreg&quot;</span><span class="p">):</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="n">builder</span><span class="p">(</span><span class="n">best_params</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="n">builder</span><span class="p">(</span><span class="n">best_params</span><span class="p">)</span>
+    <span class="n">final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">)</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;../outputs/models/pixel_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.pkl&quot;</span><span class="p">)</span>
+    <span class="n">RES</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">],</span>
+        <span class="s2">&quot;recs&quot;</span><span class="p">:</span> <span class="n">recs</span><span class="p">,</span>
+        <span class="s2">&quot;refit_s&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s2">&quot;n_train&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_fit</span><span class="p">)),</span>
+    <span class="p">}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: pixel-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> best=</span><span class="si">{</span><span class="n">best_params</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;polygonF1=</span><span class="si">{</span><span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s1">&#39;mean_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">±</span><span class="si">{</span><span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s1">&#39;std_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;refit_s=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># SIMPAN CV CSV</span>
+<span class="n">cv_path</span> <span class="o">=</span> <span class="s2">&quot;../outputs/tables/cv_pixel.csv&quot;</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span> <span class="o">**</span><span class="n">r</span><span class="p">}</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">RES</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">RES</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;recs&quot;</span><span class="p">]])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">cv_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: tersimpan </span><span class="si">{</span><span class="n">cv_path</span><span class="si">}</span><span class="s2"> + 5 model pixel_*.pkl&quot;</span><span class="p">)</span>
+
+<span class="c1"># TABEL 1 — Ringkasan model</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">RES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;best&quot;</span><span class="p">]</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span>
+        <span class="s2">&quot;Best params&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;Polygon F1 (mean)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;mean_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Polygon F1 (std)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;std_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;n_train&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;n_train&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Refit (s)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;refit_s&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">tab1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Polygon F1 (mean)&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 1 — Ringkasan model pixel-based&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tab1</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># TABEL 2 — Semua konfigurasi yang diuji (agregasi per model x params)</span>
+<span class="n">det_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">RES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">recs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;recs&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="k">for</span> <span class="n">prm</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">recs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">det_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span>
+            <span class="s2">&quot;Params&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">prm</span><span class="p">),</span>
+            <span class="s2">&quot;Polygon F1 (mean)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;polygon_f1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Polygon F1 (std)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;polygon_f1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span><span class="w"> </span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;n_fold&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;polygon_f1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()),</span>
+        <span class="p">})</span>
+<span class="n">tab2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">det_rows</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">tab2</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 2 — tidak ada detail konfigurasi&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 2 — Semua konfigurasi yang diuji&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tab2</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># TABEL 3 — Model tersimpan</span>
+<span class="n">model_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;../outputs/models&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pixel_&quot;</span><span class="p">))</span>
+<span class="n">tab3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;File&quot;</span><span class="p">:</span> <span class="n">model_files</span><span class="p">,</span>
+    <span class="s2">&quot;Ukuran (KB)&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../outputs/models&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">model_files</span>
+    <span class="p">],</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 3 — Model tersimpan&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tab3</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: pixel train n=40076 fitur=9 groups=204
+DATA AKTUAL PROJECT: subsample SVM 40076 -&gt; 8861 (aturan: stratified per kelas, seed 42)
+DATA AKTUAL PROJECT: pixel-rf best=(25, 1) polygonF1=0.507±0.106 refit_s=93
+DATA AKTUAL PROJECT: pixel-et best=(None, 1) polygonF1=0.513±0.097 refit_s=30
+DATA AKTUAL PROJECT: pixel-lgbm best=(0.1, 31) polygonF1=0.522±0.110 refit_s=27
+DATA AKTUAL PROJECT: pixel-svm best={&#39;C&#39;: 1} polygonF1=0.537±0.072 refit_s=12
+DATA AKTUAL PROJECT: pixel-logreg best={&#39;C&#39;: 2.0} polygonF1=0.335±0.018 refit_s=16
+DATA AKTUAL PROJECT: tersimpan ../outputs/tables/cv_pixel.csv + 5 model pixel_*.pkl
+
+TABEL 1 — Ringkasan model pixel-based
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>Model</th>
+      <th>Best params</th>
+      <th>Polygon F1 (mean)</th>
+      <th>Polygon F1 (std)</th>
+      <th>n_train</th>
+      <th>Refit (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>svm</td>
+      <td>{'C': 1}</td>
+      <td>0.537</td>
+      <td>0.072</td>
+      <td>8,861</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.1, 31)</td>
+      <td>0.522</td>
+      <td>0.110</td>
+      <td>40,076</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(None, 1)</td>
+      <td>0.513</td>
+      <td>0.097</td>
+      <td>40,076</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(25, 1)</td>
+      <td>0.507</td>
+      <td>0.106</td>
+      <td>40,076</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <td>logreg</td>
+      <td>{'C': 2.0}</td>
+      <td>0.335</td>
+      <td>0.018</td>
+      <td>40,076</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TABEL 2 — Semua konfigurasi yang diuji
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>Model</th>
+      <th>Params</th>
+      <th>Polygon F1 (mean)</th>
+      <th>Polygon F1 (std)</th>
+      <th>n_fold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rf</td>
+      <td>(None, 1)</td>
+      <td>0.503</td>
+      <td>0.098</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(None, 2)</td>
+      <td>0.493</td>
+      <td>0.098</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(25, 1)</td>
+      <td>0.507</td>
+      <td>0.106</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(25, 2)</td>
+      <td>0.503</td>
+      <td>0.103</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(None, 1)</td>
+      <td>0.513</td>
+      <td>0.097</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(None, 2)</td>
+      <td>0.510</td>
+      <td>0.092</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(25, 1)</td>
+      <td>0.505</td>
+      <td>0.090</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(25, 2)</td>
+      <td>0.491</td>
+      <td>0.088</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.05, 31)</td>
+      <td>0.517</td>
+      <td>0.105</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.05, 63)</td>
+      <td>0.518</td>
+      <td>0.086</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.1, 31)</td>
+      <td>0.522</td>
+      <td>0.110</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.1, 63)</td>
+      <td>0.510</td>
+      <td>0.097</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>svm</td>
+      <td>{'C': 1}</td>
+      <td>0.537</td>
+      <td>0.072</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>svm</td>
+      <td>{'C': 10}</td>
+      <td>0.504</td>
+      <td>0.058</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>logreg</td>
+      <td>{'C': 0.5}</td>
+      <td>0.326</td>
+      <td>0.016</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>logreg</td>
+      <td>{'C': 2.0}</td>
+      <td>0.335</td>
+      <td>0.018</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TABEL 3 — Model tersimpan
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>File</th>
+      <th>Ukuran (KB)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pixel_et.pkl</td>
+      <td>1281880</td>
+    </tr>
+    <tr>
+      <td>pixel_lgbm.pkl</td>
+      <td>6002</td>
+    </tr>
+    <tr>
+      <td>pixel_logreg.pkl</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>pixel_rf.pkl</td>
+      <td>484353</td>
+    </tr>
+    <tr>
+      <td>pixel_svm.pkl</td>
+      <td>1109</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">run_cv</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(builder, X, y, groups, param_list, use_groups=True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">run_cv</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>def run_cv(builder, X, y, groups, param_list, use_groups=True):
+    cv = StratifiedGroupKFold(n_splits=N_SPLITS)
+    recs, oof = [], {}
+    for pi, params in enumerate(param_list):
+        fpix, fpol, oof_pairs = [], [], []
+        for fold, (tri, vai) in enumerate(cv.split(X, y, groups)):
+            est = builder(params)
+            t0 = time.time()
+            est.fit(X[tri], y[tri])
+            dt = time.time() - t0
+            pv = est.predict(X[vai])
+            fpix.append(float(f1_score(y[vai], pv, average=&quot;macro&quot;, zero_division=0)))
+            f1p, pairs = polygon_vote_f1(y[vai], pv, groups[vai])
+            fpol.append(f1p)
+            oof_pairs += [(int(a), int(b)) for a, b in pairs]
+            recs.append({&quot;params&quot;: str(params), &quot;fold&quot;: fold, &quot;pixel_f1&quot;: fpix[-1], &quot;polygon_f1&quot;: fpol[-1], &quot;fit_s&quot;: round(dt, 1)})
+        oof[pi] = {&quot;params&quot;: params, &quot;mean_polygon_f1&quot;: float(np.mean(fpol)), &quot;std_polygon_f1&quot;: float(np.std(fpol)),
+                     &quot;mean_pixel_f1&quot;: float(np.mean(fpix)), &quot;pairs&quot;: oof_pairs}
+    best = max(oof, key=lambda k: oof[k][&quot;mean_polygon_f1&quot;])
+    return recs, oof, best
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 4.3b eksperimen polygon-mean (204 baris train).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedGroupKFold</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;../outputs/models&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;../outputs/tables&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># PASTIKAN KOLOM NDVI/NDWI/NDBI ADA</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="p">{</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDBI&quot;</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">trm</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B08&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B04&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B08&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B04&quot;</span><span class="p">])</span>
+    <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;NDWI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B03&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B08&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B03&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B08&quot;</span><span class="p">])</span>
+    <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;NDBI&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B11&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B08&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B11&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;mean_B08&quot;</span><span class="p">])</span>
+
+<span class="n">FEATM</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mean_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;B02&quot;</span><span class="p">,</span> <span class="s2">&quot;B03&quot;</span><span class="p">,</span> <span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B11&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDWI&quot;</span><span class="p">,</span> <span class="s2">&quot;NDBI&quot;</span><span class="p">]</span>
+
+<span class="n">Xm</span> <span class="o">=</span> <span class="n">trm</span><span class="p">[</span><span class="n">FEATM</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">ym</span> <span class="o">=</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;class_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">gm_</span> <span class="o">=</span> <span class="n">trm</span><span class="p">[</span><span class="s2">&quot;fid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="c1"># HITUNG N_SPLITS OTOMATIS DARI KELAS MINORITAS</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ym</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">n_min</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">vc</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="n">N_SPLITS_AUTO</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_min</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: mean train n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">Xm</span><span class="p">)</span><span class="si">}</span><span class="s2"> fitur=</span><span class="si">{</span><span class="n">Xm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> groups=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">gm_</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: distribusi kelas min=</span><span class="si">{</span><span class="n">n_min</span><span class="si">}</span><span class="s2">, N_SPLITS dipakai=</span><span class="si">{</span><span class="n">N_SPLITS_AUTO</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">N_SPLITS_AUTO</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: catatan — N_SPLITS diturunkan dari 5 ke </span><span class="si">{</span><span class="n">N_SPLITS_AUTO</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;karena kelas minoritas hanya </span><span class="si">{</span><span class="n">n_min</span><span class="si">}</span><span class="s2"> sampel&quot;</span><span class="p">)</span>
+
+<span class="c1"># OVERRIDE run_cv DENGAN VERSI AUTO N_SPLITS</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_cv</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">param_list</span><span class="p">,</span> <span class="n">use_groups</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Hitung n_splits dari kelas minoritas</span>
+    <span class="n">vc_local</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">n_min_local</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">vc_local</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="n">n_splits</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">N_SPLITS_AUTO</span><span class="p">,</span> <span class="n">n_min_local</span><span class="p">))</span>
+
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedGroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">)</span>
+
+    <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">pi</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">param_list</span><span class="p">):</span>
+        <span class="n">fpix</span><span class="p">,</span> <span class="n">fpol</span><span class="p">,</span> <span class="n">oof_pairs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">tri</span><span class="p">,</span> <span class="n">vai</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)):</span>
+            <span class="n">est</span> <span class="o">=</span> <span class="n">builder</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">tri</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">tri</span><span class="p">])</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+            <span class="n">pv</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">vai</span><span class="p">])</span>
+            <span class="n">fpix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">vai</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+            <span class="n">f1p</span><span class="p">,</span> <span class="n">pairs</span> <span class="o">=</span> <span class="n">polygon_vote_f1</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">vai</span><span class="p">],</span> <span class="n">pv</span><span class="p">,</span> <span class="n">groups</span><span class="p">[</span><span class="n">vai</span><span class="p">])</span>
+            <span class="n">fpol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1p</span><span class="p">)</span>
+            <span class="n">oof_pairs</span> <span class="o">+=</span> <span class="p">[(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+            <span class="n">recs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">params</span><span class="p">),</span>
+                <span class="s2">&quot;fold&quot;</span><span class="p">:</span> <span class="n">fold</span><span class="p">,</span>
+                <span class="s2">&quot;pixel_f1&quot;</span><span class="p">:</span> <span class="n">fpix</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="s2">&quot;polygon_f1&quot;</span><span class="p">:</span> <span class="n">fpol</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="s2">&quot;fit_s&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="p">})</span>
+        <span class="n">oof</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">params</span><span class="p">,</span>
+            <span class="s2">&quot;mean_polygon_f1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fpol</span><span class="p">)),</span>
+            <span class="s2">&quot;std_polygon_f1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">fpol</span><span class="p">)),</span>
+            <span class="s2">&quot;mean_pixel_f1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">fpix</span><span class="p">)),</span>
+            <span class="s2">&quot;pairs&quot;</span><span class="p">:</span> <span class="n">oof_pairs</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">oof</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">oof</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s2">&quot;mean_polygon_f1&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span><span class="p">,</span> <span class="n">best</span>
+
+
+<span class="c1"># JALANKAN CV + REFIT</span>
+<span class="n">RESM</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="ow">in</span> <span class="n">MODELS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">pl</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">c</span><span class="p">}</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">]</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;svm&quot;</span><span class="p">,</span> <span class="s2">&quot;logreg&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">grid</span>
+    <span class="n">recs</span><span class="p">,</span> <span class="n">oof</span><span class="p">,</span> <span class="n">best</span> <span class="o">=</span> <span class="n">run_cv</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">Xm</span><span class="p">,</span> <span class="n">ym</span><span class="p">,</span> <span class="n">gm_</span><span class="p">,</span> <span class="n">pl</span><span class="p">)</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s2">&quot;params&quot;</span><span class="p">]</span>
+
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">final</span> <span class="o">=</span> <span class="n">builder</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span>
+    <span class="n">final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">ym</span><span class="p">)</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;../outputs/models/mean_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.pkl&quot;</span><span class="p">)</span>
+    <span class="n">RESM</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">],</span>
+        <span class="s2">&quot;recs&quot;</span><span class="p">:</span> <span class="n">recs</span><span class="p">,</span>
+        <span class="s2">&quot;refit_s&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s2">&quot;n_train&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">Xm</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: mean-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> best=</span><span class="si">{</span><span class="n">bp</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;polygonF1=</span><span class="si">{</span><span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s1">&#39;mean_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">±</span><span class="si">{</span><span class="n">oof</span><span class="p">[</span><span class="n">best</span><span class="p">][</span><span class="s1">&#39;std_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;refit_s=</span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># SIMPAN CSV</span>
+<span class="n">cv_path</span> <span class="o">=</span> <span class="s2">&quot;../outputs/tables/cv_mean.csv&quot;</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span> <span class="o">**</span><span class="n">r</span><span class="p">}</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">RESM</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">RESM</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;recs&quot;</span><span class="p">]])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">cv_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: tersimpan </span><span class="si">{</span><span class="n">cv_path</span><span class="si">}</span><span class="s2"> + 5 model mean_*.pkl&quot;</span><span class="p">)</span>
+
+<span class="c1"># TABEL 1 — Ringkasan model</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">RESM</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;best&quot;</span><span class="p">]</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span>
+        <span class="s2">&quot;Best params&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;Polygon F1 (mean)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;mean_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Polygon F1 (std)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;std_polygon_f1&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;n_train&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;n_train&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Refit (s)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;refit_s&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">tab1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Polygon F1 (mean)&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 1 — Ringkasan model polygon-mean&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tab1</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># TABEL 2 — Semua konfigurasi yang diuji (agregasi per model x params)</span>
+<span class="n">det_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">RESM</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">recs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;recs&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="k">for</span> <span class="n">prm</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">recs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">det_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;Model&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span>
+            <span class="s2">&quot;Params&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">prm</span><span class="p">),</span>
+            <span class="s2">&quot;Polygon F1 (mean)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;polygon_f1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Polygon F1 (std)&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;polygon_f1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span><span class="w"> </span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;n_fold&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;polygon_f1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()),</span>
+        <span class="p">})</span>
+<span class="n">tab2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">det_rows</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">tab2</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 2 — tidak ada detail konfigurasi&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 2 — Semua konfigurasi yang diuji&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tab2</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># TABEL 3 — Model tersimpan</span>
+<span class="n">model_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;../outputs/models&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;mean_&quot;</span><span class="p">))</span>
+<span class="n">tab3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;File&quot;</span><span class="p">:</span> <span class="n">model_files</span><span class="p">,</span>
+    <span class="s2">&quot;Ukuran (KB)&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../outputs/models&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">model_files</span>
+    <span class="p">],</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TABEL 3 — Model polygon-mean tersimpan&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tab3</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: mean train n=204 fitur=9 groups=204
+DATA AKTUAL PROJECT: distribusi kelas min=4, N_SPLITS dipakai=4
+DATA AKTUAL PROJECT: catatan — N_SPLITS diturunkan dari 5 ke 4 karena kelas minoritas hanya 4 sampel
+DATA AKTUAL PROJECT: mean-rf best=(None, 1) polygonF1=0.441±0.040 refit_s=1
+DATA AKTUAL PROJECT: mean-et best=(None, 1) polygonF1=0.444±0.061 refit_s=1
+DATA AKTUAL PROJECT: mean-lgbm best=(0.05, 31) polygonF1=0.422±0.053 refit_s=1
+DATA AKTUAL PROJECT: mean-svm best={&#39;C&#39;: 1} polygonF1=0.421±0.034 refit_s=0
+DATA AKTUAL PROJECT: mean-logreg best={&#39;C&#39;: 2.0} polygonF1=0.425±0.016 refit_s=0
+DATA AKTUAL PROJECT: tersimpan ../outputs/tables/cv_mean.csv + 5 model mean_*.pkl
+
+TABEL 1 — Ringkasan model polygon-mean
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>Model</th>
+      <th>Best params</th>
+      <th>Polygon F1 (mean)</th>
+      <th>Polygon F1 (std)</th>
+      <th>n_train</th>
+      <th>Refit (s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>et</td>
+      <td>(None, 1)</td>
+      <td>0.444</td>
+      <td>0.061</td>
+      <td>204</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(None, 1)</td>
+      <td>0.441</td>
+      <td>0.040</td>
+      <td>204</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>logreg</td>
+      <td>{'C': 2.0}</td>
+      <td>0.425</td>
+      <td>0.016</td>
+      <td>204</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.05, 31)</td>
+      <td>0.422</td>
+      <td>0.053</td>
+      <td>204</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>svm</td>
+      <td>{'C': 1}</td>
+      <td>0.421</td>
+      <td>0.034</td>
+      <td>204</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TABEL 2 — Semua konfigurasi yang diuji
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>Model</th>
+      <th>Params</th>
+      <th>Polygon F1 (mean)</th>
+      <th>Polygon F1 (std)</th>
+      <th>n_fold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rf</td>
+      <td>(None, 1)</td>
+      <td>0.441</td>
+      <td>0.040</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(None, 2)</td>
+      <td>0.433</td>
+      <td>0.041</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(25, 1)</td>
+      <td>0.441</td>
+      <td>0.040</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>rf</td>
+      <td>(25, 2)</td>
+      <td>0.433</td>
+      <td>0.041</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(None, 1)</td>
+      <td>0.444</td>
+      <td>0.061</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(None, 2)</td>
+      <td>0.436</td>
+      <td>0.047</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(25, 1)</td>
+      <td>0.444</td>
+      <td>0.061</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>et</td>
+      <td>(25, 2)</td>
+      <td>0.436</td>
+      <td>0.047</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.05, 31)</td>
+      <td>0.422</td>
+      <td>0.053</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.05, 63)</td>
+      <td>0.422</td>
+      <td>0.053</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.1, 31)</td>
+      <td>0.415</td>
+      <td>0.030</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>lgbm</td>
+      <td>(0.1, 63)</td>
+      <td>0.415</td>
+      <td>0.030</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>svm</td>
+      <td>{'C': 1}</td>
+      <td>0.421</td>
+      <td>0.034</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>svm</td>
+      <td>{'C': 10}</td>
+      <td>0.411</td>
+      <td>0.019</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>logreg</td>
+      <td>{'C': 0.5}</td>
+      <td>0.419</td>
+      <td>0.009</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>logreg</td>
+      <td>{'C': 2.0}</td>
+      <td>0.425</td>
+      <td>0.016</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TABEL 3 — Model polygon-mean tersimpan
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>File</th>
+      <th>Ukuran (KB)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mean_et.pkl</td>
+      <td>8433</td>
+    </tr>
+    <tr>
+      <td>mean_lgbm.pkl</td>
+      <td>2165</td>
+    </tr>
+    <tr>
+      <td>mean_logreg.pkl</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>mean_rf.pkl</td>
+      <td>3686</td>
+    </tr>
+    <tr>
+      <td>mean_svm.pkl</td>
+      <td>29</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+<section id="hasil-cv-pemenang-dari-angka-bukan-opini">
+<h2>Hasil CV (pemenang dari angka, bukan opini)<a class="headerlink" href="#hasil-cv-pemenang-dari-angka-bukan-opini" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Pixel-based (5 fold): svm 0,537±0,072 tertinggi; lgbm 0,522±0,110; et 0,513±0,097; rf 0,507±0,106; logreg 0,335±0,018. Std antar fold tumpang tindih pada empat model non-linear — keunggulan svm tidak diklaim bermakna; logreg jelas tertinggal (batas linear).</p></li>
+<li><p>Polygon-mean (4 fold, adaptasi karena Laut 4 polygon): et 0,444±0,061 tertinggi; rf 0,441; logreg 0,425; lgbm 0,422; svm 0,421 — kelimanya seri dalam noise.</p></li>
+<li><p>Pixel-based di atas mean pada semua model non-linear; F1 level pixel tambahan ±0,42 untuk keduanya (beda muncul setelah voting per polygon).</p></li>
+<li><p>Pemenang prosedural: <strong>pixel-svm</strong> (0,537). RF terbaik (pixel, 0,507) bukan pemenang — dua berkas berbeda.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — konfigurasi terbaik tiap model (polygon-F1 mean tertinggi).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">for</span> <span class="n">f_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cv_pixel.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;cv_mean.csv&quot;</span><span class="p">]:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../outputs/tables/</span><span class="si">{</span><span class="n">f_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;params&quot;</span><span class="p">],</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s2">&quot;polygon_f1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">mean</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: </span><span class="si">{</span><span class="n">f_</span><span class="si">}</span><span class="s2"> (konfigurasi terbaik tiap model, polygon-F1 mean±std) =&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: cv_pixel.csv (konfigurasi terbaik tiap model, polygon-F1 mean±std) =
+            params   mean    std
+model                           
+svm       {&#39;C&#39;: 1}  0.537  0.072
+lgbm     (0.1, 31)  0.522  0.110
+et       (None, 1)  0.513  0.097
+rf         (25, 1)  0.507  0.106
+logreg  {&#39;C&#39;: 2.0}  0.335  0.018
+DATA AKTUAL PROJECT: cv_mean.csv (konfigurasi terbaik tiap model, polygon-F1 mean±std) =
+            params   mean    std
+model                           
+et       (None, 1)  0.444  0.061
+rf       (None, 1)  0.441  0.040
+logreg  {&#39;C&#39;: 2.0}  0.425  0.016
+lgbm    (0.05, 31)  0.422  0.053
+svm       {&#39;C&#39;: 1}  0.421  0.034
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualisasi-setiap-gambar-dibaca-apa-yang-terlihat">
+<h2>4.5 Visualisasi (setiap gambar dibaca: apa yang terlihat)<a class="headerlink" href="#visualisasi-setiap-gambar-dibaca-apa-yang-terlihat" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — plot 1-2: CV polygon-F1 dan pixel-F1 per model x metode.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">ORD</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="s2">&quot;et&quot;</span><span class="p">,</span> <span class="s2">&quot;lgbm&quot;</span><span class="p">,</span> <span class="s2">&quot;svm&quot;</span><span class="p">,</span> <span class="s2">&quot;logreg&quot;</span><span class="p">]</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/cv_pixel.csv&quot;</span><span class="p">)</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../outputs/tables/cv_mean.csv&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;polygon_f1&quot;</span><span class="p">,</span> <span class="s2">&quot;CV macro-F1 level polygon (METRIK UTAMA)&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;pixel_f1&quot;</span><span class="p">,</span> <span class="s2">&quot;CV macro-F1 level pixel (tambahan)&quot;</span><span class="p">)]:</span>
+    <span class="n">mp</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">ORD</span><span class="p">)</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">ORD</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ORD</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">mp</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">mp</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;pixel-based&quot;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">mm</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">mm</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;polygon-mean&quot;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ORD</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../outputs/figures/cv_f1_bars.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: errorbar = std antar fold (5 fold untuk pixel-based, 4 fold untuk polygon-mean)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1bd4baa27ef5d8b81663803473f0f3a5c9af3402cbafe265d10677c9a53ec7b8.png" src="../../_images/1bd4baa27ef5d8b81663803473f0f3a5c9af3402cbafe265d10677c9a53ec7b8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: errorbar = std antar fold (5 fold untuk pixel-based, 4 fold untuk polygon-mean)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — plot 3: sebaran per-fold + waktu training.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Susun data dan label secara sinkron</span>
+<span class="n">label_all</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;px-</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ORD</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mn-</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ORD</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">[</span><span class="n">dp</span><span class="p">[</span><span class="n">dp</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">m</span><span class="p">][</span><span class="s2">&quot;polygon_f1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ORD</span><span class="p">]</span>
+    <span class="o">+</span> <span class="p">[</span><span class="n">dm</span><span class="p">[</span><span class="n">dm</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">m</span><span class="p">][</span><span class="s2">&quot;polygon_f1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ORD</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_all</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">label_all</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Sebaran polygon-F1 per fold&quot;</span><span class="p">)</span>
+
+<span class="n">ft</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">)[</span><span class="s2">&quot;fit_s&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">ORD</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ORD</span><span class="p">,</span> <span class="n">ft</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rata-rata waktu fit per fold, pixel-based (detik)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../outputs/figures/cv_spread_time.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/471ba3fbd0ff48ab47d793da7b3fbac699157cd2e72895c1fdf0966a9eb5b874.png" src="../../_images/471ba3fbd0ff48ab47d793da7b3fbac699157cd2e72895c1fdf0966a9eb5b874.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — plot 4: confusion matrix OOF level polygon (10 kombinasi).</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ORD</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">RESX</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([(</span><span class="s2">&quot;pixel&quot;</span><span class="p">,</span> <span class="n">RES</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">RESM</span><span class="p">)]):</span>
+        <span class="n">prs</span> <span class="o">=</span> <span class="n">RESX</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;best&quot;</span><span class="p">][</span><span class="s2">&quot;pairs&quot;</span><span class="p">]</span>
+        <span class="n">yt</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">]</span>
+        <span class="n">yp</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">prs</span><span class="p">]</span>
+        <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cm</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                      <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;aktual (pixel-based)&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;aktual (polygon-mean)&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../outputs/figures/oof_confusion.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: dinormalisasi per baris (recall); label 1-6&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b332bc2a2af513f27569498f0afd42bc25d61b1fe04a90e9cf75e6193a7af705.png" src="../../_images/b332bc2a2af513f27569498f0afd42bc25d61b1fe04a90e9cf75e6193a7af705.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: dinormalisasi per baris (recall); label 1-6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — plot 5: feature importance model tree terbaik per metode.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">RESX</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([(</span><span class="s2">&quot;pixel&quot;</span><span class="p">,</span> <span class="n">RES</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">RESM</span><span class="p">)]):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="s2">&quot;et&quot;</span><span class="p">,</span> <span class="s2">&quot;lgbm&quot;</span><span class="p">]):</span>
+        <span class="n">mdl</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../outputs/models/</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.pkl&quot;</span><span class="p">)</span>
+        <span class="n">imp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mdl</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">FEATS</span><span class="p">,</span> <span class="n">imp</span> <span class="o">/</span> <span class="n">imp</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: importance dinormalisasi (RF/ET=LGBM tertimbang; SVM/LogReg linear tidak ditampilkan)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../outputs/figures/feat_importance.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: importance dinormalisasi (RF/ET=LGBM tertimbang; SVM/LogReg linear tidak ditampilkan)
+</pre></div>
+</div>
+<img alt="../../_images/a324f8edbf3a52400025e313797da2d159e0ca24889c0cd520ff2aba625c1608.png" src="../../_images/a324f8edbf3a52400025e313797da2d159e0ca24889c0cd520ff2aba625c1608.png" />
+</div>
+</div>
+<p><strong>Interpretasi visual:</strong> errorbar (std antar fold) bertumpang tindih, jadi selisih kecil antar model bukan bukti. Confusion OOF dibaca per baris: recall = berapa persen polygon kelas itu yang tertangkap benar.</p>
+<ul class="simple">
+<li><p>Recall Mangrove 0,60-0,78. Mangrove bukan selalu yang tertinggi: pixel-svm dan mean-svm tertinggi di Danau (0,77 dan 0,75), pixel-logreg tertinggi di Sawah (0,75).</p></li>
+<li><p>Recall Danau 0,07-0,77; pixel-logreg hanya 0,07 karena Danau tertukar ke Sawah 0,42 dan Mangrove 0,40.</p></li>
+<li><p>Lahan hijau bocor ke Sawah sampai 0,57 pada pixel-logreg.</p></li>
+<li><p>Laut recall 0,00 pada 9 dari 10 kombinasi (pixel-svm 0,25). Laut salah masuk Bangunan 0,50 hanya pada pixel-rf dan pixel-et; pixel-lgbm masuk Sawah 0,50, pixel-svm masuk Danau 0,50, pixel-logreg masuk Mangrove 0,50.</p></li>
+<li><p>Importance pixel-based: B12, B11, dan B02 tertinggi, NDBI menengah. Importance polygon-mean: NDBI, B11, B12 tertinggi dan B08 cukup tinggi (mean-lgbm B08 sejajar B11). Dibaca sebagai kontribusi model, bukan klaim fisika.</p></li>
+<li><p>Catatan: grafik bar dan boxplot 4.5 memakai rata-rata semua konfigurasi grid, sehingga angkanya lebih rendah daripada konfigurasi terbaik di Tabel 1.</p></li>
+</ul>
+</section>
+<section id="simpan-model-terbaik-metadata">
+<h2>4.6 Simpan model terbaik + metadata<a class="headerlink" href="#simpan-model-terbaik-metadata" title="Link to this heading">#</a></h2>
+<p>Pemenang = skor CV polygon-F1 tertinggi (bila seri dalam std, pilih yang lebih sederhana dan nyatakan). RF terbaik selalu disimpan (syarat tugas).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DATA AKTUAL PROJECT — 4.6 pemenang + best_model.pkl + random_forest_best.pkl + metadata JSON.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lightgbm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sklearn</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="p">{(</span><span class="n">tag</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span> <span class="n">R</span><span class="p">[</span><span class="s2">&quot;best&quot;</span><span class="p">][</span><span class="s2">&quot;mean_polygon_f1&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">RX</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;pixel&quot;</span><span class="p">,</span> <span class="n">RES</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">RESM</span><span class="p">)]</span> <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">R</span> <span class="ow">in</span> <span class="n">RX</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">win</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">score</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: pemenang = </span><span class="si">{</span><span class="n">win</span><span class="si">}</span><span class="s2"> skor=</span><span class="si">{</span><span class="n">score</span><span class="p">[</span><span class="n">win</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../outputs/models/</span><span class="si">{</span><span class="n">win</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">win</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;../outputs/models/best_model.pkl&quot;</span><span class="p">)</span>
+<span class="n">rfscore</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">RESX</span><span class="p">[</span><span class="s2">&quot;rf&quot;</span><span class="p">][</span><span class="s2">&quot;best&quot;</span><span class="p">][</span><span class="s2">&quot;mean_polygon_f1&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">RESX</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;pixel&quot;</span><span class="p">,</span> <span class="n">RES</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">RESM</span><span class="p">)]}</span>
+<span class="n">rftag</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rfscore</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">rfscore</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../outputs/models/</span><span class="si">{</span><span class="n">rftag</span><span class="si">}</span><span class="s2">_rf.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;../outputs/models/random_forest_best.pkl&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DATA AKTUAL PROJECT: RF terbaik = </span><span class="si">{</span><span class="n">rftag</span><span class="si">}</span><span class="s2"> skor=</span><span class="si">{</span><span class="n">rfscore</span><span class="p">[</span><span class="n">rftag</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">; sama_dengan_best = </span><span class="si">{</span><span class="n">rftag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">win</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;rf&#39;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">win</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">win</span><span class="p">),</span> <span class="s2">&quot;best_cv_polygon_f1&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="n">win</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="n">FEATS</span><span class="p">,</span> <span class="s2">&quot;class_mapping&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Sawah&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Bangunan / Permukiman&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;Mangrove&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Lahan hijau&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;Laut&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;Danau&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;pixel_rule&quot;</span><span class="p">:</span> <span class="s2">&quot;centroid (all_touched=False)&quot;</span><span class="p">,</span> <span class="s2">&quot;cap_500&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;cap_rng&quot;</span><span class="p">:</span> <span class="s2">&quot;RandomState(42) urut fid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_index_def&quot;</span><span class="p">:</span> <span class="s2">&quot;indeks dari mean band&quot;</span><span class="p">,</span> <span class="s2">&quot;nodata&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">32768</span><span class="p">,</span> <span class="s2">&quot;index_formulas&quot;</span><span class="p">:</span> <span class="s2">&quot;NDVI=(B08-B04)/(B08+B04); NDWI=(B03-B08)/(B03+B08); NDBI=(B11-B08)/(B11+B08)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;svm_subsample&quot;</span><span class="p">:</span> <span class="s2">&quot;8861 stratified seed 42 (pixel train saja)&quot;</span><span class="p">,</span> <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="s2">&quot;StratifiedGroupKFold group=FID (5 fold pixel-based; 4 fold polygon-mean, adaptasi Laut 4 polygon)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;libraries&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;sklearn&quot;</span><span class="p">:</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="s2">&quot;lightgbm&quot;</span><span class="p">:</span> <span class="n">lightgbm</span><span class="o">.</span><span class="n">__version__</span><span class="p">},</span>
+        <span class="s2">&quot;tanggal&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">timespec</span><span class="o">=</span><span class="s2">&quot;seconds&quot;</span><span class="p">)}</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../outputs/models/metadata.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA AKTUAL PROJECT: tersimpan best_model.pkl + random_forest_best.pkl + metadata.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA AKTUAL PROJECT: pemenang = (&#39;pixel&#39;, &#39;svm&#39;) skor=0.537
+DATA AKTUAL PROJECT: RF terbaik = pixel skor=0.507; sama_dengan_best = False
+DATA AKTUAL PROJECT: tersimpan best_model.pkl + random_forest_best.pkl + metadata.json
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checkpoint-tahap-4">
+<h2>Checkpoint Tahap 4<a class="headerlink" href="#checkpoint-tahap-4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>10 kombinasi (5 model × 2 metode) terlatih, tanpa ada yang dilewati.</p></li>
+<li><p>Hasil CV tersimpan (<code class="docutils literal notranslate"><span class="pre">cv_pixel.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">cv_mean.csv</span></code>); pemenang dipilih dari CV training.</p></li>
+<li><p>Test set tidak dipakai untuk tuning maupun skor (hanya dihitung jumlahnya di 4.1).</p></li>
+<li><p>Model tersimpan (10 berkas) + <code class="docutils literal notranslate"><span class="pre">best_model.pkl</span></code> (pixel-svm) + <code class="docutils literal notranslate"><span class="pre">random_forest_best.pkl</span></code> (pixel-rf) + <code class="docutils literal notranslate"><span class="pre">metadata.json</span></code>.</p></li>
+<li><p>Adaptasi tercatat: mean memakai 4 fold; SVM pixel memakai subsample 8.861 (stratified, seed 42).</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./07_klasifikasi_lahan_jatim\notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_data_preprocessing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">BAB 3 — Data Preprocessing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_evaluation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BAB 5 — Evaluation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-pixel-based-vs-polygon-mean">Eksperimen pixel-based vs polygon-mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mulai-dari-hasil-tahap-3">4.1 Mulai dari hasil Tahap 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-model-penjelasan-dulu-baru-kode">4.2 Konsep model (penjelasan dulu, baru kode)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kartu-model-netral-kelebihan-kekurangan-singkat">Kartu model (netral; kelebihan/kekurangan singkat)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-eksperimen-perlakuan-setara">4.3 Matriks eksperimen (perlakuan setara)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-cv-cross-validation-ditetapkan-sebelum-melihat-hasil">4.4 Ukuran CV(Cross Validation) — ditetapkan SEBELUM melihat hasil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-cv-pemenang-dari-angka-bukan-opini">Hasil CV (pemenang dari angka, bukan opini)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-setiap-gambar-dibaca-apa-yang-terlihat">4.5 Visualisasi (setiap gambar dibaca: apa yang terlihat)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpan-model-terbaik-metadata">4.6 Simpan model terbaik + metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-tahap-4">Checkpoint Tahap 4</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

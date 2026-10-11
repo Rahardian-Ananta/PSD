@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction &#8212; My sample book</title>
+    <title>Proyek Sains Data IF2231 &#8212; Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur</title>
   
   
   
@@ -149,8 +149,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-light" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data IF2231: Klasterisasi Polutan Jabon dan Klasifikasi Lahan Jawa Timur - Home"/>
   
   
 </a></div>
@@ -167,7 +167,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Introduction
+                    Proyek Sains Data IF2231
                 </a>
             </li>
         </ul>
@@ -231,6 +231,16 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 7 — KLASIFIKASI LAHAN JAWA TIMUR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/notebooks/01_business_understanding.html">7.1 Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/notebooks/02_data_understanding.html">7.2 Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/notebooks/03_data_preprocessing.html">7.3 Data Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/notebooks/04_modeling.html">7.4 Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/notebooks/05_evaluation.html">7.5 Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/notebooks/06_webgis.html">7.6 WebGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_klasifikasi_lahan_jatim/deployment.html">7.7 Deployment</a></li>
 </ul>
 
     </div>
@@ -413,7 +423,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>Proyek Sains Data IF2231</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -423,19 +433,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumentasi-proyek-sains-data-analisis-polutan-atmosfer-di-kecamatan-jabon-berdasarkan-citra-satelit-sentinel-5p">Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kecamatan Jabon Berdasarkan Citra Satelit Sentinel-5P</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang-wilayah-studi">Latar Belakang &amp; Wilayah Studi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permasalahan-utama-di-kecamatan-jabon">Permasalahan Utama di Kecamatan Jabon</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solusi-penginderaan-jauh-satelit">Solusi Penginderaan Jauh Satelit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analitik-citra-satelit-untuk-pemantauan-lingkungan-klasterisasi-polutan-udara-dan-klasifikasi-tutupan-lahan">Analitik Citra Satelit untuk Pemantauan Lingkungan: Klasterisasi Polutan Udara dan Klasifikasi Tutupan Lahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dua-kajian-dalam-satu-dokumentasi">Dua Kajian dalam Satu Dokumentasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyek-1-klasterisasi-polutan-udara-kawasan-jabon-bab-16">Proyek 1 — Klasterisasi Polutan Udara Kawasan Jabon (Bab 1–6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyek-2-klasifikasi-tutupan-lahan-jawa-timur-bab-7">Proyek 2 — Klasifikasi Tutupan Lahan Jawa Timur (Bab 7)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi: CRISP-DM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tech-stack-tools">Tech Stack &amp; Tools</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-3d-kampus">Model 3D Kampus</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-pengembang">Tim Pengembang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigasi-dokumen">Navigasi Dokumen</a><ul class="nav section-nav flex-column">
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup-dan-kerangka-kerja">Ruang Lingkup dan Kerangka Kerja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tautan">Tautan</a></li>
 </ul>
             </nav>
         </div>
@@ -447,208 +452,100 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
-<section id="dokumentasi-proyek-sains-data-analisis-polutan-atmosfer-di-kecamatan-jabon-berdasarkan-citra-satelit-sentinel-5p">
-<h2>Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kecamatan Jabon Berdasarkan Citra Satelit Sentinel-5P<a class="headerlink" href="#dokumentasi-proyek-sains-data-analisis-polutan-atmosfer-di-kecamatan-jabon-berdasarkan-citra-satelit-sentinel-5p" title="Link to this heading">#</a></h2>
-<blockquote>
-<div><p><strong>“From Raw Satellite Data to Actionable Air Quality Insights”</strong></p>
-</div></blockquote>
-<p>Selamat datang di dokumentasi interaktif proyek sains data kami. Halaman ini berfungsi sebagai <strong>Living Document</strong> (dokumen hidup) yang mencatat seluruh siklus pengembangan solusi berbasis data untuk mata kuliah <strong>Proyek Sains Data (IF2231)</strong> di Program Studi Teknik Informatika, Universitas Trunojoyo Madura.</p>
-<p>Dokumentasi ini disusun menggunakan <strong>Jupyter Book</strong> untuk memastikan transparansi proses, reproduktibilitas kode, dan kemudahan dalam menelusuri alur analisis dari tahap awal perolehan data mentah hingga ekstraksi fitur deret waktu.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="proyek-sains-data-if2231">
+<h1>Proyek Sains Data IF2231<a class="headerlink" href="#proyek-sains-data-if2231" title="Link to this heading">#</a></h1>
+<section id="analitik-citra-satelit-untuk-pemantauan-lingkungan-klasterisasi-polutan-udara-dan-klasifikasi-tutupan-lahan">
+<h2>Analitik Citra Satelit untuk Pemantauan Lingkungan: Klasterisasi Polutan Udara dan Klasifikasi Tutupan Lahan<a class="headerlink" href="#analitik-citra-satelit-untuk-pemantauan-lingkungan-klasterisasi-polutan-udara-dan-klasifikasi-tutupan-lahan" title="Link to this heading">#</a></h2>
+<p>Buku ini menyajikan dua kajian sains data yang dibangun di atas data penginderaan jauh multispektral dan diterapkan pada dua persoalan lingkungan yang berbeda di Jawa Timur. Kedua kajian dikerjakan secara terpisah dengan kerangka kerja <strong>CRISP-DM</strong> (Cross-Industry Standard Process for Data Mining), namun dihimpun dalam satu dokumentasi agar mudah ditelusuri dari pertanyaan bisnis, data, metode, hingga evaluasi dan penyajian hasil.</p>
 </section>
 <hr class="docutils" />
-<section id="latar-belakang-wilayah-studi">
-<h2>Latar Belakang &amp; Wilayah Studi<a class="headerlink" href="#latar-belakang-wilayah-studi" title="Link to this heading">#</a></h2>
-<section id="permasalahan-utama-di-kecamatan-jabon">
-<h3>Permasalahan Utama di Kecamatan Jabon<a class="headerlink" href="#permasalahan-utama-di-kecamatan-jabon" title="Link to this heading">#</a></h3>
-<p>Kualitas udara merupakan salah satu penentu kesehatan lingkungan dan masyarakat. <strong>Kecamatan Jabon</strong>, yang terletak di perbatasan selatan Kabupaten Sidoarjo dengan Kabupaten Pasuruan, merupakan wilayah strategis dengan lalu lintas logistik industri yang padat serta kedekatannya dengan kawasan terdampak lingkungan luapan lumpur Lapindo. Namun, stasiun pemantauan terestrial di darat memiliki keterbatasan jumlah dan tidak menjangkau wilayah Kecamatan Jabon secara langsung.</p>
-<p><strong>Bagaimana cara memantau, menganalisis, dan mengekstraksi karakteristik polutan udara di seluruh wilayah Kecamatan Jabon secara komprehensif tanpa bergantung pada stasiun darat?</strong></p>
+<section id="dua-kajian-dalam-satu-dokumentasi">
+<h2>Dua Kajian dalam Satu Dokumentasi<a class="headerlink" href="#dua-kajian-dalam-satu-dokumentasi" title="Link to this heading">#</a></h2>
+<section id="proyek-1-klasterisasi-polutan-udara-kawasan-jabon-bab-16">
+<h3>Proyek 1 — Klasterisasi Polutan Udara Kawasan Jabon (Bab 1–6)<a class="headerlink" href="#proyek-1-klasterisasi-polutan-udara-kawasan-jabon-bab-16" title="Link to this heading">#</a></h3>
+<p>Kajian ini memantau dinamika kualitas udara di <strong>Kecamatan Jabon, Kabupaten Sidoarjo</strong> dari deret waktu <strong>Sentinel-5P TROPOMI</strong>. Ketiadaan stasiun pemantauan terestrial di wilayah pinggiran industri Sidoarjo–Pasuruan menjadikan citra satelit sebagai sumber data utama. Enam parameter polutan dianalisis — <strong>NO₂, CO, HCHO, SO₂, O₃, dan CH₄</strong> — melalui tahapan pembersihan data, ekstraksi <strong>68 fitur deret waktu (TSFEL)</strong>, reduksi dimensi, hingga klasterisasi dan analisis komparatif antar daerah. Bab 6 melengkapi kajian ini dengan klasifikasi sawah <em>versus</em> non-sawah pada citra Sentinel-2A di kawasan Jabon.</p>
 </section>
-<section id="solusi-penginderaan-jauh-satelit">
-<h3>Solusi Penginderaan Jauh Satelit<a class="headerlink" href="#solusi-penginderaan-jauh-satelit" title="Link to this heading">#</a></h3>
-<p>Kami memanfaatkan data satelit <strong>Sentinel-5P TROPOMI</strong> dari <em>Copernicus Data Space Ecosystem</em> menggunakan batas poligon Area of Interest (AOI) <code class="docutils literal notranslate"><span class="pre">jabon.geojson</span></code>. Pendekatan ini memungkinkan:</p>
-<ol class="arabic simple">
-<li><p>Pemantauan kualitas udara secara spasial di seluruh wilayah Kecamatan Jabon (<span class="math notranslate nohighlight">\(\approx 82\text{ km}^2\)</span>).</p></li>
-<li><p>Analisis deret waktu harian untuk 6 polutan utama (<span class="math notranslate nohighlight">\(\text{NO}_2, \text{CO}, \text{HCHO}, \text{SO}_2, \text{O}_3, \text{CH}_4\)</span>) selama periode <strong>31 Agustus 2025 hingga 31 Agustus 2026</strong> (366 hari observasi).</p></li>
-<li><p>Pembersihan, penanganan nilai hilang berbasis <strong>Interpolasi Linear</strong>, serta ekstraksi <strong>68 fitur deret waktu</strong> (<em>TSFEL</em>) untuk pemodelan prediktif lanjutan.</p></li>
-</ol>
+<section id="proyek-2-klasifikasi-tutupan-lahan-jawa-timur-bab-7">
+<h3>Proyek 2 — Klasifikasi Tutupan Lahan Jawa Timur (Bab 7)<a class="headerlink" href="#proyek-2-klasifikasi-tutupan-lahan-jawa-timur-bab-7" title="Link to this heading">#</a></h3>
+<p>Kajian ini melakukan <strong>klasifikasi tutupan lahan enam kelas</strong> untuk wilayah Provinsi Jawa Timur menggunakan komposit median <strong>Sentinel-2 L2A</strong>. Sembilan fitur spektral (enam band ditambah indeks <strong>NDVI, NDWI, dan NDBI</strong>) dilatihkan pada sepuluh kombinasi model machine learning dengan validasi silang berbasis poligon. Hasil klasifikasi disajikan sebagai peta interaktif (WebGIS) beserta aplikasi web untuk penelusuran metrik, peta, dan berkas keluaran.</p>
 </section>
 </section>
 <hr class="docutils" />
-<section id="metodologi-crisp-dm">
-<h2>Metodologi: CRISP-DM<a class="headerlink" href="#metodologi-crisp-dm" title="Link to this heading">#</a></h2>
-<p>Sesuai dengan kurikulum mata kuliah, proyek ini mengikuti kerangka kerja standar industri <strong>CRISP-DM</strong> (<em>Cross-Industry Standard Process for Data Mining</em>). Struktur Jupyter Book ini dirancang mengikuti tahapan utama:</p>
+<section id="ruang-lingkup-dan-kerangka-kerja">
+<h2>Ruang Lingkup dan Kerangka Kerja<a class="headerlink" href="#ruang-lingkup-dan-kerangka-kerja" title="Link to this heading">#</a></h2>
+<p>Setiap kajian mengikuti alur CRISP-DM yang sama, sehingga pembaca dapat membandingkan penanganan masalah, kualitas data, dan pilihan metode pada dua domain yang berbeda.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Tahapan Bab</p></th>
-<th class="head text-left"><p>Fokus Aktivitas &amp; Luaran</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Bab</p></th>
+<th class="head text-left"><p>Tahapan</p></th>
+<th class="head text-left"><p>Proyek 1 — Polutan Jabon</p></th>
+<th class="head text-left"><p>Proyek 2 — Tutupan Lahan Jawa Timur</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><strong>BAB 1 — Business Understanding</strong></p></td>
-<td class="text-left"><p>Definisi masalah kualitas udara di Kecamatan Jabon, tujuan proyek, dan perumusan pertanyaan analisis.</p></td>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>Business Understanding</p></td>
+<td class="text-left"><p>Latar belakang lingkungan Jabon dan kebutuhan data satelit</p></td>
+<td class="text-left"><p>Tujuan klasifikasi tutupan lahan dan definisi enam kelas</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>BAB 2 — Data Understanding</strong></p></td>
-<td class="text-left"><p>Pengumpulan data satelit Sentinel-5P via openEO (<code class="docutils literal notranslate"><span class="pre">jabon.geojson</span></code>), deskripsi dataset, EDA, analisis skema PostgreSQL Aiven &amp; KNIME, identifikasi 102 missing value, dan analisis pencilan (<em>outliers</em>).</p></td>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Data Understanding</p></td>
+<td class="text-left"><p>Akuisisi Sentinel-5P, EDA, integrasi Aiven, alur KNIME</p></td>
+<td class="text-left"><p>Profil raster Sentinel-2, inventaris poligon label, EDA</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>BAB 3 — Data Preprocessing</strong></p></td>
-<td class="text-left"><p>Pembersihan indeks waktu, strategi penanganan pencilan, imputasi missing value (<strong>3.3.1 Interpolasi Linear</strong>), dan validasi integritas data bersih 366 hari.</p></td>
+<tr class="row-even"><td class="text-left"><p>3</p></td>
+<td class="text-left"><p>Data Preprocessing</p></td>
+<td class="text-left"><p>Deteksi outlier IQR, imputasi interpolasi linear</p></td>
+<td class="text-left"><p>Validasi poligon (V1–V6), seleksi sampel, split per poligon</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>BAB 4 — Feature Extraction</strong></p></td>
-<td class="text-left"><p>Penyiapan sinyal kontinu, konfigurasi pustaka TSFEL, ekstraksi domain statistik, domain temporal, domain spektral, dan tabulasi matriks 68 fitur.</p></td>
+<tr class="row-odd"><td class="text-left"><p>4</p></td>
+<td class="text-left"><p>Feature Extraction / Modeling</p></td>
+<td class="text-left"><p>Ekstraksi 68 fitur TSFEL</p></td>
+<td class="text-left"><p>Pelatihan 10 kombinasi model dan validasi silang</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>5</p></td>
+<td class="text-left"><p>Evaluation / Clustering</p></td>
+<td class="text-left"><p>Klasterisasi dan analisis komparatif antar daerah</p></td>
+<td class="text-left"><p>Evaluasi sekali pada data uji, interval kepercayaan bootstrap</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>6</p></td>
+<td class="text-left"><p>Deployment / WebGIS</p></td>
+<td class="text-left"><p>Klasifikasi sawah Jabon pada Sentinel-2A</p></td>
+<td class="text-left"><p>Peta klasifikasi interaktif dan aplikasi web</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>7</p></td>
+<td class="text-left"><p>Deployment</p></td>
+<td class="text-left"><p>—</p></td>
+<td class="text-left"><p>Inferensi seluruh raster, penyajian, dan aplikasi Streamlit</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
 <hr class="docutils" />
-<section id="tech-stack-tools">
-<h2>Tech Stack &amp; Tools<a class="headerlink" href="#tech-stack-tools" title="Link to this heading">#</a></h2>
+<section id="tautan">
+<h2>Tautan<a class="headerlink" href="#tautan" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Bahasa Pemrograman:</strong> Python 3.x</p></li>
-<li><p><strong>Pengambilan Data:</strong> openEO (<em>Copernicus Data Space Ecosystem</em>)</p></li>
-<li><p><strong>Basis Data Cloud:</strong> PostgreSQL Aiven (SSL Mode, Float 53-bit)</p></li>
-<li><p><strong>Workflow Analitik Visual:</strong> KNIME Analytics Platform</p></li>
-<li><p><strong>Library Analisis:</strong> Pandas, NumPy, GeoPandas, SQLAlchemy, TSFEL</p></li>
-<li><p><strong>Dokumentasi:</strong> Jupyter Book &amp; MyST Markdown</p></li>
-<li><p><strong>Version Control:</strong> GitHub (<a class="reference external" href="https://github.com/Rahardian-Ananta/PSD">github.com/Rahardian-Ananta/PSD</a>)</p></li>
+<li><p>Dokumentasi daring: <a class="reference external" href="https://rahardian-ananta.github.io/PSD/">https://rahardian-ananta.github.io/PSD/</a></p></li>
+<li><p>Repositori sumber: <a class="github reference external" href="https://github.com/Rahardian-Ananta/PSD">Rahardian-Ananta/PSD</a></p></li>
+<li><p>Aplikasi web interaktif (Proyek 2): <a class="reference external" href="https://rahardian-ananta-psd-klasifikasi-lahan-app-bs77za.streamlit.app/">https://rahardian-ananta-psd-klasifikasi-lahan-app-bs77za.streamlit.app/</a></p></li>
 </ul>
+<p><em>Mata kuliah Proyek Sains Data (IF2231), Program Studi Teknik Informatika, Universitas Trunojoyo Madura.</em></p>
 </section>
-<hr class="docutils" />
-<section id="model-3d-kampus">
-<h2>Model 3D Kampus<a class="headerlink" href="#model-3d-kampus" title="Link to this heading">#</a></h2>
-<p>Sebagai konteks spasial, berikut model 3D kampus Universitas Trunojoyo Madura (±650 × 660 m, 326 mesh gedung + terrain mesh + jalan/kontur) — <strong>interaktif</strong>: seret untuk memutar, scroll untuk zoom:</p>
-<iframe src="data/3d_model/kampus_3d.html" style="width:100%;height:540px;border:1px solid #ccc;border-radius:8px;" title="Model 3D kampus interaktif" loading="lazy"></iframe>
-<blockquote>
-<div><p>Sumber model: <a class="reference external" href="http://topoexport.com">topoexport.com</a> — Gedung/jalan/air/hutan: Overture Maps Foundation 2026 (ODbL); Tajuk: Meta &amp; WRI GCHM v2 2026 (CC BY 4.0); Terrain: DEMNAS 2016 (CC BY 4.0).</p>
-</div></blockquote>
-</section>
-<hr class="docutils" />
-<section id="tim-pengembang">
-<h2>Tim Pengembang<a class="headerlink" href="#tim-pengembang" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>Nama</p></th>
-<th class="head text-left"><p>NIM</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Rahardian Ananta</strong></p></td>
-<td class="text-left"><p>240411100071</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>Dosen Pengampu:</strong> MULA’AB, <a class="reference external" href="http://S.Si">S.Si</a>., M.Kom<br />
-<em>Program Studi Teknik Informatika, Fakultas Teknik, Universitas Trunojoyo Madura</em></p>
-</section>
-<hr class="docutils" />
-<section id="navigasi-dokumen">
-<h2>Navigasi Dokumen<a class="headerlink" href="#navigasi-dokumen" title="Link to this heading">#</a></h2>
-<p>Gunakan menu navigasi di sebelah kiri untuk menelusuri setiap bagian:</p>
-<ol class="arabic simple">
-<li><p><strong>BAB 1 — BUSINESS UNDERSTANDING</strong>:</p>
-<ul class="simple">
-<li><p>1.1 Latar Belakang / Permasalahan</p></li>
-<li><p>1.2 Tujuan</p></li>
-<li><p>1.3 Pertanyaan / Kebutuhan Analisis</p></li>
-</ul>
-</li>
-<li><p><strong>BAB 2 — DATA UNDERSTANDING</strong>:</p>
-<ul class="simple">
-<li><p>2.1 Data Collection (openEO &amp; Sentinel-5P)</p></li>
-<li><p>2.2 Deskripsi Dataset (6 Polutan &amp; Unduh Data)</p></li>
-<li><p>2.3 Exploratory Data Analysis (Struktur DB, Kalkulasi Statistik, Aiven &amp; KNIME)</p></li>
-<li><p>2.4 Identifikasi Missing Value (Analisis 102 Data Kosong)</p></li>
-<li><p>2.5 Identifikasi Outlier (Deteksi Batas IQR &amp; Z-Score)</p></li>
-<li><p>2.6 Kesimpulan Data Understanding</p></li>
-</ul>
-</li>
-<li><p><strong>BAB 3 — DATA PREPROCESSING</strong>:</p>
-<ul class="simple">
-<li><p>3.1 Pembersihan Data</p></li>
-<li><p>3.2 Penanganan Outlier</p></li>
-<li><p>3.3 Imputasi Missing Value (3.3.1 Interpolasi Linear)</p></li>
-<li><p>3.4 Validasi Data Bersih</p></li>
-</ul>
-</li>
-<li><p><strong>BAB 4 — FEATURE EXTRACTION</strong>:</p>
-<ul class="simple">
-<li><p>4.1 Persiapan Data untuk Ekstraksi</p></li>
-<li><p>4.2 Ekstraksi Fitur Menggunakan TSFEL</p></li>
-<li><p>4.3 Fitur Domain Statistical</p></li>
-<li><p>4.4 Fitur Domain Temporal</p></li>
-<li><p>4.5 Fitur Domain Spectral</p></li>
-<li><p>4.6 Hasil Ekstraksi 68 Fitur</p></li>
-<li><p>4.7 Analisis dan Karakteristik Fitur</p></li>
-<li><p>4.8 Bedah 68 Fitur &amp; Perhitungan Manual vs TSFEL</p></li>
-</ul>
-</li>
-</ol>
-<hr class="docutils" />
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 1 — BUSINESS UNDERSTANDING</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="01_business_understanding/1.1_latar_belakang.html">1.1 Latar Belakang</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_business_understanding/1.2_tujuan.html">1.2 Tujuan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01_business_understanding/1.3_pertanyaan_analisis.html">1.3 Pertanyaan Analisis</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 2 — DATA UNDERSTANDING</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.1_data_collection.html">2.1 Data Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.2_deskripsi_dataset.html">2.2 Deskripsi Dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.3_exploratory_data_analysis.html">2.3 Exploratory Data Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.4_identifikasi_missing_value.html">2.4 Identifikasi Missing Value</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.5_identifikasi_outlier.html">2.5 Identifikasi Outlier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.6_kesimpulan_data_understanding.html">2.6 Kesimpulan Data Understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_understanding/2.7_analisis_no2_aiven_knime.html">2.7 Analisis Aiven &amp; KNIME</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 3 — DATA PREPROCESSING</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.1_pembersihan_data.html">3.1 Pembersihan Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.2_penanganan_outlier.html">3.2 Penanganan Outlier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.3_imputasi_missing_value.html">3.3 Imputasi Missing Value</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_data_preprocessing/3.4_validasi_data_bersih.html">3.4 Validasi Data Bersih</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 4 — FEATURE EXTRACTION</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.1_persiapan_data.html">4.1 Persiapan Data untuk Ekstraksi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.2_ekstraksi_fitur_tsfel.html">4.2 Ekstraksi Fitur Menggunakan TSFEL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.3_fitur_domain_statistical.html">4.3 Fitur Domain Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.4_fitur_domain_temporal.html">4.4 Fitur Domain Temporal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.5_fitur_domain_spectral.html">4.5 Fitur Domain Spectral</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.6_hasil_ekstraksi_68_fitur.html">4.6 Hasil Ekstraksi 68 Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.7_analisis_dan_karakteristik_fitur.html">4.7 Analisis dan Karakteristik Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html">4.8 Bedah 68 Fitur TSFEL: Konsep, Isi Data NO2 Jabon, Perhitungan Manual, dan Pembuktian Komparasi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_feature_extraction/4.8_bedah_68_fitur_dan_perhitungan_manual.html#laporan-analisis-fitur-statistik-tsfel-no2-jabon-versi-detail-lanjutan">LAPORAN ANALISIS FITUR STATISTIK TSFEL: NO2 JABON (VERSI DETAIL &amp; LANJUTAN)</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 5 — CLUSTERING &amp; ANALISIS KOMPARATIF</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.1_reduksi_dimensi_pca.html">5.1 Reduksi Dimensi PCA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.2_clustering.html">5.2 Clustering per Polutan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.3_komparasi_dan_kesimpulan.html">5.3 Komparasi dan Kesimpulan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.4_knime_workflow_documentation.html">5.4 Dokumentasi KNIME Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.5_narasi_bab5.html">5.5 Analisis Clustering Polutan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.6_eksperimen_gabungan_204.html">5.6 Eksperimen Gabungan 204 Fitur</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_clustering/5.7_peta_clustering_folium.html">5.7 Peta Clustering Folium (k 2–5, 2 varian)</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">BAB 6 — KLASIFIKASI SAWAH SENTINEL-2A</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="06_klasifikasi_sawah/6.1_persiapan_klasifikasi.html">6.1 Klasifikasi Sawah vs Non-Sawah (Jabon)</a></li>
-</ul>
 </div>
-</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -708,19 +605,14 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dokumentasi-proyek-sains-data-analisis-polutan-atmosfer-di-kecamatan-jabon-berdasarkan-citra-satelit-sentinel-5p">Dokumentasi Proyek Sains Data: Analisis Polutan Atmosfer di Kecamatan Jabon Berdasarkan Citra Satelit Sentinel-5P</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang-wilayah-studi">Latar Belakang &amp; Wilayah Studi</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#permasalahan-utama-di-kecamatan-jabon">Permasalahan Utama di Kecamatan Jabon</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solusi-penginderaan-jauh-satelit">Solusi Penginderaan Jauh Satelit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analitik-citra-satelit-untuk-pemantauan-lingkungan-klasterisasi-polutan-udara-dan-klasifikasi-tutupan-lahan">Analitik Citra Satelit untuk Pemantauan Lingkungan: Klasterisasi Polutan Udara dan Klasifikasi Tutupan Lahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dua-kajian-dalam-satu-dokumentasi">Dua Kajian dalam Satu Dokumentasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyek-1-klasterisasi-polutan-udara-kawasan-jabon-bab-16">Proyek 1 — Klasterisasi Polutan Udara Kawasan Jabon (Bab 1–6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyek-2-klasifikasi-tutupan-lahan-jawa-timur-bab-7">Proyek 2 — Klasifikasi Tutupan Lahan Jawa Timur (Bab 7)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologi-crisp-dm">Metodologi: CRISP-DM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tech-stack-tools">Tech Stack &amp; Tools</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-3d-kampus">Model 3D Kampus</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tim-pengembang">Tim Pengembang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navigasi-dokumen">Navigasi Dokumen</a><ul class="nav section-nav flex-column">
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup-dan-kerangka-kerja">Ruang Lingkup dan Kerangka Kerja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tautan">Tautan</a></li>
 </ul>
   </nav></div>
 
