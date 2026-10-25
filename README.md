@@ -5,6 +5,7 @@
 [![Jupyter Book](https://img.shields.io/badge/docs-Jupyter%20Book-blue.svg)](https://rahardian-ananta.github.io/PSD/)
 [![GitHub Pages](https://img.shields.io/badge/deployment-gh--pages-brightgreen.svg)](https://rahardian-ananta.github.io/PSD/)
 [![Streamlit](https://img.shields.io/badge/app-Streamlit-red.svg)](https://rahardian-ananta-psd-klasifikasi-lahan-app-bs77za.streamlit.app/)
+[![Streamlit](https://img.shields.io/badge/app-Streamlit-red.svg)](https://c7ky9dxxyns6f96cbkmmbz.streamlit.app/)
 [![Database](https://img.shields.io/badge/database-PostgreSQL%20Aiven-orange.svg)](https://aiven.io/)
 
 - **Repositori:** <https://github.com/Rahardian-Ananta/PSD>
