@@ -1,0 +1,26 @@
+model,fold,roc_auc
+Logistic Regression,0,0.8666666666666666
+Logistic Regression,1,0.8653846153846154
+Logistic Regression,2,0.7396449704142012
+Logistic Regression,3,0.9515151515151515
+Logistic Regression,4,0.7514792899408285
+SVM-RBF,0,0.6523809523809524
+SVM-RBF,1,0.8605769230769231
+SVM-RBF,2,0.863905325443787
+SVM-RBF,3,0.7878787878787878
+SVM-RBF,4,0.7041420118343195
+Random Forest,0,0.7833333333333333
+Random Forest,1,0.8774038461538463
+Random Forest,2,0.7159763313609467
+Random Forest,3,0.8393939393939394
+Random Forest,4,0.6893491124260356
+Gradient Boosting,0,0.7333333333333334
+Gradient Boosting,1,0.8774038461538461
+Gradient Boosting,2,0.6272189349112426
+Gradient Boosting,3,0.8363636363636363
+Gradient Boosting,4,0.7100591715976332
+Baseline (prior),0,0.5
+Baseline (prior),1,0.5
+Baseline (prior),2,0.5
+Baseline (prior),3,0.5
+Baseline (prior),4,0.5

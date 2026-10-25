@@ -1,0 +1,50 @@
+{
+  "stage": "05_evaluation",
+  "model_name": "Logistic Regression",
+  "model_class": "LogisticRegression",
+  "model_file": "artifacts\\best_model.joblib",
+  "n_files_test": 40,
+  "n_nim_test": 7,
+  "nims_test": [
+    "24-068",
+    "24-100",
+    "24-119",
+    "24-131",
+    "24-145",
+    "24-168",
+    "24-169"
+  ],
+  "class_counts_test": {
+    "0": 21,
+    "1": 19
+  },
+  "test_threshold": 0.5,
+  "roc_auc": 0.8295739348370927,
+  "pr_auc": 0.8480708048600767,
+  "accuracy": 0.775,
+  "precision_class_1": 0.75,
+  "recall_class_1": 0.7894736842105263,
+  "f1_class_1": 0.7692307692307693,
+  "confusion_matrix": {
+    "tn": 16,
+    "fp": 5,
+    "fn": 4,
+    "tp": 15
+  },
+  "baseline_roc_auc": 0.5,
+  "pr_baseline_prevalence": 0.475,
+  "roc_auc_threshold": 0.85,
+  "roc_auc_meets_threshold": false,
+  "kelayakan_status": "DI BAWAH SYARAT AWAL",
+  "best_cv_roc_auc_tahap_04": 0.8442451778990241,
+  "random_state": 42,
+  "roc_auc_ci_low": 0.6766917293233083,
+  "roc_auc_ci_high": 0.9548872180451128,
+  "roc_auc_ci_level": 0.95,
+  "n_bootstrap": 2000,
+  "bootstrap_attempts": 2000,
+  "n_files_wrong": 9,
+  "accuracy_per_nim_mean": 0.7857285714285714,
+  "accuracy_per_nim_min": 0.1667,
+  "accuracy_per_nim_max": 1.0
+}

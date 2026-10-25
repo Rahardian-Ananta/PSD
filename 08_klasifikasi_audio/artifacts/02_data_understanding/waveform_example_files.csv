@@ -1,0 +1,7 @@
+label_name,level,relative_path,nim,take,rms_native,peak_native,samplerate_native,channels_native
+non-berisik,Rendah (P10),non-berisik/24-007_non-berisik_3.mp3,24-007,3,0.004560168677977052,0.0933825746178627,48000,1
+non-berisik,Median (P50),non-berisik/24-098_non-berisik_3.mp3,24-098,3,0.026512525056997492,0.26708751916885376,48000,2
+non-berisik,Tinggi (P90),non-berisik/24-118_non-berisik_2.mp3,24-118,2,0.11811486170717798,0.898575484752655,44100,2
+berisik,Rendah (P10),berisik/24-006_berisik_2.mp3,24-006,2,0.03451546083651704,0.47894179821014404,44100,2
+berisik,Median (P50),berisik/24-087_berisik_1.mp3,24-087,1,0.084982158612829,0.7128568887710571,44100,2
+berisik,Tinggi (P90),berisik/24-131_berisik_1.mp3,24-131,1,0.18448583366712779,0.99504554271698,48000,2

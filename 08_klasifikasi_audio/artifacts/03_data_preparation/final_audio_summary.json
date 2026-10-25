@@ -1,0 +1,12 @@
+{
+  "n_files": 176,
+  "n_unique_final_hashes": 176,
+  "sample_rate": 16000,
+  "channels": 1,
+  "samples_per_file": 480000,
+  "duration_s": 30.0,
+  "duration_actions": {
+    "none": 176
+  },
+  "all_checks_passed": true
+}

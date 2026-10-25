@@ -1,0 +1,8 @@
+feature_1,feature_2,pearson_r,abs_r
+zcr_std,spectral_centroid_std,0.9869547976372288,0.9869547976372288
+zcr_mean,spectral_centroid_mean,0.9866584162929124,0.9866584162929124
+spectral_centroid_mean,spectral_rolloff_mean,0.9830179076010744,0.9830179076010744
+zcr_mean,spectral_rolloff_mean,0.9822766062436985,0.9822766062436985
+mse_energy,rms_mean,0.9632914547355946,0.9632914547355946
+zcr_mean,spectral_bandwidth_mean,0.9292334360911556,0.9292334360911556
+spectral_rolloff_mean,spectral_bandwidth_mean,0.9270376371064822,0.9270376371064822

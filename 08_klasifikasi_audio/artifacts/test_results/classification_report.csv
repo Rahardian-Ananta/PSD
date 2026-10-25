@@ -1,0 +1,6 @@
+kelas,precision,recall,f1-score,support
+non-berisik,0.8,0.7619,0.7805,21.0
+berisik,0.75,0.7895,0.7692,19.0
+accuracy,0.775,0.775,0.775,0.775
+macro avg,0.775,0.7757,0.7749,40.0
+weighted avg,0.7762,0.775,0.7751,40.0

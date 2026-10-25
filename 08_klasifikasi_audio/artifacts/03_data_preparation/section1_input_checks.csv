@@ -1,0 +1,11 @@
+pemeriksaan,lulus,status
+jumlah_file_200,True,PASS
+relatif_path_unik,True,PASS
+identitas_lengkap,True,PASS
+label_valid_0_1,True,PASS
+nama_file_terurai,True,PASS
+semua_file_terbaca,True,PASS
+tidak_ada_kegagalan_kritis,True,PASS
+tidak_ada_nan_inf,True,PASS
+tidak_ada_sinyal_kosong,True,PASS
+sha256_lengkap,True,PASS

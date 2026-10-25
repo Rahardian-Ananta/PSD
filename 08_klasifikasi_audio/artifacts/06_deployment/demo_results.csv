@@ -1,0 +1,5 @@
+skenario,file,path,kelas_asli,prediksi,proba_berisik,cocok,duration_action,durasi_asli_detik,peak_sebelum_normalisasi
+demo_utama,24-068_non-berisik_1.mp3,C:\Users\ASUS\Downloads\dataset_30_detik\data_mp3\non-berisik\24-068_non-berisik_1.mp3,non-berisik,berisik,0.7403193600772532,False,none,30.0,0.29250067472457886
+demo_utama,24-068_berisik_1.mp3,C:\Users\ASUS\Downloads\dataset_30_detik\data_mp3\berisik\24-068_berisik_1.mp3,berisik,berisik,0.9114366238850667,True,none,30.0,0.8097036480903625
+cabang_pad_10_detik,demo_10_detik.wav,C:\Users\ASUS\Downloads\dataset_30_detik\artifacts\06_deployment\demo_audio\demo_10_detik.wav,non-berisik,non-berisik,0.05163245580276888,True,pad,10.0,0.962890625
+cabang_crop_60_detik,demo_60_detik.wav,C:\Users\ASUS\Downloads\dataset_30_detik\artifacts\06_deployment\demo_audio\demo_60_detik.wav,non-berisik,berisik,0.8568196902220652,False,crop,60.0,0.999969482421875

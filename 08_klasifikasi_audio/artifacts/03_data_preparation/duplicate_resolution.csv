@@ -1,0 +1,18 @@
+duplicate_group_id,label_name,n_candidates,candidates,selected,selected_nim,selected_take
+DUP01,berisik,2,berisik/24-003_berisik_1.mp3 | berisik/24-053_berisik_3.mp3,berisik/24-003_berisik_1.mp3,24-003,1
+DUP02,berisik,2,berisik/24-003_berisik_2.mp3 | berisik/24-079_berisik_2.mp3,berisik/24-003_berisik_2.mp3,24-003,2
+DUP03,berisik,3,berisik/24-003_berisik_3.mp3 | berisik/24-079_berisik_1.mp3 | berisik/24-123_berisik_3.mp3,berisik/24-003_berisik_3.mp3,24-003,3
+DUP05,berisik,2,berisik/24-071_berisik_1.mp3 | berisik/24-098_berisik_1.mp3,berisik/24-071_berisik_1.mp3,24-071,1
+DUP06,berisik,2,berisik/24-071_berisik_2.mp3 | berisik/24-098_berisik_2.mp3,berisik/24-071_berisik_2.mp3,24-071,2
+DUP07,berisik,2,berisik/24-071_berisik_3.mp3 | berisik/24-098_berisik_3.mp3,berisik/24-098_berisik_3.mp3,24-098,3
+DUP08,berisik,2,berisik/24-115_berisik_3.mp3 | berisik/24-190_berisik_3.mp3,berisik/24-115_berisik_3.mp3,24-115,3
+DUP09,berisik,2,berisik/24-123_berisik_1.mp3 | berisik/24-201_berisik_2.mp3,berisik/24-201_berisik_2.mp3,24-201,2
+DUP10,berisik,3,berisik/24-157_berisik_1.mp3 | berisik/24-157_berisik_2.mp3 | berisik/24-157_berisik_3.mp3,berisik/24-157_berisik_1.mp3,24-157,1
+DUP11,non-berisik,2,non-berisik/24-003_non-berisik_2.mp3 | non-berisik/24-053_non-berisik_1.mp3,non-berisik/24-003_non-berisik_2.mp3,24-003,2
+DUP12,non-berisik,2,non-berisik/24-003_non-berisik_3.mp3 | non-berisik/24-079_non-berisik_1.mp3,non-berisik/24-003_non-berisik_3.mp3,24-003,3
+DUP13,non-berisik,2,non-berisik/24-031_non-berisik_1.mp3 | non-berisik/24-071_non-berisik_3.mp3,non-berisik/24-031_non-berisik_1.mp3,24-031,1
+DUP14,non-berisik,3,non-berisik/24-031_non-berisik_2.mp3 | non-berisik/24-071_non-berisik_2.mp3 | non-berisik/24-115_non-berisik_2.mp3,non-berisik/24-031_non-berisik_2.mp3,24-031,2
+DUP15,non-berisik,2,non-berisik/24-031_non-berisik_3.mp3 | non-berisik/24-071_non-berisik_1.mp3,non-berisik/24-071_non-berisik_1.mp3,24-071,1
+DUP16,non-berisik,3,non-berisik/24-078_non-berisik_1.mp3 | non-berisik/24-078_non-berisik_2.mp3 | non-berisik/24-078_non-berisik_3.mp3,non-berisik/24-078_non-berisik_1.mp3,24-078,1
+DUP17,non-berisik,2,non-berisik/24-115_non-berisik_1.mp3 | non-berisik/24-190_non-berisik_3.mp3,non-berisik/24-115_non-berisik_1.mp3,24-115,1
+DUP18,non-berisik,3,non-berisik/24-196_non-berisik_1.mp3 | non-berisik/24-196_non-berisik_2.mp3 | non-berisik/24-196_non-berisik_3.mp3,non-berisik/24-196_non-berisik_1.mp3,24-196,1

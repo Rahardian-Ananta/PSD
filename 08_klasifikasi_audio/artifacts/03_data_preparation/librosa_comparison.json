@@ -1,0 +1,50 @@
+{
+  "fft_rfft_max_abs_diff": 1.8189894035458565e-12,
+  "summary": [
+    {
+      "feature": "spectral_centroid_mean",
+      "manual_mean": 740.9926078051648,
+      "librosa_mean": 1467.9410118807907,
+      "mean_abs_difference": 726.948404075626,
+      "max_abs_difference": 1421.2929413630893,
+      "pearson_r": 0.8948710913832231,
+      "note": "manual=P, librosa=magnitudo"
+    },
+    {
+      "feature": "spectral_bandwidth_mean",
+      "manual_mean": 674.8045130083384,
+      "librosa_mean": 1478.6082939303744,
+      "mean_abs_difference": 803.8037809220361,
+      "max_abs_difference": 1243.5315053944846,
+      "pearson_r": 0.7857299946699331,
+      "note": "manual=P, librosa=magnitudo"
+    },
+    {
+      "feature": "spectral_rolloff_mean",
+      "manual_mean": 1170.7818232988661,
+      "librosa_mean": 2904.7793818037785,
+      "mean_abs_difference": 1733.9975585049126,
+      "max_abs_difference": 3374.4371247498334,
+      "pearson_r": 0.7935388890698992,
+      "note": "manual=P, librosa=magnitudo"
+    },
+    {
+      "feature": "spectral_flatness_mean",
+      "manual_mean": 0.02356384002574574,
+      "librosa_mean": 0.026800545780152885,
+      "mean_abs_difference": 0.003236705754407139,
+      "max_abs_difference": 0.4166099083830219,
+      "pearson_r": 0.7763728838019849,
+      "note": "manual=P, librosa=magnitudo"
+    },
+    {
+      "feature": "zcr_mean",
+      "manual_mean": 0.11175503042888316,
+      "librosa_mean": 0.11295962459821697,
+      "mean_abs_difference": 0.0013305060801527733,
+      "max_abs_difference": 0.035717211641512064,
+      "pearson_r": 0.9963709240209315,
+      "note": "konvensi zero-crossing dapat berbeda di tepi frame"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "stage": "04_modeling",
+  "model_name": "Logistic Regression",
+  "model_class": "LogisticRegression",
+  "pipeline_steps": [
+    "scaler",
+    "select",
+    "clf"
+  ],
+  "best_params": {
+    "clf__C": 10.0,
+    "select__k": 8
+  },
+  "best_cv_roc_auc": 0.8442451778990241,
+  "reference_cv_roc_auc_mean": 0.8349381387842927,
+  "baseline_cv_roc_auc": 0.5,
+  "cv": {
+    "splitter": "GroupKFold",
+    "n_splits": 5,
+    "groups": "nim",
+    "scoring": "roc_auc"
+  },
+  "holdout": {
+    "splitter": "GroupShuffleSplit",
+    "test_size": 0.2,
+    "random_state": 42,
+    "n_nim_train": 27,
+    "n_nim_test": 7,
+    "nims_train": [
+      "24-003",
+      "24-006",
+      "24-007",
+      "24-026",
+      "24-027",
+      "24-031",
+      "24-034",
+      "24-053",
+      "24-071",
+      "24-078",
+      "24-079",
+      "24-081",
+      "24-087",
+      "24-098",
+      "24-101",
+      "24-115",
+      "24-118",
+      "24-125",
+      "24-137",
+      "24-141",
+      "24-157",
+      "24-179",
+      "24-190",
+      "24-196",
+      "24-201",
+      "24-202",
+      "24-228"
+    ],
+    "nims_test": [
+      "24-068",
+      "24-100",
+      "24-119",
+      "24-131",
+      "24-145",
+      "24-168",
+      "24-169"
+    ],
+    "n_files_train": 136,
+    "n_files_test": 40,
+    "class_counts_train": {
+      "0": 67,
+      "1": 69
+    },
+    "class_counts_test": {
+      "0": 21,
+      "1": 19
+    }
+  },
+  "random_state": 42,
+  "feature_columns": [
+    "mse_energy",
+    "rms_mean",
+    "rms_std",
+    "rms_max",
+    "rms_min",
+    "zcr_mean",
+    "zcr_std",
+    "spectral_centroid_mean",
+    "spectral_centroid_std",
+    "spectral_flatness_mean",
+    "spectral_rolloff_mean",
+    "spectral_bandwidth_mean"
+  ],
+  "n_features_total": 12,
+  "n_features_selected": 8,
+  "selected_features_final": [
+    "mse_energy",
+    "rms_mean",
+    "rms_std",
+    "rms_max",
+    "rms_min",
+    "zcr_mean",
+    "spectral_centroid_mean",
+    "spectral_rolloff_mean"
+  ],
+  "train_rows": 136,
+  "library_versions": {
+    "Python": "3.11.9",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3",
+    "matplotlib": "3.11.0",
+    "seaborn": "0.13.2"
+  },
+  "preprocessing_note": "fitur diambil dari artifacts/features.csv; prapemrosesan audio mengikuti artifacts/03_data_preparation/preprocessing_contract.json",
+  "created_at_utc": "2026-10-24T01:50:26+00:00"
+}

@@ -1,0 +1,3 @@
+label_name,n_files,n_nim,n_unique_hashes,n_duplicate_files,n_low_level,duration_min_s,duration_max_s,size_median_mb,peak_median,rms_median
+berisik,100,35,89,21,0,30.0,30.0,0.46492481231689453,0.8899913430213928,0.08582169762673797
+non-berisik,100,34,89,20,3,30.0,30.0,0.4487309455871582,0.39572469890117645,0.026172866703997266

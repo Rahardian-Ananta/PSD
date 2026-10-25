@@ -1,0 +1,51 @@
+{
+  "total_files": 200,
+  "total_nim": 35,
+  "class_files": {
+    "berisik": 100,
+    "non-berisik": 100
+  },
+  "class_nims": {
+    "berisik": 35,
+    "non-berisik": 34
+  },
+  "complete_nim": 30,
+  "incomplete_nim": [
+    "24-003",
+    "24-053",
+    "24-123",
+    "24-169",
+    "24-228"
+  ],
+  "missing_take_combinations": 10,
+  "read_failures": 0,
+  "critical_failures": 0,
+  "duration_exact_30s": 200,
+  "duration_min_s": 30.0,
+  "duration_max_s": 30.0,
+  "sample_rates": {
+    "16000": 6,
+    "44100": 69,
+    "48000": 125
+  },
+  "channels": {
+    "1": 56,
+    "2": 144
+  },
+  "unique_hashes": 177,
+  "duplicate_groups": 18,
+  "duplicate_files": 41,
+  "duplicate_scopes": {
+    "cross_nim": 30,
+    "within_nim": 9,
+    "cross_label": 2
+  },
+  "cross_label_groups": 1,
+  "cross_nim_groups": 14,
+  "within_nim_groups": 3,
+  "low_level_files": 3,
+  "peak_over_one_files": 36,
+  "empty_signal_files": 0,
+  "nan_files": 0,
+  "inf_files": 0
+}

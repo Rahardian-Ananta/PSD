@@ -1,0 +1,12 @@
+# Kandidat fitur eksploratif untuk Tahap 04
+# Metode: rata-rata peringkat mutual_info_classif dan RandomForest.feature_importances_
+# Peringatan: seleksi final dan scaling wajib dipelajari ulang di dalam Pipeline pada training fold.
+# mi_rank rf_rank mean_rank cohens_d | feature
+1 2 1.5 1.128845 | rms_mean
+2 1 1.5 1.045737 | mse_energy
+4 3 3.5 1.042634 | rms_std
+3 5 4.0 0.310348 | spectral_rolloff_mean
+6 4 5.0 0.463961 | spectral_centroid_mean
+5 6 5.5 0.443137 | zcr_mean
+7 9 8.0 0.544251 | rms_max
+9 7 8.0 -0.001774 | spectral_centroid_std

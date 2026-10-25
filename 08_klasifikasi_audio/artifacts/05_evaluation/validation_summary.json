@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "model_name": "Logistic Regression",
+  "n_files_test": 40,
+  "n_nim_test": 7,
+  "roc_auc": 0.8295739348370927,
+  "roc_auc_ci": [
+    0.6766917293233083,
+    0.9548872180451128
+  ],
+  "pr_auc": 0.8480708048600767,
+  "accuracy": 0.775,
+  "precision_class_1": 0.75,
+  "recall_class_1": 0.7894736842105263,
+  "f1_class_1": 0.7692307692307693,
+  "kelayakan_status": "DI BAWAH SYARAT AWAL",
+  "model_unchanged": true,
+  "holdout_only": true,
+  "checks_passed": 28,
+  "checks_total": 28
+}

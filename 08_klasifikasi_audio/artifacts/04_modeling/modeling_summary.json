@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "model_name": "Logistic Regression",
+  "model_class": "LogisticRegression",
+  "best_cv_roc_auc": 0.8442451778990241,
+  "baseline_cv_roc_auc": 0.5,
+  "n_combinations": 12,
+  "best_params": {
+    "clf__C": 10.0,
+    "select__k": 8
+  },
+  "n_features_selected": 8,
+  "selected_features_final": [
+    "mse_energy",
+    "rms_mean",
+    "rms_std",
+    "rms_max",
+    "rms_min",
+    "zcr_mean",
+    "spectral_centroid_mean",
+    "spectral_rolloff_mean"
+  ],
+  "n_nim_train": 27,
+  "n_nim_test": 7,
+  "n_files_train": 136,
+  "n_files_test": 40,
+  "n_splits": 5,
+  "scoring": "roc_auc",
+  "random_state": 42,
+  "nims_test": [
+    "24-068",
+    "24-100",
+    "24-119",
+    "24-131",
+    "24-145",
+    "24-168",
+    "24-169"
+  ],
+  "holdout_tested_in_stage_04": false
+}

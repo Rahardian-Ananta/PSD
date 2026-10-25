@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "model_name": "Logistic Regression",
+  "model_class": "LogisticRegression",
+  "n_files_test": 40,
+  "n_nim_test": 7,
+  "nims_test": [
+    "24-068",
+    "24-100",
+    "24-119",
+    "24-131",
+    "24-145",
+    "24-168",
+    "24-169"
+  ],
+  "class_counts_test": {
+    "0": 21,
+    "1": 19
+  },
+  "test_threshold": 0.5,
+  "roc_auc": 0.8295739348370927,
+  "roc_auc_ci_low": 0.6766917293233083,
+  "roc_auc_ci_high": 0.9548872180451128,
+  "pr_auc": 0.8480708048600767,
+  "accuracy": 0.775,
+  "precision_class_1": 0.75,
+  "recall_class_1": 0.7894736842105263,
+  "f1_class_1": 0.7692307692307693,
+  "confusion_matrix": {
+    "tn": 16,
+    "fp": 5,
+    "fn": 4,
+    "tp": 15
+  },
+  "kelayakan_status": "DI BAWAH SYARAT AWAL",
+  "roc_auc_meets_threshold": false,
+  "n_files_wrong": 9,
+  "checks_passed": 28,
+  "checks_total": 28,
+  "model_unchanged": true,
+  "random_state": 42
+}

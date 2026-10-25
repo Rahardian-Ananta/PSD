@@ -1,0 +1,18 @@
+{
+  "n_same_label_groups": 17,
+  "n_search_combinations": 995328,
+  "best_both_class_nims": 34,
+  "best_represented_nims": 34,
+  "best_one_class_nims": 0,
+  "final_files": 176,
+  "final_unique_hashes": 176,
+  "final_nims": 34,
+  "final_class_counts": {
+    "0": 88,
+    "1": 88
+  },
+  "quarantined_files": 24,
+  "dropped_nims": [
+    "24-123"
+  ]
+}

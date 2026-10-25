@@ -1,0 +1,9 @@
+label_name,samplerate,channels,n_files
+berisik,16000,1,3
+berisik,44100,2,34
+berisik,48000,1,26
+berisik,48000,2,37
+non-berisik,16000,1,3
+non-berisik,44100,2,35
+non-berisik,48000,1,24
+non-berisik,48000,2,38

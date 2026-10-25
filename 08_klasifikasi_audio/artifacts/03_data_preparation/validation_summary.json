@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "n_raw": 200,
+  "n_final": 176,
+  "n_quarantine": 24,
+  "n_features": 176,
+  "n_nim": 34,
+  "class_counts": {
+    "0": 88,
+    "1": 88
+  },
+  "n_final_hashes": 176,
+  "n_uncertain_nims": 0,
+  "n_zero_power_frames": 1677,
+  "n_files_with_zero_power_frames": 52,
+  "selected_features": [
+    "rms_mean",
+    "mse_energy",
+    "rms_std",
+    "spectral_rolloff_mean",
+    "spectral_centroid_mean",
+    "zcr_mean",
+    "rms_max",
+    "spectral_centroid_std"
+  ],
+  "range_failures": [],
+  "fft_rfft_max_abs_diff": 1.8189894035458565e-12,
+  "checks_passed": 28,
+  "checks_total": 28
+}

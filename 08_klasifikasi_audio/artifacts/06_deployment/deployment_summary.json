@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "model_name": "Logistic Regression",
+  "model_class": "LogisticRegression",
+  "model_file_sha256": "964a1550c9c06123e00599a17546de694e64de19aee833a771c9d6ceaa35390a",
+  "model_identity_max_diff": 1.1102230246251565e-16,
+  "predict_audio_callable": true,
+  "test_threshold": 0.5,
+  "identity": {
+    "n_files_checked": 176,
+    "max_feature_rel_diff": 6.105048316213275e-05,
+    "max_feature_abs_diff": 2.3344986576967486e-05,
+    "max_proba_diff_pipeline_vs_direct": 2.3986874527759383e-05,
+    "label_match_vs_direct_176": 176,
+    "test_label_match_vs_tahap05": 40,
+    "test_max_proba_diff_vs_tahap05": 2.342187834847298e-05,
+    "test_accuracy_pipeline": 0.775,
+    "test_accuracy_tahap05": 0.775,
+    "feature_rel_tolerance": 0.001,
+    "proba_match_tolerance": 0.005
+  },
+  "demo_main": [
+    {
+      "file": "24-068_non-berisik_1.mp3",
+      "kelas_asli": "non-berisik",
+      "prediksi": "berisik",
+      "proba_berisik": 0.7403193600772532,
+      "cocok": false
+    },
+    {
+      "file": "24-068_berisik_1.mp3",
+      "kelas_asli": "berisik",
+      "prediksi": "berisik",
+      "proba_berisik": 0.9114366238850667,
+      "cocok": true
+    }
+  ],
+  "demo_duration_actions": {
+    "demo_utama": "none",
+    "cabang_pad_10_detik": "pad",
+    "cabang_crop_60_detik": "crop"
+  },
+  "laporan_bytes": 7326,
+  "roc_auc_tahap05": 0.8295739348370927,
+  "kelayakan_status": "DI BAWAH SYARAT AWAL",
+  "checks_passed": 31,
+  "checks_total": 31,
+  "random_state": 42
+}

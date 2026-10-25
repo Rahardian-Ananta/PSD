@@ -1,0 +1,17 @@
+{
+  "sample_rate": 16000,
+  "channels": 1,
+  "target_duration_seconds": 30.0,
+  "target_samples": 480000,
+  "decode": "librosa.load(path, sr=16000, mono=True)",
+  "longer_than_target": "center crop; start=(n_samples-target_samples)//2",
+  "shorter_than_target": "center zero pad; left=pad//2, right=pad-left",
+  "peak_normalization": "after crop/pad; y/max(abs(y))*1.0; error if max(abs(y))==0",
+  "output_format": "WAV PCM_16, mono, 16000 Hz",
+  "frame_length": 400,
+  "hop_length": 160,
+  "n_fft": 512,
+  "window": "Hann simetris: 0.5 - 0.5*cos(2*pi*n/(L-1))",
+  "rolloff_percent": 0.85,
+  "flatness_epsilon": 2.220446049250313e-16
+}

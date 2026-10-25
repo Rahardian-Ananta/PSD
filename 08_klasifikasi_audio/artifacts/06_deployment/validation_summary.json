@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "model_name": "Logistic Regression",
+  "model_class": "LogisticRegression",
+  "model_file_sha256": "964a1550c9c06123e00599a17546de694e64de19aee833a771c9d6ceaa35390a",
+  "model_unchanged": true,
+  "predict_audio_defined": true,
+  "n_files_identity_checked": 176,
+  "max_feature_rel_diff": 6.105048316213275e-05,
+  "test_label_match_vs_tahap05": 40,
+  "test_max_proba_diff_vs_tahap05": 2.342187834847298e-05,
+  "demo_main_files": [
+    "24-068_non-berisik_1.mp3",
+    "24-068_berisik_1.mp3"
+  ],
+  "demo_classes": [
+    "berisik",
+    "non-berisik"
+  ],
+  "laporan_bytes": 7326,
+  "roc_auc_tahap05": 0.8295739348370927,
+  "kelayakan_status": "DI BAWAH SYARAT AWAL",
+  "checks_passed": 31,
+  "checks_total": 31
+}

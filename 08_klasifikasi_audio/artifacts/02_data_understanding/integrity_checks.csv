@@ -1,0 +1,12 @@
+pemeriksaan,jumlah
+file berhasil dibaca,200
+file gagal dibaca,0
+frame hasil decode > 0,200
+file dengan NaN,0
+file dengan Inf,0
+file dengan sinyal semua nol,0
+durasi tepat 30 detik,200
+durasi di luar toleransi,0
+peak > 1.0 (overshoot MP3),36
+peak < 0.05 (level sangat rendah),3
+kegagalan kritis,0

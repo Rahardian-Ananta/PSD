@@ -1,0 +1,13 @@
+{
+  "n_files_checked": 176,
+  "max_feature_rel_diff": 6.105048316213275e-05,
+  "max_feature_abs_diff": 2.3344986576967486e-05,
+  "max_proba_diff_pipeline_vs_direct": 2.3986874527759383e-05,
+  "label_match_vs_direct_176": 176,
+  "test_label_match_vs_tahap05": 40,
+  "test_max_proba_diff_vs_tahap05": 2.342187834847298e-05,
+  "test_accuracy_pipeline": 0.775,
+  "test_accuracy_tahap05": 0.775,
+  "feature_rel_tolerance": 0.001,
+  "proba_match_tolerance": 0.005
+}
