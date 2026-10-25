@@ -7,9 +7,9 @@ Alur:
 
 Seluruh rumus pemrosesan SAMA PERSIS dengan notebook 03 dan 06 (predict_audio).
 
-Cara jalan (dari folder proyek yang berisi artifacts/):
-    pip install -r requirements.txt
-    streamlit run app.py
+Cara jalan (dari folder mana pun):
+    pip install -r 08_klasifikasi_audio/requirements.txt
+    streamlit run 08_klasifikasi_audio/app.py
 """
 
 import io
@@ -48,8 +48,12 @@ FEATURE_COLUMNS = [
 ]
 LABEL_NAME_MAP = {0: "non-berisik", 1: "berisik"}
 
-# Lokasi model: bisa diganti lewat variabel lingkungan MODEL_PATH
-DEFAULT_MODEL_PATH = Path(os.environ.get("MODEL_PATH", "artifacts/best_model.joblib"))
+# Lokasi model: bisa diganti lewat variabel lingkungan MODEL_PATH.
+# Path default dihitung dari folder app.py (bukan cwd), supaya tetap benar
+# meski dijalankan sebagai `streamlit run 08_klasifikasi_audio/app.py` dari root.
+APP_DIR = Path(__file__).resolve().parent
+_env_model = os.environ.get("MODEL_PATH")
+DEFAULT_MODEL_PATH = Path(_env_model) if _env_model else APP_DIR / "artifacts" / "best_model.joblib"
 
 AUDIO_TYPES = ["wav", "mp3", "m4a", "aac", "ogg", "oga", "opus", "flac", "webm", "wma", "amr", "mp4", "3gp"]
 
