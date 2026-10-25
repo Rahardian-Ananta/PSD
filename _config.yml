@@ -25,6 +25,11 @@ exclude_patterns:
   - 07_klasifikasi_lahan_jatim/outputs/models/*
   - 07_klasifikasi_lahan_jatim/outputs/tables/*.pkl
   - 07_klasifikasi_lahan_jatim/outputs/tables/*.npz
+  - 08_klasifikasi_audio/raw_audio/*
+  - 08_klasifikasi_audio/data_mp3/*
+  - 08_klasifikasi_audio/data_final/*
+  - 08_klasifikasi_audio/quarantine/*
+  - 08_klasifikasi_audio/artifacts/*
   - prompt/*
   - .venv/*
   - __pycache__/*

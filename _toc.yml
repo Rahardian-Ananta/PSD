@@ -116,3 +116,18 @@ parts:
         title: 7.6 WebGIS
       - file: 07_klasifikasi_lahan_jatim/deployment
         title: 7.7 Deployment
+  
+  - caption: BAB 8 — KLASIFIKASI BINER AUDIO
+    chapters:
+      - file: 08_klasifikasi_audio/notebooks/01_business_understanding
+        title: 8.1 Business Understanding
+      - file: 08_klasifikasi_audio/notebooks/02_data_understanding
+        title: 8.2 Data Understanding
+      - file: 08_klasifikasi_audio/notebooks/03_data_preparation
+        title: 8.3 Data Preparation
+      - file: 08_klasifikasi_audio/notebooks/04_modeling
+        title: 8.4 Modeling
+      - file: 08_klasifikasi_audio/notebooks/05_evaluation
+        title: 8.5 Evaluation
+      - file: 08_klasifikasi_audio/notebooks/06_deployment
+        title: 8.6 Deployment

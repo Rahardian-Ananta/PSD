@@ -1,0 +1,7 @@
+streamlit>=1.39
+librosa>=0.10
+soundfile
+scikit-learn==1.8.0
+joblib
+numpy
+pandas
